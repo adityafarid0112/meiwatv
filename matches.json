@@ -1,26 +1,6 @@
 [
   {
-    "id": "match_1_ryuki-matsuda-atharva-sha",
-    "title": "Ryuki Matsuda vs Constantin Bittoun Kouzmine",
-    "homeTeam": "Ryuki Matsuda",
-    "awayTeam": "Constantin Bittoun Kouzmine",
-    "league": "ATP Challenger Phan Thiet 4, Vietnam Men Doubles",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-17T12:20:00+07:00",
-    "kickoffText": "12:20 WIB (17/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel53/off-tvc?is_off_add=false",
-    "streamJalur2": "https://tft-forests.org/truc-tiep/ryuki-matsuda-atharva-sharma-vs-constantin-bittoun-kouzmine-s-d-prajwal-dev-luc-1220-ngay-17-09-2026/",
-    "streamJalur3": "https://tft-forests.org/truc-tiep/ryuki-matsuda-atharva-sharma-vs-constantin-bittoun-kouzmine-s-d-prajwal-dev-luc-1220-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel53/off-tvc?is_off_add=false",
-      "jalur2": "https://tft-forests.org/truc-tiep/ryuki-matsuda-atharva-sharma-vs-constantin-bittoun-kouzmine-s-d-prajwal-dev-luc-1220-ngay-17-09-2026/",
-      "jalur3": "https://tft-forests.org/truc-tiep/ryuki-matsuda-atharva-sharma-vs-constantin-bittoun-kouzmine-s-d-prajwal-dev-luc-1220-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T07:16:19.541Z"
-  },
-  {
-    "id": "match_2_martin-borisiouk-nikita-i",
+    "id": "match_1_martin-borisiouk-nikita-i",
     "title": "Martin Borisiouk vs Jeong Yeongseok",
     "homeTeam": "Martin Borisiouk",
     "awayTeam": "Jeong Yeongseok",
@@ -37,10 +17,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/martin-borisiouk-nikita-ianin-vs-jeong-yeongseok-koki-matsuda-luc-1220-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/martin-borisiouk-nikita-ianin-vs-jeong-yeongseok-koki-matsuda-luc-1220-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.550Z"
+    "updatedAt": "2026-09-17T07:43:02.939Z"
   },
   {
-    "id": "match_3_nu-thai-lan-vs-nu-dai-loa",
+    "id": "match_2_nu-thai-lan-vs-nu-dai-loa",
     "title": "Nữ Thái Lan vs Nữ Đài Loan",
     "homeTeam": "Nữ Thái Lan",
     "awayTeam": "Nữ Đài Loan",
@@ -57,10 +37,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-19/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-thai-lan-vs-nu-dai-loan-luc-1400-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.865Z"
+    "updatedAt": "2026-09-17T07:43:02.976Z"
   },
   {
-    "id": "match_4_nu-bangladesh-vs-nu-han-q",
+    "id": "match_3_nu-bangladesh-vs-nu-han-q",
     "title": "Nữ Bangladesh vs Nữ Hàn Quốc",
     "homeTeam": "Nữ Bangladesh",
     "awayTeam": "Nữ Hàn Quốc",
@@ -77,10 +57,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-6/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-bangladesh-vs-nu-han-quoc-luc-1400-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.566Z"
+    "updatedAt": "2026-09-17T07:43:02.978Z"
   },
   {
-    "id": "match_5_nu-fiji-vs-nu-papua-new-g",
+    "id": "match_4_nu-fiji-vs-nu-papua-new-g",
     "title": "Nữ Fiji vs Nữ Papua New Guinea",
     "homeTeam": "Nữ Fiji",
     "awayTeam": "Nữ Papua New Guinea",
@@ -97,30 +77,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-fiji-vs-nu-papua-new-guinea-luc-1400-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-fiji-vs-nu-papua-new-guinea-luc-1400-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.855Z"
+    "updatedAt": "2026-09-17T07:43:02.960Z"
   },
   {
-    "id": "match_6_nu-philippines-vs-nu-kaza",
-    "title": "Nữ Philippines vs Nữ Kazakhstan",
-    "homeTeam": "Nữ Philippines",
-    "awayTeam": "Nữ Kazakhstan",
-    "league": "Asian Games - Women's Basketball",
-    "sportCategory": "🏀 Bola Basket",
-    "kickoffIso": "2026-09-17T14:00:00+07:00",
-    "kickoffText": "14:00 WIB (17/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel25/off-tvc?is_off_add=false",
-    "streamJalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
-    "streamJalur3": "https://tft-forests.org/truc-tiep/nu-philippines-vs-nu-kazakhstan-luc-1400-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel25/off-tvc?is_off_add=false",
-      "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
-      "jalur3": "https://tft-forests.org/truc-tiep/nu-philippines-vs-nu-kazakhstan-luc-1400-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T07:16:19.584Z"
-  },
-  {
-    "id": "match_7_kalmychata-vs-two-move",
+    "id": "match_5_kalmychata-vs-two-move",
     "title": "Kalmychata vs Two Move",
     "homeTeam": "Kalmychata",
     "awayTeam": "Two Move",
@@ -137,10 +97,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.781Z"
+    "updatedAt": "2026-09-17T07:43:02.984Z"
   },
   {
-    "id": "match_8_nkana-fc-vs-zesco-united-",
+    "id": "match_6_nkana-fc-vs-zesco-united-",
     "title": "Nkana FC vs ZESCO United Ndola",
     "homeTeam": "Nkana FC",
     "awayTeam": "ZESCO United Ndola",
@@ -157,30 +117,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nkana-fc-vs-zesco-united-ndola-luc-1400-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nkana-fc-vs-zesco-united-ndola-luc-1400-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.566Z"
+    "updatedAt": "2026-09-17T07:43:02.979Z"
   },
   {
-    "id": "match_9_taisei-ichikawa-masamichi",
-    "title": "Taisei Ichikawa vs Hunter Heck",
-    "homeTeam": "Taisei Ichikawa",
-    "awayTeam": "Hunter Heck",
-    "league": "ATP Challenger Phan Thiet 4, Vietnam Men Doubles",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-17T14:00:00+07:00",
-    "kickoffText": "14:00 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel56/off-tvc?is_off_add=false",
-    "streamJalur2": "https://tft-forests.org/truc-tiep/taisei-ichikawa-masamichi-imamura-vs-hunter-heck-kenta-miyoshi-luc-1400-ngay-17-09-2026/",
-    "streamJalur3": "https://tft-forests.org/truc-tiep/taisei-ichikawa-masamichi-imamura-vs-hunter-heck-kenta-miyoshi-luc-1400-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel56/off-tvc?is_off_add=false",
-      "jalur2": "https://tft-forests.org/truc-tiep/taisei-ichikawa-masamichi-imamura-vs-hunter-heck-kenta-miyoshi-luc-1400-ngay-17-09-2026/",
-      "jalur3": "https://tft-forests.org/truc-tiep/taisei-ichikawa-masamichi-imamura-vs-hunter-heck-kenta-miyoshi-luc-1400-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T07:16:19.723Z"
-  },
-  {
-    "id": "match_10_nu-hong-kong-vs-nu-viet-n",
+    "id": "match_7_nu-hong-kong-vs-nu-viet-n",
     "title": "Nữ Hồng Kông vs Nữ Việt Nam",
     "homeTeam": "Nữ Hồng Kông",
     "awayTeam": "Nữ Việt Nam",
@@ -197,10 +137,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-hong-kong-vs-nu-viet-nam-luc-1400-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.558Z"
+    "updatedAt": "2026-09-17T07:43:02.982Z"
   },
   {
-    "id": "match_11_nu-dai-loan-vs-nu-mong-co",
+    "id": "match_8_nu-dai-loan-vs-nu-mong-co",
     "title": "Nữ Đài Loan vs Nữ Mông Cổ",
     "homeTeam": "Nữ Đài Loan",
     "awayTeam": "Nữ Mông Cổ",
@@ -217,10 +157,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-dai-loan-vs-nu-mong-co-luc-1400-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-dai-loan-vs-nu-mong-co-luc-1400-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.937Z"
+    "updatedAt": "2026-09-17T07:43:02.955Z"
   },
   {
-    "id": "match_12_james-kent-trotter-vs-leo",
+    "id": "match_9_james-kent-trotter-vs-leo",
     "title": "James Kent Trotter vs Leong Mitsuki Wei Kang",
     "homeTeam": "James Kent Trotter",
     "awayTeam": "Leong Mitsuki Wei Kang",
@@ -237,10 +177,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/james-kent-trotter-vs-leong-mitsuki-wei-kang-luc-1430-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/james-kent-trotter-vs-leong-mitsuki-wei-kang-luc-1430-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.948Z"
+    "updatedAt": "2026-09-17T07:43:02.977Z"
   },
   {
-    "id": "match_13_petr-bar-biryukov-vs-naoy",
+    "id": "match_10_petr-bar-biryukov-vs-naoy",
     "title": "Petr Bar Biryukov vs Naoya Honda",
     "homeTeam": "Petr Bar Biryukov",
     "awayTeam": "Naoya Honda",
@@ -257,10 +197,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/petr-bar-biryukov-vs-naoya-honda-luc-1430-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/petr-bar-biryukov-vs-naoya-honda-luc-1430-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.906Z"
+    "updatedAt": "2026-09-17T07:43:02.983Z"
   },
   {
-    "id": "match_14_fc-trostianets-vs-fc-cher",
+    "id": "match_11_fc-trostianets-vs-fc-cher",
     "title": "FC Trostianets vs FC Chernigiv",
     "homeTeam": "FC Trostianets",
     "awayTeam": "FC Chernigiv",
@@ -277,10 +217,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-20/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/fc-trostianets-vs-fc-chernigiv-luc-1500-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.942Z"
+    "updatedAt": "2026-09-17T07:43:03.035Z"
   },
   {
-    "id": "match_15_central-stallions-vs-hunt",
+    "id": "match_12_central-stallions-vs-hunt",
     "title": "Central Stallions vs Hunters FC",
     "homeTeam": "Central Stallions",
     "awayTeam": "Hunters FC",
@@ -297,10 +237,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/central-stallions-vs-hunters-fc-luc-1500-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/central-stallions-vs-hunters-fc-luc-1500-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.929Z"
+    "updatedAt": "2026-09-17T07:43:03.040Z"
   },
   {
-    "id": "match_16_rebels-fc-vs-meg",
+    "id": "match_13_rebels-fc-vs-meg",
     "title": "Rebels FC vs MEG",
     "homeTeam": "Rebels FC",
     "awayTeam": "MEG",
@@ -317,10 +257,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/rebels-fc-vs-meg-luc-1500-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/rebels-fc-vs-meg-luc-1500-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:20.246Z"
+    "updatedAt": "2026-09-17T07:43:03.044Z"
   },
   {
-    "id": "match_17_nu-solomon-u16-vs-nu-samo",
+    "id": "match_14_nu-solomon-u16-vs-nu-samo",
     "title": "Nữ Solomon U16 vs Nữ Samoa U16",
     "homeTeam": "Nữ Solomon U16",
     "awayTeam": "Nữ Samoa U16",
@@ -337,10 +277,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-solomon-u16-vs-nu-samoa-u16-luc-1500-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-solomon-u16-vs-nu-samoa-u16-luc-1500-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:19.907Z"
+    "updatedAt": "2026-09-17T07:43:03.010Z"
   },
   {
-    "id": "match_18_mona-barthel-vs-mia-risti",
+    "id": "match_15_mona-barthel-vs-mia-risti",
     "title": "Mona Barthel vs Mia Ristic",
     "homeTeam": "Mona Barthel",
     "awayTeam": "Mia Ristic",
@@ -357,10 +297,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/mona-barthel-vs-mia-ristic-luc-1500-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/mona-barthel-vs-mia-ristic-luc-1500-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:20.095Z"
+    "updatedAt": "2026-09-17T07:43:03.015Z"
   },
   {
-    "id": "match_19_nigeria-vs-algeria",
+    "id": "match_16_nigeria-vs-algeria",
     "title": "Nigeria vs Algeria",
     "homeTeam": "Nigeria",
     "awayTeam": "Algeria",
@@ -377,10 +317,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nigeria-vs-algeria-luc-1500-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nigeria-vs-algeria-luc-1500-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.017Z"
+    "updatedAt": "2026-09-17T07:43:03.039Z"
   },
   {
-    "id": "match_20_b8-vs-metizport",
+    "id": "match_17_b8-vs-metizport",
     "title": "B8 vs Metizport",
     "homeTeam": "B8",
     "awayTeam": "Metizport",
@@ -397,10 +337,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/b8-vs-metizport-luc-1500-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/b8-vs-metizport-luc-1500-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:20.445Z"
+    "updatedAt": "2026-09-17T07:43:03.041Z"
   },
   {
-    "id": "match_21_samira-de-stefano-vs-alic",
+    "id": "match_18_samira-de-stefano-vs-alic",
     "title": "Samira de Stefano vs Alice Tubello",
     "homeTeam": "Samira de Stefano",
     "awayTeam": "Alice Tubello",
@@ -417,10 +357,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/samira-de-stefano-vs-alice-tubello-luc-1530-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/samira-de-stefano-vs-alice-tubello-luc-1530-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.074Z"
+    "updatedAt": "2026-09-17T07:43:03.040Z"
   },
   {
-    "id": "match_22_bernard-tomic-vs-jake-del",
+    "id": "match_19_bernard-tomic-vs-jake-del",
     "title": "Bernard Tomic vs Jake Delaney",
     "homeTeam": "Bernard Tomic",
     "awayTeam": "Jake Delaney",
@@ -437,10 +377,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/bernard-tomic-vs-jake-delaney-luc-1540-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.072Z"
+    "updatedAt": "2026-09-17T07:43:03.042Z"
   },
   {
-    "id": "match_23_terengganu-u20-vs-negeri-",
+    "id": "match_20_terengganu-u20-vs-negeri-",
     "title": "Terengganu U20 vs Negeri Sembilan U20",
     "homeTeam": "Terengganu U20",
     "awayTeam": "Negeri Sembilan U20",
@@ -457,10 +397,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/terengganu-u20-vs-negeri-sembilan-u20-luc-1545-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/terengganu-u20-vs-negeri-sembilan-u20-luc-1545-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.232Z"
+    "updatedAt": "2026-09-17T07:43:03.043Z"
   },
   {
-    "id": "match_24_selangor-pb-u20-vs-touch-",
+    "id": "match_21_selangor-pb-u20-vs-touch-",
     "title": "Selangor PB U20 vs Touch Electronics U20",
     "homeTeam": "Selangor PB U20",
     "awayTeam": "Touch Electronics U20",
@@ -477,10 +417,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/selangor-pb-u20-vs-touch-electronics-u20-luc-1545-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/selangor-pb-u20-vs-touch-electronics-u20-luc-1545-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.095Z"
+    "updatedAt": "2026-09-17T07:43:03.088Z"
   },
   {
-    "id": "match_25_italy-u16-vs-tay-ban-nha-",
+    "id": "match_22_italy-u16-vs-tay-ban-nha-",
     "title": "Italy U16 vs Tây Ban Nha U16",
     "homeTeam": "Italy U16",
     "awayTeam": "Tây Ban Nha U16",
@@ -497,10 +437,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/italy-u16-vs-tay-ban-nha-u16-luc-1600-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/italy-u16-vs-tay-ban-nha-u16-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.351Z"
+    "updatedAt": "2026-09-17T07:43:03.099Z"
   },
   {
-    "id": "match_26_yangon-united-fc-u20-vs-m",
+    "id": "match_23_yangon-united-fc-u20-vs-m",
     "title": "Yangon United FC U20 vs Myawady FC U20",
     "homeTeam": "Yangon United FC U20",
     "awayTeam": "Myawady FC U20",
@@ -517,10 +457,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/yangon-united-fc-u20-vs-myawady-fc-u20-luc-1600-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/yangon-united-fc-u20-vs-myawady-fc-u20-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.052Z"
+    "updatedAt": "2026-09-17T07:43:03.096Z"
   },
   {
-    "id": "match_27_dagon-star-u20-vs-hanthar",
+    "id": "match_24_dagon-star-u20-vs-hanthar",
     "title": "Dagon Star U20 vs Hantharwady Utd U20",
     "homeTeam": "Dagon Star U20",
     "awayTeam": "Hantharwady Utd U20",
@@ -537,10 +477,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/dagon-star-u20-vs-hantharwady-utd-u20-luc-1600-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/dagon-star-u20-vs-hantharwady-utd-u20-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.305Z"
+    "updatedAt": "2026-09-17T07:43:03.093Z"
   },
   {
-    "id": "match_28_hsu-jeffrey-chuan-en-zhen",
+    "id": "match_25_hsu-jeffrey-chuan-en-zhen",
     "title": "Hsu Jeffrey Chuan En vs Thijmen Loof",
     "homeTeam": "Hsu Jeffrey Chuan En",
     "awayTeam": "Thijmen Loof",
@@ -557,10 +497,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/hsu-jeffrey-chuan-en-zheng-baoluo-vs-thijmen-loof-kaito-uesugi-luc-1600-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/hsu-jeffrey-chuan-en-zheng-baoluo-vs-thijmen-loof-kaito-uesugi-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.413Z"
+    "updatedAt": "2026-09-17T07:43:03.090Z"
   },
   {
-    "id": "match_29_top-esports-vs-invictus-g",
+    "id": "match_26_top-esports-vs-invictus-g",
     "title": "Top Esports vs Invictus Gaming",
     "homeTeam": "Top Esports",
     "awayTeam": "Invictus Gaming",
@@ -577,10 +517,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/top-esports-vs-invictus-gaming-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.079Z"
+    "updatedAt": "2026-09-17T07:43:03.094Z"
   },
   {
-    "id": "match_30_ninjas-in-pyjamas-vs-m80",
+    "id": "match_27_ninjas-in-pyjamas-vs-m80",
     "title": "Ninjas in Pyjamas vs M80",
     "homeTeam": "Ninjas in Pyjamas",
     "awayTeam": "M80",
@@ -597,10 +537,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/ninjas-in-pyjamas-vs-m80-luc-1600-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/ninjas-in-pyjamas-vs-m80-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.229Z"
+    "updatedAt": "2026-09-17T07:43:03.100Z"
   },
   {
-    "id": "match_31_puckchamp-vs-balu-team",
+    "id": "match_28_puckchamp-vs-balu-team",
     "title": "Puckchamp vs Balu Team",
     "homeTeam": "Puckchamp",
     "awayTeam": "Balu Team",
@@ -617,10 +557,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.448Z"
+    "updatedAt": "2026-09-17T07:43:03.068Z"
   },
   {
-    "id": "match_32_mohun-bagan-sg-ii-vs-moha",
+    "id": "match_29_mohun-bagan-sg-ii-vs-moha",
     "title": "Mohun Bagan SG II vs Mohammedan SC",
     "homeTeam": "Mohun Bagan SG II",
     "awayTeam": "Mohammedan SC",
@@ -637,10 +577,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/mohun-bagan-sg-ii-vs-mohammedan-sc-luc-1630-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/mohun-bagan-sg-ii-vs-mohammedan-sc-luc-1630-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.621Z"
+    "updatedAt": "2026-09-17T07:43:03.097Z"
   },
   {
-    "id": "match_33_nangkiew-irat-vs-rangdaji",
+    "id": "match_30_nangkiew-irat-vs-rangdaji",
     "title": "Nangkiew Irat vs Rangdajied United",
     "homeTeam": "Nangkiew Irat",
     "awayTeam": "Rangdajied United",
@@ -657,10 +597,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nangkiew-irat-vs-rangdajied-united-luc-1630-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nangkiew-irat-vs-rangdajied-united-luc-1630-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.450Z"
+    "updatedAt": "2026-09-17T07:43:03.091Z"
   },
   {
-    "id": "match_34_noemi-basiletti-vs-ekater",
+    "id": "match_31_noemi-basiletti-vs-ekater",
     "title": "Noemi Basiletti vs Ekaterine Gorgodze",
     "homeTeam": "Noemi Basiletti",
     "awayTeam": "Ekaterine Gorgodze",
@@ -677,10 +617,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/noemi-basiletti-vs-ekaterine-gorgodze-luc-1630-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/noemi-basiletti-vs-ekaterine-gorgodze-luc-1630-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.498Z"
+    "updatedAt": "2026-09-17T07:43:03.144Z"
   },
   {
-    "id": "match_35_machida-zelvia-vs-svay-ri",
+    "id": "match_32_machida-zelvia-vs-svay-ri",
     "title": "Machida Zelvia vs Svay Rieng FC",
     "homeTeam": "Machida Zelvia",
     "awayTeam": "Svay Rieng FC",
@@ -697,10 +637,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-24/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/machida-zelvia-vs-svay-rieng-fc-luc-1700-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.445Z"
+    "updatedAt": "2026-09-17T07:43:03.128Z"
   },
   {
-    "id": "match_36_lion-city-vs-bg-pathum-un",
+    "id": "match_33_lion-city-vs-bg-pathum-un",
     "title": "Lion City vs BG Pathum United",
     "homeTeam": "Lion City",
     "awayTeam": "BG Pathum United",
@@ -717,10 +657,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-22/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/lion-city-vs-bg-pathum-united-luc-1700-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.465Z"
+    "updatedAt": "2026-09-17T07:43:03.155Z"
   },
   {
-    "id": "match_37_adelaide-united-vs-tai-po",
+    "id": "match_34_adelaide-united-vs-tai-po",
     "title": "Adelaide United vs Tai Po",
     "homeTeam": "Adelaide United",
     "awayTeam": "Tai Po",
@@ -737,10 +677,30 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-8/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/adelaide-united-vs-tai-po-luc-1700-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.493Z"
+    "updatedAt": "2026-09-17T07:43:03.203Z"
   },
   {
-    "id": "match_38_nu-nhat-ban-vs-nu-hong-ko",
+    "id": "match_35_nu-hong-kong-vs-nu-philip",
+    "title": "Nữ Hồng Kông vs Nữ Philippines",
+    "homeTeam": "Nữ Hồng Kông",
+    "awayTeam": "Nữ Philippines",
+    "league": "Asian Games 2026",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (17/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel12/off-tvc?is_off_add=false",
+    "streamJalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-12/off-tvc?is_off_add=false",
+    "streamJalur3": "https://tft-forests.org/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-1700-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel12/off-tvc?is_off_add=false",
+      "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-12/off-tvc?is_off_add=false",
+      "jalur3": "https://tft-forests.org/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-1700-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T07:43:03.152Z"
+  },
+  {
+    "id": "match_36_nu-nhat-ban-vs-nu-hong-ko",
     "title": "Nữ Nhật Bản vs Nữ Hong Kong",
     "homeTeam": "Nữ Nhật Bản",
     "awayTeam": "Nữ Hong Kong",
@@ -757,10 +717,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-nhat-ban-vs-nu-hong-kong-luc-1700-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.492Z"
+    "updatedAt": "2026-09-17T07:43:03.151Z"
   },
   {
-    "id": "match_39_carlo-alberto-caniato-vs-",
+    "id": "match_37_carlo-alberto-caniato-vs-",
     "title": "Carlo Alberto Caniato vs Izan Almazan Valiente",
     "homeTeam": "Carlo Alberto Caniato",
     "awayTeam": "Izan Almazan Valiente",
@@ -777,10 +737,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/carlo-alberto-caniato-vs-izan-almazan-valiente-luc-1700-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/carlo-alberto-caniato-vs-izan-almazan-valiente-luc-1700-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.481Z"
+    "updatedAt": "2026-09-17T07:43:03.154Z"
   },
   {
-    "id": "match_40_nu-kyrgyzstan-vs-nu-thai-",
+    "id": "match_38_nu-kyrgyzstan-vs-nu-thai-",
     "title": "Nữ Kyrgyzstan vs Nữ Thái Lan",
     "homeTeam": "Nữ Kyrgyzstan",
     "awayTeam": "Nữ Thái Lan",
@@ -797,10 +757,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-kyrgyzstan-vs-nu-thai-lan-luc-1700-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.486Z"
+    "updatedAt": "2026-09-17T07:43:03.152Z"
   },
   {
-    "id": "match_41_mouz-vs-nrg",
+    "id": "match_39_mouz-vs-nrg",
     "title": "MOUZ vs NRG",
     "homeTeam": "MOUZ",
     "awayTeam": "NRG",
@@ -817,10 +777,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/mouz-vs-nrg-luc-1700-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/mouz-vs-nrg-luc-1700-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.692Z"
+    "updatedAt": "2026-09-17T07:43:03.148Z"
   },
   {
-    "id": "match_42_nu-indonesia-vs-nu-nepal",
+    "id": "match_40_nu-indonesia-vs-nu-nepal",
     "title": "Nữ Indonesia vs Nữ Nepal",
     "homeTeam": "Nữ Indonesia",
     "awayTeam": "Nữ Nepal",
@@ -837,10 +797,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-indonesia-vs-nu-nepal-luc-1720-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-indonesia-vs-nu-nepal-luc-1720-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.693Z"
+    "updatedAt": "2026-09-17T07:43:03.147Z"
   },
   {
-    "id": "match_43_nu-viet-nam-vs-nu-nhat-ba",
+    "id": "match_41_nu-viet-nam-vs-nu-nhat-ba",
     "title": "Nữ Việt Nam vs Nữ Nhật Bản",
     "homeTeam": "Nữ Việt Nam",
     "awayTeam": "Nữ Nhật Bản",
@@ -857,10 +817,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-18/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-viet-nam-vs-nu-nhat-ban-luc-1730-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.660Z"
+    "updatedAt": "2026-09-17T07:43:03.255Z"
   },
   {
-    "id": "match_44_james-kent-trotter-kaichi",
+    "id": "match_42_james-kent-trotter-kaichi",
     "title": "James Kent Trotter vs Blake Bayldon",
     "homeTeam": "James Kent Trotter",
     "awayTeam": "Blake Bayldon",
@@ -877,10 +837,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/james-kent-trotter-kaichi-uchida-vs-blake-bayldon-arjun-kadhe-luc-1730-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/james-kent-trotter-kaichi-uchida-vs-blake-bayldon-arjun-kadhe-luc-1730-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.692Z"
+    "updatedAt": "2026-09-17T07:43:03.248Z"
   },
   {
-    "id": "match_45_leo-vs-pcific",
+    "id": "match_43_leo-vs-pcific",
     "title": "Leo vs PCIFIC",
     "homeTeam": "Leo",
     "awayTeam": "PCIFIC",
@@ -897,10 +857,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/leo-vs-pcific-luc-1800-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/leo-vs-pcific-luc-1800-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.691Z"
+    "updatedAt": "2026-09-17T07:43:03.249Z"
   },
   {
-    "id": "match_46_team-daxao-vs-stray-team",
+    "id": "match_44_team-daxao-vs-stray-team",
     "title": "Team Daxao vs Stray Team",
     "homeTeam": "Team Daxao",
     "awayTeam": "Stray Team",
@@ -917,10 +877,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/team-daxao-vs-stray-team-luc-1800-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/team-daxao-vs-stray-team-luc-1800-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.690Z"
+    "updatedAt": "2026-09-17T07:43:03.237Z"
   },
   {
-    "id": "match_47_alex-barrena-vs-samuele-p",
+    "id": "match_45_alex-barrena-vs-samuele-p",
     "title": "Alex Barrena vs Samuele Pieri",
     "homeTeam": "Alex Barrena",
     "awayTeam": "Samuele Pieri",
@@ -937,10 +897,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/alex-barrena-vs-samuele-pieri-luc-1810-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/alex-barrena-vs-samuele-pieri-luc-1810-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.696Z"
+    "updatedAt": "2026-09-17T07:43:03.241Z"
   },
   {
-    "id": "match_48_vef-riga-juniors-vs-dziki",
+    "id": "match_46_vef-riga-juniors-vs-dziki",
     "title": "VEF Riga Juniors vs Dziki Warszawa",
     "homeTeam": "VEF Riga Juniors",
     "awayTeam": "Dziki Warszawa",
@@ -957,10 +917,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/vef-riga-juniors-vs-dziki-warszawa-luc-1815-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/vef-riga-juniors-vs-dziki-warszawa-luc-1815-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.658Z"
+    "updatedAt": "2026-09-17T07:43:03.238Z"
   },
   {
-    "id": "match_49_two-move-vs-team-spirit-a",
+    "id": "match_47_two-move-vs-team-spirit-a",
     "title": "Two Move vs Team Spirit Academy",
     "homeTeam": "Two Move",
     "awayTeam": "Team Spirit Academy",
@@ -977,10 +937,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/two-move-vs-team-spirit-academy-luc-1900-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/two-move-vs-team-spirit-academy-luc-1900-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.915Z"
+    "updatedAt": "2026-09-17T07:43:03.246Z"
   },
   {
-    "id": "match_50_vitality-vs-magic",
+    "id": "match_48_vitality-vs-magic",
     "title": "Vitality vs magic",
     "homeTeam": "Vitality",
     "awayTeam": "magic",
@@ -997,10 +957,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.695Z"
+    "updatedAt": "2026-09-17T07:43:03.257Z"
   },
   {
-    "id": "match_51_yuzhny-slon-stavropol-vs-",
+    "id": "match_49_yuzhny-slon-stavropol-vs-",
     "title": "Yuzhny Slon Stavropol vs Dynamo-MSTU Maykop",
     "homeTeam": "Yuzhny Slon Stavropol",
     "awayTeam": "Dynamo-MSTU Maykop",
@@ -1017,10 +977,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.967Z"
+    "updatedAt": "2026-09-17T07:43:03.247Z"
   },
   {
-    "id": "match_52_unics-kazan-vs-zenit-pete",
+    "id": "match_50_unics-kazan-vs-zenit-pete",
     "title": "Unics Kazan vs Zenit Petersburg",
     "homeTeam": "Unics Kazan",
     "awayTeam": "Zenit Petersburg",
@@ -1037,10 +997,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/unics-kazan-vs-zenit-petersburg-luc-2000-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/unics-kazan-vs-zenit-petersburg-luc-2000-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.962Z"
+    "updatedAt": "2026-09-17T07:43:03.242Z"
   },
   {
-    "id": "match_53_serbia-vs-bi",
+    "id": "match_51_serbia-vs-bi",
     "title": "Serbia vs Bỉ",
     "homeTeam": "Serbia",
     "awayTeam": "Bỉ",
@@ -1057,10 +1017,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/serbia-vs-bi-luc-2100-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.990Z"
+    "updatedAt": "2026-09-17T07:43:03.323Z"
   },
   {
-    "id": "match_54_slovakia-vs-hy-lap",
+    "id": "match_52_slovakia-vs-hy-lap",
     "title": "Slovakia vs Hy Lạp",
     "homeTeam": "Slovakia",
     "awayTeam": "Hy Lạp",
@@ -1077,10 +1037,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/slovakia-vs-hy-lap-luc-2100-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/slovakia-vs-hy-lap-luc-2100-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:22.266Z"
+    "updatedAt": "2026-09-17T07:43:03.302Z"
   },
   {
-    "id": "match_55_elina-avanesyan-vs-alina-",
+    "id": "match_53_elina-avanesyan-vs-alina-",
     "title": "Elina Avanesyan vs Alina Charaeva",
     "homeTeam": "Elina Avanesyan",
     "awayTeam": "Alina Charaeva",
@@ -1097,10 +1057,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/elina-avanesyan-vs-alina-charaeva-luc-2200-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.987Z"
+    "updatedAt": "2026-09-17T07:43:03.303Z"
   },
   {
-    "id": "match_56_natus-vincere-vs-aurora",
+    "id": "match_54_natus-vincere-vs-aurora",
     "title": "Natus Vincere vs Aurora",
     "homeTeam": "Natus Vincere",
     "awayTeam": "Aurora",
@@ -1117,10 +1077,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/natus-vincere-vs-aurora-luc-2200-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/natus-vincere-vs-aurora-luc-2200-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.984Z"
+    "updatedAt": "2026-09-17T07:43:03.300Z"
   },
   {
-    "id": "match_57_nemiga-gaming-vs-team-lyn",
+    "id": "match_55_nemiga-gaming-vs-team-lyn",
     "title": "Nemiga Gaming vs Team lynx",
     "homeTeam": "Nemiga Gaming",
     "awayTeam": "Team lynx",
@@ -1137,10 +1097,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nemiga-gaming-vs-team-lynx-luc-2200-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nemiga-gaming-vs-team-lynx-luc-2200-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.986Z"
+    "updatedAt": "2026-09-17T07:43:03.277Z"
   },
   {
-    "id": "match_58_sshor-lokomotiv-kuban-vs-",
+    "id": "match_56_sshor-lokomotiv-kuban-vs-",
     "title": "SShOR-Lokomotiv-Kuban vs Dawgs-Titans",
     "homeTeam": "SShOR-Lokomotiv-Kuban",
     "awayTeam": "Dawgs-Titans",
@@ -1157,10 +1117,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/sshor-lokomotiv-kuban-vs-dawgs-titans-luc-2230-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/sshor-lokomotiv-kuban-vs-dawgs-titans-luc-2230-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.989Z"
+    "updatedAt": "2026-09-17T07:43:03.307Z"
   },
   {
-    "id": "match_59_frites-esports-club-vs-se",
+    "id": "match_57_frites-esports-club-vs-se",
     "title": "Frites Esports Club vs Senshi Esports Club",
     "homeTeam": "Frites Esports Club",
     "awayTeam": "Senshi Esports Club",
@@ -1177,10 +1137,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/frites-esports-club-vs-senshi-esports-club-luc-2300-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/frites-esports-club-vs-senshi-esports-club-luc-2300-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:22.937Z"
+    "updatedAt": "2026-09-17T07:43:03.321Z"
   },
   {
-    "id": "match_60_eintracht-frankfurt-vs-al",
+    "id": "match_58_eintracht-frankfurt-vs-al",
     "title": "Eintracht Frankfurt vs All for One Gaming",
     "homeTeam": "Eintracht Frankfurt",
     "awayTeam": "All for One Gaming",
@@ -1197,10 +1157,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:21.968Z"
+    "updatedAt": "2026-09-17T07:43:03.289Z"
   },
   {
-    "id": "match_61_cska-moscow-vs-kk-igokea",
+    "id": "match_59_cska-moscow-vs-kk-igokea",
     "title": "CSKA Moscow vs KK Igokea",
     "homeTeam": "CSKA Moscow",
     "awayTeam": "KK Igokea",
@@ -1217,10 +1177,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/cska-moscow-vs-kk-igokea-luc-0000-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/cska-moscow-vs-kk-igokea-luc-0000-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.012Z"
+    "updatedAt": "2026-09-17T07:43:03.342Z"
   },
   {
-    "id": "match_62_phan-lan-vs-estonia",
+    "id": "match_60_phan-lan-vs-estonia",
     "title": "Phần Lan vs Estonia",
     "homeTeam": "Phần Lan",
     "awayTeam": "Estonia",
@@ -1237,10 +1197,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/phan-lan-vs-estonia-luc-0000-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/phan-lan-vs-estonia-luc-0000-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.008Z"
+    "updatedAt": "2026-09-17T07:43:03.290Z"
   },
   {
-    "id": "match_63_argentina-vs-chile",
+    "id": "match_61_argentina-vs-chile",
     "title": "Argentina vs Chile",
     "homeTeam": "Argentina",
     "awayTeam": "Chile",
@@ -1257,10 +1217,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/argentina-vs-chile-luc-0000-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/argentina-vs-chile-luc-0000-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:22.979Z"
+    "updatedAt": "2026-09-17T07:43:03.396Z"
   },
   {
-    "id": "match_64_baks-vs-g2-ares",
+    "id": "match_62_baks-vs-g2-ares",
     "title": "BAKS vs G2 Ares",
     "homeTeam": "BAKS",
     "awayTeam": "G2 Ares",
@@ -1277,10 +1237,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/baks-vs-g2-ares-luc-0000-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/baks-vs-g2-ares-luc-0000-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.012Z"
+    "updatedAt": "2026-09-17T07:43:03.371Z"
   },
   {
-    "id": "match_65_furia-vs-mibr",
+    "id": "match_63_furia-vs-mibr",
     "title": "FURIA vs MIBR",
     "homeTeam": "FURIA",
     "awayTeam": "MIBR",
@@ -1297,10 +1257,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/furia-vs-mibr-luc-0030-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/furia-vs-mibr-luc-0030-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.006Z"
+    "updatedAt": "2026-09-17T07:43:03.376Z"
   },
   {
-    "id": "match_66_kalmychata-vs-yellow-subm",
+    "id": "match_64_kalmychata-vs-yellow-subm",
     "title": "Kalmychata vs Yellow Submarine",
     "homeTeam": "Kalmychata",
     "awayTeam": "Yellow Submarine",
@@ -1317,10 +1277,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:22.973Z"
+    "updatedAt": "2026-09-17T07:43:03.410Z"
   },
   {
-    "id": "match_67_italy-vs-slovenia",
+    "id": "match_65_italy-vs-slovenia",
     "title": "Italy vs Slovenia",
     "homeTeam": "Italy",
     "awayTeam": "Slovenia",
@@ -1337,10 +1297,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/italy-vs-slovenia-luc-0205-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:22.969Z"
+    "updatedAt": "2026-09-17T07:43:03.380Z"
   },
   {
-    "id": "match_68_venezuela-vs-bolivia",
+    "id": "match_66_venezuela-vs-bolivia",
     "title": "Venezuela vs Bolivia",
     "homeTeam": "Venezuela",
     "awayTeam": "Bolivia",
@@ -1357,10 +1317,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/venezuela-vs-bolivia-luc-0300-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/venezuela-vs-bolivia-luc-0300-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.598Z"
+    "updatedAt": "2026-09-17T07:43:03.379Z"
   },
   {
-    "id": "match_69_cameroon-vs-rwanda",
+    "id": "match_67_cameroon-vs-rwanda",
     "title": "Cameroon vs Rwanda",
     "homeTeam": "Cameroon",
     "awayTeam": "Rwanda",
@@ -1377,10 +1337,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/cameroon-vs-rwanda-luc-0300-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/cameroon-vs-rwanda-luc-0300-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.011Z"
+    "updatedAt": "2026-09-17T07:43:03.383Z"
   },
   {
-    "id": "match_70_galorys-vs-elementals",
+    "id": "match_68_galorys-vs-elementals",
     "title": "Galorys vs Elementals",
     "homeTeam": "Galorys",
     "awayTeam": "Elementals",
@@ -1397,10 +1357,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/galorys-vs-elementals-luc-0300-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/galorys-vs-elementals-luc-0300-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.024Z"
+    "updatedAt": "2026-09-17T07:43:03.382Z"
   },
   {
-    "id": "match_71_bestia-vs-clansbr",
+    "id": "match_69_bestia-vs-clansbr",
     "title": "BESTIA vs CLANSBR",
     "homeTeam": "BESTIA",
     "awayTeam": "CLANSBR",
@@ -1417,10 +1377,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/bestia-vs-clansbr-luc-0300-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/bestia-vs-clansbr-luc-0300-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.671Z"
+    "updatedAt": "2026-09-17T07:43:03.377Z"
   },
   {
-    "id": "match_72_puente-alto-vs-colegio-lo",
+    "id": "match_70_puente-alto-vs-colegio-lo",
     "title": "Puente Alto vs Colegio Los Leones",
     "homeTeam": "Puente Alto",
     "awayTeam": "Colegio Los Leones",
@@ -1437,10 +1397,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/puente-alto-vs-colegio-los-leones-luc-0600-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/puente-alto-vs-colegio-los-leones-luc-0600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.666Z"
+    "updatedAt": "2026-09-17T07:43:03.378Z"
   },
   {
-    "id": "match_73_marta-kostyuk-vs-liudmila",
+    "id": "match_71_marta-kostyuk-vs-liudmila",
     "title": "Marta Kostyuk vs Liudmila Samsonova",
     "homeTeam": "Marta Kostyuk",
     "awayTeam": "Liudmila Samsonova",
@@ -1457,10 +1417,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/marta-kostyuk-vs-liudmila-samsonova-luc-0600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.677Z"
+    "updatedAt": "2026-09-17T07:43:03.448Z"
   },
   {
-    "id": "match_74_brazil-vs-colombia",
+    "id": "match_72_brazil-vs-colombia",
     "title": "Brazil vs Colombia",
     "homeTeam": "Brazil",
     "awayTeam": "Colombia",
@@ -1477,10 +1437,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/brazil-vs-colombia-luc-0600-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/brazil-vs-colombia-luc-0600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.628Z"
+    "updatedAt": "2026-09-17T07:43:03.447Z"
   },
   {
-    "id": "match_75_nu-atlanta-dream-vs-nu-co",
+    "id": "match_73_nu-atlanta-dream-vs-nu-co",
     "title": "Nữ Atlanta Dream vs Nữ Connecticut Sun",
     "homeTeam": "Nữ Atlanta Dream",
     "awayTeam": "Nữ Connecticut Sun",
@@ -1497,10 +1457,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-atlanta-dream-vs-nu-connecticut-sun-luc-0630-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-atlanta-dream-vs-nu-connecticut-sun-luc-0630-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.674Z"
+    "updatedAt": "2026-09-17T07:43:03.449Z"
   },
   {
-    "id": "match_76_nu-dallas-wings-vs-nu-los",
+    "id": "match_74_nu-dallas-wings-vs-nu-los",
     "title": "Nữ Dallas Wings vs Nữ Los Angeles Sparks",
     "homeTeam": "Nữ Dallas Wings",
     "awayTeam": "Nữ Los Angeles Sparks",
@@ -1517,10 +1477,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-dallas-wings-vs-nu-los-angeles-sparks-luc-0700-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-dallas-wings-vs-nu-los-angeles-sparks-luc-0700-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.672Z"
+    "updatedAt": "2026-09-17T07:43:03.445Z"
   },
   {
-    "id": "match_77_nu-chicago-sky-vs-nu-myst",
+    "id": "match_75_nu-chicago-sky-vs-nu-myst",
     "title": "Nữ Chicago Sky vs Nữ Mystics",
     "homeTeam": "Nữ Chicago Sky",
     "awayTeam": "Nữ Mystics",
@@ -1537,10 +1497,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-chicago-sky-vs-nu-mystics-luc-0700-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-chicago-sky-vs-nu-mystics-luc-0700-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.674Z"
+    "updatedAt": "2026-09-17T07:43:03.449Z"
   },
   {
-    "id": "match_78_peyton-stearns-vs-sloane-",
+    "id": "match_76_peyton-stearns-vs-sloane-",
     "title": "Peyton Stearns vs Sloane Stephens",
     "homeTeam": "Peyton Stearns",
     "awayTeam": "Sloane Stephens",
@@ -1557,10 +1517,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/peyton-stearns-vs-sloane-stephens-luc-0710-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.945Z"
+    "updatedAt": "2026-09-17T07:43:03.463Z"
   },
   {
-    "id": "match_79_nu-han-quoc-vs-nu-malaysi",
+    "id": "match_77_nu-han-quoc-vs-nu-malaysi",
     "title": "Nữ Hàn Quốc vs Nữ Malaysia",
     "homeTeam": "Nữ Hàn Quốc",
     "awayTeam": "Nữ Malaysia",
@@ -1577,10 +1537,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-han-quoc-vs-nu-malaysia-luc-0800-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.671Z"
+    "updatedAt": "2026-09-17T07:43:03.452Z"
   },
   {
-    "id": "match_80_nu-portland-fire-vs-nu-ph",
+    "id": "match_78_nu-portland-fire-vs-nu-ph",
     "title": "Nữ Portland Fire vs Nữ Phoenix Mercury",
     "homeTeam": "Nữ Portland Fire",
     "awayTeam": "Nữ Phoenix Mercury",
@@ -1597,10 +1557,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-portland-fire-vs-nu-phoenix-mercury-luc-0900-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-portland-fire-vs-nu-phoenix-mercury-luc-0900-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:23.672Z"
+    "updatedAt": "2026-09-17T07:43:03.446Z"
   },
   {
-    "id": "match_81_nu-seattle-storm-vs-nu-la",
+    "id": "match_79_nu-seattle-storm-vs-nu-la",
     "title": "Nữ Seattle Storm vs Nữ Las Vegas Aces",
     "homeTeam": "Nữ Seattle Storm",
     "awayTeam": "Nữ Las Vegas Aces",
@@ -1617,10 +1577,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-seattle-storm-vs-nu-las-vegas-aces-luc-0900-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-seattle-storm-vs-nu-las-vegas-aces-luc-0900-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.023Z"
+    "updatedAt": "2026-09-17T07:43:03.455Z"
   },
   {
-    "id": "match_82_panteras-de-aguascaliente",
+    "id": "match_80_panteras-de-aguascaliente",
     "title": "Panteras de Aguascalientes vs Astros de Jalisco",
     "homeTeam": "Panteras de Aguascalientes",
     "awayTeam": "Astros de Jalisco",
@@ -1637,10 +1597,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/panteras-de-aguascalientes-vs-astros-de-jalisco-luc-0930-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/panteras-de-aguascalientes-vs-astros-de-jalisco-luc-0930-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.017Z"
+    "updatedAt": "2026-09-17T07:43:03.439Z"
   },
   {
-    "id": "match_83_nu-dai-loan-vs-nu-mong-co",
+    "id": "match_81_nu-dai-loan-vs-nu-mong-co",
     "title": "Nữ Đài Loan vs Nữ Mông Cổ",
     "homeTeam": "Nữ Đài Loan",
     "awayTeam": "Nữ Mông Cổ",
@@ -1657,10 +1617,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-dai-loan-vs-nu-mong-co-luc-1100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.014Z"
+    "updatedAt": "2026-09-17T07:43:03.497Z"
   },
   {
-    "id": "match_84_nu-qatar-vs-nu-hong-kong",
+    "id": "match_82_nu-qatar-vs-nu-hong-kong",
     "title": "Nữ Qatar vs Nữ Hồng Kông",
     "homeTeam": "Nữ Qatar",
     "awayTeam": "Nữ Hồng Kông",
@@ -1677,10 +1637,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-qatar-vs-nu-hong-kong-luc-1100-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-qatar-vs-nu-hong-kong-luc-1100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.289Z"
+    "updatedAt": "2026-09-17T07:43:03.508Z"
   },
   {
-    "id": "match_85_nu-kazakhstan-vs-nu-trung",
+    "id": "match_83_nu-kazakhstan-vs-nu-trung",
     "title": "Nữ Kazakhstan vs Nữ Trung Quốc",
     "homeTeam": "Nữ Kazakhstan",
     "awayTeam": "Nữ Trung Quốc",
@@ -1697,10 +1657,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nu-kazakhstan-vs-nu-trung-quoc-luc-1100-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nu-kazakhstan-vs-nu-trung-quoc-luc-1100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.013Z"
+    "updatedAt": "2026-09-17T07:43:03.496Z"
   },
   {
-    "id": "match_86_han-quoc-vs-iran",
+    "id": "match_84_han-quoc-vs-iran",
     "title": "Hàn Quốc vs Iran",
     "homeTeam": "Hàn Quốc",
     "awayTeam": "Iran",
@@ -1717,10 +1677,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/han-quoc-vs-iran-luc-1400-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/han-quoc-vs-iran-luc-1400-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.012Z"
+    "updatedAt": "2026-09-17T07:43:03.483Z"
   },
   {
-    "id": "match_87_quezon-huskers-vs-imus-ag",
+    "id": "match_85_quezon-huskers-vs-imus-ag",
     "title": "Quezon Huskers vs Imus Agimat",
     "homeTeam": "Quezon Huskers",
     "awayTeam": "Imus Agimat",
@@ -1737,10 +1697,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/quezon-huskers-vs-imus-agimat-luc-1400-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/quezon-huskers-vs-imus-agimat-luc-1400-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.026Z"
+    "updatedAt": "2026-09-17T07:43:03.509Z"
   },
   {
-    "id": "match_88_bulacan-kuyas-vs-marikina",
+    "id": "match_86_bulacan-kuyas-vs-marikina",
     "title": "Bulacan Kuyas vs Marikina Shoemasters",
     "homeTeam": "Bulacan Kuyas",
     "awayTeam": "Marikina Shoemasters",
@@ -1757,10 +1717,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/bulacan-kuyas-vs-marikina-shoemasters-luc-1600-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/bulacan-kuyas-vs-marikina-shoemasters-luc-1600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.001Z"
+    "updatedAt": "2026-09-17T07:43:03.503Z"
   },
   {
-    "id": "match_89_team-we-vs-jd-gaming",
+    "id": "match_87_team-we-vs-jd-gaming",
     "title": "Team WE vs JD Gaming",
     "homeTeam": "Team WE",
     "awayTeam": "JD Gaming",
@@ -1777,10 +1737,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/team-we-vs-jd-gaming-luc-1600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.263Z"
+    "updatedAt": "2026-09-17T07:43:03.509Z"
   },
   {
-    "id": "match_90_nhat-ban-vs-trung-quoc",
+    "id": "match_88_nhat-ban-vs-trung-quoc",
     "title": "Nhật Bản vs Trung Quốc",
     "homeTeam": "Nhật Bản",
     "awayTeam": "Trung Quốc",
@@ -1797,10 +1757,10 @@
       "jalur2": "https://tft-forests.org/truc-tiep/nhat-ban-vs-trung-quoc-luc-1720-ngay-18-09-2026/",
       "jalur3": "https://tft-forests.org/truc-tiep/nhat-ban-vs-trung-quoc-luc-1720-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.047Z"
+    "updatedAt": "2026-09-17T07:43:03.497Z"
   },
   {
-    "id": "match_91_natus-vincere-vs-movistar",
+    "id": "match_89_natus-vincere-vs-movistar",
     "title": "Natus Vincere vs Movistar KOI",
     "homeTeam": "Natus Vincere",
     "awayTeam": "Movistar KOI",
@@ -1817,6 +1777,6 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
       "jalur3": "https://tft-forests.org/truc-tiep/natus-vincere-vs-movistar-koi-luc-2200-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T07:16:24.370Z"
+    "updatedAt": "2026-09-17T07:43:03.510Z"
   }
 ]
