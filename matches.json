@@ -1,58 +1,6 @@
 [
   {
-    "id": "match_1_top-esports-vs-invictus-g",
-    "title": "Top Esports vs Invictus Gaming",
-    "homeTeam": "Top Esports",
-    "awayTeam": "Invictus Gaming",
-    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/965mk6zt7d83q1g/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/6ypq3e3u0ynnmd7/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "LPL Regional Finals 2026",
-    "sportCategory": "🏎️ Olahraga Lainnya",
-    "kickoffIso": "2026-09-17T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (17/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel30/off-tvc?is_off_add=false",
-    "streamJalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/top-esports-vs-invictus-gaming-luc-1600-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel30/off-tvc?is_off_add=false",
-      "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
-      "jalur3": "https://scoopnashville.com/truc-tiep/top-esports-vs-invictus-gaming-luc-1600-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.735Z"
-  },
-  {
-    "id": "match_2_mouz-vs-nrg",
-    "title": "MOUZ vs NRG",
-    "homeTeam": "MOUZ",
-    "awayTeam": "NRG",
-    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/1l4rje7h675m7vx/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/4wyrnxzfv2km86p/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "StarLadder StarSeries Season 22",
-    "sportCategory": "🏎️ Olahraga Lainnya",
-    "kickoffIso": "2026-09-17T17:00:00+07:00",
-    "kickoffText": "17:00 WIB (17/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel75/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/mouz-vs-nrg-luc-1700-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/mouz-vs-nrg-luc-1700-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel75/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/mouz-vs-nrg-luc-1700-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/mouz-vs-nrg-luc-1700-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.778Z"
-  },
-  {
-    "id": "match_3_leo-vs-pcific",
+    "id": "match_1_leo-vs-pcific",
     "title": "Leo vs PCIFIC",
     "homeTeam": "Leo",
     "awayTeam": "PCIFIC",
@@ -75,36 +23,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/leo-vs-pcific-luc-1800-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/leo-vs-pcific-luc-1800-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.779Z"
+    "updatedAt": "2026-09-17T13:15:57.258Z"
   },
   {
-    "id": "match_4_team-daxao-vs-stray-team",
-    "title": "Team Daxao vs Stray Team",
-    "homeTeam": "Team Daxao",
-    "awayTeam": "Stray Team",
-    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/pxwrx8otgnkzqyk/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/6ypq3egt0vk7md7/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Winline Star Series Season 4",
-    "sportCategory": "🏎️ Olahraga Lainnya",
-    "kickoffIso": "2026-09-17T18:00:00+07:00",
-    "kickoffText": "18:00 WIB (17/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel71/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/team-daxao-vs-stray-team-luc-1800-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/team-daxao-vs-stray-team-luc-1800-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel71/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/team-daxao-vs-stray-team-luc-1800-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/team-daxao-vs-stray-team-luc-1800-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.795Z"
-  },
-  {
-    "id": "match_5_alex-barrena-vs-samuele-p",
+    "id": "match_2_alex-barrena-vs-samuele-p",
     "title": "Alex Barrena vs Samuele Pieri",
     "homeTeam": "Alex Barrena",
     "awayTeam": "Samuele Pieri",
@@ -127,88 +49,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/alex-barrena-vs-samuele-pieri-luc-1810-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/alex-barrena-vs-samuele-pieri-luc-1810-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.809Z"
+    "updatedAt": "2026-09-17T13:15:57.324Z"
   },
   {
-    "id": "match_6_muang-loei-united-vs-phra",
-    "title": "Muang Loei United vs Phrae United FC",
-    "homeTeam": "Muang Loei United",
-    "awayTeam": "Phrae United FC",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/x7lm7pho157m2wd/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8ghggwzr6od/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Hạng 2 Thái Lan",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-17T19:00:00+07:00",
-    "kickoffText": "19:00 WIB (17/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel1/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/muang-loei-united-vs-phrae-united-fc-luc-1900-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/muang-loei-united-vs-phrae-united-fc-luc-1900-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel1/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/muang-loei-united-vs-phrae-united-fc-luc-1900-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/muang-loei-united-vs-phrae-united-fc-luc-1900-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.812Z"
-  },
-  {
-    "id": "match_7_rotor-volgograd-2-vs-voln",
-    "title": "Rotor Volgograd-2 vs Volna Nizhegorodskaya",
-    "homeTeam": "Rotor Volgograd-2",
-    "awayTeam": "Volna Nizhegorodskaya",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/ednm9whz8zkryox/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkhkdj1qg8n/image/small",
-    "homeScore": "4",
-    "awayScore": "0",
-    "scoreText": "4 - 0",
-    "matchMinute": "",
-    "league": "RUS D3B",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-17T19:00:00+07:00",
-    "kickoffText": "19:00 WIB (17/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel26/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/rotor-volgograd-2-vs-volna-nizhegorodskaya-luc-1900-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/rotor-volgograd-2-vs-volna-nizhegorodskaya-luc-1900-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel26/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/rotor-volgograd-2-vs-volna-nizhegorodskaya-luc-1900-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/rotor-volgograd-2-vs-volna-nizhegorodskaya-luc-1900-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.816Z"
-  },
-  {
-    "id": "match_8_fc-vilkhivtsi-vs-shakhtar",
-    "title": "FC Vilkhivtsi vs Shakhtar Donetsk",
-    "homeTeam": "FC Vilkhivtsi",
-    "awayTeam": "Shakhtar Donetsk",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/ednm9whezlnryox/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/e4wyrn4h1p1q86p/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Cúp Ukraina",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-17T19:00:00+07:00",
-    "kickoffText": "19:00 WIB (17/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel27/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/fc-vilkhivtsi-vs-shakhtar-donetsk-luc-1900-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/fc-vilkhivtsi-vs-shakhtar-donetsk-luc-1900-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel27/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/fc-vilkhivtsi-vs-shakhtar-donetsk-luc-1900-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/fc-vilkhivtsi-vs-shakhtar-donetsk-luc-1900-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.813Z"
-  },
-  {
-    "id": "match_9_noma-noha-akugue-vs-malai",
+    "id": "match_3_noma-noha-akugue-vs-malai",
     "title": "Noma Noha Akugue vs Malaika Rapolu",
     "homeTeam": "Noma Noha Akugue",
     "awayTeam": "Malaika Rapolu",
@@ -231,10 +75,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/noma-noha-akugue-vs-malaika-rapolu-luc-1900-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/noma-noha-akugue-vs-malaika-rapolu-luc-1900-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.815Z"
+    "updatedAt": "2026-09-17T13:15:57.319Z"
   },
   {
-    "id": "match_10_two-move-vs-team-spirit-a",
+    "id": "match_4_two-move-vs-team-spirit-a",
     "title": "Two Move vs Team Spirit Academy",
     "homeTeam": "Two Move",
     "awayTeam": "Team Spirit Academy",
@@ -257,10 +101,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/two-move-vs-team-spirit-academy-luc-1900-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/two-move-vs-team-spirit-academy-luc-1900-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.798Z"
+    "updatedAt": "2026-09-17T13:15:57.321Z"
   },
   {
-    "id": "match_11_shanghai-shenhua-vs-tampi",
+    "id": "match_5_shanghai-shenhua-vs-tampi",
     "title": "Shanghai Shenhua vs Tampines Rovers",
     "homeTeam": "Shanghai Shenhua",
     "awayTeam": "Tampines Rovers",
@@ -283,10 +127,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-6/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/shanghai-shenhua-vs-tampines-rovers-luc-1915-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.869Z"
+    "updatedAt": "2026-09-17T13:15:57.324Z"
   },
   {
-    "id": "match_12_kitchee-vs-gangwon-fc",
+    "id": "match_6_kitchee-vs-gangwon-fc",
     "title": "Kitchee vs Gangwon FC",
     "homeTeam": "Kitchee",
     "awayTeam": "Gangwon FC",
@@ -309,10 +153,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-14/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/kitchee-vs-gangwon-fc-luc-1915-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.879Z"
+    "updatedAt": "2026-09-17T13:15:57.325Z"
   },
   {
-    "id": "match_13_phnom-penh-crown-vs-kuchi",
+    "id": "match_7_phnom-penh-crown-vs-kuchi",
     "title": "Phnom Penh Crown vs Kuching City FC",
     "homeTeam": "Phnom Penh Crown",
     "awayTeam": "Kuching City FC",
@@ -335,10 +179,36 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-16/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/phnom-penh-crown-vs-kuching-city-fc-luc-1915-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.877Z"
+    "updatedAt": "2026-09-17T13:15:57.327Z"
   },
   {
-    "id": "match_14_mingachevir-vs-cebrayil",
+    "id": "match_8_francesco-forti-filippo-r",
+    "title": "Francesco Forti vs Benjamin Lock",
+    "homeTeam": "Francesco Forti",
+    "awayTeam": "Benjamin Lock",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjfonnlmyk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4fnp35r1ge/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "ATP Challenger Biella, Italy Men Doubles",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-17T19:20:00+07:00",
+    "kickoffText": "19:20 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel57/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/francesco-forti-filippo-romano-vs-benjamin-lock-courtney-john-lock-luc-1920-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/francesco-forti-filippo-romano-vs-benjamin-lock-courtney-john-lock-luc-1920-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel57/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/francesco-forti-filippo-romano-vs-benjamin-lock-courtney-john-lock-luc-1920-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/francesco-forti-filippo-romano-vs-benjamin-lock-courtney-john-lock-luc-1920-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.320Z"
+  },
+  {
+    "id": "match_9_mingachevir-vs-cebrayil",
     "title": "Mingachevir vs Cebrayil",
     "homeTeam": "Mingachevir",
     "awayTeam": "Cebrayil",
@@ -361,10 +231,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/mingachevir-vs-cebrayil-luc-1930-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/mingachevir-vs-cebrayil-luc-1930-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.882Z"
+    "updatedAt": "2026-09-17T13:15:57.327Z"
   },
   {
-    "id": "match_15_baku-sporting-fk-vs-sabai",
+    "id": "match_10_baku-sporting-fk-vs-sabai",
     "title": "Baku Sporting FK vs Sabail FC",
     "homeTeam": "Baku Sporting FK",
     "awayTeam": "Sabail FC",
@@ -387,10 +257,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/baku-sporting-fk-vs-sabail-fc-luc-1930-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/baku-sporting-fk-vs-sabail-fc-luc-1930-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.907Z"
+    "updatedAt": "2026-09-17T13:15:57.322Z"
   },
   {
-    "id": "match_16_al-shimali-vs-qusar-shahd",
+    "id": "match_11_al-shimali-vs-qusar-shahd",
     "title": "Al Shimali vs Qusar Shahdagh",
     "homeTeam": "Al Shimali",
     "awayTeam": "Qusar Shahdagh",
@@ -413,10 +283,218 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/al-shimali-vs-qusar-shahdagh-luc-1930-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/al-shimali-vs-qusar-shahdagh-luc-1930-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.886Z"
+    "updatedAt": "2026-09-17T13:15:57.369Z"
   },
   {
-    "id": "match_17_kalmychata-vs-two-move",
+    "id": "match_12_vitality-vs-magic",
+    "title": "Vitality vs magic",
+    "homeTeam": "Vitality",
+    "awayTeam": "magic",
+    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/4wyrnxzfl8xm86p/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/23xmvx7f30k5rg8/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "0 - 0",
+    "league": "StarLadder StarSeries Season 22",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "kickoffIso": "2026-09-17T19:30:00+07:00",
+    "kickoffText": "19:30 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel77/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel77/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.372Z"
+  },
+  {
+    "id": "match_13_argentina-u19-vs-paraguay",
+    "title": "Argentina U19 vs Paraguay U19",
+    "homeTeam": "Argentina U19",
+    "awayTeam": "Paraguay U19",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8ghj94gr6od/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryohj5yoq1zp/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "0 - 0",
+    "league": "CONMEBOL South American Games",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:00:00+07:00",
+    "kickoffText": "20:00 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/argentina-u19-vs-paraguay-u19-luc-2000-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/argentina-u19-vs-paraguay-u19-luc-2000-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/argentina-u19-vs-paraguay-u19-luc-2000-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/argentina-u19-vs-paraguay-u19-luc-2000-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.376Z"
+  },
+  {
+    "id": "match_14_nu-anh-u20-vs-nu-nigeria-",
+    "title": "Nữ Anh U20 vs Nữ Nigeria U20",
+    "homeTeam": "Nữ Anh U20",
+    "awayTeam": "Nữ Nigeria U20",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4zp5rzghvvkq82w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh7kdzr1ge/image/small",
+    "homeScore": "2",
+    "awayScore": "1",
+    "scoreText": "2 - 1",
+    "matchMinute": "",
+    "league": "FIFA U20 Womens World Cup",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:00:00+07:00",
+    "kickoffText": "20:00 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/nu-anh-u20-vs-nu-nigeria-u20-luc-2000-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/nu-anh-u20-vs-nu-nigeria-u20-luc-2000-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/nu-anh-u20-vs-nu-nigeria-u20-luc-2000-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/nu-anh-u20-vs-nu-nigeria-u20-luc-2000-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.378Z"
+  },
+  {
+    "id": "match_15_navbahor-namangan-vs-dina",
+    "title": "Navbahor Namangan vs Dinamo Samarqand",
+    "homeTeam": "Navbahor Namangan",
+    "awayTeam": "Dinamo Samarqand",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/zp5rzghjvl4q82w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9vjxm8ghn0yr6od/image/small",
+    "homeScore": "1",
+    "awayScore": "2",
+    "scoreText": "1 - 2",
+    "matchMinute": "",
+    "league": "VĐQG Uzbekistan",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:00:00+07:00",
+    "kickoffText": "20:00 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel16/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/navbahor-namangan-vs-dinamo-samarqand-luc-2000-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/navbahor-namangan-vs-dinamo-samarqand-luc-2000-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel16/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/navbahor-namangan-vs-dinamo-samarqand-luc-2000-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/navbahor-namangan-vs-dinamo-samarqand-luc-2000-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.375Z"
+  },
+  {
+    "id": "match_16_nu-phap-u20-vs-nu-canada-",
+    "title": "Nữ Pháp U20 vs Nữ Canada U20",
+    "homeTeam": "Nữ Pháp U20",
+    "awayTeam": "Nữ Canada U20",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/ednm9whkzk7ryox/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/x7lm7phknkkm2wd/image/small",
+    "homeScore": "3",
+    "awayScore": "3",
+    "scoreText": "3 - 3",
+    "matchMinute": "",
+    "league": "FIFA U20 Womens World Cup",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:00:00+07:00",
+    "kickoffText": "20:00 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel17/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/nu-phap-u20-vs-nu-canada-u20-luc-2000-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/nu-phap-u20-vs-nu-canada-u20-luc-2000-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel17/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/nu-phap-u20-vs-nu-canada-u20-luc-2000-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/nu-phap-u20-vs-nu-canada-u20-luc-2000-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.377Z"
+  },
+  {
+    "id": "match_17_khatlon-bokhtar-vs-regar-",
+    "title": "Khatlon Bokhtar vs Regar-TadAZ",
+    "homeTeam": "Khatlon Bokhtar",
+    "awayTeam": "Regar-TadAZ",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4wyrn4hd7dwq86p/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekhv2p2repz/image/small",
+    "homeScore": "3",
+    "awayScore": "2",
+    "scoreText": "3 - 2",
+    "matchMinute": "",
+    "league": "Tajikistan Higher League",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:00:00+07:00",
+    "kickoffText": "20:00 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel7/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/khatlon-bokhtar-vs-regar-tadaz-luc-2000-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/khatlon-bokhtar-vs-regar-tadaz-luc-2000-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel7/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/khatlon-bokhtar-vs-regar-tadaz-luc-2000-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/khatlon-bokhtar-vs-regar-tadaz-luc-2000-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.722Z"
+  },
+  {
+    "id": "match_18_yuzhny-slon-stavropol-vs-",
+    "title": "Yuzhny Slon Stavropol vs Dynamo-MSTU Maykop",
+    "homeTeam": "Yuzhny Slon Stavropol",
+    "awayTeam": "Dynamo-MSTU Maykop",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/ednm9ktzz21ryox/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/8y39mp4tx8pmojx/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Russia Basketball Cup",
+    "sportCategory": "🏀 Bola Basket",
+    "kickoffIso": "2026-09-17T20:00:00+07:00",
+    "kickoffText": "20:00 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel41/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel41/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.373Z"
+  },
+  {
+    "id": "match_19_djibouti-u20-vs-sudan-u20",
+    "title": "Djibouti U20 vs Sudan U20",
+    "homeTeam": "Djibouti U20",
+    "awayTeam": "Sudan U20",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4jwq2gh4x18m0ve/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/n54qllhe5k7qvy9/image/small",
+    "homeScore": "3",
+    "awayScore": "1",
+    "scoreText": "3 - 1",
+    "matchMinute": "",
+    "league": "CAF U20 Africa Cup",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T21:00:00+07:00",
+    "kickoffText": "21:00 WIB (17/09)",
+    "status": 1,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel29/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/djibouti-u20-vs-sudan-u20-luc-2100-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/djibouti-u20-vs-sudan-u20-luc-2100-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel29/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/djibouti-u20-vs-sudan-u20-luc-2100-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/djibouti-u20-vs-sudan-u20-luc-2100-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.538Z"
+  },
+  {
+    "id": "match_20_kalmychata-vs-two-move",
     "title": "Kalmychata vs Two Move",
     "homeTeam": "Kalmychata",
     "awayTeam": "Two Move",
@@ -439,62 +517,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.888Z"
+    "updatedAt": "2026-09-17T13:15:57.374Z"
   },
   {
-    "id": "match_18_mona-barthel-vs-mia-risti",
-    "title": "Mona Barthel vs Mia Ristic",
-    "homeTeam": "Mona Barthel",
-    "awayTeam": "Mia Ristic",
-    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/6ypq3pf5jpkrd7o/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/l5erg1fk2k0r8k0/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "WTA 125k Ljubljana, Slovenia Women Singles",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-17T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel59/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/mona-barthel-vs-mia-ristic-luc-1500-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/mona-barthel-vs-mia-ristic-luc-1500-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel59/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/mona-barthel-vs-mia-ristic-luc-1500-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/mona-barthel-vs-mia-ristic-luc-1500-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.884Z"
-  },
-  {
-    "id": "match_19_samira-de-stefano-vs-alic",
-    "title": "Samira de Stefano vs Alice Tubello",
-    "homeTeam": "Samira de Stefano",
-    "awayTeam": "Alice Tubello",
-    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/vjxm85f0l6nm6od/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/318q6jf7v36ro9j/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "WTA 125k Ljubljana, Slovenia Women Singles",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-17T15:30:00+07:00",
-    "kickoffText": "15:30 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel50/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/samira-de-stefano-vs-alice-tubello-luc-1530-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/samira-de-stefano-vs-alice-tubello-luc-1530-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel50/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/samira-de-stefano-vs-alice-tubello-luc-1530-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/samira-de-stefano-vs-alice-tubello-luc-1530-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.885Z"
-  },
-  {
-    "id": "match_20_puckchamp-vs-balu-team",
+    "id": "match_21_puckchamp-vs-balu-team",
     "title": "Puckchamp vs Balu Team",
     "homeTeam": "Puckchamp",
     "awayTeam": "Balu Team",
@@ -517,192 +543,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.880Z"
+    "updatedAt": "2026-09-17T13:15:57.747Z"
   },
   {
-    "id": "match_21_noemi-basiletti-vs-ekater",
-    "title": "Noemi Basiletti vs Ekaterine Gorgodze",
-    "homeTeam": "Noemi Basiletti",
-    "awayTeam": "Ekaterine Gorgodze",
-    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4fkv3pr1ge/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/dj2ry1fjk32r1zp/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "WTA 125k Ljubljana, Slovenia Women Singles",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-17T16:30:00+07:00",
-    "kickoffText": "16:30 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel52/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/noemi-basiletti-vs-ekaterine-gorgodze-luc-1630-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/noemi-basiletti-vs-ekaterine-gorgodze-luc-1630-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel52/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/noemi-basiletti-vs-ekaterine-gorgodze-luc-1630-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/noemi-basiletti-vs-ekaterine-gorgodze-luc-1630-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.942Z"
-  },
-  {
-    "id": "match_22_francesco-forti-filippo-r",
-    "title": "Francesco Forti vs Benjamin Lock",
-    "homeTeam": "Francesco Forti",
-    "awayTeam": "Benjamin Lock",
-    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjfonnlmyk0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4fnp35r1ge/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "ATP Challenger Biella, Italy Men Doubles",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-17T19:20:00+07:00",
-    "kickoffText": "19:20 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel57/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/francesco-forti-filippo-romano-vs-benjamin-lock-courtney-john-lock-luc-1920-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/francesco-forti-filippo-romano-vs-benjamin-lock-courtney-john-lock-luc-1920-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel57/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/francesco-forti-filippo-romano-vs-benjamin-lock-courtney-john-lock-luc-1920-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/francesco-forti-filippo-romano-vs-benjamin-lock-courtney-john-lock-luc-1920-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.955Z"
-  },
-  {
-    "id": "match_23_vitality-vs-magic",
-    "title": "Vitality vs magic",
-    "homeTeam": "Vitality",
-    "awayTeam": "magic",
-    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/4wyrnxzfl8xm86p/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/23xmvx7f30k5rg8/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "StarLadder StarSeries Season 22",
-    "sportCategory": "🏎️ Olahraga Lainnya",
-    "kickoffIso": "2026-09-17T19:30:00+07:00",
-    "kickoffText": "19:30 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel77/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel77/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/vitality-vs-magic-luc-1930-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.945Z"
-  },
-  {
-    "id": "match_24_argentina-u19-vs-paraguay",
-    "title": "Argentina U19 vs Paraguay U19",
-    "homeTeam": "Argentina U19",
-    "awayTeam": "Paraguay U19",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8ghj94gr6od/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryohj5yoq1zp/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "CONMEBOL South American Games",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-17T20:00:00+07:00",
-    "kickoffText": "20:00 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/argentina-u19-vs-paraguay-u19-luc-2000-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/argentina-u19-vs-paraguay-u19-luc-2000-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/argentina-u19-vs-paraguay-u19-luc-2000-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/argentina-u19-vs-paraguay-u19-luc-2000-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.959Z"
-  },
-  {
-    "id": "match_25_al-ahed-sc-vs-shabab-sahe",
-    "title": "Al Ahed SC vs Shabab Sahel SC",
-    "homeTeam": "Al Ahed SC",
-    "awayTeam": "Shabab Sahel SC",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlhgz9lryk0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlhgxo2ryk0/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Lebanese Cup",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-17T20:00:00+07:00",
-    "kickoffText": "20:00 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel7/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/al-ahed-sc-vs-shabab-sahel-sc-luc-2000-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/al-ahed-sc-vs-shabab-sahel-sc-luc-2000-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel7/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/al-ahed-sc-vs-shabab-sahel-sc-luc-2000-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/al-ahed-sc-vs-shabab-sahel-sc-luc-2000-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:47:00.007Z"
-  },
-  {
-    "id": "match_26_nu-anh-u20-vs-nu-nigeria-",
-    "title": "Nữ Anh U20 vs Nữ Nigeria U20",
-    "homeTeam": "Nữ Anh U20",
-    "awayTeam": "Nữ Nigeria U20",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4zp5rzghvvkq82w/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh7kdzr1ge/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "FIFA U20 Womens World Cup",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-17T20:00:00+07:00",
-    "kickoffText": "20:00 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/nu-anh-u20-vs-nu-nigeria-u20-luc-2000-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/nu-anh-u20-vs-nu-nigeria-u20-luc-2000-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/nu-anh-u20-vs-nu-nigeria-u20-luc-2000-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/nu-anh-u20-vs-nu-nigeria-u20-luc-2000-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:47:00.008Z"
-  },
-  {
-    "id": "match_27_yuzhny-slon-stavropol-vs-",
-    "title": "Yuzhny Slon Stavropol vs Dynamo-MSTU Maykop",
-    "homeTeam": "Yuzhny Slon Stavropol",
-    "awayTeam": "Dynamo-MSTU Maykop",
-    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/ednm9ktzz21ryox/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/8y39mp4tx8pmojx/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Russia Basketball Cup",
-    "sportCategory": "🏀 Bola Basket",
-    "kickoffIso": "2026-09-17T20:00:00+07:00",
-    "kickoffText": "20:00 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel41/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel41/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/yuzhny-slon-stavropol-vs-dynamo-mstu-maykop-luc-2000-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.962Z"
-  },
-  {
-    "id": "match_28_unics-kazan-vs-zenit-pete",
+    "id": "match_22_unics-kazan-vs-zenit-pete",
     "title": "Unics Kazan vs Zenit Petersburg",
     "homeTeam": "Unics Kazan",
     "awayTeam": "Zenit Petersburg",
@@ -725,10 +569,114 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/unics-kazan-vs-zenit-petersburg-luc-2000-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/unics-kazan-vs-zenit-petersburg-luc-2000-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:46:59.960Z"
+    "updatedAt": "2026-09-17T13:15:57.764Z"
   },
   {
-    "id": "match_29_nastasja-mariana-schunk-v",
+    "id": "match_23_fc-orenburg-vs-fk-krasnod",
+    "title": "FC Orenburg vs FK Krasnodar",
+    "homeTeam": "FC Orenburg",
+    "awayTeam": "FK Krasnodar",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/y39mp1h3wj2mojx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/e4wyrn4hn20q86p/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Ngoại Hạng Nga",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:15:00+07:00",
+    "kickoffText": "20:15 WIB (17/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel24/off-tvc?is_off_add=false",
+    "streamJalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-24/off-tvc?is_off_add=false",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/fc-orenburg-vs-fk-krasnodar-luc-2015-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel24/off-tvc?is_off_add=false",
+      "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-24/off-tvc?is_off_add=false",
+      "jalur3": "https://scoopnashville.com/truc-tiep/fc-orenburg-vs-fk-krasnodar-luc-2015-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.767Z"
+  },
+  {
+    "id": "match_24_kalamata-f-c-vs-ael-laris",
+    "title": "Kalamata F.C vs AEL Larisa",
+    "homeTeam": "Kalamata F.C",
+    "awayTeam": "AEL Larisa",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/ednm9whk8yyryox/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekhvg05repz/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Greek Cup",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:30:00+07:00",
+    "kickoffText": "20:30 WIB (17/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel13/off-tvc?is_off_add=false",
+    "streamJalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-13/off-tvc?is_off_add=false",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/kalamata-f-c-vs-ael-larisa-luc-2030-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel13/off-tvc?is_off_add=false",
+      "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-13/off-tvc?is_off_add=false",
+      "jalur3": "https://scoopnashville.com/truc-tiep/kalamata-f-c-vs-ael-larisa-luc-2030-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.769Z"
+  },
+  {
+    "id": "match_25_el-dakhlia-sc-vs-tersana-",
+    "title": "El Dakhlia SC vs Tersana SC",
+    "homeTeam": "El Dakhlia SC",
+    "awayTeam": "Tersana SC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/6ypq3nh0yx0md7o/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnhzendm7vx/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Egyptian Division 2",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:30:00+07:00",
+    "kickoffText": "20:30 WIB (17/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel9/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/el-dakhlia-sc-vs-tersana-sc-luc-2030-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/el-dakhlia-sc-vs-tersana-sc-luc-2030-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel9/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/el-dakhlia-sc-vs-tersana-sc-luc-2030-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/el-dakhlia-sc-vs-tersana-sc-luc-2030-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.766Z"
+  },
+  {
+    "id": "match_26_nu-enppi-vs-nu-ahli-bank",
+    "title": "Nữ ENPPI vs Nữ Ahli Bank",
+    "homeTeam": "Nữ ENPPI",
+    "awayTeam": "Nữ Ahli Bank",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/jw2r09h1wd6rz84/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/6ypq3nhw4gpmd7o/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Egyptian Women Premier League",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-17T20:30:00+07:00",
+    "kickoffText": "20:30 WIB (17/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel28/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/nu-enppi-vs-nu-ahli-bank-luc-2030-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/nu-enppi-vs-nu-ahli-bank-luc-2030-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel28/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/nu-enppi-vs-nu-ahli-bank-luc-2030-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/nu-enppi-vs-nu-ahli-bank-luc-2030-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.763Z"
+  },
+  {
+    "id": "match_27_nastasja-mariana-schunk-v",
     "title": "Nastasja Mariana Schunk vs Irene Burillo Escorihuela",
     "homeTeam": "Nastasja Mariana Schunk",
     "awayTeam": "Irene Burillo Escorihuela",
@@ -751,36 +699,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nastasja-mariana-schunk-vs-irene-burillo-escorihuela-luc-2030-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nastasja-mariana-schunk-vs-irene-burillo-escorihuela-luc-2030-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.270Z"
+    "updatedAt": "2026-09-17T13:15:57.771Z"
   },
   {
-    "id": "match_30_djibouti-u20-vs-sudan-u20",
-    "title": "Djibouti U20 vs Sudan U20",
-    "homeTeam": "Djibouti U20",
-    "awayTeam": "Sudan U20",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4jwq2gh4x18m0ve/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/n54qllhe5k7qvy9/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "CAF U20 Africa Cup",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-17T21:00:00+07:00",
-    "kickoffText": "21:00 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel7/off-tvc?is_off_add=false",
-    "streamJalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-7/off-tvc?is_off_add=false",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/djibouti-u20-vs-sudan-u20-luc-2100-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel7/off-tvc?is_off_add=false",
-      "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-7/off-tvc?is_off_add=false",
-      "jalur3": "https://scoopnashville.com/truc-tiep/djibouti-u20-vs-sudan-u20-luc-2100-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:46:59.957Z"
-  },
-  {
-    "id": "match_31_ana-candiotto-luiza-fulla",
+    "id": "match_28_ana-candiotto-luiza-fulla",
     "title": "Ana Candiotto vs Yiming Dang",
     "homeTeam": "Ana Candiotto",
     "awayTeam": "Yiming Dang",
@@ -803,10 +725,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/ana-candiotto-luiza-fullana-vs-yiming-dang-xiaodi-you-luc-2100-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/ana-candiotto-luiza-fullana-vs-yiming-dang-xiaodi-you-luc-2100-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.626Z"
+    "updatedAt": "2026-09-17T13:15:57.764Z"
   },
   {
-    "id": "match_32_serbia-vs-bi",
+    "id": "match_29_serbia-vs-bi",
     "title": "Serbia vs Bỉ",
     "homeTeam": "Serbia",
     "awayTeam": "Bỉ",
@@ -829,10 +751,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/serbia-vs-bi-luc-2100-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.309Z"
+    "updatedAt": "2026-09-17T13:15:57.768Z"
   },
   {
-    "id": "match_33_slovakia-vs-hy-lap",
+    "id": "match_30_slovakia-vs-hy-lap",
     "title": "Slovakia vs Hy Lạp",
     "homeTeam": "Slovakia",
     "awayTeam": "Hy Lạp",
@@ -855,10 +777,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/slovakia-vs-hy-lap-luc-2100-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/slovakia-vs-hy-lap-luc-2100-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.304Z"
+    "updatedAt": "2026-09-17T13:15:57.768Z"
   },
   {
-    "id": "match_34_anouk-koevermans-vs-gabri",
+    "id": "match_31_anouk-koevermans-vs-gabri",
     "title": "Anouk Koevermans vs Gabriela Andrea Knutson",
     "homeTeam": "Anouk Koevermans",
     "awayTeam": "Gabriela Andrea Knutson",
@@ -881,10 +803,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/anouk-koevermans-vs-gabriela-andrea-knutson-luc-2140-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/anouk-koevermans-vs-gabriela-andrea-knutson-luc-2140-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.524Z"
+    "updatedAt": "2026-09-17T13:15:57.813Z"
   },
   {
-    "id": "match_35_elina-avanesyan-vs-alina-",
+    "id": "match_32_elina-avanesyan-vs-alina-",
     "title": "Elina Avanesyan vs Alina Charaeva",
     "homeTeam": "Elina Avanesyan",
     "awayTeam": "Alina Charaeva",
@@ -907,10 +829,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/elina-avanesyan-vs-alina-charaeva-luc-2200-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.312Z"
+    "updatedAt": "2026-09-17T13:15:57.817Z"
   },
   {
-    "id": "match_36_natus-vincere-vs-aurora",
+    "id": "match_33_natus-vincere-vs-aurora",
     "title": "Natus Vincere vs Aurora",
     "homeTeam": "Natus Vincere",
     "awayTeam": "Aurora",
@@ -933,10 +855,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/natus-vincere-vs-aurora-luc-2200-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/natus-vincere-vs-aurora-luc-2200-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.314Z"
+    "updatedAt": "2026-09-17T13:15:57.815Z"
   },
   {
-    "id": "match_37_nemiga-gaming-vs-team-lyn",
+    "id": "match_34_nemiga-gaming-vs-team-lyn",
     "title": "Nemiga Gaming vs Team lynx",
     "homeTeam": "Nemiga Gaming",
     "awayTeam": "Team lynx",
@@ -959,10 +881,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nemiga-gaming-vs-team-lynx-luc-2200-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nemiga-gaming-vs-team-lynx-luc-2200-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.313Z"
+    "updatedAt": "2026-09-17T13:15:57.817Z"
   },
   {
-    "id": "match_38_suzan-lamens-vs-solana-si",
+    "id": "match_35_suzan-lamens-vs-solana-si",
     "title": "Suzan Lamens vs Solana Sierra",
     "homeTeam": "Suzan Lamens",
     "awayTeam": "Solana Sierra",
@@ -985,10 +907,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/suzan-lamens-vs-solana-sierra-luc-2210-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/suzan-lamens-vs-solana-sierra-luc-2210-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.503Z"
+    "updatedAt": "2026-09-17T13:15:57.810Z"
   },
   {
-    "id": "match_39_sshor-lokomotiv-kuban-vs-",
+    "id": "match_36_sshor-lokomotiv-kuban-vs-",
     "title": "SShOR-Lokomotiv-Kuban vs Dawgs-Titans",
     "homeTeam": "SShOR-Lokomotiv-Kuban",
     "awayTeam": "Dawgs-Titans",
@@ -1011,10 +933,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/sshor-lokomotiv-kuban-vs-dawgs-titans-luc-2230-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/sshor-lokomotiv-kuban-vs-dawgs-titans-luc-2230-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.317Z"
+    "updatedAt": "2026-09-17T13:15:57.821Z"
   },
   {
-    "id": "match_40_nauhany-vitoria-leme-da-s",
+    "id": "match_37_nauhany-vitoria-leme-da-s",
     "title": "Nauhany Vitoria Leme Da Silva vs Kaitlin Quevedo",
     "homeTeam": "Nauhany Vitoria Leme Da Silva",
     "awayTeam": "Kaitlin Quevedo",
@@ -1037,36 +959,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-31/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/nauhany-vitoria-leme-da-silva-vs-kaitlin-quevedo-luc-2300-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.304Z"
+    "updatedAt": "2026-09-17T13:15:57.822Z"
   },
   {
-    "id": "match_41_eintracht-frankfurt-vs-al",
-    "title": "Eintracht Frankfurt vs All for One Gaming",
-    "homeTeam": "Eintracht Frankfurt",
-    "awayTeam": "All for One Gaming",
-    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/vjxm89jb4z0xq6o/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/zp5rz5pfjnylr82/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Prime League 1st Division Promotion 2027",
-    "sportCategory": "🏎️ Olahraga Lainnya",
-    "kickoffIso": "2026-09-17T23:00:00+07:00",
-    "kickoffText": "23:00 WIB (17/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel71/off-tvc?is_off_add=false",
-    "streamJalur2": "https://scoopnashville.com/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/",
-    "streamJalur3": "https://scoopnashville.com/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel71/off-tvc?is_off_add=false",
-      "jalur2": "https://scoopnashville.com/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/",
-      "jalur3": "https://scoopnashville.com/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/"
-    },
-    "updatedAt": "2026-09-17T12:47:00.660Z"
-  },
-  {
-    "id": "match_42_frites-esports-club-vs-se",
+    "id": "match_38_frites-esports-club-vs-se",
     "title": "Frites Esports Club vs Senshi Esports Club",
     "homeTeam": "Frites Esports Club",
     "awayTeam": "Senshi Esports Club",
@@ -1089,10 +985,36 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/frites-esports-club-vs-senshi-esports-club-luc-2300-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/frites-esports-club-vs-senshi-esports-club-luc-2300-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.664Z"
+    "updatedAt": "2026-09-17T13:15:57.818Z"
   },
   {
-    "id": "match_43_leyre-romero-gormaz-oksan",
+    "id": "match_39_eintracht-frankfurt-vs-al",
+    "title": "Eintracht Frankfurt vs All for One Gaming",
+    "homeTeam": "Eintracht Frankfurt",
+    "awayTeam": "All for One Gaming",
+    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/vjxm89jb4z0xq6o/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/zp5rz5pfjnylr82/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Prime League 1st Division Promotion 2027",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "kickoffIso": "2026-09-17T23:00:00+07:00",
+    "kickoffText": "23:00 WIB (17/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel71/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel71/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/eintracht-frankfurt-vs-all-for-one-gaming-luc-2300-ngay-17-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.820Z"
+  },
+  {
+    "id": "match_40_leyre-romero-gormaz-oksan",
     "title": "Leyre Romero Gormaz vs Freya Christie",
     "homeTeam": "Leyre Romero Gormaz",
     "awayTeam": "Freya Christie",
@@ -1115,10 +1037,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/leyre-romero-gormaz-oksana-selekhmeteva-vs-freya-christie-eden-silva-luc-2340-ngay-17-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/leyre-romero-gormaz-oksana-selekhmeteva-vs-freya-christie-eden-silva-luc-2340-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.914Z"
+    "updatedAt": "2026-09-17T13:15:57.819Z"
   },
   {
-    "id": "match_44_cska-moscow-vs-kk-igokea",
+    "id": "match_41_cska-moscow-vs-kk-igokea",
     "title": "CSKA Moscow vs KK Igokea",
     "homeTeam": "CSKA Moscow",
     "awayTeam": "KK Igokea",
@@ -1141,10 +1063,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/cska-moscow-vs-kk-igokea-luc-0000-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/cska-moscow-vs-kk-igokea-luc-0000-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.662Z"
+    "updatedAt": "2026-09-17T13:15:57.862Z"
   },
   {
-    "id": "match_45_phan-lan-vs-estonia",
+    "id": "match_42_phan-lan-vs-estonia",
     "title": "Phần Lan vs Estonia",
     "homeTeam": "Phần Lan",
     "awayTeam": "Estonia",
@@ -1167,10 +1089,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/phan-lan-vs-estonia-luc-0000-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/phan-lan-vs-estonia-luc-0000-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.674Z"
+    "updatedAt": "2026-09-17T13:15:57.863Z"
   },
   {
-    "id": "match_46_argentina-vs-chile",
+    "id": "match_43_argentina-vs-chile",
     "title": "Argentina vs Chile",
     "homeTeam": "Argentina",
     "awayTeam": "Chile",
@@ -1193,10 +1115,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/argentina-vs-chile-luc-0000-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/argentina-vs-chile-luc-0000-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.675Z"
+    "updatedAt": "2026-09-17T13:15:57.864Z"
   },
   {
-    "id": "match_47_baks-vs-g2-ares",
+    "id": "match_44_baks-vs-g2-ares",
     "title": "BAKS vs G2 Ares",
     "homeTeam": "BAKS",
     "awayTeam": "G2 Ares",
@@ -1219,10 +1141,36 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/baks-vs-g2-ares-luc-0000-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/baks-vs-g2-ares-luc-0000-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.667Z"
+    "updatedAt": "2026-09-17T13:15:57.850Z"
   },
   {
-    "id": "match_48_furia-vs-mibr",
+    "id": "match_45_anna-blinkova-vs-vendula-",
+    "title": "Anna Blinkova vs Vendula Valdmannova",
+    "homeTeam": "Anna Blinkova",
+    "awayTeam": "Vendula Valdmannova",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/l5erg1fpdl0r8k0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/jw2r0jfgez4mz84/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "WTA Sao Paulo, Brazil Women, Singles",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-18T00:30:00+07:00",
+    "kickoffText": "00:30 WIB (18/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel65/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/anna-blinkova-vs-vendula-valdmannova-luc-0030-ngay-18-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/anna-blinkova-vs-vendula-valdmannova-luc-0030-ngay-18-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel65/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/anna-blinkova-vs-vendula-valdmannova-luc-0030-ngay-18-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/anna-blinkova-vs-vendula-valdmannova-luc-0030-ngay-18-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.855Z"
+  },
+  {
+    "id": "match_46_furia-vs-mibr",
     "title": "FURIA vs MIBR",
     "homeTeam": "FURIA",
     "awayTeam": "MIBR",
@@ -1245,10 +1193,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/furia-vs-mibr-luc-0030-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/furia-vs-mibr-luc-0030-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.676Z"
+    "updatedAt": "2026-09-17T13:15:57.859Z"
   },
   {
-    "id": "match_49_lisboa-e-benfica-vs-rasta",
+    "id": "match_47_lisboa-e-benfica-vs-rasta",
     "title": "Lisboa e Benfica vs RASTA Vechta",
     "homeTeam": "Lisboa e Benfica",
     "awayTeam": "RASTA Vechta",
@@ -1271,10 +1219,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/lisboa-e-benfica-vs-rasta-vechta-luc-0100-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/lisboa-e-benfica-vs-rasta-vechta-luc-0100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.906Z"
+    "updatedAt": "2026-09-17T13:15:57.867Z"
   },
   {
-    "id": "match_50_kalmychata-vs-yellow-subm",
+    "id": "match_48_kalmychata-vs-yellow-subm",
     "title": "Kalmychata vs Yellow Submarine",
     "homeTeam": "Kalmychata",
     "awayTeam": "Yellow Submarine",
@@ -1297,10 +1245,36 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.661Z"
+    "updatedAt": "2026-09-17T13:15:57.865Z"
   },
   {
-    "id": "match_51_cristina-bucsa-vs-sara-be",
+    "id": "match_49_justina-mikulskyte-alana-",
+    "title": "Justina Mikulskyte vs Valeriya Strakhova",
+    "homeTeam": "Justina Mikulskyte",
+    "awayTeam": "Valeriya Strakhova",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/ednm9efkgdwvryo/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/zp5rz3f3481m82w/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "WTA Sao Paulo, Brazil Women, Doubles",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-18T01:40:00+07:00",
+    "kickoffText": "01:40 WIB (18/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel66/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/justina-mikulskyte-alana-smith-vs-valeriya-strakhova-anastasia-tikhonova-luc-0140-ngay-18-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/justina-mikulskyte-alana-smith-vs-valeriya-strakhova-anastasia-tikhonova-luc-0140-ngay-18-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel66/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/justina-mikulskyte-alana-smith-vs-valeriya-strakhova-anastasia-tikhonova-luc-0140-ngay-18-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/justina-mikulskyte-alana-smith-vs-valeriya-strakhova-anastasia-tikhonova-luc-0140-ngay-18-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.861Z"
+  },
+  {
+    "id": "match_50_cristina-bucsa-vs-sara-be",
     "title": "Cristina Bucsa vs Sara Bejlek",
     "homeTeam": "Cristina Bucsa",
     "awayTeam": "Sara Bejlek",
@@ -1323,10 +1297,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-31/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/cristina-bucsa-vs-sara-bejlek-luc-0200-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.946Z"
+    "updatedAt": "2026-09-17T13:15:57.861Z"
   },
   {
-    "id": "match_52_italy-vs-slovenia",
+    "id": "match_51_italy-vs-slovenia",
     "title": "Italy vs Slovenia",
     "homeTeam": "Italy",
     "awayTeam": "Slovenia",
@@ -1349,7 +1323,33 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/italy-vs-slovenia-luc-0205-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.949Z"
+    "updatedAt": "2026-09-17T13:15:57.895Z"
+  },
+  {
+    "id": "match_52_kaitlin-quevedo-dominika-",
+    "title": "Kaitlin Quevedo vs Julia Riera",
+    "homeTeam": "Kaitlin Quevedo",
+    "awayTeam": "Julia Riera",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/zp5rz3fjx2gjm82/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/2y8m4vf3g35wml0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "WTA Sao Paulo, Brazil Women, Doubles",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-18T02:50:00+07:00",
+    "kickoffText": "02:50 WIB (18/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel50/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/kaitlin-quevedo-dominika-salkova-vs-julia-riera-solana-sierra-luc-0250-ngay-18-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/kaitlin-quevedo-dominika-salkova-vs-julia-riera-solana-sierra-luc-0250-ngay-18-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel50/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/kaitlin-quevedo-dominika-salkova-vs-julia-riera-solana-sierra-luc-0250-ngay-18-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/kaitlin-quevedo-dominika-salkova-vs-julia-riera-solana-sierra-luc-0250-ngay-18-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.909Z"
   },
   {
     "id": "match_53_venezuela-vs-bolivia",
@@ -1375,7 +1375,7 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/venezuela-vs-bolivia-luc-0300-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/venezuela-vs-bolivia-luc-0300-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.950Z"
+    "updatedAt": "2026-09-17T13:15:57.907Z"
   },
   {
     "id": "match_54_cameroon-vs-rwanda",
@@ -1401,7 +1401,7 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/cameroon-vs-rwanda-luc-0300-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/cameroon-vs-rwanda-luc-0300-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.945Z"
+    "updatedAt": "2026-09-17T13:15:57.904Z"
   },
   {
     "id": "match_55_galorys-vs-elementals",
@@ -1427,7 +1427,7 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/galorys-vs-elementals-luc-0300-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/galorys-vs-elementals-luc-0300-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.956Z"
+    "updatedAt": "2026-09-17T13:15:57.901Z"
   },
   {
     "id": "match_56_bestia-vs-clansbr",
@@ -1453,10 +1453,114 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/bestia-vs-clansbr-luc-0300-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/bestia-vs-clansbr-luc-0300-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.957Z"
+    "updatedAt": "2026-09-17T13:15:57.905Z"
   },
   {
-    "id": "match_57_puente-alto-vs-colegio-lo",
+    "id": "match_57_magdalena-frech-vs-iva-jo",
+    "title": "Magdalena Frech vs Iva Jovic",
+    "homeTeam": "Magdalena Frech",
+    "awayTeam": "Iva Jovic",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/23xmvvfdze5mg8n/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/3glrw2f5ovzrdyj/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "WTA Guadalajara, Mexico Women Singles",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-18T03:10:00+07:00",
+    "kickoffText": "03:10 WIB (18/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel51/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/magdalena-frech-vs-iva-jovic-luc-0310-ngay-18-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/magdalena-frech-vs-iva-jovic-luc-0310-ngay-18-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel51/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/magdalena-frech-vs-iva-jovic-luc-0310-ngay-18-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/magdalena-frech-vs-iva-jovic-luc-0310-ngay-18-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.911Z"
+  },
+  {
+    "id": "match_58_eva-lys-vs-nadia-podorosk",
+    "title": "Eva Lys vs Nadia Podoroska",
+    "homeTeam": "Eva Lys",
+    "awayTeam": "Nadia Podoroska",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/n54ql4fk7jervy9/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/4wyrnjfdlgdq86p/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "WTA Sao Paulo, Brazil Women, Singles",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-18T03:30:00+07:00",
+    "kickoffText": "03:30 WIB (18/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel52/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/eva-lys-vs-nadia-podoroska-luc-0330-ngay-18-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/eva-lys-vs-nadia-podoroska-luc-0330-ngay-18-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel52/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/eva-lys-vs-nadia-podoroska-luc-0330-ngay-18-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/eva-lys-vs-nadia-podoroska-luc-0330-ngay-18-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.907Z"
+  },
+  {
+    "id": "match_59_cristina-bucsa-nicole-mel",
+    "title": "Cristina Bucsa vs Maria Kozyreva",
+    "homeTeam": "Cristina Bucsa",
+    "awayTeam": "Maria Kozyreva",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/vjxm85f4jledm6o/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/3glrw2fwzj7krdy/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "WTA Guadalajara, Mexico Women Doubles",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-18T04:30:00+07:00",
+    "kickoffText": "04:30 WIB (18/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel53/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/cristina-bucsa-nicole-melichar-martinez-vs-maria-kozyreva-maia-lumsden-luc-0430-ngay-18-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/cristina-bucsa-nicole-melichar-martinez-vs-maria-kozyreva-maia-lumsden-luc-0430-ngay-18-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel53/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/cristina-bucsa-nicole-melichar-martinez-vs-maria-kozyreva-maia-lumsden-luc-0430-ngay-18-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/cristina-bucsa-nicole-melichar-martinez-vs-maria-kozyreva-maia-lumsden-luc-0430-ngay-18-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.908Z"
+  },
+  {
+    "id": "match_60_ekaterina-ovcharenko-laur",
+    "title": "Ekaterina Ovcharenko vs Mary Stoiana",
+    "homeTeam": "Ekaterina Ovcharenko",
+    "awayTeam": "Mary Stoiana",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/1l4rjwf6k391m7v/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/4jwq2pf470nvm0v/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "WTA Sao Paulo, Brazil Women, Doubles",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-18T04:40:00+07:00",
+    "kickoffText": "04:40 WIB (18/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel54/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/ekaterina-ovcharenko-laura-pigossi-vs-mary-stoiana-vendula-valdmannova-luc-0440-ngay-18-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/ekaterina-ovcharenko-laura-pigossi-vs-mary-stoiana-vendula-valdmannova-luc-0440-ngay-18-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel54/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/ekaterina-ovcharenko-laura-pigossi-vs-mary-stoiana-vendula-valdmannova-luc-0440-ngay-18-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/ekaterina-ovcharenko-laura-pigossi-vs-mary-stoiana-vendula-valdmannova-luc-0440-ngay-18-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:57.906Z"
+  },
+  {
+    "id": "match_61_puente-alto-vs-colegio-lo",
     "title": "Puente Alto vs Colegio Los Leones",
     "homeTeam": "Puente Alto",
     "awayTeam": "Colegio Los Leones",
@@ -1479,10 +1583,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/puente-alto-vs-colegio-los-leones-luc-0600-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/puente-alto-vs-colegio-los-leones-luc-0600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.954Z"
+    "updatedAt": "2026-09-17T13:15:57.935Z"
   },
   {
-    "id": "match_58_marta-kostyuk-vs-liudmila",
+    "id": "match_62_marta-kostyuk-vs-liudmila",
     "title": "Marta Kostyuk vs Liudmila Samsonova",
     "homeTeam": "Marta Kostyuk",
     "awayTeam": "Liudmila Samsonova",
@@ -1505,10 +1609,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/marta-kostyuk-vs-liudmila-samsonova-luc-0600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.959Z"
+    "updatedAt": "2026-09-17T13:15:57.942Z"
   },
   {
-    "id": "match_59_brazil-vs-colombia",
+    "id": "match_63_brazil-vs-colombia",
     "title": "Brazil vs Colombia",
     "homeTeam": "Brazil",
     "awayTeam": "Colombia",
@@ -1531,10 +1635,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/brazil-vs-colombia-luc-0600-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/brazil-vs-colombia-luc-0600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.958Z"
+    "updatedAt": "2026-09-17T13:15:57.946Z"
   },
   {
-    "id": "match_60_nu-atlanta-dream-vs-nu-co",
+    "id": "match_64_nu-atlanta-dream-vs-nu-co",
     "title": "Nữ Atlanta Dream vs Nữ Connecticut Sun",
     "homeTeam": "Nữ Atlanta Dream",
     "awayTeam": "Nữ Connecticut Sun",
@@ -1557,10 +1661,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nu-atlanta-dream-vs-nu-connecticut-sun-luc-0630-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-atlanta-dream-vs-nu-connecticut-sun-luc-0630-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.952Z"
+    "updatedAt": "2026-09-17T13:15:57.953Z"
   },
   {
-    "id": "match_61_nu-dallas-wings-vs-nu-los",
+    "id": "match_65_nu-dallas-wings-vs-nu-los",
     "title": "Nữ Dallas Wings vs Nữ Los Angeles Sparks",
     "homeTeam": "Nữ Dallas Wings",
     "awayTeam": "Nữ Los Angeles Sparks",
@@ -1583,10 +1687,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nu-dallas-wings-vs-nu-los-angeles-sparks-luc-0700-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-dallas-wings-vs-nu-los-angeles-sparks-luc-0700-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.004Z"
+    "updatedAt": "2026-09-17T13:15:57.944Z"
   },
   {
-    "id": "match_62_nu-chicago-sky-vs-nu-myst",
+    "id": "match_66_nu-chicago-sky-vs-nu-myst",
     "title": "Nữ Chicago Sky vs Nữ Mystics",
     "homeTeam": "Nữ Chicago Sky",
     "awayTeam": "Nữ Mystics",
@@ -1609,10 +1713,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nu-chicago-sky-vs-nu-mystics-luc-0700-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-chicago-sky-vs-nu-mystics-luc-0700-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.997Z"
+    "updatedAt": "2026-09-17T13:15:57.951Z"
   },
   {
-    "id": "match_63_peyton-stearns-vs-sloane-",
+    "id": "match_67_peyton-stearns-vs-sloane-",
     "title": "Peyton Stearns vs Sloane Stephens",
     "homeTeam": "Peyton Stearns",
     "awayTeam": "Sloane Stephens",
@@ -1635,10 +1739,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/peyton-stearns-vs-sloane-stephens-luc-0710-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:00.998Z"
+    "updatedAt": "2026-09-17T13:15:57.955Z"
   },
   {
-    "id": "match_64_nu-han-quoc-vs-nu-malaysi",
+    "id": "match_68_nu-han-quoc-vs-nu-malaysi",
     "title": "Nữ Hàn Quốc vs Nữ Malaysia",
     "homeTeam": "Nữ Hàn Quốc",
     "awayTeam": "Nữ Malaysia",
@@ -1661,10 +1765,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-han-quoc-vs-nu-malaysia-luc-0800-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.005Z"
+    "updatedAt": "2026-09-17T13:15:57.949Z"
   },
   {
-    "id": "match_65_nu-portland-fire-vs-nu-ph",
+    "id": "match_69_nu-portland-fire-vs-nu-ph",
     "title": "Nữ Portland Fire vs Nữ Phoenix Mercury",
     "homeTeam": "Nữ Portland Fire",
     "awayTeam": "Nữ Phoenix Mercury",
@@ -1687,10 +1791,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nu-portland-fire-vs-nu-phoenix-mercury-luc-0900-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-portland-fire-vs-nu-phoenix-mercury-luc-0900-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.007Z"
+    "updatedAt": "2026-09-17T13:15:57.953Z"
   },
   {
-    "id": "match_66_nu-seattle-storm-vs-nu-la",
+    "id": "match_70_nu-seattle-storm-vs-nu-la",
     "title": "Nữ Seattle Storm vs Nữ Las Vegas Aces",
     "homeTeam": "Nữ Seattle Storm",
     "awayTeam": "Nữ Las Vegas Aces",
@@ -1713,10 +1817,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nu-seattle-storm-vs-nu-las-vegas-aces-luc-0900-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-seattle-storm-vs-nu-las-vegas-aces-luc-0900-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.009Z"
+    "updatedAt": "2026-09-17T13:15:57.952Z"
   },
   {
-    "id": "match_67_panteras-de-aguascaliente",
+    "id": "match_71_panteras-de-aguascaliente",
     "title": "Panteras de Aguascalientes vs Astros de Jalisco",
     "homeTeam": "Panteras de Aguascalientes",
     "awayTeam": "Astros de Jalisco",
@@ -1739,10 +1843,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/panteras-de-aguascalientes-vs-astros-de-jalisco-luc-0930-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/panteras-de-aguascalientes-vs-astros-de-jalisco-luc-0930-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.006Z"
+    "updatedAt": "2026-09-17T13:15:57.983Z"
   },
   {
-    "id": "match_68_nu-dai-loan-vs-nu-mong-co",
+    "id": "match_72_nu-dai-loan-vs-nu-mong-co",
     "title": "Nữ Đài Loan vs Nữ Mông Cổ",
     "homeTeam": "Nữ Đài Loan",
     "awayTeam": "Nữ Mông Cổ",
@@ -1765,10 +1869,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-dai-loan-vs-nu-mong-co-luc-1100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.007Z"
+    "updatedAt": "2026-09-17T13:15:57.993Z"
   },
   {
-    "id": "match_69_nu-qatar-vs-nu-hong-kong",
+    "id": "match_73_nu-qatar-vs-nu-hong-kong",
     "title": "Nữ Qatar vs Nữ Hồng Kông",
     "homeTeam": "Nữ Qatar",
     "awayTeam": "Nữ Hồng Kông",
@@ -1791,10 +1895,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nu-qatar-vs-nu-hong-kong-luc-1100-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-qatar-vs-nu-hong-kong-luc-1100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.009Z"
+    "updatedAt": "2026-09-17T13:15:57.990Z"
   },
   {
-    "id": "match_70_nu-kazakhstan-vs-nu-trung",
+    "id": "match_74_nu-kazakhstan-vs-nu-trung",
     "title": "Nữ Kazakhstan vs Nữ Trung Quốc",
     "homeTeam": "Nữ Kazakhstan",
     "awayTeam": "Nữ Trung Quốc",
@@ -1817,10 +1921,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-kazakhstan-vs-nu-trung-quoc-luc-1100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.003Z"
+    "updatedAt": "2026-09-17T13:15:57.991Z"
   },
   {
-    "id": "match_71_quezon-huskers-vs-imus-ag",
+    "id": "match_75_quezon-huskers-vs-imus-ag",
     "title": "Quezon Huskers vs Imus Agimat",
     "homeTeam": "Quezon Huskers",
     "awayTeam": "Imus Agimat",
@@ -1843,10 +1947,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/quezon-huskers-vs-imus-agimat-luc-1400-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/quezon-huskers-vs-imus-agimat-luc-1400-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.042Z"
+    "updatedAt": "2026-09-17T13:15:57.986Z"
   },
   {
-    "id": "match_72_han-quoc-vs-iran",
+    "id": "match_76_han-quoc-vs-iran",
     "title": "Hàn Quốc vs Iran",
     "homeTeam": "Hàn Quốc",
     "awayTeam": "Iran",
@@ -1869,10 +1973,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/han-quoc-vs-iran-luc-1400-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/han-quoc-vs-iran-luc-1400-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.043Z"
+    "updatedAt": "2026-09-17T13:15:57.984Z"
   },
   {
-    "id": "match_73_nu-viet-nam-vs-nu-han-quo",
+    "id": "match_77_nu-viet-nam-vs-nu-han-quo",
     "title": "Nữ Việt Nam vs Nữ Hàn Quốc",
     "homeTeam": "Nữ Việt Nam",
     "awayTeam": "Nữ Hàn Quốc",
@@ -1895,10 +1999,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-viet-nam-vs-nu-han-quoc-luc-1400-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.037Z"
+    "updatedAt": "2026-09-17T13:15:57.995Z"
   },
   {
-    "id": "match_74_bulacan-kuyas-vs-marikina",
+    "id": "match_78_bulacan-kuyas-vs-marikina",
     "title": "Bulacan Kuyas vs Marikina Shoemasters",
     "homeTeam": "Bulacan Kuyas",
     "awayTeam": "Marikina Shoemasters",
@@ -1921,10 +2025,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/bulacan-kuyas-vs-marikina-shoemasters-luc-1600-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/bulacan-kuyas-vs-marikina-shoemasters-luc-1600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.045Z"
+    "updatedAt": "2026-09-17T13:15:57.987Z"
   },
   {
-    "id": "match_75_team-we-vs-jd-gaming",
+    "id": "match_79_team-we-vs-jd-gaming",
     "title": "Team WE vs JD Gaming",
     "homeTeam": "Team WE",
     "awayTeam": "JD Gaming",
@@ -1947,10 +2051,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/team-we-vs-jd-gaming-luc-1600-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.055Z"
+    "updatedAt": "2026-09-17T13:15:57.988Z"
   },
   {
-    "id": "match_76_nhat-ban-vs-trung-quoc",
+    "id": "match_80_nhat-ban-vs-trung-quoc",
     "title": "Nhật Bản vs Trung Quốc",
     "homeTeam": "Nhật Bản",
     "awayTeam": "Trung Quốc",
@@ -1973,10 +2077,10 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/nhat-ban-vs-trung-quoc-luc-1720-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/nhat-ban-vs-trung-quoc-luc-1720-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.056Z"
+    "updatedAt": "2026-09-17T13:15:57.992Z"
   },
   {
-    "id": "match_77_nu-indonesia-vs-nu-nhat-b",
+    "id": "match_81_nu-indonesia-vs-nu-nhat-b",
     "title": "Nữ Indonesia vs Nữ Nhật Bản",
     "homeTeam": "Nữ Indonesia",
     "awayTeam": "Nữ Nhật Bản",
@@ -1999,10 +2103,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/nu-indonesia-vs-nu-nhat-ban-luc-1720-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.042Z"
+    "updatedAt": "2026-09-17T13:15:58.022Z"
   },
   {
-    "id": "match_78_batangas-rum-masters-vs-g",
+    "id": "match_82_batangas-rum-masters-vs-g",
     "title": "Batangas Rum Masters vs GenSan Warriors",
     "homeTeam": "Batangas Rum Masters",
     "awayTeam": "GenSan Warriors",
@@ -2025,10 +2129,36 @@
       "jalur2": "https://scoopnashville.com/truc-tiep/batangas-rum-masters-vs-gensan-warriors-luc-1800-ngay-18-09-2026/",
       "jalur3": "https://scoopnashville.com/truc-tiep/batangas-rum-masters-vs-gensan-warriors-luc-1800-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.047Z"
+    "updatedAt": "2026-09-17T13:15:58.023Z"
   },
   {
-    "id": "match_79_natus-vincere-vs-movistar",
+    "id": "match_83_jinhua-vs-wenzhou",
+    "title": "Jinhua vs Wenzhou",
+    "homeTeam": "Jinhua",
+    "awayTeam": "Wenzhou",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/3glrwytjoweqdyj/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/k82re8ty193repz/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Zhejiang City Basketball League",
+    "sportCategory": "🏀 Bola Basket",
+    "kickoffIso": "2026-09-18T18:30:00+07:00",
+    "kickoffText": "18:30 WIB (18/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel40/off-tvc?is_off_add=false",
+    "streamJalur2": "https://scoopnashville.com/truc-tiep/jinhua-vs-wenzhou-luc-1830-ngay-18-09-2026/",
+    "streamJalur3": "https://scoopnashville.com/truc-tiep/jinhua-vs-wenzhou-luc-1830-ngay-18-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel40/off-tvc?is_off_add=false",
+      "jalur2": "https://scoopnashville.com/truc-tiep/jinhua-vs-wenzhou-luc-1830-ngay-18-09-2026/",
+      "jalur3": "https://scoopnashville.com/truc-tiep/jinhua-vs-wenzhou-luc-1830-ngay-18-09-2026/"
+    },
+    "updatedAt": "2026-09-17T13:15:58.024Z"
+  },
+  {
+    "id": "match_84_natus-vincere-vs-movistar",
     "title": "Natus Vincere vs Movistar KOI",
     "homeTeam": "Natus Vincere",
     "awayTeam": "Movistar KOI",
@@ -2051,6 +2181,6 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
       "jalur3": "https://scoopnashville.com/truc-tiep/natus-vincere-vs-movistar-koi-luc-2200-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-17T12:47:01.051Z"
+    "updatedAt": "2026-09-17T13:15:58.021Z"
   }
 ]
