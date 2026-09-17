@@ -148,11 +148,15 @@ async function scrapeAll() {
         const homeTeamId = homeTeamIdMatch ? homeTeamIdMatch[1] : '';
         const awayTeamId = awayTeamIdMatch ? awayTeamIdMatch[1] : '';
 
-        const homeImgMatch = cardContent.match(/class="[^"]*grid-match__team--home[^"]*"[\s\S]*?<img[^>]+src="([^">]+)"/i);
-        const awayImgMatch = cardContent.match(/class="[^"]*grid-match__team--away[^"]*"[\s\S]*?<img[^>]+src="([^">]+)"/i);
+        const homeImgMatch = cardContent.match(/team-logo-group-home-logo['"]*>\s*<img[^>]+src=['"]([^'"]+)['"]/i);
+        const awayImgMatch = cardContent.match(/team-logo-group-away-logo['"]*>\s*<img[^>]+src=['"]([^'"]+)['"]/i);
 
-        let homeLogo = homeImgMatch ? homeImgMatch[1] : (homeTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${homeTeamId}/image/small` : '');
-        let awayLogo = awayImgMatch ? awayImgMatch[1] : (awayTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${awayTeamId}/image/small` : '');
+        let homeLogo = (homeImgMatch && homeImgMatch[1].startsWith('http'))
+            ? homeImgMatch[1]
+            : (homeTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${homeTeamId}/image/small` : '');
+        let awayLogo = (awayImgMatch && awayImgMatch[1].startsWith('http'))
+            ? awayImgMatch[1]
+            : (awayTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${awayTeamId}/image/small` : '');
 
         const homeMatch = cardContent.match(/class="[^"]*grid-match__team--home-name[^"]*"[^>]*>\s*([^<]+)\s*<\/div>/i);
         const awayMatch = cardContent.match(/class="[^"]*grid-match__team--away-name[^"]*"[^>]*>\s*([^<]+)\s*<\/div>/i);
@@ -189,12 +193,42 @@ async function scrapeAll() {
         const matchPageUrl = `${activeDomain}${relUrl}`;
 
         // Penentuan Status LIVE yang akurat langsung dari sumbernya:
-        // rawStatus '2', '3', '51', '52', '438' = Sedang Live Bertanding Saat Ini!
         let status = 0;
         if (['2', '3', '51', '52', '438'].includes(rawStatus) || cardContent.includes('is-live') || cardContent.includes('badge-live')) {
             status = 1; // 🔴 LIVE SEKARANG
         } else {
             status = 0; // 📅 Jadwal Hari Ini
+        }
+
+        // Ekstraksi Skor Pertandingan Real-Time Sesuai Karakteristik Olahraga
+        let homeScore = '';
+        let awayScore = '';
+        let scoreText = '';
+        let matchMinute = '';
+
+        if (status === 1 || rawStatus === '4' || rawStatus === '8') {
+            const goalMatch = cardContent.match(/class="[^"]*grid-match__goal[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)\s*<\/div>/i);
+            const liveScoreEl = cardContent.match(/class="[^"]*grid-match__score[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)/i);
+            const hpuScore = cardContent.match(/class="[^"]*hpu-score-home[^"]*"[^>]*>\s*(\d+)\s*<\/span>[\s\S]*?class="[^"]*hpu-score-away[^"]*"[^>]*>\s*(\d+)\s*<\/span>/i);
+
+            if (hpuScore) {
+                homeScore = hpuScore[1].trim();
+                awayScore = hpuScore[2].trim();
+                scoreText = `${homeScore} - ${awayScore}`;
+            } else if (goalMatch) {
+                homeScore = goalMatch[1].trim();
+                awayScore = goalMatch[2].trim();
+                scoreText = `${homeScore} - ${awayScore}`;
+            } else if (liveScoreEl) {
+                homeScore = liveScoreEl[1].trim();
+                awayScore = liveScoreEl[2].trim();
+                scoreText = `${homeScore} - ${awayScore}`;
+            }
+        }
+
+        const periodMatch = cardContent.match(/class="[^"]*(?:grid-match__half-court|period|quarter|set-name)[^"]*"[^>]*>\s*([^<]+)\s*</i);
+        if (periodMatch && status === 1) {
+            matchMinute = periodMatch[1].trim();
         }
 
         sportCounts[category] = (sportCounts[category] || 0) + 1;
@@ -205,6 +239,10 @@ async function scrapeAll() {
             away,
             homeLogo,
             awayLogo,
+            homeScore,
+            awayScore,
+            scoreText,
+            matchMinute,
             league,
             category,
             sportType,
@@ -270,6 +308,10 @@ async function scrapeAll() {
                 awayTeam: m.away,
                 homeLogo: m.homeLogo || '',
                 awayLogo: m.awayLogo || '',
+                homeScore: m.homeScore || '',
+                awayScore: m.awayScore || '',
+                scoreText: m.scoreText || '',
+                matchMinute: m.matchMinute || '',
                 league: m.league,
                 sportCategory: m.category,
                 kickoffIso: m.kickoffIso,

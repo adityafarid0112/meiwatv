@@ -18,56 +18,171 @@ class TeamLogoWidget extends StatelessWidget {
     this.sportCategory,
   });
 
-  // Pemetaan bendera negara untuk turnamen internasional / timnas
+  // Pemetaan bendera negara lengkap (Bahasa Indonesia, Inggris, & Vietnam)
   static const Map<String, String> _countryCodeMap = {
+    // Asia Tenggara & Timur
     'indonesia': 'id',
     'ina': 'id',
     'vietnam': 'vn',
+    'việt nam': 'vn',
+    'viet nam': 'vn',
     'jepang': 'jp',
     'japan': 'jp',
+    'nhật bản': 'jp',
+    'nhat ban': 'jp',
     'korea': 'kr',
+    'hàn quốc': 'kr',
+    'han quoc': 'kr',
     'south korea': 'kr',
+    'triều tiên': 'kp',
+    'north korea': 'kp',
     'china': 'cn',
     'tiongkok': 'cn',
+    'trung quốc': 'cn',
     'thailand': 'th',
+    'thái lan': 'th',
+    'thai lan': 'th',
     'malaysia': 'my',
     'singapura': 'sg',
     'singapore': 'sg',
     'filipina': 'ph',
     'philippines': 'ph',
+    'taiwan': 'tw',
+    'đài loan': 'tw',
+    'dai loan': 'tw',
+    'hong kong': 'hk',
+    'hồng kông': 'hk',
+    'myanmar': 'mm',
+    'kamboja': 'kh',
+    'cambodia': 'kh',
+    'laos': 'la',
+    'mongolia': 'mn',
+    'mông cổ': 'mn',
+    'mong co': 'mn',
+    'nepal': 'np',
+    'bangladesh': 'bd',
+    'india': 'in',
+    'ấn độ': 'in',
+    'pakistan': 'pk',
+    'sri lanka': 'lk',
+    'kyrgyzstan': 'kg',
+    'uzbekistan': 'uz',
+    'kazakhstan': 'kz',
+    'tajikistan': 'tj',
+
+    // Eropa
     'inggris': 'gb-eng',
     'england': 'gb-eng',
+    'anh': 'gb-eng',
     'britania': 'gb',
     'spanyol': 'es',
     'spain': 'es',
+    'tây ban nha': 'es',
+    'tay ban nha': 'es',
     'jerman': 'de',
     'germany': 'de',
+    'đức': 'de',
+    'duc': 'de',
     'prancis': 'fr',
     'france': 'fr',
+    'pháp': 'fr',
+    'phap': 'fr',
     'italia': 'it',
     'italy': 'it',
+    'ý': 'it',
     'belanda': 'nl',
     'netherlands': 'nl',
+    'hà lan': 'nl',
     'portugal': 'pt',
+    'bồ đào nha': 'pt',
+    'rusia': 'ru',
+    'russia': 'ru',
+    'nga': 'ru',
+    'polandia': 'pl',
+    'poland': 'pl',
+    'ba lan': 'pl',
+    'denmark': 'dk',
+    'đan mạch': 'dk',
+    'swedia': 'se',
+    'thụy điển': 'se',
+    'norwegia': 'no',
+    'na uy': 'no',
+    'finlandia': 'fi',
+    'phần lan': 'fi',
+    'switzerland': 'ch',
+    'swiss': 'ch',
+    'thụy sĩ': 'ch',
+    'belgia': 'be',
+    'bỉ': 'be',
+    'kroasia': 'hr',
+    'croatia': 'hr',
+    'serbia': 'rs',
+    'turki': 'tr',
+    'turkey': 'tr',
+    'thổ nhĩ kỳ': 'tr',
+    'ukraina': 'ua',
+    'ukraine': 'ua',
+    'austria': 'at',
+    'áo': 'at',
+    'hungaria': 'hu',
+    'yunani': 'gr',
+    'greece': 'gr',
+    'hy lạp': 'gr',
+
+    // Amerika & Oseania
     'argentina': 'ar',
     'brasil': 'br',
     'brazil': 'br',
     'amerika': 'us',
     'usa': 'us',
+    'mỹ': 'us',
+    'my': 'us',
+    'kanada': 'ca',
+    'canada': 'ca',
+    'meksiko': 'mx',
+    'mexico': 'mx',
+    'uruguay': 'uy',
+    'chile': 'cl',
+    'kolombia': 'co',
+    'colombia': 'co',
     'australia': 'au',
-    'india': 'in',
-    'taiwan': 'tw',
-    'hong kong': 'hk',
-    'denmark': 'dk',
-    'swedia': 'se',
-    'switzerland': 'ch',
-    'swiss': 'ch',
+    'úc': 'au',
+    'new zealand': 'nz',
+    'fiji': 'fj',
+    'papua': 'pg',
+
+    // Afrika & Timur Tengah
+    'nigeria': 'ng',
+    'algeria': 'dz',
+    'algeri': 'dz',
+    'maroko': 'ma',
+    'morocco': 'ma',
+    'mesir': 'eg',
+    'egypt': 'eg',
+    'senegal': 'sn',
+    'ghana': 'gh',
+    'kamerun': 'cm',
+    'cameroon': 'cm',
+    'arab saudi': 'sa',
+    'saudi arabia': 'sa',
+    'qatar': 'qa',
+    'iran': 'ir',
+    'irak': 'iq',
+    'iraq': 'iq',
+    'jordan': 'jo',
+    'uae': 'ae',
+    'emirat': 'ae',
   };
 
   String? _detectCountryCode(String name) {
-    final lower = name.toLowerCase();
+    var clean = name.toLowerCase().trim();
+    // Hilangkan prefix umum pertandingan wanita/timnas/usia
+    clean = clean
+        .replaceAll(RegExp(r'^(nữ|nam|u\d+|fc|sc|w|men|women|timnas)\s+', caseSensitive: false), '')
+        .trim();
+
     for (final entry in _countryCodeMap.entries) {
-      if (lower.contains(entry.key)) {
+      if (clean == entry.key || clean.contains(entry.key)) {
         return entry.value;
       }
     }
@@ -80,15 +195,55 @@ class TeamLogoWidget extends StatelessWidget {
     if (cat.contains('voli') || cat.contains('volley')) return Icons.sports_volleyball_rounded;
     if (cat.contains('badminton') || cat.contains('tangkis')) return Icons.sports_tennis_rounded;
     if (cat.contains('tenis') || cat.contains('tennis')) return Icons.sports_tennis_rounded;
+    if (cat.contains('lol') || cat.contains('dota') || cat.contains('csgo') || cat.contains('esport')) {
+      return Icons.sports_esports_rounded;
+    }
     return Icons.sports_soccer_rounded;
   }
 
   @override
   Widget build(BuildContext context) {
+    final countryCode = _detectCountryCode(teamName);
+
+    // 1. Jika nama tim adalah negara (seperti Asian Games, World Cup, Giao Hữu Quốc Tế), utamakan bendera negara
+    if (countryCode != null) {
+      return Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: AppColors.surfaceLight,
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: accentColor.withValues(alpha: 0.7),
+            width: 1.5,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: accentColor.withValues(alpha: 0.25),
+              blurRadius: 8,
+            ),
+          ],
+        ),
+        child: ClipOval(
+          child: CachedNetworkImage(
+            imageUrl: 'https://flagcdn.com/w160/$countryCode.png',
+            fit: BoxFit.cover,
+            placeholder: (context, url) => _buildPlaceholder(),
+            errorWidget: (context, url, error) => _buildFallbackWithUrlOrInitials(),
+          ),
+        ),
+      );
+    }
+
+    // 2. Jika bukan negara, periksa apakah ada URL logo club dari sumber
+    return _buildFallbackWithUrlOrInitials();
+  }
+
+  Widget _buildFallbackWithUrlOrInitials() {
     final validUrl = logoUrl != null &&
         logoUrl!.trim().isNotEmpty &&
         logoUrl!.startsWith('http') &&
-        !logoUrl!.endsWith('/company/21-1.png'); // Lewati default placeholder jika ada
+        !logoUrl!.endsWith('/company/21-1.png');
 
     if (validUrl) {
       return Container(
@@ -114,14 +269,17 @@ class TeamLogoWidget extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl: logoUrl!,
             fit: BoxFit.contain,
+            httpHeaders: const {
+              'User-Agent':
+                  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            },
             placeholder: (context, url) => _buildPlaceholder(),
-            errorWidget: (context, url, error) => _buildFallbackContent(),
+            errorWidget: (context, url, error) => _buildFallbackContainer(),
           ),
         ),
       );
     }
 
-    // Jika tidak ada direct logoUrl valid, periksa deteksi negara atau inisial
     return _buildFallbackContainer();
   }
 
@@ -148,7 +306,7 @@ class TeamLogoWidget extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             AppColors.surfaceElevated,
-            accentColor.withValues(alpha: 0.3),
+            accentColor.withValues(alpha: 0.35),
           ],
         ),
         shape: BoxShape.circle,
@@ -164,27 +322,15 @@ class TeamLogoWidget extends StatelessWidget {
         ],
       ),
       child: ClipOval(
-        child: _buildFallbackContent(),
+        child: _buildInitials(),
       ),
     );
   }
 
-  Widget _buildFallbackContent() {
-    final countryCode = _detectCountryCode(teamName);
-    if (countryCode != null) {
-      return CachedNetworkImage(
-        imageUrl: 'https://flagcdn.com/w80/$countryCode.png',
-        fit: BoxFit.cover,
-        errorWidget: (context, url, error) => _buildInitials(),
-      );
-    }
-    return _buildInitials();
-  }
-
   Widget _buildInitials() {
-    final initial = teamName.trim().isNotEmpty
-        ? teamName.trim().substring(0, 1).toUpperCase()
-        : 'T';
+    var clean = teamName.trim();
+    clean = clean.replaceAll(RegExp(r'^(nữ|nam|u\d+|fc|sc)\s+', caseSensitive: false), '').trim();
+    final initial = clean.isNotEmpty ? clean.substring(0, 1).toUpperCase() : 'T';
 
     return Center(
       child: Stack(
@@ -192,8 +338,8 @@ class TeamLogoWidget extends StatelessWidget {
         children: [
           Icon(
             _getSportIcon(),
-            size: size * 0.55,
-            color: accentColor.withValues(alpha: 0.18),
+            size: size * 0.52,
+            color: accentColor.withValues(alpha: 0.22),
           ),
           Text(
             initial,

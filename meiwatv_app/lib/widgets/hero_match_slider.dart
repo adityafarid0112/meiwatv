@@ -230,31 +230,84 @@ class _HeroMatchSliderState extends State<HeroMatchSlider> {
                           ),
                         ),
 
-                        // VS Badge
+                        // Score or VS Badge
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.surfaceLight,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: AppColors.goldAccent.withValues(alpha: 0.7),
-                                width: 1,
-                              ),
-                            ),
-                            child: const Text(
-                              'VS',
-                              style: TextStyle(
-                                color: AppColors.goldAccent,
-                                fontSize: 11,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                          ),
+                          child: match.hasScore
+                              ? Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 5,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                      colors: [
+                                        Color(0xFF1F3D6D),
+                                        Color(0xFF10213E),
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                      color: AppColors.cyanAccent,
+                                      width: 1.5,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: AppColors.cyanAccent.withValues(alpha: 0.35),
+                                        blurRadius: 10,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        match.scoreText ??
+                                            '${match.homeScore} - ${match.awayScore}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w900,
+                                          letterSpacing: 1.2,
+                                        ),
+                                      ),
+                                      if (match.matchMinute != null &&
+                                          match.matchMinute!.isNotEmpty) ...[
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          match.matchMinute!,
+                                          style: const TextStyle(
+                                            color: AppColors.cyanAccent,
+                                            fontSize: 9,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ],
+                                  ),
+                                )
+                              : Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.surfaceLight,
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: AppColors.goldAccent.withValues(alpha: 0.7),
+                                      width: 1,
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'VS',
+                                    style: TextStyle(
+                                      color: AppColors.goldAccent,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ),
                         ),
 
                         // Away Team

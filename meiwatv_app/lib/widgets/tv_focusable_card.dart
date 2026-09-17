@@ -186,25 +186,84 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                               ),
                             ),
 
-                            // VS Badge
+                            // Center Score or VS Badge
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                                decoration: BoxDecoration(
-                                  color: AppColors.surfaceLight,
-                                  borderRadius: BorderRadius.circular(6),
-                                  border: Border.all(color: AppColors.border, width: 0.8),
-                                ),
-                                child: const Text(
-                                  'VS',
-                                  style: TextStyle(
-                                    color: AppColors.goldAccent,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                              ),
+                              child: match.hasScore
+                                  ? Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          colors: [
+                                            Color(0xFF1B3258),
+                                            Color(0xFF0F1E38),
+                                          ],
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                          color: AppColors.cyanAccent.withValues(alpha: 0.8),
+                                          width: 1.2,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: AppColors.cyanAccent.withValues(alpha: 0.25),
+                                            blurRadius: 6,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            match.scoreText ??
+                                                '${match.homeScore} - ${match.awayScore}',
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w900,
+                                              letterSpacing: 1.0,
+                                            ),
+                                          ),
+                                          if (match.matchMinute != null &&
+                                              match.matchMinute!.isNotEmpty) ...[
+                                            const SizedBox(height: 2),
+                                            Text(
+                                              match.matchMinute!,
+                                              style: const TextStyle(
+                                                color: AppColors.cyanAccent,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ],
+                                      ),
+                                    )
+                                  : Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 6,
+                                        vertical: 3,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: AppColors.surfaceLight,
+                                        borderRadius: BorderRadius.circular(6),
+                                        border: Border.all(
+                                          color: AppColors.border,
+                                          width: 0.8,
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        'VS',
+                                        style: TextStyle(
+                                          color: AppColors.goldAccent,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
+                                    ),
                             ),
 
                             // Away Team

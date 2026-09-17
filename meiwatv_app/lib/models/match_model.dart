@@ -7,6 +7,10 @@ class MatchModel {
   final String awayTeam;
   final String? homeLogo;
   final String? awayLogo;
+  final String? homeScore;
+  final String? awayScore;
+  final String? scoreText;
+  final String? matchMinute;
   final String league;
   final String kickoffIso;
   final String kickoffText;
@@ -23,6 +27,10 @@ class MatchModel {
     required this.awayTeam,
     this.homeLogo,
     this.awayLogo,
+    this.homeScore,
+    this.awayScore,
+    this.scoreText,
+    this.matchMinute,
     required this.league,
     required this.kickoffIso,
     required this.kickoffText,
@@ -36,6 +44,12 @@ class MatchModel {
   bool get isLive => status == 1;
   bool get isUpcoming => status == 0;
   bool get isFinished => status == 2;
+  bool get hasScore =>
+      (homeScore != null &&
+          awayScore != null &&
+          homeScore!.isNotEmpty &&
+          awayScore!.isNotEmpty) ||
+      (scoreText != null && scoreText!.isNotEmpty);
 
   factory MatchModel.fromJson(Map<String, dynamic> json, {String? docId}) {
     final title = json['title'] as String? ?? 'Pertandingan Olahraga';
@@ -54,6 +68,10 @@ class MatchModel {
       awayTeam: json['awayTeam'] as String? ?? defaultAway,
       homeLogo: json['homeLogo'] as String?,
       awayLogo: json['awayLogo'] as String?,
+      homeScore: json['homeScore']?.toString(),
+      awayScore: json['awayScore']?.toString(),
+      scoreText: json['scoreText'] as String?,
+      matchMinute: json['matchMinute'] as String?,
       league: json['league'] as String? ?? 'Live Sports',
       kickoffIso: json['kickoffIso'] as String? ?? '',
       kickoffText: json['kickoffText'] as String? ?? 'Live Hari Ini',
@@ -84,6 +102,10 @@ class MatchModel {
       'awayTeam': awayTeam,
       'homeLogo': homeLogo,
       'awayLogo': awayLogo,
+      'homeScore': homeScore,
+      'awayScore': awayScore,
+      'scoreText': scoreText,
+      'matchMinute': matchMinute,
       'league': league,
       'kickoffIso': kickoffIso,
       'kickoffText': kickoffText,
