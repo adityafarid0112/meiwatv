@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import '../models/match_model.dart';
 import '../theme/app_theme.dart';
 import 'live_badge.dart';
+import 'team_logo_widget.dart';
 
 class TvFocusableCard extends StatefulWidget {
   final MatchModel match;
@@ -162,7 +163,13 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  _buildTeamAvatar(match.homeTeam, AppColors.primary),
+                                  TeamLogoWidget(
+                                    teamName: match.homeTeam,
+                                    logoUrl: match.homeLogo,
+                                    size: 46,
+                                    accentColor: AppColors.primary,
+                                    sportCategory: match.sportCategory,
+                                  ),
                                   const SizedBox(height: 6),
                                   Text(
                                     match.homeTeam,
@@ -205,7 +212,13 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  _buildTeamAvatar(match.awayTeam, AppColors.cyanAccent),
+                                  TeamLogoWidget(
+                                    teamName: match.awayTeam,
+                                    logoUrl: match.awayLogo,
+                                    size: 46,
+                                    accentColor: AppColors.cyanAccent,
+                                    sportCategory: match.sportCategory,
+                                  ),
                                   const SizedBox(height: 6),
                                   Text(
                                     match.awayTeam,
@@ -282,35 +295,6 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                 ],
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTeamAvatar(String teamName, Color accentColor) {
-    final initial = teamName.isNotEmpty ? teamName.substring(0, 1).toUpperCase() : 'T';
-    return Container(
-      width: 48,
-      height: 48,
-      decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
-        shape: BoxShape.circle,
-        border: Border.all(color: accentColor.withValues(alpha: 0.5), width: 1.5),
-        boxShadow: [
-          BoxShadow(
-            color: accentColor.withValues(alpha: 0.2),
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      child: Center(
-        child: Text(
-          initial,
-          style: TextStyle(
-            color: accentColor,
-            fontSize: 20,
-            fontWeight: FontWeight.w900,
           ),
         ),
       ),

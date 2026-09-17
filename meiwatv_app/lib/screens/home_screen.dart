@@ -6,7 +6,7 @@ import '../services/match_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/adsterra_banner.dart';
 import '../widgets/category_chip.dart';
-import '../widgets/live_badge.dart';
+import '../widgets/hero_match_slider.dart';
 import '../widgets/tv_focusable_card.dart';
 import 'player_screen.dart';
 
@@ -321,13 +321,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
 
-                      // Featured Hero Banner (If any live match is available)
-                      if (matches.any((m) => m.isLive))
+                      // Featured Hero Slider
+                      if (matches.isNotEmpty)
                         SliverToBoxAdapter(
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                            child: _buildFeaturedHero(
-                              matches.firstWhere((m) => m.isLive),
+                            child: _buildFeaturedHeroSlider(
+                              matches,
                               isTvOrDesktop,
                             ),
                           ),
@@ -506,108 +506,19 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildFeaturedHero(MatchModel match, bool isTv) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF1E2A44), Color(0xFF0F1826)],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppColors.primary.withValues(alpha: 0.4),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.primaryGlow.withValues(alpha: 0.2),
-            blurRadius: 20,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const LiveBadge(
-                              isLive: true,
-                              text: 'PERTANDINGAN UTAMA HARI INI',
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              match.league.toUpperCase(),
-                              style: const TextStyle(
-                                color: AppColors.cyanAccent,
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          '${match.homeTeam} vs ${match.awayTeam}',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                        const SizedBox(height: 14),
-                        FilledButton.icon(
-                          style: FilledButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 12,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () => _openPlayer(match),
-                          icon: const Icon(Icons.play_arrow_rounded, size: 20, color: Colors.white),
-                          label: const Text(
-                            'SIARAN LANGSUNG (LIVE)',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 13,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  if (isTv) ...[
-                    const SizedBox(width: 16),
-                    const Icon(
-                      Icons.tv_rounded,
-                      size: 80,
-                      color: AppColors.primaryGlow,
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+  Widget _buildFeaturedHeroSlider(List<MatchModel> matches, bool isTv) {
+    // Ambil pertandingan live, jika kurang dari 4 sertakan juga jadwal hari ini
+    final liveMatches = matches.where((m) => m.isLive).toList();
+    final sliderItems = liveMatches.isNotEmpty
+        ? liveMatches.take(6).toList()
+        : matches.take(5).toList();
+
+    if (sliderItems.isEmpty) return const SizedBox.shrink();
+
+    return HeroMatchSlider(
+      matches: sliderItems,
+      isTv: isTv,
+      onMatchTap: _openPlayer,
     );
   }
 

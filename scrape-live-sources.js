@@ -142,7 +142,18 @@ async function scrapeAll() {
         let league = leagueMatch ? leagueMatch[1].trim() : 'Live Sports';
         league = league.replace(/&#039;/g, "'").replace(/&amp;/g, '&');
 
-        // Home & Away
+        // Home & Away IDs & Logos
+        const homeTeamIdMatch = cardHeader.match(/data-home-team-id="([^"]+)"/i);
+        const awayTeamIdMatch = cardHeader.match(/data-away-team-id="([^"]+)"/i);
+        const homeTeamId = homeTeamIdMatch ? homeTeamIdMatch[1] : '';
+        const awayTeamId = awayTeamIdMatch ? awayTeamIdMatch[1] : '';
+
+        const homeImgMatch = cardContent.match(/class="[^"]*grid-match__team--home[^"]*"[\s\S]*?<img[^>]+src="([^">]+)"/i);
+        const awayImgMatch = cardContent.match(/class="[^"]*grid-match__team--away[^"]*"[\s\S]*?<img[^>]+src="([^">]+)"/i);
+
+        let homeLogo = homeImgMatch ? homeImgMatch[1] : (homeTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${homeTeamId}/image/small` : '');
+        let awayLogo = awayImgMatch ? awayImgMatch[1] : (awayTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${awayTeamId}/image/small` : '');
+
         const homeMatch = cardContent.match(/class="[^"]*grid-match__team--home-name[^"]*"[^>]*>\s*([^<]+)\s*<\/div>/i);
         const awayMatch = cardContent.match(/class="[^"]*grid-match__team--away-name[^"]*"[^>]*>\s*([^<]+)\s*<\/div>/i);
 
@@ -192,6 +203,8 @@ async function scrapeAll() {
             title,
             home,
             away,
+            homeLogo,
+            awayLogo,
             league,
             category,
             sportType,
@@ -255,6 +268,8 @@ async function scrapeAll() {
                 title: m.title,
                 homeTeam: m.home,
                 awayTeam: m.away,
+                homeLogo: m.homeLogo || '',
+                awayLogo: m.awayLogo || '',
                 league: m.league,
                 sportCategory: m.category,
                 kickoffIso: m.kickoffIso,
