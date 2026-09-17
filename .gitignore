@@ -1,0 +1,25 @@
+# Flutter & Android build artifacts
+meiwatv_app/.dart_tool/
+meiwatv_app/.packages
+meiwatv_app/build/
+meiwatv_app/.flutter-plugins
+meiwatv_app/.flutter-plugins-dependencies
+meiwatv_app/android/.gradle/
+meiwatv_app/android/app/build/
+meiwatv_app/android/local.properties
+
+# Sensitive local auth tokens
+client_secrets.json
+token.json
+
+# Heavy design / raw binary files
+*.cdr
+*.apk
+*.zip
+
+# Temporary test screens
+screen*.png
+source_dump.html
+
+# Node modules
+node_modules/

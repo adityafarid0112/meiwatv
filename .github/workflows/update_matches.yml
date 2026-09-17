@@ -1,0 +1,40 @@
+name: Update Live Sports Matches
+
+on:
+  schedule:
+    # Berjalan otomatis setiap 15 menit
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Bisa dijalankan manual lewat tombol di GitHub kapan saja
+  push:
+    branches:
+      - main
+    paths:
+      - 'scrape-live-sources.js'
+      - 'Link nonton Online.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  sync-matches:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Scrape Live Sports Matches
+        run: node scrape-live-sources.js
+
+      - name: Commit and Push Updated Matches
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add matches.json
+          git commit -m "chore(bot): update live sports matches [skip ci]" || echo "No changes to commit"
+          git push
