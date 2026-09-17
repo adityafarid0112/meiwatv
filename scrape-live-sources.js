@@ -1,18 +1,67 @@
 const fs = require('fs');
 const path = require('path');
 
-// Daftar domain sumber siaran live dari Link nonton Online.txt
-const SEEDS = [
-    'https://tft-forests.org/',
-    'https://xoilacz.vip/',
-    'https://socolivezc.tv/',
-    'https://cakhiazkv.cc/',
-    'https://vebotvx.cc/',
-    'https://mitomzm.cc/'
-];
+// 1. Baca semua domain live streaming dari "Link nonton Online.txt"
+function getSeeds() {
+    const linkFile = path.join(__dirname, 'Link nonton Online.txt');
+    if (fs.existsSync(linkFile)) {
+        const lines = fs.readFileSync(linkFile, 'utf8').split(/\r?\n/);
+        const seeds = lines
+            .map(l => l.trim())
+            .filter(l => l.startsWith('http') && !l.includes('profitablerate') && !l.includes('saweria'));
+        if (seeds.length > 0) return seeds;
+    }
+    return [
+        'https://xoilacz.vip/',
+        'https://tft-forests.org/',
+        'https://socolivezc.tv/',
+        'https://xoilackl.tv/',
+        'https://90phutcn.tv/',
+        'https://cakhiazkv.cc/',
+        'https://xoilaccu.tv/',
+        'https://vebotvx.cc/',
+        'https://rakhoiib.cc/',
+        'https://mitomzm.cc/',
+        'https://vaoroig.cc/',
+        'https://malaysiandigest.com/'
+    ];
+}
+
+// 2. Baca konfigurasi Iklan & Saweria dari "Link nonton Online.txt"
+function getAdsConfig() {
+    return {
+        saweriaUrl: "https://saweria.co/meiwatv",
+        popunderUrls: [
+            "https://www.profitableratecpmnetwork.com/r1x7jbv2ys?key=c06365de807e3e8605b4e7e665953775",
+            "https://www.profitableratecpmnetwork.com/nhgf41xe?key=c1f7258bb9659ab225647c310b68619e"
+        ],
+        banners: {
+            banner_728x90: {
+                key: "0b453dca166b5389587addc2ba0a053a",
+                width: 728,
+                height: 90,
+                script: "https://www.highrevenueformat.com/0b453dca166b5389587addc2ba0a053a/invoke.js"
+            },
+            banner_300x250: {
+                key: "dc4ffb491cd457659d1c3eea5b5db6ca",
+                width: 300,
+                height: 250,
+                script: "https://www.highrevenueformat.com/dc4ffb491cd457659d1c3eea5b5db6ca/invoke.js"
+            },
+            banner_468x60: {
+                key: "b3ebfb84dfe7f276ec8ca6b0601afc33",
+                width: 468,
+                height: 60,
+                script: "https://www.highrevenueformat.com/b3ebfb84dfe7f276ec8ca6b0601afc33/invoke.js"
+            }
+        },
+        updatedAt: new Date().toISOString()
+    };
+}
 
 async function scrapeAll() {
-    console.log('📡 Menghubungi sumber live streaming Xoilac / TFT / Socolive:');
+    const SEEDS = getSeeds();
+    console.log(`📡 Menghubungi ${SEEDS.length} sumber live streaming dari Link nonton Online.txt...`);
     let html = '';
     let activeDomain = '';
 
@@ -22,7 +71,7 @@ async function scrapeAll() {
             const res = await fetch(seed, {
                 redirect: 'follow',
                 headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
                 },
                 signal: AbortSignal.timeout(8000)
             });
@@ -45,20 +94,23 @@ async function scrapeAll() {
         return;
     }
 
-    // Parsing semua card pertandingan dengan data-sport
-    const cardRegex = /<div[^>]*class="[^"]*grid-matches__item[^"]*"[^>]*data-sport="([^"]+)"[^>]*>([\s\S]*?)(?=(?:<div[^>]*class="[^"]*grid-matches__item|<div[^>]*class="sport-content-tab|<\/body|$))/gi;
+    // Parsing semua card pertandingan
+    const cardRegex = /<div([^>]*class="[^"]*grid-matches__item[^"]*"[^>]*)>([\s\S]*?)(?=(?:<div[^>]*class="[^"]*grid-matches__item|<div[^>]*class="sport-content-tab|<\/body|$))/gi;
 
     let match;
-    const nowTime = Date.now();
-    const today = new Date();
-    const todayStr = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
-    
     const parsedMatches = [];
     const sportCounts = {};
 
     while ((match = cardRegex.exec(html)) !== null) {
-        const sportType = match[1].toLowerCase();
+        const cardHeader = match[1];
         const cardContent = match[2];
+
+        // Ekstrak atribut cardHeader
+        const sportMatch = cardHeader.match(/data-sport="([^"]+)"/i);
+        const sportType = (sportMatch ? sportMatch[1] : 'football').toLowerCase();
+
+        const statusAttrMatch = cardHeader.match(/data-status="([^"]+)"/i);
+        const rawStatus = statusAttrMatch ? statusAttrMatch[1] : '1';
 
         const linkMatch = cardContent.match(/href="(\/truc-tiep\/([a-z0-9\-]+)-luc-(\d{4})-ngay-(\d{2})-(\d{2})-(\d{4})\/)"/i);
         if (!linkMatch) continue;
@@ -72,8 +124,10 @@ async function scrapeAll() {
         const hour = timeStr.slice(0, 2);
         const min = timeStr.slice(2, 4);
 
-        // Filter: Hari ini 00:00 sampai 23:59
-        const kickoffDateStr = `${day}-${month}-${year}`;
+        // Jangan masukkan yang berstatus selesai lama (4 = FT, 8 = selesai)
+        if (rawStatus === '4' || rawStatus === '8') {
+            continue;
+        }
 
         // Liga
         const leagueMatch = cardContent.match(/class="[^"]*text-ellipsis[^"]*"[^>]*>\s*([^<]+)\s*<\/span>/i);
@@ -96,8 +150,8 @@ async function scrapeAll() {
 
         const title = `${home} vs ${away}`;
 
-        // Kategori Olahraga Sesuai Permintaan User:
-        // Sepakbola, Bola Basket, Bola Voli, Bulutangkis, Tenis, Lainnya
+        // Kategori Olahraga:
+        // Sepak Bola, Bola Basket, Bola Voli, Bulu Tangkis, Tenis, Olahraga Lainnya
         let category = '⚽ Sepak Bola';
         if (sportType === 'basketball') {
             category = '🏀 Bola Basket';
@@ -115,20 +169,14 @@ async function scrapeAll() {
         const kickoffText = `${hour}:${min} WIB (${day}/${month})`;
         const matchPageUrl = `${activeDomain}${relUrl}`;
 
-        const kickoffTime = new Date(`${year}-${month}-${day}T${hour}:${min}:00`).getTime();
-        const diff = kickoffTime - nowTime;
-
+        // Penentuan Status LIVE yang akurat langsung dari sumbernya:
+        // rawStatus '2', '3', '51', '52', '438' = Sedang Live Bertanding Saat Ini!
         let status = 0;
-        if (diff <= 0 && diff > -14400000) {
-            status = 1; // Live (sedang live sekarang)
-        } else if (diff <= -14400000) {
-            status = 2; // Selesai (>4 jam)
+        if (['2', '3', '51', '52', '438'].includes(rawStatus) || cardContent.includes('is-live') || cardContent.includes('badge-live')) {
+            status = 1; // 🔴 LIVE SEKARANG
         } else {
-            status = 0; // Upcoming (hari ini jam mendatang)
+            status = 0; // 📅 Jadwal Hari Ini
         }
-
-        // Jangan masukkan yang sudah selesai lebih dari 4 jam
-        if (status === 2) continue;
 
         sportCounts[category] = (sportCounts[category] || 0) + 1;
 
@@ -143,18 +191,19 @@ async function scrapeAll() {
             slugName,
             kickoffIso,
             kickoffText,
-            kickoffTime,
-            status
+            status,
+            rawStatus
         });
     }
 
-    console.log(`🎯 Ditemukan ${parsedMatches.length} pertandingan hari ini dari SEMUA CABANG OLAHRAGA:`);
+    const liveTotal = parsedMatches.filter(m => m.status === 1).length;
+    console.log(`🎯 Ditemukan ${parsedMatches.length} pertandingan (${liveTotal} sedang LIVE SEKARANG):`);
     console.log(sportCounts);
 
-    // Urutkan: Live status 1 di atas
+    // Urutkan: Pertandingan yang sedang LIVE (status 1) SELALU paling atas!
     parsedMatches.sort((a, b) => {
         if (b.status !== a.status) return b.status - a.status;
-        return a.kickoffTime - b.kickoffTime;
+        return a.kickoffIso.localeCompare(b.kickoffIso);
     });
 
     console.log(`\n🔍 Mengekstrak direct channel stream untuk ${parsedMatches.length} pertandingan...`);
@@ -178,15 +227,14 @@ async function scrapeAll() {
                 if (listStreamMatch) {
                     const rawJson = listStreamMatch[1].replace(/\\/g, '');
                     const listStream = JSON.parse(rawJson);
-                    if (listStream[0] && listStream[0][0]) {
-                        ch1 = listStream[0][0];
+                    if (Array.isArray(listStream) && listStream.length > 0) {
+                        const s1 = listStream[0];
+                        ch1 = s1.play_url || s1.m3u8 || '';
                         if (!ch1.includes('off-tvc')) ch1 += '/off-tvc?is_off_add=false';
                     }
-                    if (listStream[1] && listStream[1][0]) {
-                        ch2 = listStream[1][0];
-                        if (!ch2.includes('off-tvc')) ch2 += '/off-tvc?is_off_add=false';
-                    } else if (listStream[0] && listStream[0][1]) {
-                        ch2 = listStream[0][1];
+                    if (listStream.length > 1) {
+                        const s2 = listStream[1];
+                        ch2 = s2.play_url || s2.m3u8 || '';
                         if (!ch2.includes('off-tvc')) ch2 += '/off-tvc?is_off_add=false';
                     }
                 }
@@ -205,7 +253,6 @@ async function scrapeAll() {
                 sportCategory: m.category,
                 kickoffIso: m.kickoffIso,
                 kickoffText: m.kickoffText,
-                kickoffTime: m.kickoffTime,
                 status: m.status,
                 streamJalur1: ch1,
                 streamJalur2: ch2,
@@ -223,20 +270,23 @@ async function scrapeAll() {
         console.log(`   Processed ${finalMatches.length} / ${parsedMatches.length}...`);
     }
 
-    console.log(`\n💾 Menyimpan ${finalMatches.length} pertandingan langsung ke file aset & matches.json...`);
+    console.log(`\n💾 Menyimpan ${finalMatches.length} pertandingan & konfigurasi iklan ke GitHub...`);
     const rootMatchesFile = path.join(__dirname, 'matches.json');
-    const appAssetFile = path.join(__dirname, 'meiwatv_app', 'assets', 'data', 'matches.json');
-    const exportFile = path.join(__dirname, 'meiwatv-firebase-export.json');
-    const compactFile = path.join(__dirname, 'compact-matches.json');
+    const rootConfigFile = path.join(__dirname, 'app_config.json');
+    const appAssetMatches = path.join(__dirname, 'meiwatv_app', 'assets', 'data', 'matches.json');
+    const appAssetConfig = path.join(__dirname, 'meiwatv_app', 'assets', 'data', 'app_config.json');
+
+    const adsConfig = getAdsConfig();
 
     fs.writeFileSync(rootMatchesFile, JSON.stringify(finalMatches, null, 2), 'utf8');
-    if (fs.existsSync(path.dirname(appAssetFile))) {
-        fs.writeFileSync(appAssetFile, JSON.stringify(finalMatches, null, 2), 'utf8');
-    }
-    fs.writeFileSync(exportFile, JSON.stringify(finalMatches, null, 2), 'utf8');
-    fs.writeFileSync(compactFile, JSON.stringify(finalMatches, null, 2), 'utf8');
+    fs.writeFileSync(rootConfigFile, JSON.stringify(adsConfig, null, 2), 'utf8');
 
-    console.log('✅ Selesai mengekstrak semua stream channels untuk semua cabang olahraga!');
+    if (fs.existsSync(path.dirname(appAssetMatches))) {
+        fs.writeFileSync(appAssetMatches, JSON.stringify(finalMatches, null, 2), 'utf8');
+        fs.writeFileSync(appAssetConfig, JSON.stringify(adsConfig, null, 2), 'utf8');
+    }
+
+    console.log('✅ Selesai mengekstrak semua siaran dan iklan!');
 }
 
 scrapeAll();
