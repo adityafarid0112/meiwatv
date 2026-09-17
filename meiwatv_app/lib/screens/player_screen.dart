@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
@@ -25,7 +26,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   WebViewController? _webController;
   int _activeJalur = 1; // 1 = Jalur 1, 2 = Jalur 2, 3 = Jalur 3
   bool _isLoading = true;
-  bool _isWebMode = true;
+  bool _isWebMode = false;
   bool _isMuted = false;
   String? _errorMessage;
   bool _showControls = true;
@@ -58,9 +59,92 @@ class _PlayerScreenState extends State<PlayerScreen> {
     }
   }
 
-  bool _isDirectVideoUrl(String url) {
+  String _getRefererForUrl(String url) {
+    if (widget.match.streamJalur2.isNotEmpty && widget.match.streamJalur2.startsWith('http')) {
+      try {
+        final uri = Uri.parse(widget.match.streamJalur2);
+        return '${uri.scheme}://${uri.host}/';
+      } catch (_) {}
+    }
+    if (widget.match.streamJalur3.isNotEmpty && widget.match.streamJalur3.startsWith('http')) {
+      try {
+        final uri = Uri.parse(widget.match.streamJalur3);
+        return '${uri.scheme}://${uri.host}/';
+      } catch (_) {}
+    }
+    return 'https://scoopnashville.com/';
+  }
+
+  Future<String?> _resolveDirectStreamUrl(String url) async {
+    if (url.isEmpty) return null;
     final lower = url.toLowerCase();
-    return lower.endsWith('.m3u8') || lower.endsWith('.mp4') || (lower.endsWith('.flv') && !lower.contains('/ajax/chanel/'));
+    if (lower.contains('.m3u8') || lower.contains('.mp4')) {
+      return url;
+    }
+
+    try {
+      final referer = _getRefererForUrl(url);
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'User-Agent':
+              'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
+          'Referer': referer,
+          'Origin': referer.endsWith('/')
+              ? referer.substring(0, referer.length - 1)
+              : referer,
+        },
+      ).timeout(const Duration(seconds: 6));
+
+      if (response.statusCode == 200) {
+        final body = response.body;
+
+        // 1. Ekstraksi var urlStream = "https://...";
+        final urlStreamMatch = RegExp(
+          r'var\s+urlStream\s*=\s*["\x27](https?://[^"\x27\s]+)["\x27]',
+          caseSensitive: false,
+        ).firstMatch(body);
+        if (urlStreamMatch != null) {
+          final stream = urlStreamMatch.group(1);
+          if (stream != null && stream.isNotEmpty) return stream;
+        }
+
+        // 2. Ekstraksi URL .m3u8 langsung di dalam body response
+        final m3u8Match = RegExp(
+          r'https?://[^\s"<>]+?\.m3u8[^\s"<>]*',
+          caseSensitive: false,
+        ).firstMatch(body);
+        if (m3u8Match != null) {
+          final stream = m3u8Match.group(0);
+          if (stream != null && stream.isNotEmpty) return stream;
+        }
+
+        // 3. Ekstraksi list_stream jika berupa halaman pertandingan langsung
+        final listStreamMatch = RegExp(
+          r'var\s+list_stream\s*=\s*(\[[^\]]+\])',
+          caseSensitive: false,
+        ).firstMatch(body);
+        if (listStreamMatch != null) {
+          final raw = listStreamMatch
+              .group(1)
+              ?.replaceAll(r'\/', '/')
+              .replaceAll(r'\', '');
+          if (raw != null) {
+            final innerMatches = RegExp(r'https?://[^\s"<>]+').allMatches(raw);
+            for (final m in innerMatches) {
+              final innerUrl = m.group(0);
+              if (innerUrl != null && innerUrl != url) {
+                final resolved = await _resolveDirectStreamUrl(innerUrl);
+                if (resolved != null) return resolved;
+              }
+            }
+          }
+        }
+      }
+    } catch (e) {
+      debugPrint('Direct stream resolution info: $e');
+    }
+    return null;
   }
 
   Future<void> _initPlayer() async {
@@ -78,49 +162,42 @@ class _PlayerScreenState extends State<PlayerScreen> {
       return;
     }
 
-    // Jika URL adalah direct stream video file
-    if (_isDirectVideoUrl(url)) {
-      _isWebMode = false;
+    // 1. Resolusi Direct .m3u8 stream dari sumber CDN untuk native video playback tanpa Cloudflare
+    final directStream = await _resolveDirectStreamUrl(url);
+
+    if (directStream != null && directStream.isNotEmpty) {
       try {
         await _videoController?.dispose();
-        _videoController = VideoPlayerController.networkUrl(
-          Uri.parse(url),
+        final controller = VideoPlayerController.networkUrl(
+          Uri.parse(directStream),
           httpHeaders: {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
+            'User-Agent':
+                'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
             'Referer': _getRefererForUrl(url),
             'Origin': _getRefererForUrl(url),
           },
           videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
         );
 
-        await _videoController!.initialize();
-        _videoController!.play();
-        setState(() {
-          _isLoading = false;
-        });
-      } catch (e) {
-        _loadWebPlayer(url);
-      }
-    } else {
-      // Embed URL -> Mainkan via High Performance In-App Web Engine
-      _loadWebPlayer(url);
-    }
-  }
+        await controller.initialize();
+        if (_isMuted) controller.setVolume(0);
+        controller.play();
 
-  String _getRefererForUrl(String url) {
-    if (widget.match.streamJalur2.isNotEmpty && widget.match.streamJalur2.startsWith('http')) {
-      try {
-        final uri = Uri.parse(widget.match.streamJalur2);
-        return '${uri.scheme}://${uri.host}/';
-      } catch (_) {}
+        _videoController = controller;
+        _isWebMode = false;
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+        return;
+      } catch (e) {
+        debugPrint('Native VideoPlayer fallback to WebPlayer: $e');
+      }
     }
-    if (widget.match.streamJalur3.isNotEmpty && widget.match.streamJalur3.startsWith('http')) {
-      try {
-        final uri = Uri.parse(widget.match.streamJalur3);
-        return '${uri.scheme}://${uri.host}/';
-      } catch (_) {}
-    }
-    return 'https://scoopnashville.com/';
+
+    // 2. Fallback ke High Performance In-App Web Engine jika direct m3u8 belum tersedia
+    _loadWebPlayer(url);
   }
 
   void _loadWebPlayer(String url) {
