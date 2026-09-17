@@ -427,124 +427,250 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   top: 0,
                   left: 0,
                   right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.black.withValues(alpha: 0.88),
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final topWidth = constraints.maxWidth;
+                      final isCompact = topWidth < 550;
+
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
                         ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                '${match.homeTeam} vs ${match.awayTeam}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                match.league,
-                                style: const TextStyle(
-                                  color: AppColors.cyanAccent,
-                                  fontSize: 11,
-                                ),
-                              ),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black.withValues(alpha: 0.92),
+                              Colors.transparent,
                             ],
                           ),
                         ),
-                        LiveBadge(isLive: match.isLive, text: match.isLive ? 'LIVE' : 'UPCOMING'),
-                        const SizedBox(width: 8),
-                        // Tombol Donasi Saweria
-                        InkWell(
-                          onTap: () => AdService().openSaweria(),
-                          borderRadius: BorderRadius.circular(16),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFFFF9800), Color(0xFFFF5722)],
+                        child: Row(
+                          children: [
+                            IconButton(
+                              visualDensity: VisualDensity.compact,
+                              padding: const EdgeInsets.all(6),
+                              constraints: const BoxConstraints(),
+                              icon: const Icon(
+                                Icons.arrow_back_ios_new_rounded,
+                                color: Colors.white,
+                                size: 18,
                               ),
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0xFFFF9800).withValues(alpha: 0.4),
-                                  blurRadius: 6,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
+                              onPressed: () => Navigator.of(context).pop(),
                             ),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.volunteer_activism_rounded, color: Colors.white, size: 14),
-                                SizedBox(width: 4),
-                                Text(
-                                  'Saweria',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.bold,
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    '${match.homeTeam} vs ${match.awayTeam}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: isCompact ? 13 : 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    match.league,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      color: AppColors.cyanAccent,
+                                      fontSize: 10.5,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
+                            if (!isCompact) ...[
+                              LiveBadge(
+                                isLive: match.isLive,
+                                text: match.isLive ? 'LIVE' : 'UPCOMING',
+                              ),
+                              const SizedBox(width: 6),
+                            ],
+                            // Tombol Donasi Saweria
+                            InkWell(
+                              onTap: () => AdService().openSaweria(),
+                              borderRadius: BorderRadius.circular(16),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xFFFF9800),
+                                      Color(0xFFFF5722),
+                                    ],
+                                  ),
+                                  borderRadius: BorderRadius.circular(16),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(
+                                        0xFFFF9800,
+                                      ).withValues(alpha: 0.4),
+                                      blurRadius: 4,
+                                    ),
+                                  ],
+                                ),
+                                child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.volunteer_activism_rounded,
+                                      color: Colors.white,
+                                      size: 13,
+                                    ),
+                                    SizedBox(width: 3),
+                                    Text(
+                                      'Saweria',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 10.5,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 2),
+                            // Tombol Audio
+                            IconButton(
+                              visualDensity: VisualDensity.compact,
+                              padding: const EdgeInsets.all(6),
+                              constraints: const BoxConstraints(),
+                              tooltip: _isMuted
+                                  ? 'Nyalakan Suara'
+                                  : 'Matikan Suara',
+                              icon: Icon(
+                                _isMuted
+                                    ? Icons.volume_off_rounded
+                                    : Icons.volume_up_rounded,
+                                color: _isMuted
+                                    ? AppColors.liveRed
+                                    : AppColors.primary,
+                                size: 20,
+                              ),
+                              onPressed: _toggleMute,
+                            ),
+                            const SizedBox(width: 2),
+                            // Tombol Muat Ulang Siaran
+                            IconButton(
+                              visualDensity: VisualDensity.compact,
+                              padding: const EdgeInsets.all(6),
+                              constraints: const BoxConstraints(),
+                              tooltip: 'Muat Ulang Siaran',
+                              icon: const Icon(
+                                Icons.refresh_rounded,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                              onPressed: () => _initPlayer(),
+                            ),
+                            if (!isCompact) ...[
+                              const SizedBox(width: 2),
+                              // Tombol Bagikan / Share
+                              IconButton(
+                                visualDensity: VisualDensity.compact,
+                                padding: const EdgeInsets.all(6),
+                                constraints: const BoxConstraints(),
+                                tooltip: 'Bagikan Siaran Ini',
+                                icon: const Icon(
+                                  Icons.share_rounded,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
+                                onPressed: _shareMatch,
+                              ),
+                              const SizedBox(width: 2),
+                              // Tombol Browser Eksternal
+                              IconButton(
+                                visualDensity: VisualDensity.compact,
+                                padding: const EdgeInsets.all(6),
+                                constraints: const BoxConstraints(),
+                                tooltip: 'Buka di Browser Eksternal',
+                                icon: const Icon(
+                                  Icons.open_in_browser_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                                onPressed: _openExternalBrowser,
+                              ),
+                            ] else ...[
+                              // Popup menu for extra options on mobile portrait
+                              PopupMenuButton<String>(
+                                icon: const Icon(
+                                  Icons.more_vert_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                                padding: EdgeInsets.zero,
+                                constraints: const BoxConstraints(),
+                                color: AppColors.surfaceElevated,
+                                onSelected: (value) {
+                                  if (value == 'share') _shareMatch();
+                                  if (value == 'browser') _openExternalBrowser();
+                                },
+                                itemBuilder: (context) => [
+                                  const PopupMenuItem(
+                                    value: 'share',
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.share_rounded,
+                                          color: Colors.white,
+                                          size: 18,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text('Bagikan Siaran'),
+                                      ],
+                                    ),
+                                  ),
+                                  const PopupMenuItem(
+                                    value: 'browser',
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.open_in_browser_rounded,
+                                          color: Colors.white,
+                                          size: 18,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text('Buka di Browser'),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                            const SizedBox(width: 2),
+                            // Tombol Layar Penuh (Tunggal & Konsisten)
+                            IconButton(
+                              visualDensity: VisualDensity.compact,
+                              padding: const EdgeInsets.all(6),
+                              constraints: const BoxConstraints(),
+                              tooltip: 'Layar Penuh (Sembunyikan Menu)',
+                              icon: const Icon(
+                                Icons.fullscreen_rounded,
+                                color: Colors.white,
+                                size: 22,
+                              ),
+                              onPressed: () =>
+                                  setState(() => _showControls = false),
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: 4),
-                        // Tombol Bagikan / Share
-                        IconButton(
-                          tooltip: 'Bagikan Siaran Ini',
-                          icon: const Icon(Icons.share_rounded, color: Colors.white),
-                          onPressed: _shareMatch,
-                        ),
-                        // Tombol Audio
-                        IconButton(
-                          tooltip: _isMuted ? 'Nyalakan Suara' : 'Matikan Suara',
-                          icon: Icon(
-                            _isMuted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
-                            color: _isMuted ? AppColors.liveRed : AppColors.primary,
-                          ),
-                          onPressed: _toggleMute,
-                        ),
-                        // Tombol Muat Ulang Siaran
-                        IconButton(
-                          tooltip: 'Muat Ulang Siaran',
-                          icon: const Icon(Icons.refresh_rounded, color: Colors.white),
-                          onPressed: () => _initPlayer(),
-                        ),
-                        // Tombol Browser Eksternal
-                        IconButton(
-                          tooltip: 'Buka di Browser Eksternal',
-                          icon: const Icon(Icons.open_in_browser_rounded, color: Colors.white),
-                          onPressed: _openExternalBrowser,
-                        ),
-                        // Tombol Layar Penuh (Tunggal & Konsisten)
-                        IconButton(
-                          tooltip: 'Layar Penuh (Sembunyikan Menu)',
-                          icon: const Icon(Icons.fullscreen_rounded, color: Colors.white),
-                          onPressed: () => setState(() => _showControls = false),
-                        ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
                 ),
 

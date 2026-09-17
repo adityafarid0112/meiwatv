@@ -134,41 +134,41 @@ class _HomeScreenState extends State<HomeScreen> {
                       // Top Bar / Header
                       SliverToBoxAdapter(
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
+                          padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               // Logo Meiwa Mobile
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image.asset(
                                   'assets/images/Logo Meiwa Mobile.png',
-                                  height: 46,
+                                  height: width < 500 ? 34 : 44,
                                   fit: BoxFit.contain,
                                   errorBuilder: (context, error, stackTrace) =>
                                       const Text(
                                         'MEIWATV',
                                         style: TextStyle(
                                           color: AppColors.cyanAccent,
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w900,
                                         ),
                                       ),
                                 ),
                               ),
+                              const Spacer(),
 
                               // Real-time Status Badge & Saweria & Refresh Button
                               Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  // Tombol Donasi Saweria (Sesuai Link nonton Online)
+                                  // Tombol Donasi Saweria
                                   InkWell(
                                     onTap: () => AdService().openSaweria(),
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(16),
                                     child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: 6,
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: width < 400 ? 8 : 10,
+                                        vertical: 5,
                                       ),
                                       decoration: BoxDecoration(
                                         gradient: const LinearGradient(
@@ -177,44 +177,49 @@ class _HomeScreenState extends State<HomeScreen> {
                                             Color(0xFFFF5722),
                                           ],
                                         ),
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(16),
                                         boxShadow: [
                                           BoxShadow(
                                             color: const Color(
                                               0xFFFF9800,
                                             ).withValues(alpha: 0.35),
-                                            blurRadius: 8,
+                                            blurRadius: 6,
                                             offset: const Offset(0, 2),
                                           ),
                                         ],
                                       ),
-                                      child: const Row(
+                                      child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.volunteer_activism_rounded,
                                             color: Colors.white,
-                                            size: 14,
+                                            size: 13,
                                           ),
-                                          SizedBox(width: 4),
-                                          Text(
-                                            'Saweria',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
+                                          if (width >= 360) ...[
+                                            const SizedBox(width: 4),
+                                            const Text(
+                                              'Saweria',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ],
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 4),
+                                  const SizedBox(width: 2),
                                   IconButton(
+                                    visualDensity: VisualDensity.compact,
+                                    padding: const EdgeInsets.all(6),
+                                    constraints: const BoxConstraints(),
                                     icon: const Icon(
                                       Icons.share_rounded,
                                       color: Colors.white,
-                                      size: 20,
+                                      size: 18,
                                     ),
                                     tooltip: 'Bagikan Aplikasi MeiwaTV',
                                     onPressed: () {
@@ -228,12 +233,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       );
                                     },
                                   ),
-                                  const SizedBox(width: 4),
+                                  const SizedBox(width: 2),
                                   IconButton(
+                                    visualDensity: VisualDensity.compact,
+                                    padding: const EdgeInsets.all(6),
+                                    constraints: const BoxConstraints(),
                                     icon: const Icon(
                                       Icons.refresh_rounded,
                                       color: AppColors.primary,
-                                      size: 22,
+                                      size: 20,
                                     ),
                                     tooltip: 'Perbarui Jadwal & Siaran Live',
                                     onPressed: () async {
@@ -253,13 +261,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const SizedBox(width: 4),
                                   Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 6,
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: width < 400 ? 8 : 10,
+                                      vertical: 5,
                                     ),
                                     decoration: BoxDecoration(
                                       color: AppColors.surfaceLight,
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(16),
                                       border: Border.all(
                                         color: AppColors.border,
                                       ),
@@ -268,19 +276,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Container(
-                                          width: 8,
-                                          height: 8,
+                                          width: 7,
+                                          height: 7,
                                           decoration: const BoxDecoration(
-                                            color: AppColors.primary,
+                                            color: AppColors.liveRed,
                                             shape: BoxShape.circle,
                                           ),
                                         ),
-                                        const SizedBox(width: 6),
+                                        const SizedBox(width: 5),
                                         Text(
-                                          '$liveCount Live Match',
+                                          width < 400
+                                              ? '$liveCount Live'
+                                              : '$liveCount Live Match',
                                           style: const TextStyle(
                                             color: AppColors.textPrimary,
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
@@ -462,14 +472,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       else ...[
                         SliverPadding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                           sliver: SliverGrid(
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: crossAxisCount,
-                                  mainAxisSpacing: 16,
-                                  crossAxisSpacing: 16,
-                                  mainAxisExtent: 220,
+                                  mainAxisSpacing: 14,
+                                  crossAxisSpacing: 14,
+                                  mainAxisExtent: isTvOrDesktop ? 225 : 240,
                                 ),
                             delegate: SliverChildBuilderDelegate((
                               context,
@@ -484,13 +494,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         // Iklan Banner Adsterra (Sesuai Link nonton Online)
-                        const SliverToBoxAdapter(
+                        SliverToBoxAdapter(
                           child: Padding(
-                            padding: EdgeInsets.only(bottom: 24, top: 8),
-                            child: AdsterraBanner(
-                              height: 60,
-                              width: 468,
-                              adKey: 'b3ebfb84dfe7f276ec8ca6b0601afc33',
+                            padding: const EdgeInsets.only(bottom: 24, top: 8),
+                            child: Center(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                physics: const NeverScrollableScrollPhysics(),
+                                child: const AdsterraBanner(
+                                  height: 60,
+                                  width: 468,
+                                  adKey: 'b3ebfb84dfe7f276ec8ca6b0601afc33',
+                                ),
+                              ),
                             ),
                           ),
                         ),

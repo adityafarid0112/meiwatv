@@ -111,7 +111,7 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -125,10 +125,10 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                 children: [
                                   const Icon(
                                     Icons.sports_soccer_rounded,
-                                    size: 14,
+                                    size: 13,
                                     color: AppColors.cyanAccent,
                                   ),
-                                  const SizedBox(width: 6),
+                                  const SizedBox(width: 5),
                                   Expanded(
                                     child: Text(
                                       match.league.toUpperCase(),
@@ -136,16 +136,16 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                       overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
                                         color: AppColors.cyanAccent,
-                                        fontSize: 11,
+                                        fontSize: 10.5,
                                         fontWeight: FontWeight.w800,
-                                        letterSpacing: 0.8,
+                                        letterSpacing: 0.5,
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: 6),
                             LiveBadge(
                               isLive: match.isLive,
                               text: match.isLive ? 'LIVE' : match.kickoffText,
@@ -153,7 +153,7 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                           ],
                         ),
 
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 8),
 
                         // Match Teams Versus Layout
                         Row(
@@ -166,11 +166,11 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                   TeamLogoWidget(
                                     teamName: match.homeTeam,
                                     logoUrl: match.homeLogo,
-                                    size: 46,
+                                    size: 42,
                                     accentColor: AppColors.primary,
                                     sportCategory: match.sportCategory,
                                   ),
-                                  const SizedBox(height: 6),
+                                  const SizedBox(height: 5),
                                   Text(
                                     match.homeTeam,
                                     maxLines: 2,
@@ -178,8 +178,9 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                       color: AppColors.textPrimary,
-                                      fontSize: 13,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
+                                      height: 1.15,
                                     ),
                                   ),
                                 ],
@@ -188,12 +189,12 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
 
                             // Center Score or VS Badge
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 4.0),
                               child: match.hasScore
                                   ? Container(
                                       padding: const EdgeInsets.symmetric(
-                                        horizontal: 8,
-                                        vertical: 4,
+                                        horizontal: 7,
+                                        vertical: 3,
                                       ),
                                       decoration: BoxDecoration(
                                         gradient: const LinearGradient(
@@ -202,15 +203,15 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                             Color(0xFF0F1E38),
                                           ],
                                         ),
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(6),
                                         border: Border.all(
                                           color: AppColors.cyanAccent.withValues(alpha: 0.8),
-                                          width: 1.2,
+                                          width: 1.0,
                                         ),
                                         boxShadow: [
                                           BoxShadow(
                                             color: AppColors.cyanAccent.withValues(alpha: 0.25),
-                                            blurRadius: 6,
+                                            blurRadius: 5,
                                           ),
                                         ],
                                       ),
@@ -222,19 +223,19 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                                 '${match.homeScore} - ${match.awayScore}',
                                             style: const TextStyle(
                                               color: Colors.white,
-                                              fontSize: 13,
+                                              fontSize: 12.5,
                                               fontWeight: FontWeight.w900,
-                                              letterSpacing: 1.0,
+                                              letterSpacing: 0.8,
                                             ),
                                           ),
                                           if (match.matchMinute != null &&
                                               match.matchMinute!.isNotEmpty) ...[
-                                            const SizedBox(height: 2),
+                                            const SizedBox(height: 1),
                                             Text(
                                               match.matchMinute!,
                                               style: const TextStyle(
                                                 color: AppColors.cyanAccent,
-                                                fontSize: 9,
+                                                fontSize: 8.5,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -259,7 +260,7 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                         'VS',
                                         style: TextStyle(
                                           color: AppColors.goldAccent,
-                                          fontSize: 11,
+                                          fontSize: 10,
                                           fontWeight: FontWeight.w900,
                                         ),
                                       ),
@@ -274,11 +275,11 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                   TeamLogoWidget(
                                     teamName: match.awayTeam,
                                     logoUrl: match.awayLogo,
-                                    size: 46,
+                                    size: 42,
                                     accentColor: AppColors.cyanAccent,
                                     sportCategory: match.sportCategory,
                                   ),
-                                  const SizedBox(height: 6),
+                                  const SizedBox(height: 5),
                                   Text(
                                     match.awayTeam,
                                     maxLines: 2,
@@ -286,8 +287,9 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                       color: AppColors.textPrimary,
-                                      fontSize: 13,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
+                                      height: 1.15,
                                     ),
                                   ),
                                 ],
@@ -296,9 +298,9 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                           ],
                         ),
 
-                        const SizedBox(height: 10),
-                        const Divider(color: AppColors.border, height: 1),
                         const SizedBox(height: 8),
+                        const Divider(color: AppColors.border, height: 1),
+                        const SizedBox(height: 6),
 
                         // Footer: Stream Jalur Indicators & Action CTA
                         Row(
@@ -308,26 +310,26 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                             Row(
                               children: [
                                 _buildJalurTag('Jalur 1', match.streamJalur1.isNotEmpty),
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 3),
                                 _buildJalurTag('Jalur 2', match.streamJalur2.isNotEmpty),
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 3),
                                 _buildJalurTag('Jalur 3', match.streamJalur3.isNotEmpty),
                               ],
                             ),
 
                             // Play Button Indicator
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                               decoration: BoxDecoration(
                                 color: _isFocused ? AppColors.primary : AppColors.surfaceLight,
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(6),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Icon(
                                     Icons.play_arrow_rounded,
-                                    size: 16,
+                                    size: 15,
                                     color: _isFocused
                                         ? Colors.white
                                         : AppColors.cyanAccent,
@@ -339,7 +341,7 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                       color: _isFocused
                                           ? Colors.white
                                           : AppColors.textPrimary,
-                                      fontSize: 11,
+                                      fontSize: 10.5,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
