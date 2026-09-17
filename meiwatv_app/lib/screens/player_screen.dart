@@ -85,10 +85,10 @@ class _PlayerScreenState extends State<PlayerScreen> {
         await _videoController?.dispose();
         _videoController = VideoPlayerController.networkUrl(
           Uri.parse(url),
-          httpHeaders: const {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Referer': 'https://xlz.domainkqt.cc/',
-            'Origin': 'https://xlz.domainkqt.cc',
+          httpHeaders: {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
+            'Referer': _getRefererForUrl(url),
+            'Origin': _getRefererForUrl(url),
           },
           videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
         );
@@ -107,17 +107,36 @@ class _PlayerScreenState extends State<PlayerScreen> {
     }
   }
 
+  String _getRefererForUrl(String url) {
+    if (widget.match.streamJalur2.isNotEmpty && widget.match.streamJalur2.startsWith('http')) {
+      try {
+        final uri = Uri.parse(widget.match.streamJalur2);
+        return '${uri.scheme}://${uri.host}/';
+      } catch (_) {}
+    }
+    if (widget.match.streamJalur3.isNotEmpty && widget.match.streamJalur3.startsWith('http')) {
+      try {
+        final uri = Uri.parse(widget.match.streamJalur3);
+        return '${uri.scheme}://${uri.host}/';
+      } catch (_) {}
+    }
+    return 'https://scoopnashville.com/';
+  }
+
   void _loadWebPlayer(String url) {
     _isWebMode = true;
     _videoController?.dispose();
     _videoController = null;
 
+    final referer = _getRefererForUrl(url);
+    final origin = referer.endsWith('/') ? referer.substring(0, referer.length - 1) : referer;
+
     final controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.black)
-      ..setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+      ..setUserAgent('Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36');
 
-    // Aktifkan media autoplay pada Android WebView
+    // Aktifkan media autoplay & platform permission pada Android WebView
     if (controller.platform is AndroidWebViewController) {
       final androidController = controller.platform as AndroidWebViewController;
       androidController.setMediaPlaybackRequiresUserGesture(false);
@@ -130,6 +149,17 @@ class _PlayerScreenState extends State<PlayerScreen> {
       NavigationDelegate(
         onNavigationRequest: (NavigationRequest request) {
           final target = request.url.toLowerCase();
+          // Selalu izinkan domain stream, CDN, dan verifikasi internal Cloudflare
+          if (target.contains('cloudflare') ||
+              target.contains('challenges') ||
+              target.contains('turnstile') ||
+              target.contains('domainkqt') ||
+              target.contains('scoopnashville') ||
+              target.contains('quickscoreboardz') ||
+              target.contains('lfastcdn')) {
+            return NavigationDecision.navigate;
+          }
+
           // Blokir redirect iklan berbahaya, popup judi, atau skema eksternal yang merusak video
           if (target.contains('8xbet') ||
               target.contains('15.235') ||
@@ -171,8 +201,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
     controller.loadRequest(
       Uri.parse(url),
-      headers: const {
-        'Referer': 'https://tft-forests.org/',
+      headers: {
+        'Referer': referer,
+        'Origin': origin,
       },
     );
 
