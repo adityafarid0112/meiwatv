@@ -22,7 +22,6 @@ class TeamLogoWidget extends StatelessWidget {
   static const Map<String, String> _countryCodeMap = {
     // Asia Tenggara & Timur
     'indonesia': 'id',
-    'ina': 'id',
     'vietnam': 'vn',
     'việt nam': 'vn',
     'viet nam': 'vn',
@@ -31,9 +30,11 @@ class TeamLogoWidget extends StatelessWidget {
     'nhật bản': 'jp',
     'nhat ban': 'jp',
     'korea': 'kr',
+    'korea selatan': 'kr',
     'hàn quốc': 'kr',
     'han quoc': 'kr',
     'south korea': 'kr',
+    'korea utara': 'kp',
     'triều tiên': 'kp',
     'north korea': 'kp',
     'china': 'cn',
@@ -58,7 +59,6 @@ class TeamLogoWidget extends StatelessWidget {
     'laos': 'la',
     'mongolia': 'mn',
     'mông cổ': 'mn',
-    'mong co': 'mn',
     'nepal': 'np',
     'bangladesh': 'bd',
     'india': 'in',
@@ -69,27 +69,27 @@ class TeamLogoWidget extends StatelessWidget {
     'uzbekistan': 'uz',
     'kazakhstan': 'kz',
     'tajikistan': 'tj',
+    'timor leste': 'tl',
+    'brunei': 'bn',
 
     // Eropa
     'inggris': 'gb-eng',
     'england': 'gb-eng',
-    'anh': 'gb-eng',
+    'scotland': 'gb-sct',
+    'skotlandia': 'gb-sct',
+    'wales': 'gb-wls',
     'britania': 'gb',
     'spanyol': 'es',
     'spain': 'es',
     'tây ban nha': 'es',
-    'tay ban nha': 'es',
     'jerman': 'de',
     'germany': 'de',
     'đức': 'de',
-    'duc': 'de',
     'prancis': 'fr',
     'france': 'fr',
     'pháp': 'fr',
-    'phap': 'fr',
     'italia': 'it',
     'italy': 'it',
-    'ý': 'it',
     'belanda': 'nl',
     'netherlands': 'nl',
     'hà lan': 'nl',
@@ -128,15 +128,16 @@ class TeamLogoWidget extends StatelessWidget {
     'yunani': 'gr',
     'greece': 'gr',
     'hy lạp': 'gr',
+    'republika ceko': 'cz',
+    'czech': 'cz',
 
     // Amerika & Oseania
     'argentina': 'ar',
     'brasil': 'br',
     'brazil': 'br',
-    'amerika': 'us',
+    'amerika serikat': 'us',
+    'united states': 'us',
     'usa': 'us',
-    'mỹ': 'us',
-    'my': 'us',
     'kanada': 'ca',
     'canada': 'ca',
     'meksiko': 'mx',
@@ -149,12 +150,16 @@ class TeamLogoWidget extends StatelessWidget {
     'úc': 'au',
     'new zealand': 'nz',
     'fiji': 'fj',
-    'papua': 'pg',
+    'papua nugini': 'pg',
+    'peru': 'pe',
+    'venezuela': 've',
+    'paraguay': 'py',
+    'ekuator': 'ec',
+    'ecuador': 'ec',
 
     // Afrika & Timur Tengah
     'nigeria': 'ng',
     'algeria': 'dz',
-    'algeri': 'dz',
     'maroko': 'ma',
     'morocco': 'ma',
     'mesir': 'eg',
@@ -170,22 +175,35 @@ class TeamLogoWidget extends StatelessWidget {
     'irak': 'iq',
     'iraq': 'iq',
     'jordan': 'jo',
+    'yordania': 'jo',
     'uae': 'ae',
-    'emirat': 'ae',
+    'uni emirat arab': 'ae',
+    'kuwait': 'kw',
+    'oman': 'om',
+    'bahrain': 'bh',
   };
 
   String? _detectCountryCode(String name) {
     var clean = name.toLowerCase().trim();
-    // Hilangkan prefix umum pertandingan wanita/timnas/usia
+    // Hilangkan prefix umum timnas/wanita/usia
     clean = clean
-        .replaceAll(RegExp(r'^(nữ|nam|u\d+|fc|sc|w|men|women|timnas)\s+', caseSensitive: false), '')
+        .replaceAll(RegExp(r'^(nữ|nam|u\d+|men|women|timnas|national team)\s+', caseSensitive: false), '')
         .trim();
 
+    // Cocokkan persis (exact match) nama negara
     for (final entry in _countryCodeMap.entries) {
-      if (clean == entry.key || clean.contains(entry.key)) {
+      if (clean == entry.key) {
         return entry.value;
       }
     }
+
+    // Jika diawali/diakhiri nama negara yang jelas
+    for (final entry in _countryCodeMap.entries) {
+      if (entry.key.length >= 4 && (clean.startsWith('${entry.key} ') || clean.endsWith(' ${entry.key}'))) {
+        return entry.value;
+      }
+    }
+
     return null;
   }
 
@@ -204,83 +222,93 @@ class TeamLogoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final countryCode = _detectCountryCode(teamName);
-
-    // 1. Jika nama tim adalah negara (seperti Asian Games, World Cup, Giao Hữu Quốc Tế), utamakan bendera negara
-    if (countryCode != null) {
-      return Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          color: AppColors.surfaceLight,
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: accentColor.withValues(alpha: 0.7),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: accentColor.withValues(alpha: 0.25),
-              blurRadius: 8,
-            ),
-          ],
-        ),
-        child: ClipOval(
-          child: CachedNetworkImage(
-            imageUrl: 'https://flagcdn.com/w160/$countryCode.png',
-            fit: BoxFit.cover,
-            placeholder: (context, url) => _buildPlaceholder(),
-            errorWidget: (context, url, error) => _buildFallbackWithUrlOrInitials(),
-          ),
-        ),
-      );
-    }
-
-    // 2. Jika bukan negara, periksa apakah ada URL logo club dari sumber
-    return _buildFallbackWithUrlOrInitials();
-  }
-
-  Widget _buildFallbackWithUrlOrInitials() {
-    final validUrl = logoUrl != null &&
+    final hasValidLogo = logoUrl != null &&
         logoUrl!.trim().isNotEmpty &&
         logoUrl!.startsWith('http') &&
-        !logoUrl!.endsWith('/company/21-1.png');
+        !logoUrl!.endsWith('/company/21-1.png') &&
+        !logoUrl!.contains('default');
 
-    if (validUrl) {
-      return Container(
-        width: size,
-        height: size,
-        padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          color: AppColors.surfaceLight,
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: accentColor.withValues(alpha: 0.6),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: accentColor.withValues(alpha: 0.25),
-              blurRadius: 8,
-              spreadRadius: 1,
-            ),
-          ],
-        ),
-        child: ClipOval(
-          child: CachedNetworkImage(
-            imageUrl: logoUrl!,
-            fit: BoxFit.contain,
-            httpHeaders: const {
-              'User-Agent':
-                  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            },
-            placeholder: (context, url) => _buildPlaceholder(),
-            errorWidget: (context, url, error) => _buildFallbackContainer(),
-          ),
-        ),
-      );
+    // 1. Jika URL logo club/pemain tersedia, utamakan logo asli
+    if (hasValidLogo) {
+      return _buildLogoFromUrl(logoUrl!, countryCode);
     }
 
+    // 2. Jika tidak ada URL logo dan nama tim adalah nama negara, tampilkan bendera negara
+    if (countryCode != null) {
+      return _buildCountryFlag(countryCode);
+    }
+
+    // 3. Fallback inisial tim dengan ikon olahraga
     return _buildFallbackContainer();
+  }
+
+  Widget _buildLogoFromUrl(String url, String? fallbackCountryCode) {
+    return Container(
+      width: size,
+      height: size,
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: AppColors.surfaceLight,
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: accentColor.withValues(alpha: 0.6),
+          width: 1.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: accentColor.withValues(alpha: 0.25),
+            blurRadius: 8,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: ClipOval(
+        child: CachedNetworkImage(
+          imageUrl: url,
+          fit: BoxFit.contain,
+          httpHeaders: const {
+            'User-Agent':
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          },
+          placeholder: (context, u) => _buildPlaceholder(),
+          errorWidget: (context, u, error) {
+            if (fallbackCountryCode != null) {
+              return _buildCountryFlag(fallbackCountryCode);
+            }
+            return _buildFallbackContainer();
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCountryFlag(String countryCode) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: AppColors.surfaceLight,
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: accentColor.withValues(alpha: 0.7),
+          width: 1.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: accentColor.withValues(alpha: 0.25),
+            blurRadius: 8,
+          ),
+        ],
+      ),
+      child: ClipOval(
+        child: CachedNetworkImage(
+          imageUrl: 'https://flagcdn.com/w160/$countryCode.png',
+          fit: BoxFit.cover,
+          placeholder: (context, url) => _buildPlaceholder(),
+          errorWidget: (context, url, error) => _buildFallbackContainer(),
+        ),
+      ),
+    );
   }
 
   Widget _buildPlaceholder() {
