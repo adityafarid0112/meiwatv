@@ -18,12 +18,20 @@ class MatchService {
       StreamController<List<MatchModel>>.broadcast();
   Timer? _autoRefreshTimer;
 
-  // Daftar domain sumber siaran live dari Link nonton Online.txt
+  // Daftar domain sumber siaran live lengkap dari Link nonton Online.txt
   static const List<String> onlineSeeds = [
-    'https://tft-forests.org/',
     'https://xoilacz.vip/',
+    'https://tft-forests.org/',
     'https://socolivezc.tv/',
+    'https://xoilackl.tv/',
+    'https://90phutcn.tv/',
     'https://cakhiazkv.cc/',
+    'https://xoilaccu.tv/',
+    'https://vebotvx.cc/',
+    'https://rakhoiib.cc/',
+    'https://mitomzm.cc/',
+    'https://vaoroig.cc/',
+    'https://malaysiandigest.com/',
   ];
 
   /// Inisialisasi service, muat data lokal segera, lalu ambil data online terbaru
@@ -80,7 +88,10 @@ class MatchService {
       // 1. Prioritas Utama: Ambil dari GitHub Raw (Otomatis diupdate oleh GitHub Actions robot)
       try {
         final ghUri = Uri.parse('$githubRawUrl?t=${DateTime.now().millisecondsSinceEpoch}');
-        final ghRes = await http.get(ghUri).timeout(const Duration(seconds: 7));
+        final ghRes = await http.get(ghUri, headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+        }).timeout(const Duration(seconds: 7));
         if (ghRes.statusCode == 200 && ghRes.body.isNotEmpty) {
           final List<dynamic> decoded = json.decode(ghRes.body);
           if (decoded.isNotEmpty) {

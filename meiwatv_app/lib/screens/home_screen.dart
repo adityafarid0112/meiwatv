@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/match_model.dart';
+import '../services/ad_service.dart';
 import '../services/match_service.dart';
 import '../theme/app_theme.dart';
+import '../widgets/adsterra_banner.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/live_badge.dart';
 import '../widgets/tv_focusable_card.dart';
@@ -34,6 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
     tabTenis,
     tabLainnya,
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    AdService().initialize();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,10 +164,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
 
-                              // Real-time Status Badge & Refresh Button
+                              // Real-time Status Badge & Saweria & Refresh Button
                               Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
+                                  // Tombol Donasi Saweria (Sesuai Link nonton Online)
+                                  InkWell(
+                                    onTap: () => AdService().openSaweria(),
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xFFFF9800), Color(0xFFFF5722)],
+                                        ),
+                                        borderRadius: BorderRadius.circular(20),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: const Color(0xFFFF9800).withValues(alpha: 0.35),
+                                            blurRadius: 8,
+                                            offset: const Offset(0, 2),
+                                          ),
+                                        ],
+                                      ),
+                                      child: const Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(Icons.volunteer_activism_rounded, color: Colors.white, size: 14),
+                                          SizedBox(width: 4),
+                                          Text(
+                                            'Saweria',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 4),
                                   IconButton(
                                     icon: const Icon(Icons.refresh_rounded, color: AppColors.primary, size: 22),
                                     tooltip: 'Perbarui Jadwal & Siaran Live',
@@ -290,36 +335,65 @@ class _HomeScreenState extends State<HomeScreen> {
                       SliverFillRemaining(
                         hasScrollBody: false,
                         child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.sports_soccer_outlined,
-                                size: 56,
-                                color: AppColors.textMuted,
-                              ),
-                              const SizedBox(height: 12),
-                              const Text(
-                                'Tidak ada pertandingan dalam kategori ini.',
-                                style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
-                              ),
-                              const SizedBox(height: 8),
-                              OutlinedButton.icon(
-                                icon: const Icon(Icons.live_tv_rounded, size: 18),
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedCategory = tabLive;
-                                  });
-                                },
-                                label: const Text('Buka Siaran Live Sekarang'),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.sports_soccer_outlined,
+                                  size: 52,
+                                  color: AppColors.textMuted,
+                                ),
+                                const SizedBox(height: 12),
+                                Text(
+                                  _selectedCategory == tabLive
+                                      ? 'Saat ini belum ada siaran yang sedang kick-off langsung.\nSilakan cek jadwal lengkap hari ini di bawah:'
+                                      : 'Tidak ada pertandingan dalam kategori ini hari ini.',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 13, height: 1.4),
+                                ),
+                                const SizedBox(height: 16),
+                                Wrap(
+                                  spacing: 8,
+                                  runSpacing: 8,
+                                  alignment: WrapAlignment.center,
+                                  children: [
+                                    FilledButton.icon(
+                                      style: FilledButton.styleFrom(
+                                        backgroundColor: AppColors.primary,
+                                        foregroundColor: Colors.black,
+                                      ),
+                                      icon: const Icon(Icons.sports_soccer_rounded, size: 16),
+                                      onPressed: () {
+                                        setState(() => _selectedCategory = tabSepakBola);
+                                      },
+                                      label: const Text('⚽ Sepak Bola Hari Ini'),
+                                    ),
+                                    FilledButton.tonalIcon(
+                                      icon: const Icon(Icons.sports_basketball_rounded, size: 16),
+                                      onPressed: () {
+                                        setState(() => _selectedCategory = tabBolaBasket);
+                                      },
+                                      label: const Text('🏀 Bola Basket'),
+                                    ),
+                                    FilledButton.tonalIcon(
+                                      icon: const Icon(Icons.sports_volleyball_rounded, size: 16),
+                                      onPressed: () {
+                                        setState(() => _selectedCategory = tabBolaVoli);
+                                      },
+                                      label: const Text('🏐 Bola Voli'),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       )
-                    else
+                    else ...[
                       SliverPadding(
-                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
                         sliver: SliverGrid(
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: crossAxisCount,
@@ -339,6 +413,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+                      // Iklan Banner Adsterra (Sesuai Link nonton Online)
+                      const SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: 24, top: 8),
+                          child: AdsterraBanner(
+                            height: 60,
+                            width: 468,
+                            adKey: 'b3ebfb84dfe7f276ec8ca6b0601afc33',
+                          ),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               );
@@ -444,6 +530,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _openPlayer(MatchModel match) {
+    AdService().triggerPopunder();
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => PlayerScreen(match: match),

@@ -5,6 +5,7 @@ import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import '../models/match_model.dart';
+import '../services/ad_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/live_badge.dart';
 
@@ -432,6 +433,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
                         ),
                         LiveBadge(isLive: match.isLive, text: match.isLive ? 'LIVE' : 'UPCOMING'),
                         const SizedBox(width: 4),
+                        IconButton(
+                          tooltip: 'Dukung Kami via Saweria',
+                          icon: const Icon(Icons.volunteer_activism_rounded, color: Color(0xFFFF9800)),
+                          onPressed: () => AdService().openSaweria(),
+                        ),
                         IconButton(
                           tooltip: _isMuted ? 'Nyalakan Suara' : 'Matikan Suara',
                           icon: Icon(
