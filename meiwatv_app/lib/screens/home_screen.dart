@@ -138,18 +138,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              // Logo Meiwa Mobile (Tampilan Bersih Tanpa Teks Lama)
+                              // Logo Meiwa Mobile
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image.asset(
-                                  'assets/images/logo.png',
+                                  'assets/images/Logo Meiwa Mobile.png',
                                   height: 46,
                                   fit: BoxFit.contain,
                                   errorBuilder: (context, error, stackTrace) =>
                                       const Text(
                                         'MEIWATV',
                                         style: TextStyle(
-                                          color: AppColors.primary,
+                                          color: AppColors.cyanAccent,
                                           fontSize: 20,
                                           fontWeight: FontWeight.w900,
                                         ),
@@ -410,11 +410,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       FilledButton.icon(
                                         style: FilledButton.styleFrom(
                                           backgroundColor: AppColors.primary,
-                                          foregroundColor: Colors.black,
+                                          foregroundColor: Colors.white,
                                         ),
                                         icon: const Icon(
                                           Icons.sports_soccer_rounded,
                                           size: 16,
+                                          color: Colors.white,
                                         ),
                                         onPressed: () {
                                           setState(
@@ -570,7 +571,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         FilledButton.icon(
                           style: FilledButton.styleFrom(
                             backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.black,
+                            foregroundColor: Colors.white,
                             padding: const EdgeInsets.symmetric(
                               horizontal: 20,
                               vertical: 12,
@@ -580,12 +581,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           onPressed: () => _openPlayer(match),
-                          icon: const Icon(Icons.play_arrow_rounded, size: 20),
+                          icon: const Icon(Icons.play_arrow_rounded, size: 20, color: Colors.white),
                           label: const Text(
                             'SIARAN LANGSUNG (LIVE)',
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 13,
+                              color: Colors.white,
                             ),
                           ),
                         ),

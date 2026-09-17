@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color background = Color(0xFF080C14);
-  static const Color surface = Color(0xFF101726);
-  static const Color surfaceLight = Color(0xFF1B2438);
-  static const Color surfaceElevated = Color(0xFF243048);
+  static const Color background = Color(0xFF070B14);
+  static const Color surface = Color(0xFF0E1626);
+  static const Color surfaceLight = Color(0xFF162238);
+  static const Color surfaceElevated = Color(0xFF1E2E4A);
 
-  static const Color primary = Color(0xFF00E676); // Stadium Emerald Green
-  static const Color primaryGlow = Color(0x6600E676);
-  static const Color cyanAccent = Color(0xFF00E5FF);
+  static const Color primary = Color(0xFF243F7C); // Meiwa Brand Blue #243F7C
+  static const Color primaryLight = Color(0xFF3B5FA8);
+  static const Color primaryGlow = Color(0x99243F7C);
+  static const Color cyanAccent = Color(0xFF38BDF8); // Sky blue accent
   static const Color liveRed = Color(0xFFFF2D55);
   static const Color liveRedGlow = Color(0x66FF2D55);
   static const Color goldAccent = Color(0xFFFFB300);
 
   static const Color textPrimary = Color(0xFFFFFFFF);
-  static const Color textSecondary = Color(0xFF9EAFC5);
+  static const Color textSecondary = Color(0xFF94A3B8);
   static const Color textMuted = Color(0xFF64748B);
-  static const Color border = Color(0xFF1F2A40);
-  static const Color borderFocused = Color(0xFF00E676);
+  static const Color border = Color(0xFF1D2E4D);
+  static const Color borderFocused = Color(0xFF3B5FA8);
 }
 
 class AppTheme {

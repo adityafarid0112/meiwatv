@@ -256,13 +256,17 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                   Icon(
                                     Icons.play_arrow_rounded,
                                     size: 16,
-                                    color: _isFocused ? Colors.black : AppColors.primary,
+                                    color: _isFocused
+                                        ? Colors.white
+                                        : AppColors.cyanAccent,
                                   ),
                                   const SizedBox(width: 2),
                                   Text(
                                     'Nonton',
                                     style: TextStyle(
-                                      color: _isFocused ? Colors.black : AppColors.textPrimary,
+                                      color: _isFocused
+                                          ? Colors.white
+                                          : AppColors.textPrimary,
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
                                     ),
