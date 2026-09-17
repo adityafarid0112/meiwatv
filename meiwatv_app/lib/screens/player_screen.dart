@@ -128,13 +128,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
       NavigationDelegate(
         onNavigationRequest: (NavigationRequest request) {
           final target = request.url.toLowerCase();
-          // Blokir redirect iklan, popup judi, atau skema eksternal yang merusak video
+          // Blokir redirect iklan berbahaya, popup judi, atau skema eksternal yang merusak video
           if (target.contains('8xbet') ||
               target.contains('15.235') ||
               target.contains('profitablerate') ||
-              target.contains('googleads') ||
+              target.contains('popunder') ||
               target.contains('doubleclick') ||
-              target.contains('pop') ||
               target.startsWith('intent:') ||
               target.startsWith('market:')) {
             return NavigationDecision.prevent;
@@ -150,10 +149,10 @@ class _PlayerScreenState extends State<PlayerScreen> {
               _isLoading = false;
             });
           }
-          // Inject custom styling & auto-play script aman (tanpa pause toggle)
+          // Inject custom styling & robust continuous auto-play script
           _webController?.runJavaScript('''
             (function() {
-              // 1. Sembunyikan semua iklan & banner odds tanpa merusak layout player
+              // 1. Sembunyikan semua iklan & banner odds, serta hapus fake ripple spinner
               var style = document.createElement('style');
               style.innerHTML = `
                 .popup-ads-banner, .a-v9, .odds-button, .odds-button2, a[href*="8xbet"], a[href*="15.235"], .banner-bottom, .banner-bottom-11, .countdown, .show-ads-banner, #player .popup-ads-banner {
@@ -178,6 +177,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   width: 100% !important;
                   height: 100% !important;
                   background: #000 !important;
+                  background-image: none !important;
                 }
                 video {
                   width: 100% !important;
@@ -187,17 +187,58 @@ class _PlayerScreenState extends State<PlayerScreen> {
               `;
               document.head.appendChild(style);
 
-              // 2. Play video secara aman jika sedang pause
-              function startVideo() {
+              var pEl = document.getElementById('player');
+              if (pEl) {
+                pEl.style.backgroundImage = 'none';
+                pEl.style.background = '#000';
+              }
+
+              // 2. Continuous Auto-Play Trigger
+              var attempts = 0;
+              var playTimer = setInterval(function() {
+                attempts++;
+                if (window.dp && typeof window.dp.play === 'function') {
+                  try { window.dp.play(); } catch(e){}
+                }
                 var v = document.querySelector('video');
-                if (v && v.paused) {
+                if (v) {
+                  v.muted = true; // Mute pertama agar lolos autoplay policy Android
+                  var p = v.play();
+                  if (p !== undefined) {
+                    p.then(function() {
+                      // Bila sudah jalan, coba hidupkan suara
+                      setTimeout(function() { if (v) v.muted = false; }, 800);
+                    }).catch(function() {
+                      v.muted = true;
+                      v.play().catch(function(){});
+                    });
+                  }
+                  var playIcon = document.querySelector('.dplayer-play-icon, .dplayer-mobile-play');
+                  if (playIcon && v.paused) {
+                    playIcon.click();
+                  }
+                  if (!v.paused && v.currentTime > 0) {
+                    clearInterval(playTimer);
+                  }
+                }
+                if (attempts > 35) {
+                  clearInterval(playTimer);
+                }
+              }, 350);
+
+              // 3. User Gesture: Sentuh layar langsung trigger play & unmute
+              function triggerPlay() {
+                if (window.dp && typeof window.dp.play === 'function') {
+                  window.dp.play();
+                }
+                var v = document.querySelector('video');
+                if (v) {
+                  v.muted = false;
                   v.play().catch(function(){});
                 }
               }
-              startVideo();
-              setTimeout(startVideo, 500);
-              setTimeout(startVideo, 1200);
-              setTimeout(startVideo, 2500);
+              document.addEventListener('click', triggerPlay);
+              document.addEventListener('touchstart', triggerPlay);
             })();
           ''');
         },

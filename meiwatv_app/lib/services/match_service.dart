@@ -78,33 +78,43 @@ class MatchService {
     }
   }
 
-  // URL GitHub Raw untuk auto-update pertandingan tanpa compile ulang
+  // URL CDN dan GitHub Raw untuk auto-update pertandingan tanpa compile ulang
+  static const String jsdelivrCdnUrl =
+      'https://cdn.jsdelivr.net/gh/adityafarid0112/meiwatv@main/matches.json';
   static const String githubRawUrl =
       'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/matches.json';
 
-  /// Mengambil siaran langsung terbaru (utamakan GitHub Raw, lalu fallback ke seed online)
+  /// Mengambil siaran langsung terbaru (utamakan CDN jsDelivr & GitHub Raw, lalu fallback ke seed online)
   Future<void> refreshOnlineMatches() async {
     try {
-      // 1. Prioritas Utama: Ambil dari GitHub Raw (Otomatis diupdate oleh GitHub Actions robot)
-      try {
-        final ghUri = Uri.parse('$githubRawUrl?t=${DateTime.now().millisecondsSinceEpoch}');
-        final ghRes = await http.get(ghUri, headers: {
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'Pragma': 'no-cache',
-        }).timeout(const Duration(seconds: 7));
-        if (ghRes.statusCode == 200 && ghRes.body.isNotEmpty) {
-          final List<dynamic> decoded = json.decode(ghRes.body);
-          if (decoded.isNotEmpty) {
-            _cachedMatches = decoded
-                .map((item) => MatchModel.fromJson(item as Map<String, dynamic>))
-                .toList();
-            _matchesController.add(_cachedMatches);
-            debugPrint('✅ Berhasil memuat ${_cachedMatches.length} siaran dari GitHub Raw!');
-            return;
+      // 1. Prioritas Utama: Ambil dari jsDelivr CDN atau GitHub Raw
+      final endpoints = [
+        jsdelivrCdnUrl,
+        githubRawUrl,
+      ];
+
+      for (final endpoint in endpoints) {
+        try {
+          final uri = Uri.parse('$endpoint?t=${DateTime.now().millisecondsSinceEpoch}');
+          final res = await http.get(uri, headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+          }).timeout(const Duration(seconds: 12));
+
+          if (res.statusCode == 200 && res.body.isNotEmpty) {
+            final List<dynamic> decoded = json.decode(res.body);
+            if (decoded.isNotEmpty) {
+              _cachedMatches = decoded
+                  .map((item) => MatchModel.fromJson(item as Map<String, dynamic>))
+                  .toList();
+              _matchesController.add(_cachedMatches);
+              debugPrint('✅ Berhasil memuat ${_cachedMatches.length} siaran dari $endpoint!');
+              return;
+            }
           }
+        } catch (ghErr) {
+          debugPrint('Info fetch $endpoint: $ghErr');
         }
-      } catch (ghErr) {
-        debugPrint('GitHub Raw fetch info: $ghErr');
       }
 
       // 2. Fallback cadangan jika GitHub belum terisi: hubungi domain online langsung
