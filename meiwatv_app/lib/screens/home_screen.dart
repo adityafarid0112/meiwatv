@@ -65,52 +65,27 @@ class _HomeScreenState extends State<HomeScreen> {
               final titleLower = match.title.toLowerCase();
 
               if (_selectedCategory == tabSepakBola) {
-                return sport.contains('sepak bola') ||
-                       (!leagueLower.contains('basket') &&
-                        !leagueLower.contains('volly') &&
-                        !leagueLower.contains('volley') &&
-                        !leagueLower.contains('tennis') &&
-                        !leagueLower.contains('tenis') &&
-                        !leagueLower.contains('badminton') &&
-                        !leagueLower.contains('tangkis') &&
-                        !titleLower.contains('basket') &&
-                        !titleLower.contains('tennis') &&
-                        !titleLower.contains('badminton'));
+                return sport.contains('sepak bola') || sport.contains('football');
               }
               if (_selectedCategory == tabBolaBasket) {
-                return sport.contains('basket') ||
-                       leagueLower.contains('basket') ||
-                       titleLower.contains('basket') ||
-                       titleLower.contains('nba');
+                return sport.contains('basket') || leagueLower.contains('basket') || titleLower.contains('basket') || titleLower.contains('nba');
               }
               if (_selectedCategory == tabBolaVoli) {
-                return sport.contains('voli') ||
-                       leagueLower.contains('volly') ||
-                       leagueLower.contains('volley') ||
-                       titleLower.contains('volley') ||
-                       titleLower.contains('volly');
+                return sport.contains('voli') || sport.contains('volly') || sport.contains('volley') || leagueLower.contains('volly') || leagueLower.contains('volley');
               }
               if (_selectedCategory == tabBuluTangkis) {
-                return sport.contains('tangkis') ||
-                       sport.contains('badminton') ||
-                       leagueLower.contains('badminton') ||
-                       titleLower.contains('badminton') ||
-                       titleLower.contains('bulutangkis');
+                return sport.contains('tangkis') || sport.contains('badminton') || leagueLower.contains('badminton') || titleLower.contains('badminton');
               }
               if (_selectedCategory == tabTenis) {
-                return sport.contains('tenis') ||
-                       leagueLower.contains('tennis') ||
-                       leagueLower.contains('tenis') ||
-                       titleLower.contains('tennis') ||
-                       titleLower.contains('tenis');
+                return sport.contains('tenis') || sport.contains('tennis') || leagueLower.contains('tennis') || leagueLower.contains('tenis');
               }
               if (_selectedCategory == tabLainnya) {
                 return sport.contains('lainnya') ||
-                       leagueLower.contains('racing') ||
-                       leagueLower.contains('esport') ||
-                       leagueLower.contains('combat') ||
-                       titleLower.contains('f1') ||
-                       titleLower.contains('motogp');
+                       (!sport.contains('sepak bola') &&
+                        !sport.contains('basket') &&
+                        !sport.contains('voli') &&
+                        !sport.contains('tangkis') &&
+                        !sport.contains('tenis'));
               }
               return false;
             }).toList();

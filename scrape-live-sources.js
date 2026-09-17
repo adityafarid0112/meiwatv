@@ -1,6 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
+function extractChannelUrl(item) {
+    if (!item) return '';
+    if (typeof item === 'string') return item.replace(/\\\//g, '/').replace(/\\/g, '');
+    if (Array.isArray(item) && item.length > 0) return extractChannelUrl(item[0]);
+    if (typeof item === 'object') return extractChannelUrl(item.play_url || item.m3u8 || item.url || '');
+    return '';
+}
+
 // 1. Baca semua domain live streaming dari "Link nonton Online.txt"
 function getSeeds() {
     const linkFile = path.join(__dirname, 'Link nonton Online.txt');
@@ -228,21 +236,19 @@ async function scrapeAll() {
                     const rawJson = listStreamMatch[1].replace(/\\/g, '');
                     const listStream = JSON.parse(rawJson);
                     if (Array.isArray(listStream) && listStream.length > 0) {
-                        const s1 = listStream[0];
-                        ch1 = s1.play_url || s1.m3u8 || '';
-                        if (!ch1.includes('off-tvc')) ch1 += '/off-tvc?is_off_add=false';
+                        ch1 = extractChannelUrl(listStream[0]);
+                        if (ch1 && !ch1.includes('off-tvc')) ch1 += '/off-tvc?is_off_add=false';
                     }
                     if (listStream.length > 1) {
-                        const s2 = listStream[1];
-                        ch2 = s2.play_url || s2.m3u8 || '';
-                        if (!ch2.includes('off-tvc')) ch2 += '/off-tvc?is_off_add=false';
+                        ch2 = extractChannelUrl(listStream[1]);
+                        if (ch2 && !ch2.includes('off-tvc')) ch2 += '/off-tvc?is_off_add=false';
                     }
                 }
             } catch (_) {}
 
             const matchNum = i + idx + 1;
-            if (!ch1) ch1 = `https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel${(matchNum % 20) + 1}/off-tvc?is_off_add=false`;
-            if (!ch2) ch2 = `${m.matchPageUrl}link/0`;
+            if (!ch1) ch1 = `${m.matchPageUrl}`;
+            if (!ch2) ch2 = `${m.matchPageUrl}`;
 
             return {
                 id: `match_${matchNum}_${m.slugName.substring(0, 25)}`,

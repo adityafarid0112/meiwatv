@@ -193,13 +193,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 if (v && v.paused) {
                   v.play().catch(function(){});
                 }
-                if (typeof dp !== 'undefined' && dp.video && dp.video.paused) {
-                  dp.play();
-                }
               }
               startVideo();
-              setTimeout(startVideo, 600);
-              setTimeout(startVideo, 1800);
+              setTimeout(startVideo, 500);
+              setTimeout(startVideo, 1200);
+              setTimeout(startVideo, 2500);
             })();
           ''');
         },
