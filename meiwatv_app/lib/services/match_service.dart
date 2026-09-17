@@ -89,8 +89,8 @@ class MatchService {
     try {
       // 1. Prioritas Utama: Ambil dari jsDelivr CDN atau GitHub Raw
       final endpoints = [
-        jsdelivrCdnUrl,
         githubRawUrl,
+        jsdelivrCdnUrl,
       ];
 
       for (final endpoint in endpoints) {
@@ -99,7 +99,7 @@ class MatchService {
           final res = await http.get(uri, headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate',
             'Pragma': 'no-cache',
-          }).timeout(const Duration(seconds: 12));
+          }).timeout(const Duration(seconds: 18));
 
           if (res.statusCode == 200 && res.body.isNotEmpty) {
             final List<dynamic> decoded = json.decode(res.body);
