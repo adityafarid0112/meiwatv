@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import '../models/match_model.dart';
@@ -37,7 +38,10 @@ class _PlayerScreenState extends State<PlayerScreen> {
   @override
   void initState() {
     super.initState();
-    // 1. Otomatis masuk ke mode Fullscreen Landscape Immersive saat pertandingan dibuka
+    // 1. Mencegah TV / HP masuk ke mode Screen Saver / Standby saat siaran diputar
+    WakelockPlus.enable();
+
+    // 2. Otomatis masuk ke mode Fullscreen Landscape Immersive saat pertandingan dibuka
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
@@ -427,6 +431,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   void dispose() {
     _controlsTimer?.cancel();
     _videoController?.dispose();
+    WakelockPlus.disable();
 
     // Kembalikan orientasi layar dan system UI saat keluar dari pemutar
     SystemChrome.setPreferredOrientations([
@@ -761,47 +766,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   ),
                 ),
 
-              // 4. Floating Trigger Button saat menu tersembunyi
-              if (!_showControls)
-                Positioned(
-                  top: 24,
-                  left: 26,
-                  child: TvFocusableButton(
-                    onTap: _showControlsOverlay,
-                    borderRadius: BorderRadius.circular(24),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.8),
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: AppColors.cyanAccent, width: 1.5),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.primary.withValues(alpha: 0.3),
-                            blurRadius: 8,
-                          ),
-                        ],
-                      ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.tune_rounded, color: AppColors.cyanAccent, size: 18),
-                          SizedBox(width: 6),
-                          Text(
-                            'Menu / Server',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-              // 5. Bottom Bar: Jalur Server Switcher (Jalur 1 / Jalur 2 / Jalur 3)
+              // 4. Bottom Bar: Jalur Server Switcher (Jalur 1 / Jalur 2 / Jalur 3)
               if (_showControls)
                 Positioned(
                   bottom: 0,
