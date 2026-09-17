@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -30,11 +31,19 @@ class _PlayerScreenState extends State<PlayerScreen> {
   bool _isMuted = false;
   String? _errorMessage;
   bool _showControls = true;
+  Timer? _controlsTimer;
   final BoxFit _videoFit = BoxFit.contain;
 
   @override
   void initState() {
     super.initState();
+    // 1. Otomatis masuk ke mode Fullscreen Landscape Immersive saat pertandingan dibuka
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
     // Prioritaskan Jalur 1, lalu 2, lalu 3
     if (widget.match.streamJalur1.isNotEmpty) {
       _activeJalur = 1;
@@ -43,7 +52,39 @@ class _PlayerScreenState extends State<PlayerScreen> {
     } else {
       _activeJalur = 3;
     }
+
     _initPlayer();
+    _resetControlsTimer();
+  }
+
+  void _resetControlsTimer() {
+    _controlsTimer?.cancel();
+    _controlsTimer = Timer(const Duration(seconds: 6), () {
+      if (mounted && _showControls) {
+        setState(() {
+          _showControls = false;
+        });
+      }
+    });
+  }
+
+  void _showControlsOverlay() {
+    if (!mounted) return;
+    setState(() {
+      _showControls = true;
+    });
+    _resetControlsTimer();
+  }
+
+  void _toggleControls() {
+    if (_showControls) {
+      _controlsTimer?.cancel();
+      setState(() {
+        _showControls = false;
+      });
+    } else {
+      _showControlsOverlay();
+    }
   }
 
   String _getActiveStreamUrl() {
@@ -162,7 +203,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
       return;
     }
 
-    // 1. Resolusi Direct .m3u8 stream dari sumber CDN untuk native video playback tanpa Cloudflare
+    // 1. Resolusi Direct .m3u8 stream dari CDN untuk Native Video Playback (Bypass Cloudflare 100%)
     final directStream = await _resolveDirectStreamUrl(url);
 
     if (directStream != null && directStream.isNotEmpty) {
@@ -196,7 +237,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
       }
     }
 
-    // 2. Fallback ke High Performance In-App Web Engine jika direct m3u8 belum tersedia
+    // 2. Fallback ke Web Engine jika direct m3u8 belum tersedia
     _loadWebPlayer(url);
   }
 
@@ -290,7 +331,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
   void _injectVideoScript(WebViewController controller) {
     controller.runJavaScript('''
       (function() {
-        // Hilangkan elemen pengganggu / overlay luar
         var style = document.createElement('style');
         style.innerHTML = `
           body, html { 
@@ -312,13 +352,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
         `;
         document.head.appendChild(style);
 
-        // Cari dan putar video secara otomatis
         function startPlayback() {
           var videos = document.getElementsByTagName('video');
           for (var i = 0; i < videos.length; i++) {
             videos[i].muted = false;
             videos[i].play().catch(function() {
-              // Jika browser menolak autoplay dengan suara, mute lalu play
               videos[i].muted = true;
               videos[i].play();
             });
@@ -333,6 +371,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   void _switchJalur(int jalurIndex) {
     if (_activeJalur == jalurIndex && !_isLoading) {
+      _resetControlsTimer();
       return;
     }
     AdService().triggerPopunder();
@@ -340,9 +379,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
       _activeJalur = jalurIndex;
     });
     _initPlayer();
+    _resetControlsTimer();
   }
 
   void _shareMatch() {
+    _resetControlsTimer();
     final match = widget.match;
     SharePlus.instance.share(
       ShareParams(
@@ -354,6 +395,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   }
 
   void _toggleMute() {
+    _resetControlsTimer();
     setState(() {
       _isMuted = !_isMuted;
     });
@@ -371,6 +413,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   }
 
   Future<void> _openExternalBrowser() async {
+    _resetControlsTimer();
     final url = _getActiveStreamUrl();
     if (url.isNotEmpty) {
       final uri = Uri.parse(url);
@@ -382,7 +425,18 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   @override
   void dispose() {
+    _controlsTimer?.cancel();
     _videoController?.dispose();
+
+    // Kembalikan orientasi layar dan system UI saat keluar dari pemutar
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
     super.dispose();
   }
 
@@ -390,16 +444,17 @@ class _PlayerScreenState extends State<PlayerScreen> {
   Widget build(BuildContext context) {
     final match = widget.match;
 
-    return Focus(
+    return FocusScope(
       autofocus: true,
       onKeyEvent: (node, event) {
         if (event is KeyDownEvent) {
-          if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
-            if (_activeJalur > 1) _switchJalur(_activeJalur - 1);
+          // Jika kontrol tersembunyi, tombol remote apapun akan memunculkan menu kontrol
+          if (!_showControls) {
+            _showControlsOverlay();
             return KeyEventResult.handled;
-          } else if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
-            if (_activeJalur < 3) _switchJalur(_activeJalur + 1);
-            return KeyEventResult.handled;
+          } else {
+            // Jika kontrol sedang aktif, perpanjang waktu timer auto-hide
+            _resetControlsTimer();
           }
         }
         return KeyEventResult.ignored;
@@ -407,63 +462,69 @@ class _PlayerScreenState extends State<PlayerScreen> {
       child: Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
+          top: false,
+          bottom: false,
           child: Stack(
             fit: StackFit.expand,
             children: [
-              // Main Video Display Area (Web or Native Video)
-              Center(
-                child: _isWebMode && _webController != null
-                    ? WebViewWidget(controller: _webController!)
-                    : _isLoading
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const CircularProgressIndicator(color: AppColors.primary),
-                              const SizedBox(height: 16),
-                              Text(
-                                'Menghubungkan ke Jalur $_activeJalur...',
-                                style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
-                              ),
-                            ],
-                          )
-                        : _errorMessage != null
-                            ? Padding(
-                                padding: const EdgeInsets.all(24.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(Icons.error_outline_rounded, color: AppColors.liveRed, size: 48),
-                                    const SizedBox(height: 12),
-                                    Text(
-                                      _errorMessage!,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(color: AppColors.textPrimary, fontSize: 14),
-                                    ),
-                                    const SizedBox(height: 20),
-                                    Wrap(
-                                      spacing: 12,
-                                      children: [
-                                        _buildJalurButton(1, 'Jalur 1 (HD)'),
-                                        _buildJalurButton(2, 'Jalur 2 (Fast)'),
-                                        _buildJalurButton(3, 'Jalur 3 (Backup)'),
-                                      ],
-                                    ),
-                                  ],
+              // 1. Area Video (Klik / Tap di manapun akan menampilkan / menyembunyikan kontrol)
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: _toggleControls,
+                child: Center(
+                  child: _isWebMode && _webController != null
+                      ? WebViewWidget(controller: _webController!)
+                      : _isLoading
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const CircularProgressIndicator(color: AppColors.primary),
+                                const SizedBox(height: 16),
+                                Text(
+                                  'Menghubungkan ke Jalur $_activeJalur...',
+                                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
                                 ),
-                              )
-                            : _videoController != null && _videoController!.value.isInitialized
-                                ? FittedBox(
-                                    fit: _videoFit,
-                                    child: SizedBox(
-                                      width: _videoController!.value.size.width,
-                                      height: _videoController!.value.size.height,
-                                      child: VideoPlayer(_videoController!),
-                                    ),
-                                  )
-                                : const SizedBox.shrink(),
+                              ],
+                            )
+                          : _errorMessage != null
+                              ? Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.error_outline_rounded, color: AppColors.liveRed, size: 48),
+                                      const SizedBox(height: 12),
+                                      Text(
+                                        _errorMessage!,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(color: AppColors.textPrimary, fontSize: 14),
+                                      ),
+                                      const SizedBox(height: 20),
+                                      Wrap(
+                                        spacing: 12,
+                                        children: [
+                                          _buildJalurButton(1, 'Jalur 1 (HD)'),
+                                          _buildJalurButton(2, 'Jalur 2 (Fast)'),
+                                          _buildJalurButton(3, 'Jalur 3 (Backup)'),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : _videoController != null && _videoController!.value.isInitialized
+                                  ? FittedBox(
+                                      fit: _videoFit,
+                                      child: SizedBox(
+                                        width: _videoController!.value.size.width,
+                                        height: _videoController!.value.size.height,
+                                        child: VideoPlayer(_videoController!),
+                                      ),
+                                    )
+                                  : const SizedBox.shrink(),
+                ),
               ),
 
-              // Non-blocking sleek progress bar at the very top
+              // 2. Sleek Progress Bar saat memuat siaran
               if (_isLoading)
                 const Positioned(
                   top: 0,
@@ -476,7 +537,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   ),
                 ),
 
-              // Top Bar Navigation & Info Overlay
+              // 3. Top Bar Navigation & Actions (Saweria, Sound, Reload, Share, Browser, Fullscreen)
               if (_showControls)
                 Positioned(
                   top: 0,
@@ -486,21 +547,21 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     builder: (context, constraints) {
                       final topWidth = constraints.maxWidth;
                       final isTvOrWide = topWidth > 700;
-                      final isCompact = topWidth < 550;
 
                       return Container(
                         padding: EdgeInsets.fromLTRB(
+                          isTvOrWide ? 26 : 14,
                           isTvOrWide ? 24 : 12,
-                          isTvOrWide ? 22 : 8,
-                          isTvOrWide ? 24 : 12,
-                          10,
+                          isTvOrWide ? 26 : 14,
+                          14,
                         ),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Colors.black.withValues(alpha: 0.94),
+                              Colors.black.withValues(alpha: 0.95),
+                              Colors.black.withValues(alpha: 0.6),
                               Colors.transparent,
                             ],
                           ),
@@ -511,15 +572,17 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             TvFocusableButton(
                               onTap: () => Navigator.of(context).pop(),
                               borderRadius: BorderRadius.circular(12),
-                              padding: const EdgeInsets.all(6),
+                              padding: const EdgeInsets.all(8),
                               tooltip: 'Kembali',
                               child: const Icon(
                                 Icons.arrow_back_ios_new_rounded,
                                 color: Colors.white,
-                                size: 18,
+                                size: 20,
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: 10),
+
+                            // Info Judul & Liga Pertandingan
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -531,34 +594,44 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: isCompact ? 13 : 15,
+                                      fontSize: isTvOrWide ? 16 : 14,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
+                                  const SizedBox(height: 2),
                                   Text(
                                     match.league,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                       color: AppColors.cyanAccent,
-                                      fontSize: 10.5,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            if (!isCompact) ...[
-                              LiveBadge(
-                                isLive: match.isLive,
-                                text: match.isLive ? 'LIVE' : 'UPCOMING',
-                              ),
-                              const SizedBox(width: 6),
-                            ],
-                            // Tombol Donasi Saweria (Focusable for TV & Mobile)
+
+                            // Badge Status Live
+                            LiveBadge(
+                              isLive: match.isLive,
+                              text: match.isLive ? 'LIVE' : 'UPCOMING',
+                            ),
+                            const SizedBox(width: 8),
+
+                            // 1. Tombol Donasi Saweria (Clickable & Focusable)
                             TvFocusableButton(
-                              onTap: () => AdService().openSaweria(),
+                              onTap: () {
+                                _resetControlsTimer();
+                                AdService().openSaweria();
+                              },
                               borderRadius: BorderRadius.circular(16),
                               focusedBorderColor: const Color(0xFFFF9800),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 6,
+                              ),
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 8,
@@ -571,13 +644,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                       Color(0xFFFF5722),
                                     ],
                                   ),
-                                  borderRadius: BorderRadius.circular(16),
+                                  borderRadius: BorderRadius.circular(14),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: const Color(
-                                        0xFFFF9800,
-                                      ).withValues(alpha: 0.4),
-                                      blurRadius: 4,
+                                      color: const Color(0xFFFF9800).withValues(alpha: 0.45),
+                                      blurRadius: 6,
                                     ),
                                   ],
                                 ),
@@ -587,14 +658,14 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                     Icon(
                                       Icons.volunteer_activism_rounded,
                                       color: Colors.white,
-                                      size: 13,
+                                      size: 14,
                                     ),
-                                    SizedBox(width: 3),
+                                    SizedBox(width: 4),
                                     Text(
                                       'Saweria',
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 10.5,
+                                        fontSize: 11,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -602,12 +673,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 4),
-                            // Tombol Audio
+                            const SizedBox(width: 6),
+
+                            // 2. Tombol Sound / Mute (Clickable & Focusable)
                             TvFocusableButton(
                               onTap: _toggleMute,
                               borderRadius: BorderRadius.circular(12),
-                              padding: const EdgeInsets.all(6),
+                              padding: const EdgeInsets.all(8),
                               tooltip: _isMuted ? 'Nyalakan Suara' : 'Matikan Suara',
                               child: Icon(
                                 _isMuted
@@ -616,107 +688,70 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 color: _isMuted
                                     ? AppColors.liveRed
                                     : AppColors.primary,
-                                size: 20,
+                                size: 22,
                               ),
                             ),
-                            const SizedBox(width: 4),
-                            // Tombol Muat Ulang Siaran
+                            const SizedBox(width: 6),
+
+                            // 3. Tombol Reload / Refresh (Clickable & Focusable)
                             TvFocusableButton(
-                              onTap: () => _initPlayer(),
+                              onTap: () {
+                                _resetControlsTimer();
+                                _initPlayer();
+                              },
                               borderRadius: BorderRadius.circular(12),
-                              padding: const EdgeInsets.all(6),
+                              padding: const EdgeInsets.all(8),
                               tooltip: 'Muat Ulang Siaran',
                               child: const Icon(
                                 Icons.refresh_rounded,
                                 color: Colors.white,
+                                size: 22,
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+
+                            // 4. Tombol Bagikan / Share (Clickable & Focusable)
+                            TvFocusableButton(
+                              onTap: _shareMatch,
+                              borderRadius: BorderRadius.circular(12),
+                              padding: const EdgeInsets.all(8),
+                              tooltip: 'Bagikan Siaran Ini',
+                              child: const Icon(
+                                Icons.share_rounded,
+                                color: Colors.white,
                                 size: 20,
                               ),
                             ),
-                            if (!isCompact) ...[
-                              const SizedBox(width: 4),
-                              // Tombol Bagikan / Share
-                              TvFocusableButton(
-                                onTap: _shareMatch,
-                                borderRadius: BorderRadius.circular(12),
-                                padding: const EdgeInsets.all(6),
-                                tooltip: 'Bagikan Siaran Ini',
-                                child: const Icon(
-                                  Icons.share_rounded,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              // Tombol Browser Eksternal
-                              TvFocusableButton(
-                                onTap: _openExternalBrowser,
-                                borderRadius: BorderRadius.circular(12),
-                                padding: const EdgeInsets.all(6),
-                                tooltip: 'Buka di Browser Eksternal',
-                                child: const Icon(
-                                  Icons.open_in_browser_rounded,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              ),
-                            ] else ...[
-                              // Popup menu for extra options on mobile portrait
-                              PopupMenuButton<String>(
-                                icon: const Icon(
-                                  Icons.more_vert_rounded,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                padding: EdgeInsets.zero,
-                                constraints: const BoxConstraints(),
-                                color: AppColors.surfaceElevated,
-                                onSelected: (value) {
-                                  if (value == 'share') _shareMatch();
-                                  if (value == 'browser') _openExternalBrowser();
-                                },
-                                itemBuilder: (context) => [
-                                  const PopupMenuItem(
-                                    value: 'share',
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.share_rounded,
-                                          color: Colors.white,
-                                          size: 18,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text('Bagikan Siaran'),
-                                      ],
-                                    ),
-                                  ),
-                                  const PopupMenuItem(
-                                    value: 'browser',
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.open_in_browser_rounded,
-                                          color: Colors.white,
-                                          size: 18,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text('Buka di Browser'),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                            const SizedBox(width: 4),
-                            // Tombol Layar Penuh (Tunggal & Konsisten)
+                            const SizedBox(width: 6),
+
+                            // 5. Tombol Transmisi / Browser Eksternal (Clickable & Focusable)
                             TvFocusableButton(
-                              onTap: () => setState(() => _showControls = false),
+                              onTap: _openExternalBrowser,
                               borderRadius: BorderRadius.circular(12),
-                              padding: const EdgeInsets.all(6),
-                              tooltip: 'Layar Penuh (Sembunyikan Menu)',
+                              padding: const EdgeInsets.all(8),
+                              tooltip: 'Buka di Browser Eksternal',
                               child: const Icon(
-                                Icons.fullscreen_rounded,
+                                Icons.open_in_browser_rounded,
                                 color: Colors.white,
                                 size: 22,
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+
+                            // 6. Tombol Fullscreen / Sembunyikan Menu (Clickable & Focusable)
+                            TvFocusableButton(
+                              onTap: () {
+                                setState(() {
+                                  _showControls = false;
+                                });
+                              },
+                              borderRadius: BorderRadius.circular(12),
+                              padding: const EdgeInsets.all(8),
+                              tooltip: 'Layar Penuh (Sembunyikan Menu)',
+                              child: const Icon(
+                                Icons.fullscreen_exit_rounded,
+                                color: AppColors.cyanAccent,
+                                size: 24,
                               ),
                             ),
                           ],
@@ -726,20 +761,26 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   ),
                 ),
 
-              // Floating Menu Button When Controls are Hidden
+              // 4. Floating Trigger Button saat menu tersembunyi
               if (!_showControls)
                 Positioned(
-                  top: 20,
-                  left: 20,
+                  top: 24,
+                  left: 26,
                   child: TvFocusableButton(
-                    onTap: () => setState(() => _showControls = true),
+                    onTap: _showControlsOverlay,
                     borderRadius: BorderRadius.circular(24),
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                       decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.75),
+                        color: Colors.black.withValues(alpha: 0.8),
                         borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: AppColors.primary, width: 1.2),
+                        border: Border.all(color: AppColors.cyanAccent, width: 1.5),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primary.withValues(alpha: 0.3),
+                            blurRadius: 8,
+                          ),
+                        ],
                       ),
                       child: const Row(
                         mainAxisSize: MainAxisSize.min,
@@ -760,36 +801,38 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   ),
                 ),
 
-              // Bottom Bar: Jalur Switcher Panel (Jalur 1 / Jalur 2 / Jalur 3)
+              // 5. Bottom Bar: Jalur Server Switcher (Jalur 1 / Jalur 2 / Jalur 3)
               if (_showControls)
                 Positioned(
                   bottom: 0,
                   left: 0,
                   right: 0,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                    padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 16),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
                         colors: [
-                          Colors.black.withValues(alpha: 0.94),
+                          Colors.black.withValues(alpha: 0.95),
+                          Colors.black.withValues(alpha: 0.6),
                           Colors.transparent,
                         ],
                       ),
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Server Selector Header
+                        // Header Server
                         const Row(
                           children: [
-                            Icon(Icons.dns_rounded, color: AppColors.primary, size: 16),
+                            Icon(Icons.dns_rounded, color: AppColors.cyanAccent, size: 16),
                             SizedBox(width: 6),
                             Text(
                               'PILIH JALUR SERVER STREAMING:',
                               style: TextStyle(
-                                color: AppColors.primary,
+                                color: AppColors.cyanAccent,
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 0.5,
@@ -799,13 +842,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
                         ),
                         const SizedBox(height: 10),
 
-                        // Jalur 1, Jalur 2, Jalur 3 Switch Buttons
+                        // Tombol Jalur 1, Jalur 2, Jalur 3
                         Row(
                           children: [
                             Expanded(child: _buildJalurButton(1, 'Jalur 1 (HD)')),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: 10),
                             Expanded(child: _buildJalurButton(2, 'Jalur 2 (Fast)')),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: 10),
                             Expanded(child: _buildJalurButton(3, 'Jalur 3 (Backup)')),
                           ],
                         ),
@@ -825,13 +868,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
     return TvFocusableButton(
       onTap: () => _switchJalur(index),
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(12),
       focusedBorderColor: AppColors.cyanAccent,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 11),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primary : AppColors.surface,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected ? AppColors.cyanAccent : AppColors.border,
             width: isSelected ? 2.0 : 1.0,
