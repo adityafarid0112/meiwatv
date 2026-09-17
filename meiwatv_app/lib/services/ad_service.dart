@@ -27,7 +27,7 @@ class AdService {
           'Cache-Control': 'no-cache, no-store, must-revalidate',
           'Pragma': 'no-cache',
         },
-      ).timeout(const Duration(seconds: 6));
+      ).timeout(const Duration(seconds: 15));
 
       if (res.statusCode == 200 && res.body.isNotEmpty) {
         final data = json.decode(res.body) as Map<String, dynamic>;
