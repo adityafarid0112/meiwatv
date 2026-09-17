@@ -7,6 +7,7 @@ import '../theme/app_theme.dart';
 import '../widgets/adsterra_banner.dart';
 import '../widgets/category_chip.dart';
 import '../widgets/hero_match_slider.dart';
+import '../widgets/tv_focusable_button.dart';
 import '../widgets/tv_focusable_card.dart';
 import 'player_screen.dart';
 
@@ -114,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 final width = constraints.maxWidth;
                 final isTvOrDesktop = width > 900;
                 final isTablet = width > 600 && width <= 900;
+                final horizontalPadding = isTvOrDesktop ? 32.0 : (isTablet ? 22.0 : 14.0);
 
                 int crossAxisCount = 1;
                 if (isTvOrDesktop) {
@@ -131,10 +133,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: CustomScrollView(
                     physics: const AlwaysScrollableScrollPhysics(),
                     slivers: [
-                      // Top Bar / Header
+                      // Top Bar / Header with TV-safe overscan padding
                       SliverToBoxAdapter(
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(14, 10, 14, 8),
+                          padding: EdgeInsets.fromLTRB(
+                            horizontalPadding,
+                            isTvOrDesktop ? 26 : 10,
+                            horizontalPadding,
+                            8,
+                          ),
                           child: Row(
                             children: [
                               // Logo Meiwa Mobile
@@ -142,7 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 borderRadius: BorderRadius.circular(6),
                                 child: Image.asset(
                                   'assets/images/Logo Meiwa Mobile.png',
-                                  height: width < 500 ? 28 : 40,
+                                  height: width < 500
+                                      ? 28
+                                      : (isTvOrDesktop ? 44 : 36),
                                   fit: BoxFit.contain,
                                   errorBuilder: (context, error, stackTrace) =>
                                       const Text(
@@ -161,13 +170,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  // Tombol Donasi Saweria
-                                  InkWell(
+                                  // Tombol Donasi Saweria (Focusable with D-pad)
+                                  TvFocusableButton(
                                     onTap: () => AdService().openSaweria(),
                                     borderRadius: BorderRadius.circular(14),
+                                    focusedBorderColor: const Color(0xFFFF9800),
                                     child: Container(
                                       padding: const EdgeInsets.symmetric(
-                                        horizontal: 7,
+                                        horizontal: 8,
                                         vertical: 4,
                                       ),
                                       decoration: BoxDecoration(
@@ -197,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             size: 12,
                                           ),
                                           if (width >= 350) ...[
-                                            const SizedBox(width: 3),
+                                            const SizedBox(width: 4),
                                             const Text(
                                               'Saweria',
                                               style: TextStyle(
@@ -211,18 +221,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 1),
-                                  IconButton(
-                                    visualDensity: VisualDensity.compact,
-                                    padding: const EdgeInsets.all(4),
-                                    constraints: const BoxConstraints(),
-                                    icon: const Icon(
-                                      Icons.share_rounded,
-                                      color: Colors.white,
-                                      size: 17,
-                                    ),
-                                    tooltip: 'Bagikan Aplikasi MeiwaTV',
-                                    onPressed: () {
+                                  const SizedBox(width: 4),
+                                  // Tombol Share (Focusable with D-pad)
+                                  TvFocusableButton(
+                                    onTap: () {
                                       SharePlus.instance.share(
                                         ShareParams(
                                           text:
@@ -232,22 +234,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       );
                                     },
-                                  ),
-                                  const SizedBox(width: 1),
-                                  IconButton(
-                                    visualDensity: VisualDensity.compact,
+                                    borderRadius: BorderRadius.circular(14),
                                     padding: const EdgeInsets.all(4),
-                                    constraints: const BoxConstraints(),
-                                    icon: const Icon(
-                                      Icons.refresh_rounded,
-                                      color: AppColors.primary,
-                                      size: 19,
+                                    tooltip: 'Bagikan Aplikasi MeiwaTV',
+                                    child: const Icon(
+                                      Icons.share_rounded,
+                                      color: Colors.white,
+                                      size: 18,
                                     ),
-                                    tooltip: 'Perbarui Jadwal & Siaran Live',
-                                    onPressed: () async {
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
+                                  ),
+                                  const SizedBox(width: 4),
+                                  // Tombol Refresh (Focusable with D-pad)
+                                  TvFocusableButton(
+                                    onTap: () async {
+                                      ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
                                           content: Text(
                                             'Memperbarui data siaran terbaru dari sumber online...',
@@ -255,14 +255,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                           duration: Duration(seconds: 1),
                                         ),
                                       );
-                                      await _matchService
-                                          .refreshOnlineMatches();
+                                      await _matchService.refreshOnlineMatches();
                                     },
+                                    borderRadius: BorderRadius.circular(14),
+                                    padding: const EdgeInsets.all(4),
+                                    tooltip: 'Perbarui Jadwal & Siaran Live',
+                                    child: const Icon(
+                                      Icons.refresh_rounded,
+                                      color: AppColors.primary,
+                                      size: 20,
+                                    ),
                                   ),
-                                  const SizedBox(width: 3),
+                                  const SizedBox(width: 6),
                                   Container(
                                     padding: const EdgeInsets.symmetric(
-                                      horizontal: 7,
+                                      horizontal: 8,
                                       vertical: 4,
                                     ),
                                     decoration: BoxDecoration(
@@ -305,11 +312,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       // League & Category Selector Chips (Horizontal Scrollable with D-Pad)
                       SliverToBoxAdapter(
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+                          padding: EdgeInsets.fromLTRB(
+                            horizontalPadding,
+                            4,
+                            horizontalPadding,
+                            14,
+                          ),
                           child: SizedBox(
-                            height: 42,
+                            height: 44,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
+                              physics: const BouncingScrollPhysics(),
                               itemCount: _categories.length,
                               itemBuilder: (context, index) {
                                 final cat = _categories[index];
@@ -333,7 +346,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (matches.isNotEmpty)
                         SliverToBoxAdapter(
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                            padding: EdgeInsets.fromLTRB(
+                              horizontalPadding,
+                              0,
+                              horizontalPadding,
+                              18,
+                            ),
                             child: _buildFeaturedHeroSlider(
                               matches,
                               isTvOrDesktop,
@@ -344,7 +362,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       // Match List / Grid Section Header
                       SliverToBoxAdapter(
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+                          padding: EdgeInsets.fromLTRB(
+                            horizontalPadding,
+                            8,
+                            horizontalPadding,
+                            12,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -470,7 +493,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       else ...[
                         SliverPadding(
-                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                          padding: EdgeInsets.fromLTRB(
+                            horizontalPadding,
+                            0,
+                            horizontalPadding,
+                            16,
+                          ),
                           sliver: SliverGrid(
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(

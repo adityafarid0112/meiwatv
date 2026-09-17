@@ -9,6 +9,7 @@ import '../models/match_model.dart';
 import '../services/ad_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/live_badge.dart';
+import '../widgets/tv_focusable_button.dart';
 
 class PlayerScreen extends StatefulWidget {
   final MatchModel match;
@@ -142,7 +143,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
           return NavigationDecision.navigate;
         },
         onPageStarted: (String url) {
-          // Jangan tutupi layar penuh saat memuat subframe
+          if (mounted) {
+            setState(() {
+              _isLoading = true;
+            });
+          }
         },
         onPageFinished: (String url) {
           if (mounted) {
@@ -150,101 +155,16 @@ class _PlayerScreenState extends State<PlayerScreen> {
               _isLoading = false;
             });
           }
-          // Inject custom styling & robust continuous auto-play script
-          _webController?.runJavaScript('''
-            (function() {
-              // 1. Sembunyikan semua iklan & banner odds, serta hapus fake ripple spinner
-              var style = document.createElement('style');
-              style.innerHTML = `
-                .popup-ads-banner, .a-v9, .odds-button, .odds-button2, a[href*="8xbet"], a[href*="15.235"], .banner-bottom, .banner-bottom-11, .countdown, .show-ads-banner, #player .popup-ads-banner {
-                  display: none !important;
-                  visibility: hidden !important;
-                  opacity: 0 !important;
-                  pointer-events: none !important;
-                  height: 0 !important;
-                }
-                html, body {
-                  background: #000 !important;
-                  margin: 0 !important;
-                  padding: 0 !important;
-                  overflow: hidden !important;
-                  width: 100% !important;
-                  height: 100% !important;
-                }
-                #player, .dplayer {
-                  position: absolute !important;
-                  top: 0 !important;
-                  left: 0 !important;
-                  width: 100% !important;
-                  height: 100% !important;
-                  background: #000 !important;
-                  background-image: none !important;
-                }
-                video {
-                  width: 100% !important;
-                  height: 100% !important;
-                  object-fit: contain !important;
-                }
-              `;
-              document.head.appendChild(style);
-
-              var pEl = document.getElementById('player');
-              if (pEl) {
-                pEl.style.backgroundImage = 'none';
-                pEl.style.background = '#000';
-              }
-
-              // 2. Continuous Auto-Play Trigger
-              var attempts = 0;
-              var playTimer = setInterval(function() {
-                attempts++;
-                if (window.dp && typeof window.dp.play === 'function') {
-                  try { window.dp.play(); } catch(e){}
-                }
-                var v = document.querySelector('video');
-                if (v) {
-                  v.muted = true; // Mute pertama agar lolos autoplay policy Android
-                  var p = v.play();
-                  if (p !== undefined) {
-                    p.then(function() {
-                      // Bila sudah jalan, coba hidupkan suara
-                      setTimeout(function() { if (v) v.muted = false; }, 800);
-                    }).catch(function() {
-                      v.muted = true;
-                      v.play().catch(function(){});
-                    });
-                  }
-                  var playIcon = document.querySelector('.dplayer-play-icon, .dplayer-mobile-play');
-                  if (playIcon && v.paused) {
-                    playIcon.click();
-                  }
-                  if (!v.paused && v.currentTime > 0) {
-                    clearInterval(playTimer);
-                  }
-                }
-                if (attempts > 35) {
-                  clearInterval(playTimer);
-                }
-              }, 350);
-
-              // 3. User Gesture: Sentuh layar langsung trigger play & unmute
-              function triggerPlay() {
-                if (window.dp && typeof window.dp.play === 'function') {
-                  window.dp.play();
-                }
-                var v = document.querySelector('video');
-                if (v) {
-                  v.muted = false;
-                  v.play().catch(function(){});
-                }
-              }
-              document.addEventListener('click', triggerPlay);
-              document.addEventListener('touchstart', triggerPlay);
-            })();
-          ''');
+          // Script auto-play, unmute, dan optimasi fullscreen video
+          _injectVideoScript(controller);
         },
         onWebResourceError: (WebResourceError error) {
-          // Abaikan resource error minor dari script iklan pihak ketiga
+          debugPrint('WebPlayer Error: ${error.description}');
+          if (mounted) {
+            setState(() {
+              _isLoading = false;
+            });
+          }
         },
       ),
     );
@@ -257,6 +177,50 @@ class _PlayerScreenState extends State<PlayerScreen> {
     );
 
     _webController = controller;
+  }
+
+  void _injectVideoScript(WebViewController controller) {
+    controller.runJavaScript('''
+      (function() {
+        // Hilangkan elemen pengganggu / overlay luar
+        var style = document.createElement('style');
+        style.innerHTML = `
+          body, html { 
+            background: #000 !important; 
+            margin: 0 !important; 
+            padding: 0 !important; 
+            overflow: hidden !important; 
+            width: 100vw !important; 
+            height: 100vh !important; 
+          }
+          video { 
+            width: 100vw !important; 
+            height: 100vh !important; 
+            object-fit: contain !important; 
+          }
+          .ad-box, .banner, [id*="ad"], [class*="ad-"], [class*="popup"], [class*="ads"] { 
+            display: none !important; 
+          }
+        `;
+        document.head.appendChild(style);
+
+        // Cari dan putar video secara otomatis
+        function startPlayback() {
+          var videos = document.getElementsByTagName('video');
+          for (var i = 0; i < videos.length; i++) {
+            videos[i].muted = false;
+            videos[i].play().catch(function() {
+              // Jika browser menolak autoplay dengan suara, mute lalu play
+              videos[i].muted = true;
+              videos[i].play();
+            });
+          }
+        }
+        startPlayback();
+        setTimeout(startPlayback, 1000);
+        setTimeout(startPlayback, 2500);
+      })();
+    ''');
   }
 
   void _switchJalur(int jalurIndex) {
@@ -285,18 +249,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
     setState(() {
       _isMuted = !_isMuted;
     });
-    if (_isWebMode) {
-      _webController?.runJavaScript('''
-        (function() {
-          var v = document.querySelector('video');
-          if (v) {
-            v.muted = ${_isMuted ? 'true' : 'false'};
-            if (v.paused) v.play().catch(function(){});
-          }
-          if (typeof dp !== 'undefined' && dp.video) {
-            dp.video.muted = ${_isMuted ? 'true' : 'false'};
-          }
-        })();
+
+    if (_isWebMode && _webController != null) {
+      _webController!.runJavaScript('''
+        var videos = document.getElementsByTagName('video');
+        for (var i = 0; i < videos.length; i++) {
+          videos[i].muted = ${_isMuted ? 'true' : 'false'};
+        }
       ''');
     } else {
       _videoController?.setVolume(_isMuted ? 0.0 : 1.0);
@@ -332,18 +291,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
             return KeyEventResult.handled;
           } else if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
             if (_activeJalur < 3) _switchJalur(_activeJalur + 1);
-            return KeyEventResult.handled;
-          } else if (event.logicalKey == LogicalKeyboardKey.select ||
-              event.logicalKey == LogicalKeyboardKey.enter ||
-              event.logicalKey == LogicalKeyboardKey.space) {
-            if (_videoController != null && _videoController!.value.isInitialized) {
-              if (_videoController!.value.isPlaying) {
-                _videoController!.pause();
-              } else {
-                _videoController!.play();
-              }
-              setState(() {});
-            }
             return KeyEventResult.handled;
           }
         }
@@ -430,35 +377,39 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       final topWidth = constraints.maxWidth;
+                      final isTvOrWide = topWidth > 700;
                       final isCompact = topWidth < 550;
 
                       return Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
+                        padding: EdgeInsets.fromLTRB(
+                          isTvOrWide ? 24 : 12,
+                          isTvOrWide ? 22 : 8,
+                          isTvOrWide ? 24 : 12,
+                          10,
                         ),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Colors.black.withValues(alpha: 0.92),
+                              Colors.black.withValues(alpha: 0.94),
                               Colors.transparent,
                             ],
                           ),
                         ),
                         child: Row(
                           children: [
-                            IconButton(
-                              visualDensity: VisualDensity.compact,
+                            // Tombol Kembali
+                            TvFocusableButton(
+                              onTap: () => Navigator.of(context).pop(),
+                              borderRadius: BorderRadius.circular(12),
                               padding: const EdgeInsets.all(6),
-                              constraints: const BoxConstraints(),
-                              icon: const Icon(
+                              tooltip: 'Kembali',
+                              child: const Icon(
                                 Icons.arrow_back_ios_new_rounded,
                                 color: Colors.white,
                                 size: 18,
                               ),
-                              onPressed: () => Navigator.of(context).pop(),
                             ),
                             const SizedBox(width: 8),
                             Expanded(
@@ -495,10 +446,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
                               ),
                               const SizedBox(width: 6),
                             ],
-                            // Tombol Donasi Saweria
-                            InkWell(
+                            // Tombol Donasi Saweria (Focusable for TV & Mobile)
+                            TvFocusableButton(
                               onTap: () => AdService().openSaweria(),
                               borderRadius: BorderRadius.circular(16),
+                              focusedBorderColor: const Color(0xFFFF9800),
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 8,
@@ -542,16 +494,14 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 2),
+                            const SizedBox(width: 4),
                             // Tombol Audio
-                            IconButton(
-                              visualDensity: VisualDensity.compact,
+                            TvFocusableButton(
+                              onTap: _toggleMute,
+                              borderRadius: BorderRadius.circular(12),
                               padding: const EdgeInsets.all(6),
-                              constraints: const BoxConstraints(),
-                              tooltip: _isMuted
-                                  ? 'Nyalakan Suara'
-                                  : 'Matikan Suara',
-                              icon: Icon(
+                              tooltip: _isMuted ? 'Nyalakan Suara' : 'Matikan Suara',
+                              child: Icon(
                                 _isMuted
                                     ? Icons.volume_off_rounded
                                     : Icons.volume_up_rounded,
@@ -560,50 +510,46 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                     : AppColors.primary,
                                 size: 20,
                               ),
-                              onPressed: _toggleMute,
                             ),
-                            const SizedBox(width: 2),
+                            const SizedBox(width: 4),
                             // Tombol Muat Ulang Siaran
-                            IconButton(
-                              visualDensity: VisualDensity.compact,
+                            TvFocusableButton(
+                              onTap: () => _initPlayer(),
+                              borderRadius: BorderRadius.circular(12),
                               padding: const EdgeInsets.all(6),
-                              constraints: const BoxConstraints(),
                               tooltip: 'Muat Ulang Siaran',
-                              icon: const Icon(
+                              child: const Icon(
                                 Icons.refresh_rounded,
                                 color: Colors.white,
                                 size: 20,
                               ),
-                              onPressed: () => _initPlayer(),
                             ),
                             if (!isCompact) ...[
-                              const SizedBox(width: 2),
+                              const SizedBox(width: 4),
                               // Tombol Bagikan / Share
-                              IconButton(
-                                visualDensity: VisualDensity.compact,
+                              TvFocusableButton(
+                                onTap: _shareMatch,
+                                borderRadius: BorderRadius.circular(12),
                                 padding: const EdgeInsets.all(6),
-                                constraints: const BoxConstraints(),
                                 tooltip: 'Bagikan Siaran Ini',
-                                icon: const Icon(
+                                child: const Icon(
                                   Icons.share_rounded,
                                   color: Colors.white,
                                   size: 18,
                                 ),
-                                onPressed: _shareMatch,
                               ),
-                              const SizedBox(width: 2),
+                              const SizedBox(width: 4),
                               // Tombol Browser Eksternal
-                              IconButton(
-                                visualDensity: VisualDensity.compact,
+                              TvFocusableButton(
+                                onTap: _openExternalBrowser,
+                                borderRadius: BorderRadius.circular(12),
                                 padding: const EdgeInsets.all(6),
-                                constraints: const BoxConstraints(),
                                 tooltip: 'Buka di Browser Eksternal',
-                                icon: const Icon(
+                                child: const Icon(
                                   Icons.open_in_browser_rounded,
                                   color: Colors.white,
                                   size: 20,
                                 ),
-                                onPressed: _openExternalBrowser,
                               ),
                             ] else ...[
                               // Popup menu for extra options on mobile portrait
@@ -652,20 +598,18 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 ],
                               ),
                             ],
-                            const SizedBox(width: 2),
+                            const SizedBox(width: 4),
                             // Tombol Layar Penuh (Tunggal & Konsisten)
-                            IconButton(
-                              visualDensity: VisualDensity.compact,
+                            TvFocusableButton(
+                              onTap: () => setState(() => _showControls = false),
+                              borderRadius: BorderRadius.circular(12),
                               padding: const EdgeInsets.all(6),
-                              constraints: const BoxConstraints(),
                               tooltip: 'Layar Penuh (Sembunyikan Menu)',
-                              icon: const Icon(
+                              child: const Icon(
                                 Icons.fullscreen_rounded,
                                 color: Colors.white,
                                 size: 22,
                               ),
-                              onPressed: () =>
-                                  setState(() => _showControls = false),
                             ),
                           ],
                         ),
@@ -677,27 +621,32 @@ class _PlayerScreenState extends State<PlayerScreen> {
               // Floating Menu Button When Controls are Hidden
               if (!_showControls)
                 Positioned(
-                  top: 16,
-                  left: 16,
-                  child: Material(
-                    color: Colors.black.withValues(alpha: 0.65),
+                  top: 20,
+                  left: 20,
+                  child: TvFocusableButton(
+                    onTap: () => setState(() => _showControls = true),
                     borderRadius: BorderRadius.circular(24),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(24),
-                      onTap: () => setState(() => _showControls = true),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.tune_rounded, color: AppColors.primary, size: 20),
-                            SizedBox(width: 6),
-                            Text(
-                              'Menu / Server',
-                              style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.75),
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(color: AppColors.primary, width: 1.2),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.tune_rounded, color: AppColors.cyanAccent, size: 18),
+                          SizedBox(width: 6),
+                          Text(
+                            'Menu / Server',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -710,7 +659,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   left: 0,
                   right: 0,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
@@ -766,34 +715,35 @@ class _PlayerScreenState extends State<PlayerScreen> {
   Widget _buildJalurButton(int index, String title) {
     final isSelected = _activeJalur == index;
 
-    return Focus(
-      onKeyEvent: (node, event) {
-        if (event is KeyDownEvent &&
-            (event.logicalKey == LogicalKeyboardKey.select ||
-                event.logicalKey == LogicalKeyboardKey.enter)) {
-          _switchJalur(index);
-          return KeyEventResult.handled;
-        }
-        return KeyEventResult.ignored;
-      },
-      child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          backgroundColor: isSelected ? AppColors.primary : AppColors.surface,
-          foregroundColor: isSelected ? Colors.black : Colors.white,
-          side: BorderSide(
-            color: isSelected ? AppColors.primary : AppColors.border,
+    return TvFocusableButton(
+      onTap: () => _switchJalur(index),
+      borderRadius: BorderRadius.circular(10),
+      focusedBorderColor: AppColors.cyanAccent,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : AppColors.surface,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: isSelected ? AppColors.cyanAccent : AppColors.border,
             width: isSelected ? 2.0 : 1.0,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: AppColors.primaryGlow.withValues(alpha: 0.4),
+                    blurRadius: 8,
+                  )
+                ]
+              : null,
         ),
-        onPressed: () => _switchJalur(index),
         child: Text(
           title,
           textAlign: TextAlign.center,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
+            color: isSelected ? Colors.white : AppColors.textPrimary,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.w600,
             fontSize: 12,
           ),
