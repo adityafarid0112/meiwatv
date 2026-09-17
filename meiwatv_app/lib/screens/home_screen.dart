@@ -144,18 +144,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: Row(
                             children: [
-                              // Logo Meiwa Mobile
+                              // Logo Meiwa Sports
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
                                 child: Image.asset(
-                                  'assets/images/Logo Meiwa Mobile.png',
+                                  'assets/images/meiwa sports.png',
                                   height: width < 500
-                                      ? 28
-                                      : (isTvOrDesktop ? 44 : 36),
+                                      ? 30
+                                      : (isTvOrDesktop ? 46 : 38),
                                   fit: BoxFit.contain,
                                   errorBuilder: (context, error, stackTrace) =>
                                       const Text(
-                                        'MEIWATV',
+                                        'MEIWA SPORTS',
                                         style: TextStyle(
                                           color: AppColors.cyanAccent,
                                           fontSize: 16,
