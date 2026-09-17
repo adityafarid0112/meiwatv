@@ -17,8 +17,8 @@ void main() async {
     ),
   );
 
-  // Inisialisasi Firebase & Match Service
-  await MatchService().initialize();
+  // Inisialisasi Firebase & Match Service di background tanpa memblokir first frame rendering
+  MatchService().initialize();
 
   runApp(const MeiwaTvApp());
 }

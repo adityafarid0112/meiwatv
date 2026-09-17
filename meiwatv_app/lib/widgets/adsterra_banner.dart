@@ -77,26 +77,20 @@ class _AdsterraBannerState extends State<AdsterraBanner> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return SizedBox(
+      width: widget.width.toDouble(),
       height: widget.height.toDouble() + 8,
-      alignment: Alignment.center,
-      color: Colors.transparent,
-      child: SizedBox(
-        width: widget.width.toDouble(),
-        height: widget.height.toDouble(),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            WebViewWidget(controller: _controller),
-            if (_isLoading)
-              const SizedBox(
-                width: 16,
-                height: 16,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              ),
-          ],
-        ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          WebViewWidget(controller: _controller),
+          if (_isLoading)
+            const SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+        ],
       ),
     );
   }
