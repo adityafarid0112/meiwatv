@@ -29,7 +29,7 @@ class MeiwaTvApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MeiwaTV - Live Sports Streaming',
+      title: 'MeiwaSports - Live Sports Streaming',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
       home: const HomeScreen(),

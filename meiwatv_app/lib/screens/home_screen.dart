@@ -228,15 +228,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       SharePlus.instance.share(
                                         ShareParams(
                                           text:
-                                              'Ayo tonton siaran langsung sepak bola, basket, bulu tangkis, tenis dan olahraga lainnya gratis tanpa buffering di MeiwaTV!\n\nLink Donasi & Support: https://saweria.co/meiwatv',
+                                              'Ayo tonton siaran langsung sepak bola, basket, bulu tangkis, tenis dan olahraga lainnya gratis tanpa buffering di MeiwaSports!\n\nLink Donasi & Support: https://saweria.co/meiwatv',
                                           subject:
-                                              'Aplikasi Streaming Olahraga MeiwaTV',
+                                              'Aplikasi Streaming Olahraga MeiwaSports',
                                         ),
                                       );
                                     },
                                     borderRadius: BorderRadius.circular(14),
                                     padding: const EdgeInsets.all(4),
-                                    tooltip: 'Bagikan Aplikasi MeiwaTV',
+                                    tooltip: 'Bagikan Aplikasi MeiwaSports',
                                     child: const Icon(
                                       Icons.share_rounded,
                                       color: Colors.white,

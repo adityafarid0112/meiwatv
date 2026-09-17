@@ -239,8 +239,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
     SharePlus.instance.share(
       ShareParams(
         text:
-            'Ayo nonton siaran langsung ${match.title} (${match.league}) gratis di aplikasi MeiwaTV!\n\nLink Dukungan: https://saweria.co/meiwatv',
-        subject: 'Nonton ${match.title} di MeiwaTV',
+            'Ayo nonton siaran langsung ${match.title} (${match.league}) gratis di aplikasi MeiwaSports!\n\nLink Dukungan: https://saweria.co/meiwatv',
+        subject: 'Nonton ${match.title} di MeiwaSports',
       ),
     );
   }
