@@ -51,24 +51,35 @@ class AdService {
   Future<void> openSaweria() async {
     try {
       final uri = Uri.parse(saweriaUrl);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      debugPrint('💰 Membuka Saweria Donasi: $saweriaUrl');
+      final launched = await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+      if (!launched) {
+        await launchUrl(uri, mode: LaunchMode.platformDefault);
       }
     } catch (e) {
       debugPrint('Gagal membuka Saweria: $e');
     }
   }
 
-  /// Memicu popunder sesekali (misal setiap 2-3 kali klik pertandingan)
+  /// Memicu popunder iklan AdsTerra
   Future<void> triggerPopunder({bool force = false}) async {
     _tapCounter++;
-    if (force || _tapCounter % 3 == 1) {
+    // Buka popunder secara berkala agar penghasilan iklan maksimal
+    if (force || _tapCounter % 2 == 1) {
       if (popunderUrls.isEmpty) return;
-      final url = popunderUrls[(_tapCounter ~/ 3) % popunderUrls.length];
+      final url = popunderUrls[_tapCounter % popunderUrls.length];
       try {
         final uri = Uri.parse(url);
-        if (await canLaunchUrl(uri)) {
-          await launchUrl(uri, mode: LaunchMode.externalApplication);
+        debugPrint('🚀 Membuka Popunder Adsterra: $url');
+        final launched = await launchUrl(
+          uri,
+          mode: LaunchMode.externalApplication,
+        );
+        if (!launched) {
+          await launchUrl(uri, mode: LaunchMode.platformDefault);
         }
       } catch (e) {
         debugPrint('Popunder error: $e');

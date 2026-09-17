@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import '../models/match_model.dart';
 import '../services/ad_service.dart';
 import '../services/match_service.dart';
@@ -207,6 +208,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ],
                                       ),
                                     ),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.share_rounded,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                    tooltip: 'Bagikan Aplikasi MeiwaTV',
+                                    onPressed: () {
+                                      SharePlus.instance.share(
+                                        ShareParams(
+                                          text:
+                                              'Ayo tonton siaran langsung sepak bola, basket, bulu tangkis, tenis dan olahraga lainnya gratis tanpa buffering di MeiwaTV!\n\nLink Donasi & Support: https://saweria.co/meiwatv',
+                                          subject:
+                                              'Aplikasi Streaming Olahraga MeiwaTV',
+                                        ),
+                                      );
+                                    },
                                   ),
                                   const SizedBox(width: 4),
                                   IconButton(

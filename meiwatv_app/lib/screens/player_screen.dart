@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -27,7 +28,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   bool _isMuted = false;
   String? _errorMessage;
   bool _showControls = true;
-  BoxFit _videoFit = BoxFit.contain;
+  final BoxFit _videoFit = BoxFit.contain;
 
   @override
   void initState() {
@@ -262,10 +263,22 @@ class _PlayerScreenState extends State<PlayerScreen> {
     if (_activeJalur == jalurIndex && !_isLoading) {
       return;
     }
+    AdService().triggerPopunder();
     setState(() {
       _activeJalur = jalurIndex;
     });
     _initPlayer();
+  }
+
+  void _shareMatch() {
+    final match = widget.match;
+    SharePlus.instance.share(
+      ShareParams(
+        text:
+            'Ayo nonton siaran langsung ${match.title} (${match.league}) gratis di aplikasi MeiwaTV!\n\nLink Dukungan: https://saweria.co/meiwatv',
+        subject: 'Nonton ${match.title} di MeiwaTV',
+      ),
+    );
   }
 
   void _toggleMute() {
@@ -288,18 +301,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
     } else {
       _videoController?.setVolume(_isMuted ? 0.0 : 1.0);
     }
-  }
-
-  void _toggleAspectRatio() {
-    setState(() {
-      if (_videoFit == BoxFit.contain) {
-        _videoFit = BoxFit.cover;
-      } else if (_videoFit == BoxFit.cover) {
-        _videoFit = BoxFit.fill;
-      } else {
-        _videoFit = BoxFit.contain;
-      }
-    });
   }
 
   Future<void> _openExternalBrowser() async {
@@ -471,12 +472,51 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           ),
                         ),
                         LiveBadge(isLive: match.isLive, text: match.isLive ? 'LIVE' : 'UPCOMING'),
-                        const SizedBox(width: 4),
-                        IconButton(
-                          tooltip: 'Dukung Kami via Saweria',
-                          icon: const Icon(Icons.volunteer_activism_rounded, color: Color(0xFFFF9800)),
-                          onPressed: () => AdService().openSaweria(),
+                        const SizedBox(width: 8),
+                        // Tombol Donasi Saweria
+                        InkWell(
+                          onTap: () => AdService().openSaweria(),
+                          borderRadius: BorderRadius.circular(16),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFFFF9800), Color(0xFFFF5722)],
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFFFF9800).withValues(alpha: 0.4),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.volunteer_activism_rounded, color: Colors.white, size: 14),
+                                SizedBox(width: 4),
+                                Text(
+                                  'Saweria',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
+                        const SizedBox(width: 4),
+                        // Tombol Bagikan / Share
+                        IconButton(
+                          tooltip: 'Bagikan Siaran Ini',
+                          icon: const Icon(Icons.share_rounded, color: Colors.white),
+                          onPressed: _shareMatch,
+                        ),
+                        // Tombol Audio
                         IconButton(
                           tooltip: _isMuted ? 'Nyalakan Suara' : 'Matikan Suara',
                           icon: Icon(
@@ -485,23 +525,21 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           ),
                           onPressed: _toggleMute,
                         ),
-                        IconButton(
-                          tooltip: 'Rasio Layar',
-                          icon: const Icon(Icons.aspect_ratio_rounded, color: AppColors.cyanAccent),
-                          onPressed: _toggleAspectRatio,
-                        ),
-                        IconButton(
-                          tooltip: 'Buka di Browser Eksternal',
-                          icon: const Icon(Icons.open_in_browser_rounded, color: AppColors.primary),
-                          onPressed: _openExternalBrowser,
-                        ),
+                        // Tombol Muat Ulang Siaran
                         IconButton(
                           tooltip: 'Muat Ulang Siaran',
-                          icon: const Icon(Icons.refresh_rounded, color: AppColors.cyanAccent),
+                          icon: const Icon(Icons.refresh_rounded, color: Colors.white),
                           onPressed: () => _initPlayer(),
                         ),
+                        // Tombol Browser Eksternal
                         IconButton(
-                          tooltip: 'Sembunyikan Menu',
+                          tooltip: 'Buka di Browser Eksternal',
+                          icon: const Icon(Icons.open_in_browser_rounded, color: Colors.white),
+                          onPressed: _openExternalBrowser,
+                        ),
+                        // Tombol Layar Penuh (Tunggal & Konsisten)
+                        IconButton(
+                          tooltip: 'Layar Penuh (Sembunyikan Menu)',
                           icon: const Icon(Icons.fullscreen_rounded, color: Colors.white),
                           onPressed: () => setState(() => _showControls = false),
                         ),
