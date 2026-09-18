@@ -12,11 +12,14 @@ class RemoteConfigService {
   static const String fallbackConfigUrl = 'https://raw.githubusercontent.com/adityafarid0112/meiwatv-portal/main/studio_sources.json';
 
   String _activeBaseUrl = 'https://tv12.lk21official.cc';
+  final String _dramaBaseUrl = 'https://tv9.nontondrama.my';
+
   List<StudioSource> _sources = [
     StudioSource(name: 'LK21 Official Main', baseUrl: 'https://tv12.lk21official.cc', priority: 1, isActive: true),
-    StudioSource(name: 'LK21 Auto-Redirect', baseUrl: 'https://www.lk21.de', priority: 2, isActive: true),
-    StudioSource(name: 'LK21 Dev Mirror', baseUrl: 'https://tv.lk21official.dev', priority: 3, isActive: true),
-    StudioSource(name: 'Layarkaca21 Backup', baseUrl: 'https://lite.dadadidi.de', priority: 4, isActive: true),
+    StudioSource(name: 'NontonDrama Series Main', baseUrl: 'https://tv9.nontondrama.my', priority: 2, isActive: true),
+    StudioSource(name: 'LK21 Auto-Redirect', baseUrl: 'https://www.lk21.de', priority: 3, isActive: true),
+    StudioSource(name: 'LK21 Dev Mirror', baseUrl: 'https://tv.lk21official.dev', priority: 4, isActive: true),
+    StudioSource(name: 'Layarkaca21 Backup', baseUrl: 'https://lite.dadadidi.de', priority: 5, isActive: true),
   ];
 
   List<GenreCategory> _genres = [
@@ -44,12 +47,14 @@ class RemoteConfigService {
     'propellerads',
     'exoclick',
     'onclickmega',
+    'yellowishgather',
     'betting',
     'slot',
     'judol'
   ];
 
   String get activeBaseUrl => _activeBaseUrl;
+  String get dramaBaseUrl => _dramaBaseUrl;
   List<GenreCategory> get genres => _genres;
   List<String> get adBlockPatterns => _adBlockPatterns;
 

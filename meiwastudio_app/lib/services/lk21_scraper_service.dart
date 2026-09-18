@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../models/movie_model.dart';
@@ -11,36 +12,49 @@ class LK21ScraperService {
   final RemoteConfigService _config = RemoteConfigService();
 
   Map<String, String> get _headers => {
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 12; Android TV Build/STTE.220623.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
   };
 
-  Future<String> _fetchHtmlWithFailover(String path) async {
-    String currentBase = _config.activeBaseUrl;
+  String _normalizeUrl(String path, {String? defaultHost}) {
+    if (path.startsWith('http')) return path;
+    final host = defaultHost ?? (path.contains('series') || path.contains('drama') || path.contains('episode')
+        ? _config.dramaBaseUrl
+        : _config.activeBaseUrl);
+    final base = host.endsWith('/') ? host.substring(0, host.length - 1) : host;
+    final cleanPath = path.startsWith('/') ? path : '/$path';
+    return '$base$cleanPath';
+  }
+
+  Future<String> _fetchHtmlWithFailover(String path, {String? defaultHost}) async {
+    String fullUrl = _normalizeUrl(path, defaultHost: defaultHost);
+
     try {
-      final url = path.startsWith('http') ? path : '$currentBase$path';
-      final res = await http.get(Uri.parse(url), headers: _headers).timeout(const Duration(seconds: 8));
+      final res = await http.get(Uri.parse(fullUrl), headers: _headers).timeout(const Duration(seconds: 8));
       
       if (res.statusCode == 200) {
         return res.body;
       } else if (res.statusCode >= 300 && res.statusCode < 400 && res.headers['location'] != null) {
         String loc = res.headers['location']!;
-        if (!loc.startsWith('http')) loc = '$currentBase$loc';
-        return _fetchHtmlWithFailover(loc);
+        return _fetchHtmlWithFailover(loc, defaultHost: defaultHost);
       }
     } catch (e) {
-      debugPrint('[Scraper] Error fetching from $currentBase: $e. Resolving new mirror...');
-      currentBase = await _config.resolveActiveBaseUrl();
-      final url = path.startsWith('http') ? path : '$currentBase$path';
-      final res = await http.get(Uri.parse(url), headers: _headers).timeout(const Duration(seconds: 8));
-      return res.body;
+      debugPrint('[Scraper] Error fetching from $fullUrl: $e. Resolving new mirror...');
+      await _config.resolveActiveBaseUrl();
+      fullUrl = _normalizeUrl(path, defaultHost: defaultHost);
+      try {
+        final res = await http.get(Uri.parse(fullUrl), headers: _headers).timeout(const Duration(seconds: 8));
+        return res.body;
+      } catch (e2) {
+        debugPrint('[Scraper] Retry mirror failed: $e2');
+      }
     }
     return '';
   }
 
-  /// Parse article list items from HTML
-  List<Movie> parseMoviesFromHtml(String html) {
+  /// Parse article list items from LK21 / NontonDrama HTML
+  List<Movie> parseMoviesFromHtml(String html, {String? defaultHost}) {
     final List<Movie> list = [];
     final articleRegex = RegExp(r'<article[^>]*>([\s\S]*?)<\/article>', caseSensitive: false);
     final matches = articleRegex.allMatches(html);
@@ -89,7 +103,7 @@ class LK21ScraperService {
         rating = ratingMatch.group(1)?.trim() ?? '';
       }
 
-      // 5. Quality
+      // 5. Quality / Status
       String quality = 'HD';
       final qualMatch = RegExp(r'class="label[^"]*">([^<]+)<\/span>', caseSensitive: false).firstMatch(block);
       if (qualMatch != null) {
@@ -103,7 +117,7 @@ class LK21ScraperService {
         year = yearMatch.group(1)?.trim() ?? '2026';
       }
 
-      // 7. Duration
+      // 7. Duration / Eps
       String duration = '';
       final durMatch = RegExp(r'class="duration"[^>]*>([^<]+)<\/span>', caseSensitive: false).firstMatch(block);
       if (durMatch != null) {
@@ -119,13 +133,13 @@ class LK21ScraperService {
         genres.addAll(raw.split(',').map((s) => s.trim()).where((s) => s.isNotEmpty));
       }
 
-      final isSeries = url.contains('nontondrama') || url.contains('series');
+      final isSeries = url.contains('nontondrama') || url.contains('series') || defaultHost?.contains('nontondrama') == true;
 
       if (title.isNotEmpty && posterUrl.isNotEmpty) {
         list.add(Movie(
           title: title,
           slug: slug,
-          url: url,
+          url: url.startsWith('http') ? url : _normalizeUrl(url, defaultHost: defaultHost),
           posterUrl: posterUrl,
           rating: rating.isNotEmpty ? rating : '7.8',
           quality: quality,
@@ -140,38 +154,106 @@ class LK21ScraperService {
     return list;
   }
 
-  /// Fetch Popular Movies
-  Future<List<Movie>> fetchPopularMovies() async {
-    try {
-      final html = await _fetchHtmlWithFailover('/populer');
-      return parseMoviesFromHtml(html);
-    } catch (e) {
-      debugPrint('[Scraper] Error fetching popular: $e');
-      return [];
-    }
-  }
-
-  /// Fetch Latest Movies
-  Future<List<Movie>> fetchLatestMovies({int page = 1}) async {
+  /// 1. Film Terbaru (/latest)
+  Future<List<Movie>> fetchFilmTerbaru({int page = 1}) async {
     try {
       final path = page == 1 ? '/latest' : '/latest/page/$page';
-      final html = await _fetchHtmlWithFailover(path);
-      return parseMoviesFromHtml(html);
+      final html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
     } catch (e) {
-      debugPrint('[Scraper] Error fetching latest: $e');
+      debugPrint('[Scraper] Error fetching Film Terbaru: $e');
       return [];
     }
   }
 
-  /// Fetch Movies by Genre
+  /// 2. Series Unggulan (/top-series-today)
+  Future<List<Movie>> fetchSeriesUnggulan({int page = 1}) async {
+    try {
+      final path = page == 1 ? '/top-series-today' : '/top-series-today/page/$page';
+      // Try NontonDrama first for series
+      String html = await _fetchHtmlWithFailover(path, defaultHost: _config.dramaBaseUrl);
+      if (html.isEmpty || !html.contains('<article')) {
+        html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      }
+      return parseMoviesFromHtml(html, defaultHost: _config.dramaBaseUrl);
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching Series Unggulan: $e');
+      return [];
+    }
+  }
+
+  /// 3. Series Update (/latest-series)
+  Future<List<Movie>> fetchSeriesUpdate({int page = 1}) async {
+    try {
+      final path = page == 1 ? '/latest-series' : '/latest-series/page/$page';
+      String html = await _fetchHtmlWithFailover(path, defaultHost: _config.dramaBaseUrl);
+      if (html.isEmpty || !html.contains('<article')) {
+        html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      }
+      return parseMoviesFromHtml(html, defaultHost: _config.dramaBaseUrl);
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching Series Update: $e');
+      return [];
+    }
+  }
+
+  /// 4. Top Bulan Ini (/populer)
+  Future<List<Movie>> fetchTopBulanIni({int page = 1}) async {
+    try {
+      final path = page == 1 ? '/populer' : '/populer/page/$page';
+      final html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching Top Bulan Ini: $e');
+      return [];
+    }
+  }
+
+  /// Alias for backward compatibility
+  Future<List<Movie>> fetchPopularMovies({int page = 1}) => fetchTopBulanIni(page: page);
+
+  /// 5. Top Rating (/rating)
+  Future<List<Movie>> fetchTopRating({int page = 1}) async {
+    try {
+      final path = page == 1 ? '/rating' : '/rating/page/$page';
+      final html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching Top Rating: $e');
+      return [];
+    }
+  }
+
+  /// 6. Fetch Movies by Category / Genre
   Future<List<Movie>> fetchMoviesByGenre(String genreSlug, {int page = 1}) async {
     try {
-      if (genreSlug.isEmpty) return fetchPopularMovies();
+      if (genreSlug.isEmpty) return fetchFilmTerbaru(page: page);
       final path = page == 1 ? '/genre/$genreSlug' : '/genre/$genreSlug/page/$page';
-      final html = await _fetchHtmlWithFailover(path);
-      return parseMoviesFromHtml(html);
+      final html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
     } catch (e) {
       debugPrint('[Scraper] Error fetching genre $genreSlug: $e');
+      return [];
+    }
+  }
+
+  /// 7. Generic Endpoint Fetcher for Category List View
+  Future<List<Movie>> fetchEndpoint(String endpoint, {int page = 1}) async {
+    try {
+      String path = endpoint;
+      if (page > 1) {
+        if (path.contains('?')) {
+          path = '$path&page=$page';
+        } else {
+          path = '$endpoint/page/$page';
+        }
+      }
+      final isDrama = endpoint.contains('series') || endpoint.contains('drama');
+      final defaultHost = isDrama ? _config.dramaBaseUrl : _config.activeBaseUrl;
+      final html = await _fetchHtmlWithFailover(path, defaultHost: defaultHost);
+      return parseMoviesFromHtml(html, defaultHost: defaultHost);
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching endpoint $endpoint: $e');
       return [];
     }
   }
@@ -180,20 +262,44 @@ class LK21ScraperService {
   Future<List<Movie>> searchMovies(String query, {int page = 1}) async {
     try {
       final encoded = Uri.encodeComponent(query);
-      final path = '/?s=$encoded';
-      final html = await _fetchHtmlWithFailover(path);
-      return parseMoviesFromHtml(html);
+      final path = page == 1 ? '/?s=$encoded' : '/page/$page/?s=$encoded';
+      final html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
     } catch (e) {
       debugPrint('[Scraper] Error searching $query: $e');
       return [];
     }
   }
 
-  /// Fetch Movie Details & Streaming Embed URL
+  /// Fetch Direct Episode Embed URL
+  Future<String> fetchEpisodeEmbedUrl(String episodeUrl) async {
+    try {
+      final fullUrl = episodeUrl.startsWith('http')
+          ? episodeUrl
+          : _normalizeUrl(episodeUrl, defaultHost: _config.dramaBaseUrl);
+      final html = await _fetchHtmlWithFailover(fullUrl, defaultHost: _config.dramaBaseUrl);
+
+      final iframeMatch = RegExp(r'<iframe[^>]*id="main-player"[^>]*src="([^"]*)"', caseSensitive: false).firstMatch(html) ??
+                          RegExp(r'<iframe[^>]*src="([^"]*(?:videonode|player|embed|stream|p2p|playcdn)[^"]*)"', caseSensitive: false).firstMatch(html);
+      if (iframeMatch != null) {
+        String embedUrl = iframeMatch.group(1) ?? '';
+        if (embedUrl.startsWith('//')) embedUrl = 'https:$embedUrl';
+        return embedUrl;
+      }
+      return fullUrl;
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching episode embed: $e');
+      return episodeUrl;
+    }
+  }
+
+  /// Fetch Movie / Drama Details & Streaming Embed URL + Episodes List
   Future<Movie> fetchMovieDetail(Movie movie) async {
     try {
-      final path = movie.url.startsWith('http') ? movie.url : movie.url;
-      final html = await _fetchHtmlWithFailover(path);
+      final isDrama = movie.url.contains('nontondrama') || movie.url.contains('series') || movie.isSeries;
+      final defaultHost = isDrama ? _config.dramaBaseUrl : _config.activeBaseUrl;
+      final fullUrl = movie.url.startsWith('http') ? movie.url : _normalizeUrl(movie.url, defaultHost: defaultHost);
+      final html = await _fetchHtmlWithFailover(fullUrl, defaultHost: defaultHost);
 
       // 1. Synopsis
       String synopsis = '';
@@ -204,10 +310,11 @@ class LK21ScraperService {
         synopsis = synMatch.group(1)?.replaceAll(RegExp(r'<[^>]*>'), '').trim() ?? '';
       }
 
-      // 2. Duration
+      // 2. Duration / Status
       String duration = '';
       final durMatch = RegExp(r'Duration:\s*<\/strong>([^<]*)', caseSensitive: false).firstMatch(html) ??
-                       RegExp(r'(\d+)\s*min', caseSensitive: false).firstMatch(html);
+                       RegExp(r'(\d+)\s*min', caseSensitive: false).firstMatch(html) ??
+                       RegExp(r'class="duration"[^>]*>([^<]+)<\/span>', caseSensitive: false).firstMatch(html);
       if (durMatch != null) {
         duration = durMatch.group(1)?.trim() ?? '';
       }
@@ -222,10 +329,56 @@ class LK21ScraperService {
         }
       }
 
-      // 4. Video Embed URL
+      // 4. Series Episodes Parser
+      final List<SeriesEpisode> episodes = [];
+      final episodeJsonMatch = RegExp(r'\{"\d+":\[\{"s":\d+,"episode_no":[\s\S]*?\}\]\}').firstMatch(html);
+      if (episodeJsonMatch != null) {
+        try {
+          final Map<String, dynamic> seasonsMap = json.decode(episodeJsonMatch.group(0)!);
+          for (final seasonKey in seasonsMap.keys) {
+            final epList = seasonsMap[seasonKey];
+            if (epList is List) {
+              for (final ep in epList) {
+                if (ep is Map<String, dynamic>) {
+                  episodes.add(SeriesEpisode.fromJson(ep, baseUrl: defaultHost));
+                }
+              }
+            }
+          }
+        } catch (e) {
+          debugPrint('[Scraper] Error parsing episode JSON: $e');
+        }
+      }
+
+      // Fallback: Check HTML links for episodes
+      if (episodes.isEmpty && isDrama) {
+        final epLinkMatches = RegExp(r'<a[^>]*href="([^"]*episode-\d+[^"]*)"[^>]*>([\s\S]*?)<\/a>', caseSensitive: false).allMatches(html);
+        int epCount = 1;
+        for (final el in epLinkMatches) {
+          final epHref = el.group(1) ?? '';
+          final epText = el.group(2)?.replaceAll(RegExp(r'<[^>]*>'), '').trim() ?? 'Episode $epCount';
+          final epNo = int.tryParse(RegExp(r'episode-(\d+)').firstMatch(epHref)?.group(1) ?? '') ?? epCount;
+          episodes.add(SeriesEpisode(
+            season: 1,
+            episodeNo: epNo,
+            title: epText.startsWith('Episode') ? epText : 'Episode $epNo',
+            slug: epHref,
+            url: epHref.startsWith('http') ? epHref : _normalizeUrl(epHref, defaultHost: defaultHost),
+          ));
+          epCount++;
+        }
+      }
+
+      // Sort episodes by Season and Episode Number
+      episodes.sort((a, b) {
+        if (a.season != b.season) return a.season.compareTo(b.season);
+        return a.episodeNo.compareTo(b.episodeNo);
+      });
+
+      // 5. Video Embed URL
       String embedUrl = '';
       final iframeMatch = RegExp(r'<iframe[^>]*id="main-player"[^>]*src="([^"]*)"', caseSensitive: false).firstMatch(html) ??
-                          RegExp(r'<iframe[^>]*src="([^"]*(?:videonode|player|embed|stream)[^"]*)"', caseSensitive: false).firstMatch(html);
+                          RegExp(r'<iframe[^>]*src="([^"]*(?:videonode|player|embed|stream|p2p|playcdn)[^"]*)"', caseSensitive: false).firstMatch(html);
       if (iframeMatch != null) {
         embedUrl = iframeMatch.group(1) ?? '';
         if (embedUrl.startsWith('//')) {
@@ -233,20 +386,37 @@ class LK21ScraperService {
         }
       }
 
+      // Fallback for player list options
       if (embedUrl.isEmpty) {
-        embedUrl = movie.url.startsWith('http') ? movie.url : '${_config.activeBaseUrl}${movie.url}';
+        final p2pMatch = RegExp(r'href="([^"]*(?:videonode\.de\/iframe3)[^"]*)"', caseSensitive: false).firstMatch(html) ??
+                         RegExp(r'data-url="([^"]*(?:videonode\.de\/iframe3)[^"]*)"', caseSensitive: false).firstMatch(html);
+        if (p2pMatch != null) {
+          embedUrl = p2pMatch.group(1) ?? '';
+          if (embedUrl.startsWith('//')) embedUrl = 'https:$embedUrl';
+        }
+      }
+
+      // If series and embedUrl still empty, get Episode 1 embed
+      if (embedUrl.isEmpty && episodes.isNotEmpty) {
+        embedUrl = await fetchEpisodeEmbedUrl(episodes.first.url);
+      }
+
+      if (embedUrl.isEmpty) {
+        embedUrl = fullUrl;
       }
 
       return movie.copyWith(
-        synopsis: synopsis.isNotEmpty ? synopsis : 'Film seru pilihan terbaik siap menemani waktu santai Anda dengan kualitas Full HD dan subtitle bahasa Indonesia.',
-        duration: duration.isNotEmpty ? duration : (movie.duration.isNotEmpty ? movie.duration : '1 jam 45 mnt'),
+        synopsis: synopsis.isNotEmpty ? synopsis : 'Film & serial drama pilihan terbaik siap menemani waktu santai Anda dengan kualitas Full HD dan subtitle bahasa Indonesia.',
+        duration: duration.isNotEmpty ? duration : (movie.duration.isNotEmpty ? movie.duration : (episodes.isNotEmpty ? '${episodes.length} Episode' : '1 jam 45 mnt')),
         genres: genres.isNotEmpty ? genres : (movie.genres.isNotEmpty ? movie.genres : ['Action', 'Drama', 'HD']),
         embedUrl: embedUrl,
+        isSeries: isDrama || episodes.isNotEmpty,
+        episodes: episodes,
       );
     } catch (e) {
       debugPrint('[Scraper] Error fetching movie detail: $e');
       return movie.copyWith(
-        embedUrl: movie.url.startsWith('http') ? movie.url : '${_config.activeBaseUrl}${movie.url}',
+        embedUrl: movie.url.startsWith('http') ? movie.url : _normalizeUrl(movie.url),
       );
     }
   }

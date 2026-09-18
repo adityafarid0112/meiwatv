@@ -1,3 +1,59 @@
+class SeriesEpisode {
+  final int season;
+  final int episodeNo;
+  final String title;
+  final String slug;
+  final String url;
+  final String embedUrl;
+
+  SeriesEpisode({
+    required this.season,
+    required this.episodeNo,
+    required this.title,
+    required this.slug,
+    required this.url,
+    this.embedUrl = '',
+  });
+
+  factory SeriesEpisode.fromJson(Map<String, dynamic> json, {String baseUrl = ''}) {
+    final slug = json['slug'] ?? '';
+    String fullUrl = slug;
+    if (!fullUrl.startsWith('http') && baseUrl.isNotEmpty) {
+      final cleanBase = baseUrl.endsWith('/') ? baseUrl.substring(0, baseUrl.length - 1) : baseUrl;
+      final cleanSlug = slug.startsWith('/') ? slug : '/$slug';
+      fullUrl = '$cleanBase$cleanSlug';
+    }
+    return SeriesEpisode(
+      season: json['s'] is int ? json['s'] : int.tryParse(json['s']?.toString() ?? '1') ?? 1,
+      episodeNo: json['episode_no'] is int
+          ? json['episode_no']
+          : int.tryParse(json['episode_no']?.toString() ?? '1') ?? 1,
+      title: json['title'] ?? 'Episode ${json['episode_no'] ?? 1}',
+      slug: slug,
+      url: fullUrl,
+      embedUrl: json['embedUrl'] ?? '',
+    );
+  }
+
+  SeriesEpisode copyWith({
+    int? season,
+    int? episodeNo,
+    String? title,
+    String? slug,
+    String? url,
+    String? embedUrl,
+  }) {
+    return SeriesEpisode(
+      season: season ?? this.season,
+      episodeNo: episodeNo ?? this.episodeNo,
+      title: title ?? this.title,
+      slug: slug ?? this.slug,
+      url: url ?? this.url,
+      embedUrl: embedUrl ?? this.embedUrl,
+    );
+  }
+}
+
 class Movie {
   final String title;
   final String slug;
@@ -13,6 +69,7 @@ class Movie {
   final List<String> cast;
   final String embedUrl;
   final bool isSeries;
+  final List<SeriesEpisode> episodes;
 
   Movie({
     required this.title,
@@ -29,6 +86,7 @@ class Movie {
     this.cast = const [],
     this.embedUrl = "",
     this.isSeries = false,
+    this.episodes = const [],
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
@@ -84,6 +142,7 @@ class Movie {
     List<String>? cast,
     String? embedUrl,
     bool? isSeries,
+    List<SeriesEpisode>? episodes,
   }) {
     return Movie(
       title: title ?? this.title,
@@ -100,6 +159,7 @@ class Movie {
       cast: cast ?? this.cast,
       embedUrl: embedUrl ?? this.embedUrl,
       isSeries: isSeries ?? this.isSeries,
+      episodes: episodes ?? this.episodes,
     );
   }
 }
