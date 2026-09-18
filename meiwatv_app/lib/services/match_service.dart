@@ -71,30 +71,32 @@ class MatchService {
     }
   }
 
-  // URL CDN dan GitHub Raw untuk auto-update pertandingan tanpa compile ulang
-  static const String jsdelivrCdnUrl =
-      'https://cdn.jsdelivr.net/gh/adityafarid0112/meiwatv@main/matches.json';
+  // URL CDN dan Portal untuk auto-update pertandingan tanpa compile ulang
+  static const String portalUrl =
+      'http://meiwa.my.id/matches.json';
   static const String githubRawUrl =
       'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/matches.json';
+  static const String jsdelivrCdnUrl =
+      'https://cdn.jsdelivr.net/gh/adityafarid0112/meiwatv@main/matches.json';
 
-  /// Mengambil siaran langsung terbaru (utamakan CDN / GitHub jika masih fresh, atau langsung scrape sumber web)
+  /// Mengambil siaran langsung terbaru (utamakan Portal / CDN / GitHub jika masih fresh, atau langsung scrape sumber web)
   Future<void> refreshOnlineMatches({bool forceDirectScrape = false}) async {
     try {
-      // 1. Jika tidak dipaksa scrape langsung, coba cek GitHub / CDN terlebih dahulu
+      // 1. Jika tidak dipaksa scrape langsung, coba cek Portal / GitHub / CDN terlebih dahulu
       if (!forceDirectScrape) {
-        final endpoints = [githubRawUrl, jsdelivrCdnUrl];
+        final endpoints = [portalUrl, githubRawUrl, jsdelivrCdnUrl];
         for (final endpoint in endpoints) {
           try {
             final uri = Uri.parse('$endpoint?t=${DateTime.now().millisecondsSinceEpoch}');
             final res = await http.get(uri, headers: {
               'Cache-Control': 'no-cache, no-store, must-revalidate',
               'Pragma': 'no-cache',
-            }).timeout(const Duration(seconds: 8));
+            }).timeout(const Duration(seconds: 6));
 
             if (res.statusCode == 200 && res.body.isNotEmpty) {
               final List<dynamic> decoded = json.decode(res.body);
               if (decoded.isNotEmpty) {
-                // Cek apakah dataset GitHub masih segar (< 15 menit)
+                // Cek apakah dataset masih segar (< 15 menit)
                 final firstItem = decoded.first as Map<String, dynamic>;
                 final updatedStr = firstItem['updatedAt'] as String?;
                 bool isStale = false;
@@ -117,7 +119,7 @@ class MatchService {
                   debugPrint('✅ Berhasil memuat data segar (${_cachedMatches.length} siaran) dari $endpoint');
                   return;
                 } else {
-                  debugPrint('⚠️ Data GitHub berusia > 15 menit, melanjutkan scraping live langsung...');
+                  debugPrint('⚠️ Data di $endpoint berusia > 15 menit, melanjutkan live scraping...');
                   break;
                 }
               }
@@ -386,13 +388,8 @@ class MatchService {
       int prioB = categoryPriority[b.sportCategory] ?? 99;
       if (prioA != prioB) return prioA.compareTo(prioB);
 
-      if (a.status == 1) {
-        return b.kickoffIso.compareTo(a.kickoffIso);
-      } else if (a.status == 0) {
-        return a.kickoffIso.compareTo(b.kickoffIso);
-      } else {
-        return b.kickoffIso.compareTo(a.kickoffIso);
-      }
+      // 3. Pertahankan urutan persis seperti kemunculan di web sumber
+      return 0;
     });
   }
 

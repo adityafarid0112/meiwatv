@@ -93,6 +93,7 @@ async function scrapeAll() {
 
     const parsedMap = new Map();
     const sportCounts = {};
+    let rawIndex = 0;
 
     for (const src of sourceHtmls) {
         let match;
@@ -123,6 +124,8 @@ async function scrapeAll() {
             const year = linkMatch[6];
             const hour = timeStr.slice(0, 2);
             const min = timeStr.slice(2, 4);
+
+            rawIndex++;
 
             // Cek duplikasi (jangan timpa data Xoilac yang sudah ada, tapi lengkapi data yang baru dari Socolive)
             if (parsedMap.has(relUrl)) continue;
@@ -229,6 +232,7 @@ async function scrapeAll() {
             sportCounts[category] = (sportCounts[category] || 0) + 1;
 
             parsedMap.set(relUrl, {
+                originalIndex: rawIndex,
                 title,
                 home,
                 away,
@@ -268,9 +272,9 @@ async function scrapeAll() {
 
     // Urutkan:
     // 1. LIVE (status === 1) SELALU paling atas
-    //    - Di antara LIVE: Sepak Bola prioritas pertama, lalu urutkan berdasarkan kickoff
-    // 2. UPCOMING (status === 0): Sepak Bola prioritas pertama, lalu urut jam mulai terdekat
-    // 3. FINISHED (status === 2): Urut jam paling baru
+    //    - Di antara LIVE: Sepak Bola prioritas pertama, lalu urutkan persis sesuai urutan asli di web sumber!
+    // 2. UPCOMING (status === 0): Sepak Bola prioritas pertama, lalu urut persis sesuai web sumber!
+    // 3. FINISHED (status === 2): Urut jam paling baru / urutan web sumber!
     parsedMatches.sort((a, b) => {
         // 1. Prioritas Status (Live = 1 paling atas, lalu Upcoming = 0, lalu Selesai = 2)
         const getStatusWeight = (s) => (s === 1 ? 0 : s === 0 ? 1 : 2);
@@ -283,17 +287,8 @@ async function scrapeAll() {
         const prioB = categoryPriority[b.category] || 99;
         if (prioA !== prioB) return prioA - prioB;
 
-        // 3. Jika status sama & kategori sama:
-        if (a.status === 1) {
-            // Live: pertandingan yang mulai belakangan (masih babak 1) atau baru mulai
-            return b.kickoffIso.localeCompare(a.kickoffIso);
-        } else if (a.status === 0) {
-            // Upcoming: yang mulai paling cepat
-            return a.kickoffIso.localeCompare(b.kickoffIso);
-        } else {
-            // Selesai: yang baru saja selesai
-            return b.kickoffIso.localeCompare(a.kickoffIso);
-        }
+        // 3. Pertahankan urutan persis seperti tampilan di web sumber!
+        return a.originalIndex - b.originalIndex;
     });
 
     console.log(`\n🔍 Mengekstrak direct channel stream untuk ${parsedMatches.length} pertandingan...`);
@@ -378,6 +373,13 @@ async function scrapeAll() {
     if (fs.existsSync(path.dirname(appAssetMatches))) {
         fs.writeFileSync(appAssetMatches, JSON.stringify(finalMatches, null, 2), 'utf8');
         fs.writeFileSync(appAssetConfig, JSON.stringify(adsConfig, null, 2), 'utf8');
+    }
+
+    const portalMatches = path.join(__dirname, 'portal', 'matches.json');
+    const portalConfig = path.join(__dirname, 'portal', 'app_config.json');
+    if (fs.existsSync(path.dirname(portalMatches))) {
+        fs.writeFileSync(portalMatches, JSON.stringify(finalMatches, null, 2), 'utf8');
+        fs.writeFileSync(portalConfig, JSON.stringify(adsConfig, null, 2), 'utf8');
     }
 
     console.log('✅ Selesai mengekstrak semua siaran dan iklan!');
