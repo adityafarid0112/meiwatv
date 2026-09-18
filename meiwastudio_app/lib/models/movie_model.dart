@@ -1,3 +1,33 @@
+class VideoServer {
+  final String name;
+  final String serverKey;
+  final String url;
+  final String qualityLabel;
+
+  const VideoServer({
+    required this.name,
+    required this.serverKey,
+    required this.url,
+    required this.qualityLabel,
+  });
+
+  factory VideoServer.fromJson(Map<String, dynamic> json) {
+    return VideoServer(
+      name: json['name'] ?? '',
+      serverKey: json['serverKey'] ?? '',
+      url: json['url'] ?? '',
+      qualityLabel: json['qualityLabel'] ?? 'HD',
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'serverKey': serverKey,
+    'url': url,
+    'qualityLabel': qualityLabel,
+  };
+}
+
 class SeriesEpisode {
   final int season;
   final int episodeNo;
@@ -5,6 +35,7 @@ class SeriesEpisode {
   final String slug;
   final String url;
   final String embedUrl;
+  final List<VideoServer> servers;
 
   SeriesEpisode({
     required this.season,
@@ -13,6 +44,7 @@ class SeriesEpisode {
     required this.slug,
     required this.url,
     this.embedUrl = '',
+    this.servers = const [],
   });
 
   factory SeriesEpisode.fromJson(Map<String, dynamic> json, {String baseUrl = ''}) {
@@ -32,6 +64,9 @@ class SeriesEpisode {
       slug: slug,
       url: fullUrl,
       embedUrl: json['embedUrl'] ?? '',
+      servers: json['servers'] != null && json['servers'] is List
+          ? (json['servers'] as List).map((s) => VideoServer.fromJson(s)).toList()
+          : const [],
     );
   }
 
@@ -42,6 +77,7 @@ class SeriesEpisode {
     String? slug,
     String? url,
     String? embedUrl,
+    List<VideoServer>? servers,
   }) {
     return SeriesEpisode(
       season: season ?? this.season,
@@ -50,6 +86,7 @@ class SeriesEpisode {
       slug: slug ?? this.slug,
       url: url ?? this.url,
       embedUrl: embedUrl ?? this.embedUrl,
+      servers: servers ?? this.servers,
     );
   }
 }
@@ -70,6 +107,7 @@ class Movie {
   final String embedUrl;
   final bool isSeries;
   final List<SeriesEpisode> episodes;
+  final List<VideoServer> servers;
 
   Movie({
     required this.title,
@@ -87,6 +125,7 @@ class Movie {
     this.embedUrl = "",
     this.isSeries = false,
     this.episodes = const [],
+    this.servers = const [],
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
@@ -105,6 +144,9 @@ class Movie {
       cast: List<String>.from(json['cast'] ?? []),
       embedUrl: json['embedUrl'] ?? '',
       isSeries: json['isSeries'] ?? false,
+      servers: json['servers'] != null && json['servers'] is List
+          ? (json['servers'] as List).map((s) => VideoServer.fromJson(s)).toList()
+          : const [],
     );
   }
 
@@ -124,6 +166,7 @@ class Movie {
       'cast': cast,
       'embedUrl': embedUrl,
       'isSeries': isSeries,
+      'servers': servers.map((s) => s.toJson()).toList(),
     };
   }
 
@@ -143,6 +186,7 @@ class Movie {
     String? embedUrl,
     bool? isSeries,
     List<SeriesEpisode>? episodes,
+    List<VideoServer>? servers,
   }) {
     return Movie(
       title: title ?? this.title,
@@ -160,6 +204,7 @@ class Movie {
       embedUrl: embedUrl ?? this.embedUrl,
       isSeries: isSeries ?? this.isSeries,
       episodes: episodes ?? this.episodes,
+      servers: servers ?? this.servers,
     );
   }
 }

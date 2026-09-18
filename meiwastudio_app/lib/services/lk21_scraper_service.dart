@@ -419,7 +419,130 @@ class LK21ScraperService {
     }
   }
 
-  /// Fetch Direct Episode Embed URL
+  /// Extract available Video Servers (P2P 480p, TURBOVIP 720p HD, HYDRAX 1080p FHD, CAST, etc.)
+  List<VideoServer> extractVideoServers(String html, {String fallbackUrl = ''}) {
+    final List<VideoServer> servers = [];
+    final Set<String> seenUrls = {};
+
+    // 1. Check data-url and data-server on player links
+    final serverMatches = RegExp(
+      r'<(?:a|button|li)[^>]*(?:data-url="([^"]+)"|href="([^"]+)")(?:\s+class="[^"]*")?\s+data-server="([^"]+)"[^>]*>([\s\S]*?)<\/(?:a|button|li)>',
+      caseSensitive: false,
+    ).allMatches(html);
+
+    for (final sm in serverMatches) {
+      String url = sm.group(1) ?? sm.group(2) ?? '';
+      final serverKey = (sm.group(3) ?? '').trim().toLowerCase();
+      final label = (sm.group(4) ?? '').replaceAll(RegExp(r'<[^>]*>'), '').trim();
+
+      if (url.startsWith('//')) url = 'https:$url';
+
+      if (url.isNotEmpty && url.contains('http') && seenUrls.add(url)) {
+        String displayName = label.isNotEmpty ? label.toUpperCase() : serverKey.toUpperCase();
+        String quality = '720p HD';
+
+        if (serverKey == 'turbovip') {
+          displayName = 'TURBOVIP • 720p HD';
+          quality = '720p HD';
+        } else if (serverKey == 'hydrax') {
+          displayName = 'HYDRAX • 1080p FHD';
+          quality = '1080p Full HD';
+        } else if (serverKey == 'p2p') {
+          displayName = 'P2P • 480p SD (Cepat)';
+          quality = '480p SD';
+        } else if (serverKey == 'cast') {
+          displayName = 'CAST • Mirror HD';
+          quality = 'Mirror HD';
+        }
+
+        servers.add(VideoServer(
+          name: displayName,
+          serverKey: serverKey,
+          url: url,
+          qualityLabel: quality,
+        ));
+      }
+    }
+
+    // 2. Also check player-list if any were missed
+    if (servers.isEmpty) {
+      final listMatches = RegExp(
+        r'<a[^>]*data-url="([^"]*(?:videonode|playcdn|player|embed|stream)[^"]*)"[^>]*>([\s\S]*?)<\/a>',
+        caseSensitive: false,
+      ).allMatches(html);
+
+      for (final lm in listMatches) {
+        String url = lm.group(1) ?? '';
+        final text = lm.group(2)?.replaceAll(RegExp(r'<[^>]*>'), '').trim() ?? 'Server';
+        if (url.startsWith('//')) url = 'https:$url';
+        if (url.isNotEmpty && seenUrls.add(url)) {
+          servers.add(VideoServer(
+            name: text.isNotEmpty ? text.toUpperCase() : 'Server ${servers.length + 1}',
+            serverKey: 'server_${servers.length + 1}',
+            url: url,
+            qualityLabel: text.contains('1080') ? '1080p FHD' : (text.contains('720') ? '720p HD' : 'HD'),
+          ));
+        }
+      }
+    }
+
+    // 3. Fallback to main-player iframe if available
+    if (servers.isEmpty && fallbackUrl.isNotEmpty && seenUrls.add(fallbackUrl)) {
+      servers.add(VideoServer(
+        name: 'Server Utama (Auto)',
+        serverKey: 'default',
+        url: fallbackUrl,
+        qualityLabel: 'HD Auto',
+      ));
+    }
+
+    // Order: TURBOVIP (720p) -> HYDRAX (1080p) -> P2P (480p) -> CAST
+    servers.sort((a, b) {
+      int score(VideoServer s) {
+        if (s.serverKey == 'turbovip') return 1;
+        if (s.serverKey == 'hydrax') return 2;
+        if (s.serverKey == 'p2p') return 3;
+        if (s.serverKey == 'cast') return 4;
+        return 5;
+      }
+      return score(a).compareTo(score(b));
+    });
+
+    return servers;
+  }
+
+  /// Fetch Direct Episode Embed URL and Servers
+  Future<SeriesEpisode> fetchEpisodeDetails(SeriesEpisode episode) async {
+    try {
+      final fullUrl = episode.url.startsWith('http')
+          ? episode.url
+          : _normalizeUrl(episode.url, defaultHost: _config.dramaBaseUrl);
+      final html = await _fetchHtmlWithFailover(fullUrl, defaultHost: _config.dramaBaseUrl);
+
+      String embedUrl = '';
+      final iframeMatch = RegExp(r'<iframe[^>]*id="main-player"[^>]*src="([^"]*)"', caseSensitive: false).firstMatch(html) ??
+                          RegExp(r'<iframe[^>]*src="([^"]*(?:videonode|player|embed|stream|p2p|playcdn)[^"]*)"', caseSensitive: false).firstMatch(html);
+      if (iframeMatch != null) {
+        embedUrl = iframeMatch.group(1) ?? '';
+        if (embedUrl.startsWith('//')) embedUrl = 'https:$embedUrl';
+      }
+
+      final servers = extractVideoServers(html, fallbackUrl: embedUrl);
+      if (embedUrl.isEmpty && servers.isNotEmpty) {
+        embedUrl = servers.first.url;
+      }
+
+      return episode.copyWith(
+        embedUrl: embedUrl.isNotEmpty ? embedUrl : fullUrl,
+        servers: servers,
+      );
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching episode details: $e');
+      return episode;
+    }
+  }
+
+  /// Fetch Direct Episode Embed URL (Backward compatibility)
   Future<String> fetchEpisodeEmbedUrl(String episodeUrl) async {
     try {
       final fullUrl = episodeUrl.startsWith('http')
@@ -441,7 +564,7 @@ class LK21ScraperService {
     }
   }
 
-  /// Fetch Movie / Drama Details & Streaming Embed URL + Episodes List
+  /// Fetch Movie / Drama Details & Streaming Embed URL + Episodes List + Servers
   Future<Movie> fetchMovieDetail(Movie movie) async {
     try {
       final isDrama = movie.url.contains('nontondrama') || movie.url.contains('series') || movie.isSeries;
@@ -523,7 +646,7 @@ class LK21ScraperService {
         return a.episodeNo.compareTo(b.episodeNo);
       });
 
-      // 5. Video Embed URL
+      // 5. Video Embed URL & Server Extraction
       String embedUrl = '';
       final iframeMatch = RegExp(r'<iframe[^>]*id="main-player"[^>]*src="([^"]*)"', caseSensitive: false).firstMatch(html) ??
                           RegExp(r'<iframe[^>]*src="([^"]*(?:videonode|player|embed|stream|p2p|playcdn)[^"]*)"', caseSensitive: false).firstMatch(html);
@@ -532,6 +655,13 @@ class LK21ScraperService {
         if (embedUrl.startsWith('//')) {
           embedUrl = 'https:$embedUrl';
         }
+      }
+
+      final servers = extractVideoServers(html, fallbackUrl: embedUrl);
+
+      // If embedUrl empty, use first server URL
+      if (embedUrl.isEmpty && servers.isNotEmpty) {
+        embedUrl = servers.first.url;
       }
 
       // Fallback for player list options
@@ -546,7 +676,8 @@ class LK21ScraperService {
 
       // If series and embedUrl still empty, get Episode 1 embed
       if (embedUrl.isEmpty && episodes.isNotEmpty) {
-        embedUrl = await fetchEpisodeEmbedUrl(episodes.first.url);
+        final epDetail = await fetchEpisodeDetails(episodes.first);
+        embedUrl = epDetail.embedUrl;
       }
 
       if (embedUrl.isEmpty) {
@@ -560,6 +691,7 @@ class LK21ScraperService {
         embedUrl: embedUrl,
         isSeries: isDrama || episodes.isNotEmpty,
         episodes: episodes,
+        servers: servers,
       );
     } catch (e) {
       debugPrint('[Scraper] Error fetching movie detail: $e');
