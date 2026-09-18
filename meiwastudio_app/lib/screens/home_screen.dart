@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/movie_model.dart';
 import '../services/lk21_scraper_service.dart';
 import '../services/remote_config_service.dart';
 import '../widgets/tv_focusable_widget.dart';
 import '../widgets/tv_movie_card.dart';
+import 'category_list_screen.dart';
 import 'movie_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,10 +22,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool _isLoading = true;
   String _selectedGenreSlug = '';
-  List<Movie> _popularMovies = [];
+  
+  // Category Lists
+  List<Movie> _filmTerbaru = [];
+  List<Movie> _seriesUnggulan = [];
+  List<Movie> _seriesUpdate = [];
+  List<Movie> _topBulanIni = [];
+  List<Movie> _topRating = [];
   List<Movie> _genreMovies = [];
+  List<Movie> _searchResults = [];
   Movie? _featuredMovie;
+  
   final TextEditingController _searchController = TextEditingController();
+
+  static const String saweriaUrl = 'https://saweria.co/meiwatv';
+  static const String adsterraUrl1 = 'https://www.profitableratecpmnetwork.com/r1x7jbv2ys?key=c06365de807e3e8605b4e7e665953775';
+  static const String adsterraUrl2 = 'https://www.profitableratecpmnetwork.com/nhgf41xe?key=c1f7258bb9659ab225647c310b68619e';
+
+  int _adClickCount = 0;
+  void _openPartnerAd() {
+    _adClickCount++;
+    _launchExternalUrl(_adClickCount % 2 == 0 ? adsterraUrl1 : adsterraUrl2);
+  }
 
   @override
   void initState() {
@@ -34,37 +54,47 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _initApp() async {
     setState(() => _isLoading = true);
     await _config.initConfig();
-    await _loadMovies();
+    await _loadAllCategories();
   }
 
-  Future<void> _loadMovies() async {
+  Future<void> _loadAllCategories() async {
     try {
-      final popular = await _scraper.fetchPopularMovies();
-      final genreList = await _scraper.fetchMoviesByGenre(_selectedGenreSlug);
+      final results = await Future.wait([
+        _scraper.fetchFilmTerbaru(),
+        _scraper.fetchSeriesUnggulan(),
+        _scraper.fetchSeriesUpdate(),
+        _scraper.fetchTopBulanIni(),
+        _scraper.fetchTopRating(),
+        _scraper.fetchMoviesByGenre(_selectedGenreSlug.isNotEmpty ? _selectedGenreSlug : 'action'),
+      ]);
 
       if (mounted) {
         setState(() {
-          _popularMovies = popular;
-          _genreMovies = genreList;
-          if (_popularMovies.isNotEmpty) {
-            _featuredMovie = _popularMovies.first;
-          } else if (_genreMovies.isNotEmpty) {
-            _featuredMovie = _genreMovies.first;
+          _filmTerbaru = results[0];
+          _seriesUnggulan = results[1];
+          _seriesUpdate = results[2];
+          _topBulanIni = results[3];
+          _topRating = results[4];
+          _genreMovies = results[5];
+
+          if (_filmTerbaru.isNotEmpty) {
+            _featuredMovie = _filmTerbaru.first;
+          } else if (_topBulanIni.isNotEmpty) {
+            _featuredMovie = _topBulanIni.first;
           }
           _isLoading = false;
         });
       }
     } catch (e) {
-      debugPrint('[HomeScreen] Error loading movies: $e');
+      debugPrint('[HomeScreen] Error loading categories: $e');
       if (mounted) setState(() => _isLoading = false);
     }
   }
 
   void _onGenreSelected(String slug) {
-    if (_selectedGenreSlug == slug) return;
     setState(() {
       _selectedGenreSlug = slug;
-      _isLoading = true;
+      _searchResults.clear();
     });
     _loadGenreMovies(slug);
   }
@@ -74,7 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (mounted) {
       setState(() {
         _genreMovies = list;
-        _isLoading = false;
       });
     }
   }
@@ -85,6 +114,26 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (_) => MovieDetailScreen(movie: movie),
       ),
     );
+  }
+
+  void _openCategory(String title, String endpoint) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => CategoryListScreen(
+          title: title,
+          endpoint: endpoint,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _launchExternalUrl(String url) async {
+    try {
+      final uri = Uri.parse(url);
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (e) {
+      debugPrint('[HomeScreen] Could not launch $url: $e');
+    }
   }
 
   void _showSearchDialog() {
@@ -141,8 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final results = await _scraper.searchMovies(query);
     if (mounted) {
       setState(() {
-        _genreMovies = results;
-        _selectedGenreSlug = 'search';
+        _searchResults = results;
         _isLoading = false;
       });
     }
@@ -159,16 +207,16 @@ class _HomeScreenState extends State<HomeScreen> {
           onRefresh: _initApp,
           child: CustomScrollView(
             slivers: [
-              // 1. Top Header Navbar
+              // 1. Top Header Navbar with Meiwa Studio Logo & Action Buttons
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
                   child: Row(
                     children: [
-                      // Brand Logo Image (meiwa studio.png)
+                      // Header Logo Image (meiwa studio.png)
                       Image.asset(
                         'assets/images/header_logo.png',
-                        height: 36,
+                        height: 38,
                         fit: BoxFit.contain,
                         errorBuilder: (context, error, stackTrace) => Image.asset(
                           'assets/images/logo_icon.png',
@@ -176,6 +224,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       const Spacer(),
+
+                      // Saweria Donasi Button
+                      TVFocusableWidget(
+                        onTap: () => _launchExternalUrl(saweriaUrl),
+                        borderRadius: BorderRadius.circular(30),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFFB703).withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(color: const Color(0xFFFFB703).withValues(alpha: 0.5)),
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.coffee_rounded, color: Color(0xFFFFB703), size: 16),
+                              SizedBox(width: 4),
+                              Text('Saweria', style: TextStyle(color: Color(0xFFFFB703), fontSize: 11, fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+
                       // Search Button (TV Focusable)
                       TVFocusableWidget(
                         onTap: _showSearchDialog,
@@ -190,15 +262,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.search_rounded, color: Colors.white, size: 18),
+                              Icon(Icons.search_rounded, color: Colors.white, size: 16),
                               SizedBox(width: 4),
-                              Text('Cari Film', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
+                              Text('Cari', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
                             ],
                           ),
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      // Refresh / Reload Mirror Button
+                      const SizedBox(width: 8),
+
+                      // Refresh Button
                       TVFocusableWidget(
                         onTap: _initApp,
                         borderRadius: BorderRadius.circular(50),
@@ -209,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
                           ),
-                          child: const Icon(Icons.refresh_rounded, color: Colors.white, size: 18),
+                          child: const Icon(Icons.refresh_rounded, color: Colors.white, size: 16),
                         ),
                       ),
                     ],
@@ -217,235 +290,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              // 2. Hero Featured Movie Banner (if available)
-              if (_featuredMovie != null && _selectedGenreSlug != 'search')
+              // 2. Search Results View (if active)
+              if (_searchResults.isNotEmpty) ...[
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-                    child: TVFocusableWidget(
-                      onTap: () => _openDetail(_featuredMovie!),
-                      scaleFactor: 1.02,
-                      borderRadius: BorderRadius.circular(18),
-                      child: Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
-                        ),
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl: _featuredMovie!.posterUrl,
-                              fit: BoxFit.cover,
-                              errorWidget: (context, url, error) => Container(color: const Color(0xFF131A29)),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                gradient: LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: [
-                                    Colors.black.withValues(alpha: 0.9),
-                                    Colors.black.withValues(alpha: 0.6),
-                                    Colors.transparent,
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 20,
-                              left: 20,
-                              bottom: 20,
-                              right: 120,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFEC4899),
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: const Text(
-                                      '🔥 FILM PILIHAN HARI INI',
-                                      style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w900),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    _featuredMovie!.title,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w800,
-                                      height: 1.2,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                                        decoration: BoxDecoration(
-                                          gradient: const LinearGradient(
-                                            colors: [Color(0xFFEC4899), Color(0xFF8B5CF6)],
-                                          ),
-                                          borderRadius: BorderRadius.circular(20),
-                                        ),
-                                        child: const Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Icon(Icons.play_arrow_rounded, color: Colors.white, size: 18),
-                                            SizedBox(width: 4),
-                                            Text('Tonton Sekarang', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-              // 3. Category / Genre Bar
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 42,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: _config.genres.length,
-                    separatorBuilder: (context, index) => const SizedBox(width: 8),
-                    itemBuilder: (context, index) {
-                      final genre = _config.genres[index];
-                      final isSelected = _selectedGenreSlug == genre.slug;
-
-                      return TVFocusableWidget(
-                        onTap: () => _onGenreSelected(genre.slug),
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: isSelected ? const Color(0xFFA855F7) : Colors.white.withValues(alpha: 0.05),
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: isSelected ? const Color(0xFFA855F7) : Colors.white.withValues(alpha: 0.08),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              genre.title,
-                              style: TextStyle(
-                                color: isSelected ? Colors.white : Colors.white.withValues(alpha: 0.7),
-                                fontSize: 12,
-                                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-
-              const SliverToBoxAdapter(child: SizedBox(height: 16)),
-
-              // 4. Section Title
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    children: [
-                      Text(
-                        _selectedGenreSlug.isEmpty
-                            ? 'Katalog Film & Series'
-                            : (_selectedGenreSlug == 'search' ? 'Hasil Pencarian' : 'Genre: ${_config.genres.firstWhere((g) => g.slug == _selectedGenreSlug, orElse: () => const GenreCategory(title: 'Film', slug: '')).title}'),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      const Spacer(),
-                      if (_genreMovies.isNotEmpty)
-                        Text(
-                          '${_genreMovies.length} Judul',
-                          style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SliverToBoxAdapter(child: SizedBox(height: 12)),
-
-              // 5. Loading State
-              if (_isLoading)
-                const SliverFillRemaining(
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+                    child: Row(
                       children: [
-                        CircularProgressIndicator(
-                          strokeWidth: 3,
-                          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFA855F7)),
-                        ),
-                        SizedBox(height: 14),
-                        Text(
-                          'Menghubungkan ke Mirror LK21...',
-                          style: TextStyle(color: Colors.white70, fontSize: 13),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              // 6. Empty State
-              else if (_genreMovies.isEmpty)
-                SliverFillRemaining(
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.movie_outlined, color: Colors.white24, size: 64),
-                        const SizedBox(height: 12),
                         const Text(
-                          'Tidak ada film ditemukan',
-                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                          'Hasil Pencarian Film',
+                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800),
                         ),
-                        const SizedBox(height: 6),
-                        Text(
-                          'Silakan coba ganti genre atau gunakan pencarian lain.',
-                          style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFA855F7),
-                            foregroundColor: Colors.white,
-                          ),
-                          onPressed: () => _onGenreSelected(''),
-                          child: const Text('Tampilkan Semua Film'),
+                        const Spacer(),
+                        TextButton.icon(
+                          icon: const Icon(Icons.close_rounded, size: 16, color: Color(0xFFA855F7)),
+                          label: const Text('Tutup', style: TextStyle(color: Color(0xFFA855F7), fontWeight: FontWeight.bold)),
+                          onPressed: () => setState(() => _searchResults.clear()),
                         ),
                       ],
                     ),
                   ),
-                )
-              // 7. Movie Grid
-              else
+                ),
                 SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   sliver: SliverGrid(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: MediaQuery.of(context).size.width > 900
@@ -457,21 +324,472 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
-                        final movie = _genreMovies[index];
+                        final movie = _searchResults[index];
                         return TVMovieCard(
                           movie: movie,
                           onTap: () => _openDetail(movie),
                         );
                       },
-                      childCount: _genreMovies.length,
+                      childCount: _searchResults.length,
                     ),
                   ),
                 ),
+              ] else ...[
+                // 3. Hero Featured Movie Banner
+                if (_featuredMovie != null)
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 8, 20, 14),
+                      child: TVFocusableWidget(
+                        onTap: () => _openDetail(_featuredMovie!),
+                        scaleFactor: 1.02,
+                        borderRadius: BorderRadius.circular(18),
+                        child: Container(
+                          height: 195,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+                          ),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: _featuredMovie!.posterUrl,
+                                fit: BoxFit.cover,
+                                errorWidget: (context, url, error) => Container(color: const Color(0xFF131A29)),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(18),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      Colors.black.withValues(alpha: 0.92),
+                                      Colors.black.withValues(alpha: 0.6),
+                                      Colors.transparent,
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 20,
+                                left: 20,
+                                bottom: 20,
+                                right: 120,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFEC4899),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: const Text(
+                                        '🔥 REKOMENDASI HARI INI',
+                                        style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w900),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      _featuredMovie!.title,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w800,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                          decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                              colors: [Color(0xFFEC4899), Color(0xFF8B5CF6)],
+                                            ),
+                                            borderRadius: BorderRadius.circular(20),
+                                          ),
+                                          child: const Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(Icons.play_arrow_rounded, color: Colors.white, size: 18),
+                                              SizedBox(width: 4),
+                                              Text('Tonton Sekarang', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                // 4. Adsterra Sponsor & Dukungan Banner Card
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                    child: TVFocusableWidget(
+                      onTap: _openPartnerAd,
+                      borderRadius: BorderRadius.circular(14),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              const Color(0xFF8B5CF6).withValues(alpha: 0.2),
+                              const Color(0xFF3B82F6).withValues(alpha: 0.2),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(color: const Color(0xFFA855F7).withValues(alpha: 0.3)),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFA855F7).withValues(alpha: 0.2),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(Icons.card_giftcard_rounded, color: Color(0xFFC084FC), size: 20),
+                            ),
+                            const SizedBox(width: 12),
+                            const Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '🎁 Promo & Sponsor Partner MeiwaStudio',
+                                    style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w800),
+                                  ),
+                                  Text(
+                                    'Klik di sini untuk dukung server & nikmati tayangan gratis selamanya',
+                                    style: TextStyle(color: Colors.white60, fontSize: 10),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const Icon(Icons.open_in_new_rounded, color: Color(0xFFC084FC), size: 16),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                // 5. Quick Genre Pills Bar
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 38,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      itemCount: _config.genres.length,
+                      separatorBuilder: (context, index) => const SizedBox(width: 8),
+                      itemBuilder: (context, index) {
+                        final genre = _config.genres[index];
+                        final isSelected = _selectedGenreSlug == genre.slug;
+
+                        return TVFocusableWidget(
+                          onTap: () {
+                            if (genre.slug.isEmpty) {
+                              _openCategory('Semua Film Terbaru', '/latest');
+                            } else {
+                              _onGenreSelected(genre.slug);
+                            }
+                          },
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: isSelected ? const Color(0xFFA855F7) : Colors.white.withValues(alpha: 0.05),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: isSelected ? const Color(0xFFA855F7) : Colors.white.withValues(alpha: 0.08),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                genre.title,
+                                style: TextStyle(
+                                  color: isSelected ? Colors.white : Colors.white.withValues(alpha: 0.75),
+                                  fontSize: 12,
+                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+
+                const SliverToBoxAdapter(child: SizedBox(height: 16)),
+
+                // 6. Loading State
+                if (_isLoading)
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 60),
+                      child: Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CircularProgressIndicator(
+                              strokeWidth: 3,
+                              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFA855F7)),
+                            ),
+                            SizedBox(height: 14),
+                            Text(
+                              'Menghubungkan ke Server Film & Drama...',
+                              style: TextStyle(color: Colors.white70, fontSize: 13),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                else ...[
+                  // Section 1: FILM TERBARU
+                  if (_filmTerbaru.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '🎬 FILM TERBARU',
+                        subtitle: 'Koleksi rilis bioskop & film terupdate',
+                        movies: _filmTerbaru,
+                        onSeeAll: () => _openCategory('Film Terbaru', '/latest'),
+                      ),
+                    ),
+
+                  // Section 2: SERIES UNGGULAN
+                  if (_seriesUnggulan.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '⭐ SERIES UNGGULAN',
+                        subtitle: 'Serial drama & series paling populer hari ini',
+                        movies: _seriesUnggulan,
+                        onSeeAll: () => _openCategory('Series Unggulan', '/top-series-today'),
+                      ),
+                    ),
+
+                  // Section 3: SERIES UPDATE
+                  if (_seriesUpdate.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '📺 SERIES UPDATE',
+                        subtitle: 'Episode & series terbaru yang baru ditambahkan',
+                        movies: _seriesUpdate,
+                        onSeeAll: () => _openCategory('Series Update', '/latest-series'),
+                      ),
+                    ),
+
+                  // Section 4: TOP BULAN INI
+                  if (_topBulanIni.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '🔥 TOP BULAN INI',
+                        subtitle: 'Film paling banyak ditonton bulan ini',
+                        movies: _topBulanIni,
+                        onSeeAll: () => _openCategory('Top Bulan Ini', '/populer'),
+                      ),
+                    ),
+
+                  // Section 5: TOP RATING
+                  if (_topRating.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '🏆 TOP RATING',
+                        subtitle: 'Film dengan rating penonton tertinggi',
+                        movies: _topRating,
+                        onSeeAll: () => _openCategory('Top Rating', '/rating'),
+                      ),
+                    ),
+
+                  // Section 6: Dynamic Selected Genre Row
+                  if (_genreMovies.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '🗂️ ${_selectedGenreSlug.isNotEmpty ? "GENRE: ${_config.genres.firstWhere((g) => g.slug == _selectedGenreSlug, orElse: () => const GenreCategory(title: 'Pilihan', slug: '')).title.toUpperCase()}" : "GENRE: ACTION & POPULER"}',
+                        subtitle: 'Eksplorasi ribuan film berdasarkan kategori',
+                        movies: _genreMovies,
+                        onSeeAll: () => _openCategory(
+                          _selectedGenreSlug.isNotEmpty
+                              ? 'Genre: ${_config.genres.firstWhere((g) => g.slug == _selectedGenreSlug, orElse: () => const GenreCategory(title: 'Genre', slug: '')).title}'
+                              : 'Semua Film Action',
+                          _selectedGenreSlug.isNotEmpty ? '/genre/$_selectedGenreSlug' : '/genre/action',
+                        ),
+                      ),
+                    ),
+
+                  // Section 7: Semua Genre Exploration Grid
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            '📌 SEMUA KATEGORI & GENRE',
+                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Pilih genre untuk melihat seluruh koleksi film & series',
+                            style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12),
+                          ),
+                          const SizedBox(height: 14),
+                          Wrap(
+                            spacing: 10,
+                            runSpacing: 10,
+                            children: _config.genres.where((g) => g.slug.isNotEmpty).map((genre) {
+                              return TVFocusableWidget(
+                                onTap: () => _openCategory('Genre: ${genre.title}', '/genre/${genre.slug}'),
+                                borderRadius: BorderRadius.circular(12),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF0E131F),
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        genre.title,
+                                        style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
+                                      ),
+                                      const SizedBox(width: 6),
+                                      const Icon(Icons.arrow_forward_ios_rounded, color: Color(0xFFA855F7), size: 12),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ],
 
               const SliverToBoxAdapter(child: SizedBox(height: 40)),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  /// Reusable Horizontal Section with Header & "Semua" Button
+  Widget _buildCategorySection({
+    required String title,
+    required String subtitle,
+    required List<Movie> movies,
+    required VoidCallback onSeeAll,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Section Header Row
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 0.3,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        subtitle,
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.5),
+                          fontSize: 11,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // "Semua" / "Lihat Semua" Button (TV Focusable)
+                TVFocusableWidget(
+                  onTap: onSeeAll,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFA855F7).withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: const Color(0xFFA855F7).withValues(alpha: 0.4)),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Semua',
+                          style: TextStyle(
+                            color: Color(0xFFC084FC),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 4),
+                        Icon(Icons.arrow_forward_ios_rounded, color: Color(0xFFC084FC), size: 10),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+
+          // Horizontal Movie Cards Carousel
+          SizedBox(
+            height: 235,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              itemCount: movies.length,
+              separatorBuilder: (context, index) => const SizedBox(width: 12),
+              itemBuilder: (context, index) {
+                final movie = movies[index];
+                return SizedBox(
+                  width: 135,
+                  child: TVMovieCard(
+                    movie: movie,
+                    onTap: () => _openDetail(movie),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
