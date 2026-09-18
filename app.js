@@ -77,15 +77,19 @@ function initModalLogic() {
     const serverList = document.getElementById("modalServerList");
     let serverHtml = '';
 
+    const stbSize = appKey === 'sports' ? '44.5 MB' : '15.6 MB';
+    const hpSize = appKey === 'sports' ? '45.2 MB' : '18.0 MB';
+    const univSize = appKey === 'sports' ? '132.8 MB' : '50.6 MB';
+
     // 1. Versi Ringan STB / Smart TV (Sangat Hemat Memori)
     if (app.downloadUrlSTB) {
       serverHtml += `
-        <a href="${app.downloadUrlSTB}" class="server-btn" download>
+        <a href="${app.downloadUrlSTB}" class="server-btn" target="_blank" rel="noopener noreferrer">
           <div class="server-btn-info">
             <span class="server-btn-title">📺 Versi Ringan: STB / Smart TV (Hemat Memori)</span>
-            <span class="server-btn-sub">Format 32-bit (armeabi-v7a) • Sangat ringan & anti-lag di TV Box</span>
+            <span class="server-btn-sub">Format 32-bit (armeabi-v7a) • Sangat ringan & anti-lag di TV Box (${stbSize})</span>
           </div>
-          <span class="server-badge" style="background: #10B981; color: #fff;">TV Box</span>
+          <span class="server-badge" style="background: #10B981; color: #fff;">${stbSize}</span>
         </a>
       `;
     }
@@ -93,12 +97,12 @@ function initModalLogic() {
     // 2. Versi Khusus HP Android (64-bit)
     if (app.downloadUrlHP) {
       serverHtml += `
-        <a href="${app.downloadUrlHP}" class="server-btn" download>
+        <a href="${app.downloadUrlHP}" class="server-btn" target="_blank" rel="noopener noreferrer">
           <div class="server-btn-info">
             <span class="server-btn-title">📱 Versi Ringan: HP Android (64-Bit)</span>
-            <span class="server-btn-sub">Format ARM64 • Dioptimalkan untuk Smartphone modern</span>
+            <span class="server-btn-sub">Format ARM64 • Dioptimalkan untuk Smartphone modern (${hpSize})</span>
           </div>
-          <span class="server-badge" style="background: #8B5CF6; color: #fff;">HP</span>
+          <span class="server-badge" style="background: #8B5CF6; color: #fff;">${hpSize}</span>
         </a>
       `;
     }
@@ -106,25 +110,12 @@ function initModalLogic() {
     // 3. Versi Universal (Semua Tipe HP & TV)
     if (app.downloadUrlUniversal) {
       serverHtml += `
-        <a href="${app.downloadUrlUniversal}" class="server-btn" download>
+        <a href="${app.downloadUrlUniversal}" class="server-btn" target="_blank" rel="noopener noreferrer">
           <div class="server-btn-info">
             <span class="server-btn-title">🌐 Versi Universal (Semua Jenis HP & TV)</span>
-            <span class="server-btn-sub">Format Fat APK Kompatibel untuk semua perangkat Android</span>
+            <span class="server-btn-sub">Format Fat APK Kompatibel untuk semua perangkat Android (${univSize})</span>
           </div>
-          <span class="server-badge" style="background: #64748B; color: #fff;">All-in-1</span>
-        </a>
-      `;
-    }
-
-    // 4. Google Drive (Opsional jika link diisi)
-    if (app.downloadUrlGoogleDrive && app.downloadUrlGoogleDrive.trim() !== '') {
-      serverHtml += `
-        <a href="${app.downloadUrlGoogleDrive}" class="server-btn" target="_blank" rel="noopener noreferrer">
-          <div class="server-btn-info">
-            <span class="server-btn-title">☁️ Alternatif: Google Drive</span>
-            <span class="server-btn-sub">Download via link Google Drive</span>
-          </div>
-          <span class="server-badge" style="background: #3B82F6; color: #fff;">Drive</span>
+          <span class="server-badge" style="background: #64748B; color: #fff;">${univSize}</span>
         </a>
       `;
     }

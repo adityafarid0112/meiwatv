@@ -26,11 +26,15 @@ const MEIWA_CONFIG = {
       minAndroid: "Android 5.0+ (Lollipop ke atas)",
       supportsTV: true,
       
-      // Link Download APK
-      downloadUrlUniversal: "downloads/MeiwaSports.apk",
-      downloadUrlSTB: "downloads/MeiwaSports-stb-lite.apk",
-      downloadUrlHP: "downloads/MeiwaSports-hp.apk",
-      downloadUrlGoogleDrive: "", // Isi link Google Drive di sini jika sudah diupload (opsional)
+      // Link Download APK (Google Drive)
+      downloadUrlUniversal: "https://drive.google.com/uc?export=download&id=19gBdRmoCI3Q4qErca5a8f7u0ix5_iVoG",
+      downloadUrlSTB: "https://drive.google.com/uc?export=download&id=1s0hHDHYfVo8bqAoSK0rHVRcrUFUpd6QY",
+      downloadUrlHP: "https://drive.google.com/uc?export=download&id=1sWP2kF5n2mlUH2bNf4JsQ3jYTxerni7x",
+      
+      // Mirror / Preview Links
+      driveViewUniversal: "https://drive.google.com/file/d/19gBdRmoCI3Q4qErca5a8f7u0ix5_iVoG/view?usp=sharing",
+      driveViewSTB: "https://drive.google.com/file/d/1s0hHDHYfVo8bqAoSK0rHVRcrUFUpd6QY/view?usp=sharing",
+      driveViewHP: "https://drive.google.com/file/d/1sWP2kF5n2mlUH2bNf4JsQ3jYTxerni7x/view?usp=sharing",
 
       rating: "4.9",
       totalDownloads: "15K+",
@@ -64,11 +68,15 @@ const MEIWA_CONFIG = {
       minAndroid: "Android 5.0+ (Lollipop ke atas)",
       supportsTV: true,
 
-      // Link Download APK
-      downloadUrlUniversal: "downloads/meiwastudio.apk",
-      downloadUrlSTB: "downloads/meiwastudio-stb-lite.apk",
-      downloadUrlHP: "downloads/meiwastudio-hp.apk",
-      downloadUrlGoogleDrive: "", // Isi link Google Drive di sini jika sudah diupload (opsional)
+      // Link Download APK (Google Drive)
+      downloadUrlUniversal: "https://drive.google.com/uc?export=download&id=1P84kJAU4M_lmjr6upcboHHhNHe0LqS1c",
+      downloadUrlSTB: "https://drive.google.com/uc?export=download&id=1DjRWYcw43G-3AEfAxb0qI-sXTNPWw_Tt",
+      downloadUrlHP: "https://drive.google.com/uc?export=download&id=1fUypMiBVXvzLeirHdimQA_EsTnkqPeOt",
+      
+      // Mirror / Preview Links
+      driveViewUniversal: "https://drive.google.com/file/d/1P84kJAU4M_lmjr6upcboHHhNHe0LqS1c/view?usp=sharing",
+      driveViewSTB: "https://drive.google.com/file/d/1DjRWYcw43G-3AEfAxb0qI-sXTNPWw_Tt/view?usp=sharing",
+      driveViewHP: "https://drive.google.com/file/d/1fUypMiBVXvzLeirHdimQA_EsTnkqPeOt/view?usp=sharing",
 
       rating: "4.8",
       totalDownloads: "12K+",
