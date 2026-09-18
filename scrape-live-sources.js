@@ -11,27 +11,12 @@ function extractChannelUrl(item) {
 
 // 1. Baca semua domain live streaming dari "Link nonton Online.txt"
 function getSeeds() {
-    const linkFile = path.join(__dirname, 'Link nonton Online.txt');
-    if (fs.existsSync(linkFile)) {
-        const lines = fs.readFileSync(linkFile, 'utf8').split(/\r?\n/);
-        const seeds = lines
-            .map(l => l.trim())
-            .filter(l => l.startsWith('http') && !l.includes('profitablerate') && !l.includes('saweria'));
-        if (seeds.length > 0) return seeds;
-    }
     return [
+        'https://xoilaczbi.tv/',
+        'https://theceoschool.co/',
         'https://xoilacz.vip/',
-        'https://tft-forests.org/',
         'https://socolivezc.tv/',
-        'https://xoilackl.tv/',
-        'https://90phutcn.tv/',
-        'https://cakhiazkv.cc/',
-        'https://xoilaccu.tv/',
-        'https://vebotvx.cc/',
-        'https://rakhoiib.cc/',
-        'https://mitomzm.cc/',
-        'https://vaoroig.cc/',
-        'https://malaysiandigest.com/'
+        'https://tft-forests.org/'
     ];
 }
 
@@ -68,145 +53,156 @@ function getAdsConfig() {
 }
 
 async function scrapeAll() {
-    const SEEDS = getSeeds();
-    console.log(`📡 Menghubungi ${SEEDS.length} sumber live streaming dari Link nonton Online.txt...`);
-    let html = '';
-    let activeDomain = '';
+    const primarySeeds = [
+        { name: 'Xoilac', url: 'https://xoilaczbi.tv/' },
+        { name: 'Socolive', url: 'https://theceoschool.co/' }
+    ];
 
-    for (const seed of SEEDS) {
+    console.log(`📡 Menghubungi sumber live streaming utama (Xoilac & Socolive)...`);
+    const sourceHtmls = [];
+
+    for (const source of primarySeeds) {
         try {
-            console.log(` - Mengecek ${seed}...`);
-            const res = await fetch(seed, {
+            console.log(` - Mengambil data dari ${source.name} (${source.url})...`);
+            const res = await fetch(source.url, {
                 redirect: 'follow',
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
                 },
-                signal: AbortSignal.timeout(8000)
+                signal: AbortSignal.timeout(10000)
             });
             if (res.ok) {
                 const body = await res.text();
                 if (body.includes('grid-matches__item')) {
-                    html = body;
-                    activeDomain = new URL(res.url).origin;
-                    console.log(`   ✅ Terhubung ke ${activeDomain}`);
-                    break;
+                    const finalDomain = new URL(res.url).origin;
+                    sourceHtmls.push({ domain: finalDomain, html: body, name: source.name });
+                    console.log(`   ✅ Berhasil memuat ${source.name} (${finalDomain}, ${body.length} bytes)`);
                 }
             }
         } catch (e) {
-            console.warn(`[WARN] Gagal: ${e.message}`);
+            console.warn(`[WARN] Gagal menghubungi ${source.name}: ${e.message}`);
         }
     }
 
-    if (!html || !activeDomain) {
-        console.error('Gagal mengambil data dari seed.');
+    if (sourceHtmls.length === 0) {
+        console.error('Gagal mengambil data dari semua sumber utama.');
         return;
     }
 
-    // Parsing semua card pertandingan
     const cardRegex = /<div([^>]*class="[^"]*grid-matches__item[^"]*"[^>]*)>([\s\S]*?)(?=(?:<div[^>]*class="[^"]*grid-matches__item|<div[^>]*class="sport-content-tab|<\/body|$))/gi;
 
-    let match;
-    const parsedMatches = [];
+    const parsedMap = new Map();
     const sportCounts = {};
 
-    while ((match = cardRegex.exec(html)) !== null) {
-        const cardHeader = match[1];
-        const cardContent = match[2];
+    for (const src of sourceHtmls) {
+        let match;
+        cardRegex.lastIndex = 0;
 
-        // Ekstrak atribut cardHeader
-        const sportMatch = cardHeader.match(/data-sport="([^"]+)"/i);
-        const sportType = (sportMatch ? sportMatch[1] : 'football').toLowerCase();
+        while ((match = cardRegex.exec(src.html)) !== null) {
+            const cardHeader = match[1];
+            const cardContent = match[2];
 
-        const statusAttrMatch = cardHeader.match(/data-status="([^"]+)"/i);
-        const rawStatus = statusAttrMatch ? statusAttrMatch[1] : '1';
+            // Abaikan elemen iklan dalam grid
+            if (cardHeader.includes('xlz-ads-item')) continue;
 
-        const linkMatch = cardContent.match(/href="(\/truc-tiep\/([a-z0-9\-]+)-luc-(\d{4})-ngay-(\d{2})-(\d{2})-(\d{4})\/)"/i);
-        if (!linkMatch) continue;
+            // Ekstrak atribut cardHeader
+            const sportMatch = cardHeader.match(/data-sport="([^"]+)"/i);
+            const sportType = (sportMatch ? sportMatch[1] : 'football').toLowerCase();
 
-        const relUrl = linkMatch[1];
-        const slugName = linkMatch[2];
-        const timeStr = linkMatch[3];
-        const day = linkMatch[4];
-        const month = linkMatch[5];
-        const year = linkMatch[6];
-        const hour = timeStr.slice(0, 2);
-        const min = timeStr.slice(2, 4);
+            const statusAttrMatch = cardHeader.match(/data-status="([^"]+)"/i);
+            const rawStatus = statusAttrMatch ? statusAttrMatch[1] : '1';
 
-        // Jangan masukkan yang berstatus selesai lama (4 = FT, 8 = selesai)
-        if (rawStatus === '4' || rawStatus === '8') {
-            continue;
-        }
+            const linkMatch = cardContent.match(/href="(\/truc-tiep\/([a-z0-9\-]+)-luc-(\d{4})-ngay-(\d{2})-(\d{2})-(\d{4})\/)"/i);
+            if (!linkMatch) continue;
 
-        // Liga
-        const leagueMatch = cardContent.match(/class="[^"]*text-ellipsis[^"]*"[^>]*>\s*([^<]+)\s*<\/span>/i);
-        let league = leagueMatch ? leagueMatch[1].trim() : 'Live Sports';
-        league = league.replace(/&#039;/g, "'").replace(/&amp;/g, '&');
+            const relUrl = linkMatch[1];
+            const slugName = linkMatch[2];
+            const timeStr = linkMatch[3];
+            const day = linkMatch[4];
+            const month = linkMatch[5];
+            const year = linkMatch[6];
+            const hour = timeStr.slice(0, 2);
+            const min = timeStr.slice(2, 4);
 
-        // Home & Away IDs & Logos
-        const homeTeamIdMatch = cardHeader.match(/data-home-team-id="([^"]+)"/i);
-        const awayTeamIdMatch = cardHeader.match(/data-away-team-id="([^"]+)"/i);
-        const homeTeamId = homeTeamIdMatch ? homeTeamIdMatch[1] : '';
-        const awayTeamId = awayTeamIdMatch ? awayTeamIdMatch[1] : '';
+            // Cek duplikasi (jangan timpa data Xoilac yang sudah ada, tapi lengkapi data yang baru dari Socolive)
+            if (parsedMap.has(relUrl)) continue;
 
-        const homeImgMatch = cardContent.match(/team-logo-group-home-logo['"]*>\s*<img[^>]+src=['"]([^'"]+)['"]/i);
-        const awayImgMatch = cardContent.match(/team-logo-group-away-logo['"]*>\s*<img[^>]+src=['"]([^'"]+)['"]/i);
+            // Jangan masukkan yang berstatus selesai lama jika sudah ada status 8
+            if (rawStatus === '8') {
+                continue;
+            }
 
-        let homeLogo = (homeImgMatch && homeImgMatch[1].startsWith('http'))
-            ? homeImgMatch[1]
-            : (homeTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${homeTeamId}/image/small` : '');
-        let awayLogo = (awayImgMatch && awayImgMatch[1].startsWith('http'))
-            ? awayImgMatch[1]
-            : (awayTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${awayTeamId}/image/small` : '');
+            // Liga
+            const leagueMatch = cardContent.match(/class="[^"]*text-ellipsis[^"]*"[^>]*>\s*([^<]+)\s*<\/span>/i);
+            let league = leagueMatch ? leagueMatch[1].trim() : 'Live Sports';
+            league = league.replace(/&#039;/g, "'").replace(/&amp;/g, '&');
 
-        const homeMatch = cardContent.match(/class="[^"]*grid-match__team--home-name[^"]*"[^>]*>\s*([^<]+)\s*<\/div>/i);
-        const awayMatch = cardContent.match(/class="[^"]*grid-match__team--away-name[^"]*"[^>]*>\s*([^<]+)\s*<\/div>/i);
+            // Home & Away IDs & Logos
+            const homeTeamIdMatch = cardHeader.match(/data-home-team-id="([^"]+)"/i);
+            const awayTeamIdMatch = cardHeader.match(/data-away-team-id="([^"]+)"/i);
+            const homeTeamId = homeTeamIdMatch ? homeTeamIdMatch[1] : '';
+            const awayTeamId = awayTeamIdMatch ? awayTeamIdMatch[1] : '';
 
-        let home = homeMatch ? homeMatch[1].trim() : '';
-        let away = awayMatch ? awayMatch[1].trim() : '';
+            const homeImgMatch = cardContent.match(/team-logo-group-home-logo['"]*>\s*<img[^>]+src=['"]([^'"]+)['"]/i);
+            const awayImgMatch = cardContent.match(/team-logo-group-away-logo['"]*>\s*<img[^>]+src=['"]([^'"]+)['"]/i);
 
-        if (!home || !away) {
-            const raw = slugName.replace(/-/g, ' ');
-            const parts = raw.split(/\s+vs\s+|\s+-\s+/i);
-            home = home || (parts[0] ? parts[0].trim() : 'Tim 1');
-            away = away || (parts.length > 1 ? parts[1].trim() : 'Tim 2');
-        }
+            let homeLogo = (homeImgMatch && homeImgMatch[1].startsWith('http'))
+                ? homeImgMatch[1]
+                : (homeTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${homeTeamId}/image/small` : '');
+            let awayLogo = (awayImgMatch && awayImgMatch[1].startsWith('http'))
+                ? awayImgMatch[1]
+                : (awayTeamId ? `https://imgts.sportpulseapiz.com/${sportType}/team/${awayTeamId}/image/small` : '');
 
-        const title = `${home} vs ${away}`;
+            const homeMatch = cardContent.match(/class="[^"]*grid-match__team--home-name[^"]*"[^>]*>\s*([^<]+)\s*<\/div>/i);
+            const awayMatch = cardContent.match(/class="[^"]*grid-match__team--away-name[^"]*"[^>]*>\s*([^<]+)\s*<\/div>/i);
 
-        // Kategori Olahraga:
-        // Sepak Bola, Bola Basket, Bola Voli, Bulu Tangkis, Tenis, Olahraga Lainnya
-        let category = '⚽ Sepak Bola';
-        if (sportType === 'basketball') {
-            category = '🏀 Bola Basket';
-        } else if (sportType === 'volleyball') {
-            category = '🏐 Bola Voli';
-        } else if (sportType === 'badminton') {
-            category = '🏸 Bulu Tangkis';
-        } else if (sportType === 'tennis') {
-            category = '🎾 Tenis';
-        } else if (sportType !== 'football') {
-            category = '🏎️ Olahraga Lainnya';
-        }
+            let home = homeMatch ? homeMatch[1].trim() : '';
+            let away = awayMatch ? awayMatch[1].trim() : '';
 
-        const kickoffIso = `${year}-${month}-${day}T${hour}:${min}:00+07:00`;
-        const kickoffText = `${hour}:${min} WIB (${day}/${month})`;
-        const matchPageUrl = `${activeDomain}${relUrl}`;
+            if (!home || !away) {
+                const raw = slugName.replace(/-/g, ' ');
+                const parts = raw.split(/\s+vs\s+|\s+-\s+/i);
+                home = home || (parts[0] ? parts[0].trim() : 'Tim 1');
+                away = away || (parts.length > 1 ? parts[1].trim() : 'Tim 2');
+            }
 
-        // Penentuan Status LIVE yang akurat langsung dari sumbernya:
-        let status = 0;
-        if (['2', '3', '51', '52', '438'].includes(rawStatus) || cardContent.includes('is-live') || cardContent.includes('badge-live')) {
-            status = 1; // 🔴 LIVE SEKARANG
-        } else {
-            status = 0; // 📅 Jadwal Hari Ini
-        }
+            const title = `${home} vs ${away}`;
 
-        // Ekstraksi Skor Pertandingan Real-Time Sesuai Karakteristik Olahraga
-        let homeScore = '';
-        let awayScore = '';
-        let scoreText = '';
-        let matchMinute = '';
+            // Kategori Olahraga
+            let category = '⚽ Sepak Bola';
+            if (sportType === 'basketball') {
+                category = '🏀 Bola Basket';
+            } else if (sportType === 'volleyball') {
+                category = '🏐 Bola Voli';
+            } else if (sportType === 'badminton') {
+                category = '🏸 Bulu Tangkis';
+            } else if (sportType === 'tennis') {
+                category = '🎾 Tenis';
+            } else if (sportType !== 'football') {
+                category = '🏎️ Olahraga Lainnya';
+            }
 
-        if (status === 1 || rawStatus === '4' || rawStatus === '8') {
+            const kickoffIso = `${year}-${month}-${day}T${hour}:${min}:00+07:00`;
+            const kickoffText = `${hour}:${min} WIB (${day}/${month})`;
+            const matchPageUrl = `${src.domain}${relUrl}`;
+
+            // Penentuan Status LIVE yang akurat langsung dari sumbernya:
+            // 1 = Upcoming, 2 = 1st Half / Quarter, 3 = 2nd Half / Late, 4 = FT, 51/52 = Tennis Live, 438 = Live
+            let status = 0;
+            if (['2', '3', '51', '52', '438'].includes(rawStatus) || cardContent.includes('is-live') || cardContent.includes('badge-live')) {
+                status = 1; // 🔴 LIVE SEKARANG
+            } else if (rawStatus === '4') {
+                status = 2; // Selesai (Full Time)
+            } else {
+                status = 0; // 📅 Jadwal Hari Ini / Upcoming
+            }
+
+            // Ekstraksi Skor Pertandingan Real-Time
+            let homeScore = '';
+            let awayScore = '';
+            let scoreText = '';
+            let matchMinute = '';
+
             const goalMatch = cardContent.match(/class="[^"]*grid-match__goal[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)\s*<\/div>/i);
             const liveScoreEl = cardContent.match(/class="[^"]*grid-match__score[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)/i);
             const hpuScore = cardContent.match(/class="[^"]*hpu-score-home[^"]*"[^>]*>\s*(\d+)\s*<\/span>[\s\S]*?class="[^"]*hpu-score-away[^"]*"[^>]*>\s*(\d+)\s*<\/span>/i);
@@ -224,45 +220,80 @@ async function scrapeAll() {
                 awayScore = liveScoreEl[2].trim();
                 scoreText = `${homeScore} - ${awayScore}`;
             }
+
+            const periodMatch = cardContent.match(/class="[^"]*(?:grid-match__half-court|period|quarter|set-name)[^"]*"[^>]*>\s*([^<]+)\s*</i);
+            if (periodMatch) {
+                matchMinute = periodMatch[1].trim();
+            }
+
+            sportCounts[category] = (sportCounts[category] || 0) + 1;
+
+            parsedMap.set(relUrl, {
+                title,
+                home,
+                away,
+                homeLogo,
+                awayLogo,
+                homeScore,
+                awayScore,
+                scoreText,
+                matchMinute,
+                league,
+                category,
+                sportType,
+                matchPageUrl,
+                slugName,
+                kickoffIso,
+                kickoffText,
+                status,
+                rawStatus
+            });
         }
-
-        const periodMatch = cardContent.match(/class="[^"]*(?:grid-match__half-court|period|quarter|set-name)[^"]*"[^>]*>\s*([^<]+)\s*</i);
-        if (periodMatch && status === 1) {
-            matchMinute = periodMatch[1].trim();
-        }
-
-        sportCounts[category] = (sportCounts[category] || 0) + 1;
-
-        parsedMatches.push({
-            title,
-            home,
-            away,
-            homeLogo,
-            awayLogo,
-            homeScore,
-            awayScore,
-            scoreText,
-            matchMinute,
-            league,
-            category,
-            sportType,
-            matchPageUrl,
-            slugName,
-            kickoffIso,
-            kickoffText,
-            status,
-            rawStatus
-        });
     }
 
+    const parsedMatches = Array.from(parsedMap.values());
     const liveTotal = parsedMatches.filter(m => m.status === 1).length;
-    console.log(`🎯 Ditemukan ${parsedMatches.length} pertandingan (${liveTotal} sedang LIVE SEKARANG):`);
+    console.log(`🎯 Ditemukan ${parsedMatches.length} total pertandingan unik (${liveTotal} sedang LIVE SEKARANG):`);
     console.log(sportCounts);
 
-    // Urutkan: Pertandingan yang sedang LIVE (status 1) SELALU paling atas!
+    // Prioritas Kategori Olahraga (Sepak Bola no 1, Basket no 2, Badminton no 3, Tenis no 4, Voli no 5, Lainnya no 6)
+    const categoryPriority = {
+        '⚽ Sepak Bola': 1,
+        '🏀 Bola Basket': 2,
+        '🏸 Bulu Tangkis': 3,
+        '🎾 Tenis': 4,
+        '🏐 Bola Voli': 5,
+        '🏎️ Olahraga Lainnya': 6
+    };
+
+    // Urutkan:
+    // 1. LIVE (status === 1) SELALU paling atas
+    //    - Di antara LIVE: Sepak Bola prioritas pertama, lalu urutkan berdasarkan kickoff
+    // 2. UPCOMING (status === 0): Sepak Bola prioritas pertama, lalu urut jam mulai terdekat
+    // 3. FINISHED (status === 2): Urut jam paling baru
     parsedMatches.sort((a, b) => {
-        if (b.status !== a.status) return b.status - a.status;
-        return a.kickoffIso.localeCompare(b.kickoffIso);
+        // 1. Prioritas Status (Live = 1 paling atas, lalu Upcoming = 0, lalu Selesai = 2)
+        const getStatusWeight = (s) => (s === 1 ? 0 : s === 0 ? 1 : 2);
+        const weightA = getStatusWeight(a.status);
+        const weightB = getStatusWeight(b.status);
+        if (weightA !== weightB) return weightA - weightB;
+
+        // 2. Prioritas Kategori Olahraga (Sepak Bola selalu teratas)
+        const prioA = categoryPriority[a.category] || 99;
+        const prioB = categoryPriority[b.category] || 99;
+        if (prioA !== prioB) return prioA - prioB;
+
+        // 3. Jika status sama & kategori sama:
+        if (a.status === 1) {
+            // Live: pertandingan yang mulai belakangan (masih babak 1) atau baru mulai
+            return b.kickoffIso.localeCompare(a.kickoffIso);
+        } else if (a.status === 0) {
+            // Upcoming: yang mulai paling cepat
+            return a.kickoffIso.localeCompare(b.kickoffIso);
+        } else {
+            // Selesai: yang baru saja selesai
+            return b.kickoffIso.localeCompare(a.kickoffIso);
+        }
     });
 
     console.log(`\n🔍 Mengekstrak direct channel stream untuk ${parsedMatches.length} pertandingan...`);

@@ -18,20 +18,13 @@ class MatchService {
       StreamController<List<MatchModel>>.broadcast();
   Timer? _autoRefreshTimer;
 
-  // Daftar domain sumber siaran live lengkap dari Link nonton Online.txt
+  // Daftar domain sumber siaran live lengkap (utamakan domain aktif teruji)
   static const List<String> onlineSeeds = [
+    'https://xoilaczbi.tv/',
+    'https://theceoschool.co/',
     'https://xoilacz.vip/',
-    'https://tft-forests.org/',
     'https://socolivezc.tv/',
-    'https://xoilackl.tv/',
-    'https://90phutcn.tv/',
-    'https://cakhiazkv.cc/',
-    'https://xoilaccu.tv/',
-    'https://vebotvx.cc/',
-    'https://rakhoiib.cc/',
-    'https://mitomzm.cc/',
-    'https://vaoroig.cc/',
-    'https://malaysiandigest.com/',
+    'https://tft-forests.org/',
   ];
 
   /// Inisialisasi service, muat data lokal segera, lalu ambil data online terbaru
@@ -54,9 +47,9 @@ class MatchService {
     // 3. Ambil data pertandingan terbaru dari sumber live online
     unawaited(refreshOnlineMatches());
 
-    // 4. Jadwalkan auto-refresh setiap 3 menit agar daftar selalu terupdate
+    // 4. Jadwalkan auto-refresh setiap 2 menit agar daftar selalu sinkron
     _autoRefreshTimer?.cancel();
-    _autoRefreshTimer = Timer.periodic(const Duration(minutes: 3), (_) {
+    _autoRefreshTimer = Timer.periodic(const Duration(minutes: 2), (_) {
       refreshOnlineMatches();
     });
   }
@@ -84,44 +77,62 @@ class MatchService {
   static const String githubRawUrl =
       'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/matches.json';
 
-  /// Mengambil siaran langsung terbaru (utamakan CDN jsDelivr & GitHub Raw, lalu fallback ke seed online)
-  Future<void> refreshOnlineMatches() async {
+  /// Mengambil siaran langsung terbaru (utamakan CDN / GitHub jika masih fresh, atau langsung scrape sumber web)
+  Future<void> refreshOnlineMatches({bool forceDirectScrape = false}) async {
     try {
-      // 1. Prioritas Utama: Ambil dari jsDelivr CDN atau GitHub Raw
-      final endpoints = [
-        githubRawUrl,
-        jsdelivrCdnUrl,
-      ];
+      // 1. Jika tidak dipaksa scrape langsung, coba cek GitHub / CDN terlebih dahulu
+      if (!forceDirectScrape) {
+        final endpoints = [githubRawUrl, jsdelivrCdnUrl];
+        for (final endpoint in endpoints) {
+          try {
+            final uri = Uri.parse('$endpoint?t=${DateTime.now().millisecondsSinceEpoch}');
+            final res = await http.get(uri, headers: {
+              'Cache-Control': 'no-cache, no-store, must-revalidate',
+              'Pragma': 'no-cache',
+            }).timeout(const Duration(seconds: 8));
 
-      for (final endpoint in endpoints) {
-        try {
-          final uri = Uri.parse('$endpoint?t=${DateTime.now().millisecondsSinceEpoch}');
-          final res = await http.get(uri, headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache',
-          }).timeout(const Duration(seconds: 18));
+            if (res.statusCode == 200 && res.body.isNotEmpty) {
+              final List<dynamic> decoded = json.decode(res.body);
+              if (decoded.isNotEmpty) {
+                // Cek apakah dataset GitHub masih segar (< 15 menit)
+                final firstItem = decoded.first as Map<String, dynamic>;
+                final updatedStr = firstItem['updatedAt'] as String?;
+                bool isStale = false;
+                if (updatedStr != null) {
+                  final updateTime = DateTime.tryParse(updatedStr);
+                  if (updateTime != null) {
+                    final ageMins = DateTime.now().toUtc().difference(updateTime).inMinutes;
+                    if (ageMins > 15) {
+                      isStale = true;
+                    }
+                  }
+                }
 
-          if (res.statusCode == 200 && res.body.isNotEmpty) {
-            final List<dynamic> decoded = json.decode(res.body);
-            if (decoded.isNotEmpty) {
-              _cachedMatches = decoded
-                  .map((item) => MatchModel.fromJson(item as Map<String, dynamic>))
-                  .toList();
-              _matchesController.add(_cachedMatches);
-              debugPrint('✅ Berhasil memuat ${_cachedMatches.length} siaran dari $endpoint!');
-              return;
+                _cachedMatches = decoded
+                    .map((item) => MatchModel.fromJson(item as Map<String, dynamic>))
+                    .toList();
+                _matchesController.add(_cachedMatches);
+
+                if (!isStale) {
+                  debugPrint('✅ Berhasil memuat data segar (${_cachedMatches.length} siaran) dari $endpoint');
+                  return;
+                } else {
+                  debugPrint('⚠️ Data GitHub berusia > 15 menit, melanjutkan scraping live langsung...');
+                  break;
+                }
+              }
             }
+          } catch (ghErr) {
+            debugPrint('Info fetch $endpoint: $ghErr');
           }
-        } catch (ghErr) {
-          debugPrint('Info fetch $endpoint: $ghErr');
         }
       }
 
-      // 2. Fallback cadangan jika GitHub belum terisi: hubungi domain online langsung
-      String html = '';
-      String activeDomain = '';
+      // 2. Scrape langsung dari sumber live online utama (Xoilac & Socolive)
+      final List<MatchModel> directParsed = [];
+      final Set<String> seenRelUrls = {};
 
-      for (final seed in onlineSeeds) {
+      for (final seed in onlineSeeds.take(3)) {
         try {
           final res = await http.get(
             Uri.parse(seed),
@@ -130,48 +141,56 @@ class MatchService {
                   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
               'Accept': 'text/html,application/xhtml+xml',
             },
-          ).timeout(const Duration(seconds: 8));
+          ).timeout(const Duration(seconds: 6));
 
           if (res.statusCode == 200 && res.body.contains('grid-matches__item')) {
-            html = res.body;
-            activeDomain = seed.endsWith('/') ? seed.substring(0, seed.length - 1) : seed;
-            break;
+            final activeDomain = seed.endsWith('/') ? seed.substring(0, seed.length - 1) : seed;
+            final matches = _parseMatchesFromHtml(res.body, activeDomain, seenRelUrls);
+            directParsed.addAll(matches);
           }
         } catch (_) {
           continue;
         }
       }
 
-      if (html.isEmpty) return;
-
-      final parsed = _parseMatchesFromHtml(html, activeDomain);
-      if (parsed.isNotEmpty) {
-        _cachedMatches = parsed;
+      if (directParsed.isNotEmpty) {
+        _sortMatches(directParsed);
+        _cachedMatches = directParsed;
         _matchesController.add(_cachedMatches);
+        debugPrint('✅ Berhasil live scraping ${directParsed.length} siaran langsung dari sumber web!');
       }
     } catch (e) {
       debugPrint('Error fetching online matches: $e');
     }
   }
 
-  /// Parser HTML untuk semua cabang olahraga (Sepak Bola, Basket, Voli, Bulutangkis, Tenis, Lainnya)
-  List<MatchModel> _parseMatchesFromHtml(String html, String activeDomain) {
+  /// Parser HTML untuk semua cabang olahraga dari sumber live (Xoilac & Socolive)
+  List<MatchModel> _parseMatchesFromHtml(
+      String html, String activeDomain, Set<String> seenRelUrls) {
     final List<MatchModel> list = [];
     final cardRegex = RegExp(
-      r'<div[^>]*class="[^"]*grid-matches__item[^"]*"[^>]*data-sport="([^"]+)"[^>]*>([\s\S]*?)(?=(?:<div[^>]*class="[^"]*grid-matches__item|<div[^>]*class="sport-content-tab|<\/body|$))',
+      r'<div([^>]*class="[^"]*grid-matches__item[^"]*"[^>]*)>([\s\S]*?)(?=(?:<div[^>]*class="[^"]*grid-matches__item|<div[^>]*class="sport-content-tab|<\/body|$))',
       caseSensitive: false,
     );
-
-    final now = DateTime.now();
-    final nowMs = now.millisecondsSinceEpoch;
 
     final matches = cardRegex.allMatches(html);
     int matchIndex = 0;
 
     for (final m in matches) {
-      final sportType = (m.group(1) ?? 'football').toLowerCase();
+      final cardHeader = m.group(1) ?? '';
       final cardContent = m.group(2) ?? '';
 
+      // Abaikan elemen iklan
+      if (cardHeader.contains('xlz-ads-item')) continue;
+
+      // Ekstrak atribut header
+      final sportMatch = RegExp(r'data-sport="([^"]+)"', caseSensitive: false).firstMatch(cardHeader);
+      final sportType = (sportMatch?.group(1) ?? 'football').toLowerCase();
+
+      final statusAttrMatch = RegExp(r'data-status="([^"]+)"', caseSensitive: false).firstMatch(cardHeader);
+      final rawStatus = statusAttrMatch?.group(1) ?? '1';
+
+      // Ekstrak URL pertandingan
       final linkMatch = RegExp(
         r'href="(\/truc-tiep\/([a-z0-9\-]+)-luc-(\d{4})-ngay-(\d{2})-(\d{2})-(\d{4})\/)"',
         caseSensitive: false,
@@ -186,6 +205,12 @@ class MatchService {
       final month = linkMatch.group(5) ?? '01';
       final year = linkMatch.group(6) ?? '2026';
 
+      if (seenRelUrls.contains(relUrl)) continue;
+      seenRelUrls.add(relUrl);
+
+      // Abaikan status 8 (selesai lama/dibatalkan)
+      if (rawStatus == '8') continue;
+
       final hour = timeStr.substring(0, 2);
       final min = timeStr.substring(2, 4);
 
@@ -196,6 +221,22 @@ class MatchService {
       ).firstMatch(cardContent);
       String league = leagueMatch != null ? leagueMatch.group(1)!.trim() : 'Live Sports';
       league = league.replaceAll('&#039;', "'").replaceAll('&amp;', '&');
+
+      // Home & Away IDs & Logos
+      final homeTeamIdMatch = RegExp(r'data-home-team-id="([^"]+)"', caseSensitive: false).firstMatch(cardHeader);
+      final awayTeamIdMatch = RegExp(r'data-away-team-id="([^"]+)"', caseSensitive: false).firstMatch(cardHeader);
+      final homeTeamId = homeTeamIdMatch?.group(1) ?? '';
+      final awayTeamId = awayTeamIdMatch?.group(1) ?? '';
+
+      final homeImgMatch = RegExp(r'team-logo-group-home-logo[^>]*>\s*<img[^>]+src=[\x27\x22]([^\x27\x22]+)[\x27\x22]', caseSensitive: false).firstMatch(cardContent);
+      final awayImgMatch = RegExp(r'team-logo-group-away-logo[^>]*>\s*<img[^>]+src=[\x27\x22]([^\x27\x22]+)[\x27\x22]', caseSensitive: false).firstMatch(cardContent);
+
+      String homeLogo = (homeImgMatch != null && homeImgMatch.group(1)!.startsWith('http'))
+          ? homeImgMatch.group(1)!
+          : (homeTeamId.isNotEmpty ? 'https://imgts.sportpulseapiz.com/$sportType/team/$homeTeamId/image/small' : '');
+      String awayLogo = (awayImgMatch != null && awayImgMatch.group(1)!.startsWith('http'))
+          ? awayImgMatch.group(1)!
+          : (awayTeamId.isNotEmpty ? 'https://imgts.sportpulseapiz.com/$sportType/team/$awayTeamId/image/small' : '');
 
       // Tim Home & Away
       final homeMatch = RegExp(
@@ -233,27 +274,53 @@ class MatchService {
         category = '🏎️ Olahraga Lainnya';
       }
 
-      // Hitung Kickoff & Status
       final kickoffIso = '$year-$month-$day' 'T$hour:$min:00+07:00';
-      final kickoffTime = DateTime.tryParse('$year-$month-$day $hour:$min:00') ?? now;
-      final diffMs = kickoffTime.millisecondsSinceEpoch - nowMs;
 
+      // Penentuan Status LIVE akurat dari sumber web
       int status = 0;
-      if (diffMs <= 0 && diffMs > -14400000) {
-        status = 1; // Live (sedang berlangsung dalam rentang 4 jam)
-      } else if (diffMs <= -14400000) {
-        status = 2; // Selesai
+      if (['2', '3', '51', '52', '438'].contains(rawStatus) ||
+          cardContent.contains('is-live') ||
+          cardContent.contains('badge-live')) {
+        status = 1; // 🔴 LIVE SEKARANG
+      } else if (rawStatus == '4') {
+        status = 2; // Selesai (Full Time)
       } else {
         status = 0; // Upcoming
       }
 
-      // Jangan tampilkan pertandingan yang sudah selesai lebih dari 4 jam
-      if (status == 2) continue;
+      // Ekstraksi Skor & Menit Pertandingan Real-Time
+      String homeScore = '';
+      String awayScore = '';
+      String scoreText = '';
+      String matchMinute = '';
+
+      final goalMatch = RegExp(r'class="[^"]*grid-match__goal[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)\s*<\/div>', caseSensitive: false).firstMatch(cardContent);
+      final liveScoreEl = RegExp(r'class="[^"]*grid-match__score[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)', caseSensitive: false).firstMatch(cardContent);
+      final hpuScore = RegExp(r'class="[^"]*hpu-score-home[^"]*"[^>]*>\s*(\d+)\s*<\/span>[\s\S]*?class="[^"]*hpu-score-away[^"]*"[^>]*>\s*(\d+)\s*<\/span>', caseSensitive: false).firstMatch(cardContent);
+
+      if (hpuScore != null) {
+        homeScore = hpuScore.group(1)?.trim() ?? '';
+        awayScore = hpuScore.group(2)?.trim() ?? '';
+        scoreText = '$homeScore - $awayScore';
+      } else if (goalMatch != null) {
+        homeScore = goalMatch.group(1)?.trim() ?? '';
+        awayScore = goalMatch.group(2)?.trim() ?? '';
+        scoreText = '$homeScore - $awayScore';
+      } else if (liveScoreEl != null) {
+        homeScore = liveScoreEl.group(1)?.trim() ?? '';
+        awayScore = liveScoreEl.group(2)?.trim() ?? '';
+        scoreText = '$homeScore - $awayScore';
+      }
+
+      final periodMatch = RegExp(r'class="[^"]*(?:grid-match__half-court|period|quarter|set-name)[^"]*"[^>]*>\s*([^<]+)\s*<', caseSensitive: false).firstMatch(cardContent);
+      if (periodMatch != null) {
+        matchMinute = periodMatch.group(1)?.trim() ?? '';
+      }
 
       matchIndex++;
       final matchPageUrl = '$activeDomain$relUrl';
 
-      // Jalur channel siaran: Pertahankan channel asli yang sudah ada di cache
+      // Jalur channel siaran: Pertahankan channel asli dari cache jika tersedia
       final existingIndex = _cachedMatches.indexWhere((m) =>
           m.streamJalur3.contains(slugName) ||
           m.id.contains(slugName.substring(0, slugName.length > 20 ? 20 : slugName.length)));
@@ -270,12 +337,8 @@ class MatchService {
         }
       }
 
-      if (ch1.isEmpty) {
-        ch1 = '${matchPageUrl}link/0';
-      }
-      if (ch2.isEmpty) {
-        ch2 = '${matchPageUrl}link/1';
-      }
+      if (ch1.isEmpty) ch1 = matchPageUrl;
+      if (ch2.isEmpty) ch2 = matchPageUrl;
       final ch3 = matchPageUrl;
 
       list.add(MatchModel(
@@ -283,6 +346,12 @@ class MatchService {
         title: title,
         homeTeam: home,
         awayTeam: away,
+        homeLogo: homeLogo,
+        awayLogo: awayLogo,
+        homeScore: homeScore,
+        awayScore: awayScore,
+        scoreText: scoreText,
+        matchMinute: matchMinute,
         league: league,
         kickoffIso: kickoffIso,
         kickoffText: '$hour:$min WIB ($day/$month)',
@@ -294,13 +363,37 @@ class MatchService {
       ));
     }
 
-    // Urutkan: Live (status == 1) di bagian atas
-    list.sort((a, b) {
-      if (b.status != a.status) return b.status.compareTo(a.status);
-      return a.kickoffIso.compareTo(b.kickoffIso);
-    });
-
     return list;
+  }
+
+  /// Urutkan pertandingan: Live di atas (Sepak bola no 1), lalu Upcoming (Sepak bola no 1)
+  void _sortMatches(List<MatchModel> list) {
+    const categoryPriority = {
+      '⚽ Sepak Bola': 1,
+      '🏀 Bola Basket': 2,
+      '🏸 Bulu Tangkis': 3,
+      '🎾 Tenis': 4,
+      '🏐 Bola Voli': 5,
+      '🏎️ Olahraga Lainnya': 6,
+    };
+
+    list.sort((a, b) {
+      int weightA = a.status == 1 ? 0 : (a.status == 0 ? 1 : 2);
+      int weightB = b.status == 1 ? 0 : (b.status == 0 ? 1 : 2);
+      if (weightA != weightB) return weightA.compareTo(weightB);
+
+      int prioA = categoryPriority[a.sportCategory] ?? 99;
+      int prioB = categoryPriority[b.sportCategory] ?? 99;
+      if (prioA != prioB) return prioA.compareTo(prioB);
+
+      if (a.status == 1) {
+        return b.kickoffIso.compareTo(a.kickoffIso);
+      } else if (a.status == 0) {
+        return a.kickoffIso.compareTo(b.kickoffIso);
+      } else {
+        return b.kickoffIso.compareTo(a.kickoffIso);
+      }
+    });
   }
 
   /// Stream real-time pertandingan

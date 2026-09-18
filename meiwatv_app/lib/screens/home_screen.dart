@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: AppColors.primary,
                   backgroundColor: AppColors.surface,
                   onRefresh: () async {
-                    await _matchService.refreshOnlineMatches();
+                    await _matchService.refreshOnlineMatches(forceDirectScrape: true);
                   },
                   child: CustomScrollView(
                     physics: const AlwaysScrollableScrollPhysics(),
