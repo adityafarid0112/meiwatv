@@ -368,29 +368,9 @@ class MatchService {
     return list;
   }
 
-  /// Urutkan pertandingan: Live di atas (Sepak bola no 1), lalu Upcoming (Sepak bola no 1)
+  /// Pertahankan 100% urutan persis seperti tampilan di web sumber aslinya tanpa diacak
   void _sortMatches(List<MatchModel> list) {
-    const categoryPriority = {
-      '⚽ Sepak Bola': 1,
-      '🏀 Bola Basket': 2,
-      '🏸 Bulu Tangkis': 3,
-      '🎾 Tenis': 4,
-      '🏐 Bola Voli': 5,
-      '🏎️ Olahraga Lainnya': 6,
-    };
-
-    list.sort((a, b) {
-      int weightA = a.status == 1 ? 0 : (a.status == 0 ? 1 : 2);
-      int weightB = b.status == 1 ? 0 : (b.status == 0 ? 1 : 2);
-      if (weightA != weightB) return weightA.compareTo(weightB);
-
-      int prioA = categoryPriority[a.sportCategory] ?? 99;
-      int prioB = categoryPriority[b.sportCategory] ?? 99;
-      if (prioA != prioB) return prioA.compareTo(prioB);
-
-      // 3. Pertahankan urutan persis seperti kemunculan di web sumber
-      return 0;
-    });
+    // No artificial sorting - preserve natural web order
   }
 
   /// Stream real-time pertandingan

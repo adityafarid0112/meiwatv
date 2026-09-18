@@ -260,36 +260,8 @@ async function scrapeAll() {
     console.log(`🎯 Ditemukan ${parsedMatches.length} total pertandingan unik (${liveTotal} sedang LIVE SEKARANG):`);
     console.log(sportCounts);
 
-    // Prioritas Kategori Olahraga (Sepak Bola no 1, Basket no 2, Badminton no 3, Tenis no 4, Voli no 5, Lainnya no 6)
-    const categoryPriority = {
-        '⚽ Sepak Bola': 1,
-        '🏀 Bola Basket': 2,
-        '🏸 Bulu Tangkis': 3,
-        '🎾 Tenis': 4,
-        '🏐 Bola Voli': 5,
-        '🏎️ Olahraga Lainnya': 6
-    };
-
-    // Urutkan:
-    // 1. LIVE (status === 1) SELALU paling atas
-    //    - Di antara LIVE: Sepak Bola prioritas pertama, lalu urutkan persis sesuai urutan asli di web sumber!
-    // 2. UPCOMING (status === 0): Sepak Bola prioritas pertama, lalu urut persis sesuai web sumber!
-    // 3. FINISHED (status === 2): Urut jam paling baru / urutan web sumber!
-    parsedMatches.sort((a, b) => {
-        // 1. Prioritas Status (Live = 1 paling atas, lalu Upcoming = 0, lalu Selesai = 2)
-        const getStatusWeight = (s) => (s === 1 ? 0 : s === 0 ? 1 : 2);
-        const weightA = getStatusWeight(a.status);
-        const weightB = getStatusWeight(b.status);
-        if (weightA !== weightB) return weightA - weightB;
-
-        // 2. Prioritas Kategori Olahraga (Sepak Bola selalu teratas)
-        const prioA = categoryPriority[a.category] || 99;
-        const prioB = categoryPriority[b.category] || 99;
-        if (prioA !== prioB) return prioA - prioB;
-
-        // 3. Pertahankan urutan persis seperti tampilan di web sumber!
-        return a.originalIndex - b.originalIndex;
-    });
+    // Urutan 100% PERSIS seperti tampilan web sumber aslinya tanpa diacak!
+    parsedMatches.sort((a, b) => a.originalIndex - b.originalIndex);
 
     console.log(`\n🔍 Mengekstrak direct channel stream untuk ${parsedMatches.length} pertandingan...`);
     const finalMatches = [];
