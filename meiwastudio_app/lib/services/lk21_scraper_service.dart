@@ -258,23 +258,69 @@ class LK21ScraperService {
     }
   }
 
+  /// 5. Rekomendasi Untukmu (/rating or /rekomendasi)
+  Future<List<Movie>> fetchRekomendasi({int page = 1}) async {
+    try {
+      final path = page == 1 ? '/rating' : '/rating/page/$page';
+      final html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching Rekomendasi: $e');
+      return [];
+    }
+  }
+
   /// 6. Fetch Movies by Category / Genre
   Future<List<Movie>> fetchMoviesByGenre(String genreSlug, {int page = 1}) async {
     try {
       if (genreSlug.isEmpty) return fetchFilmTerbaru(page: page);
-      final path = page == 1 ? '/genre/$genreSlug' : '/genre/$genreSlug/page/$page';
-      final html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
-      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
+      
+      String slug = genreSlug;
+      if (slug == 'keluarga') slug = 'family';
+      
+      final path = page == 1 ? '/genre/$slug' : '/genre/$slug/page/$page';
+      final isDrama = genreSlug == 'drama' || genreSlug == 'drakor' || genreSlug == 'drama-korea';
+      final defaultHost = isDrama ? _config.dramaBaseUrl : _config.activeBaseUrl;
+      
+      String html = await _fetchHtmlWithFailover(path, defaultHost: defaultHost);
+      if (html.isEmpty || !html.contains('<article')) {
+        final altHost = isDrama ? _config.activeBaseUrl : _config.dramaBaseUrl;
+        html = await _fetchHtmlWithFailover(path, defaultHost: altHost);
+      }
+      return parseMoviesFromHtml(html, defaultHost: defaultHost);
     } catch (e) {
       debugPrint('[Scraper] Error fetching genre $genreSlug: $e');
       return [];
     }
   }
 
-  /// 7. Generic Endpoint Fetcher for Category List View
+  /// 7. Fetch Movies by Country (Korea, Thailand, India, dll)
+  Future<List<Movie>> fetchMoviesByCountry(String countrySlug, {int page = 1}) async {
+    try {
+      String slug = countrySlug.toLowerCase();
+      if (slug == 'korea') slug = 'south-korea';
+
+      final path = page == 1 ? '/country/$slug' : '/country/$slug/page/$page';
+      String html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
+      
+      // Fallback to /country/korea if south-korea was empty or try dramaBaseUrl
+      if (html.isEmpty || !html.contains('<article')) {
+        html = await _fetchHtmlWithFailover(page == 1 ? '/country/$countrySlug' : '/country/$countrySlug/page/$page', defaultHost: _config.activeBaseUrl);
+      }
+      if (html.isEmpty || !html.contains('<article')) {
+        html = await _fetchHtmlWithFailover(path, defaultHost: _config.dramaBaseUrl);
+      }
+      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
+    } catch (e) {
+      debugPrint('[Scraper] Error fetching country $countrySlug: $e');
+      return [];
+    }
+  }
+
+  /// 8. Generic Endpoint Fetcher for Category List View
   Future<List<Movie>> fetchEndpoint(String endpoint, {int page = 1}) async {
     try {
-      String path = endpoint;
+      String path = endpoint.startsWith('/') ? endpoint : '/$endpoint';
       if (page > 1) {
         if (path.contains('?')) {
           path = '$path&page=$page';
@@ -282,9 +328,13 @@ class LK21ScraperService {
           path = '$endpoint/page/$page';
         }
       }
-      final isDrama = endpoint.contains('series') || endpoint.contains('drama');
+      final isDrama = endpoint.contains('series') || endpoint.contains('drama') || endpoint.contains('drakor');
       final defaultHost = isDrama ? _config.dramaBaseUrl : _config.activeBaseUrl;
-      final html = await _fetchHtmlWithFailover(path, defaultHost: defaultHost);
+      String html = await _fetchHtmlWithFailover(path, defaultHost: defaultHost);
+      if (html.isEmpty || !html.contains('<article')) {
+        final altHost = isDrama ? _config.activeBaseUrl : _config.dramaBaseUrl;
+        html = await _fetchHtmlWithFailover(path, defaultHost: altHost);
+      }
       return parseMoviesFromHtml(html, defaultHost: defaultHost);
     } catch (e) {
       debugPrint('[Scraper] Error fetching endpoint $endpoint: $e');

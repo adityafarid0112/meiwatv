@@ -29,8 +29,16 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Movie> _seriesUnggulan = [];
   List<Movie> _seriesUpdate = [];
   List<Movie> _topBulanIni = [];
-  List<Movie> _topRating = [];
-  List<Movie> _genreMovies = [];
+  List<Movie> _rekomendasi = [];
+  List<Movie> _keluarga = [];
+  List<Movie> _action = [];
+  List<Movie> _drakor = [];
+  List<Movie> _horror = [];
+  List<Movie> _romance = [];
+  List<Movie> _comedy = [];
+  List<Movie> _korea = [];
+  List<Movie> _thailand = [];
+  List<Movie> _india = [];
   
   final PageController _heroPageController = PageController();
   int _currentHeroIndex = 0;
@@ -114,34 +122,74 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
 
-    // 1. Fetch Film Terbaru
+    // 1. Film Terbaru
     safeRun(_scraper.fetchFilmTerbaru(), (list) {
       _filmTerbaru = list;
     });
 
-    // 2. Fetch Series Unggulan
+    // 2. Series Unggulan
     safeRun(_scraper.fetchSeriesUnggulan(), (list) {
       _seriesUnggulan = list;
     });
 
-    // 3. Fetch Series Update
+    // 3. Series Update
     safeRun(_scraper.fetchSeriesUpdate(), (list) {
       _seriesUpdate = list;
     });
 
-    // 4. Fetch Top Bulan Ini
+    // 4. Top Bulan Ini
     safeRun(_scraper.fetchTopBulanIni(), (list) {
       _topBulanIni = list;
     });
 
-    // 5. Fetch Top Rating
-    safeRun(_scraper.fetchTopRating(), (list) {
-      _topRating = list;
+    // 5. Rekomendasi Untukmu
+    safeRun(_scraper.fetchRekomendasi(), (list) {
+      _rekomendasi = list;
     });
 
-    // 6. Fetch Genre movies (Action)
+    // 6. Keluarga
+    safeRun(_scraper.fetchMoviesByGenre('family'), (list) {
+      _keluarga = list;
+    });
+
+    // 7. Action
     safeRun(_scraper.fetchMoviesByGenre('action'), (list) {
-      _genreMovies = list;
+      _action = list;
+    });
+
+    // 8. Drakor
+    safeRun(_scraper.fetchMoviesByGenre('drama'), (list) {
+      _drakor = list;
+    });
+
+    // 9. Horror
+    safeRun(_scraper.fetchMoviesByGenre('horror'), (list) {
+      _horror = list;
+    });
+
+    // 10. Romance
+    safeRun(_scraper.fetchMoviesByGenre('romance'), (list) {
+      _romance = list;
+    });
+
+    // 11. Comedy
+    safeRun(_scraper.fetchMoviesByGenre('comedy'), (list) {
+      _comedy = list;
+    });
+
+    // 12. Korea
+    safeRun(_scraper.fetchMoviesByCountry('korea'), (list) {
+      _korea = list;
+    });
+
+    // 13. Thailand
+    safeRun(_scraper.fetchMoviesByCountry('thailand'), (list) {
+      _thailand = list;
+    });
+
+    // 14. India
+    safeRun(_scraper.fetchMoviesByCountry('india'), (list) {
+      _india = list;
     });
 
     // Safety timeout: dismiss spinner after 4 seconds max
@@ -188,8 +236,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ..._filmTerbaru,
       ..._seriesUnggulan,
       ..._seriesUpdate,
-      ..._topRating,
-      ..._genreMovies,
+      ..._rekomendasi,
+      ..._action,
+      ..._drakor,
+      ..._horror,
+      ..._romance,
+      ..._comedy,
+      ..._keluarga,
+      ..._korea,
+      ..._thailand,
+      ..._india,
     ]) {
       if (seen.add(m.slug)) {
         allMovies.add(m);
@@ -531,23 +587,103 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
 
-                  // Section 5: TOP RATING
-                  if (_topRating.isNotEmpty)
+                  // Section 5: REKOMENDASI UNTUKMU
+                  if (_rekomendasi.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
-                        title: '🏆 TOP RATING',
-                        movies: _topRating,
-                        onSeeAll: () => _openCategory('Top Rating', '/rating'),
+                        title: '✨ REKOMENDASI UNTUKMU',
+                        movies: _rekomendasi,
+                        onSeeAll: () => _openCategory('Rekomendasi Untukmu', '/rating'),
                       ),
                     ),
 
-                  // Section 6: Action / Popular Movies
-                  if (_genreMovies.isNotEmpty)
+                  // Section 6: KELUARGA
+                  if (_keluarga.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
-                        title: '🎬 FILM ACTION TERPOPULER',
-                        movies: _genreMovies,
-                        onSeeAll: () => _openCategory('Semua Film Action', '/genre/action'),
+                        title: '👨‍👩‍👧‍👦 FILM KELUARGA',
+                        movies: _keluarga,
+                        onSeeAll: () => _openCategory('Film Keluarga', '/genre/family'),
+                      ),
+                    ),
+
+                  // Section 7: ACTION
+                  if (_action.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '💥 FILM ACTION',
+                        movies: _action,
+                        onSeeAll: () => _openCategory('Film Action', '/genre/action'),
+                      ),
+                    ),
+
+                  // Section 8: DRAKOR
+                  if (_drakor.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '🫰 DRAMA KOREA (DRAKOR)',
+                        movies: _drakor,
+                        onSeeAll: () => _openCategory('Drama Korea (Drakor)', '/genre/drama'),
+                      ),
+                    ),
+
+                  // Section 9: HORROR
+                  if (_horror.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '👻 FILM HORROR',
+                        movies: _horror,
+                        onSeeAll: () => _openCategory('Film Horror', '/genre/horror'),
+                      ),
+                    ),
+
+                  // Section 10: ROMANCE
+                  if (_romance.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '💖 FILM ROMANCE',
+                        movies: _romance,
+                        onSeeAll: () => _openCategory('Film Romance', '/genre/romance'),
+                      ),
+                    ),
+
+                  // Section 11: COMEDY
+                  if (_comedy.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '😂 FILM COMEDY',
+                        movies: _comedy,
+                        onSeeAll: () => _openCategory('Film Comedy', '/genre/comedy'),
+                      ),
+                    ),
+
+                  // Section 12: KOREA
+                  if (_korea.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '🇰🇷 FILM KOREA',
+                        movies: _korea,
+                        onSeeAll: () => _openCategory('Film Korea', '/country/south-korea'),
+                      ),
+                    ),
+
+                  // Section 13: THAILAND
+                  if (_thailand.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '🇹🇭 FILM THAILAND',
+                        movies: _thailand,
+                        onSeeAll: () => _openCategory('Film Thailand', '/country/thailand'),
+                      ),
+                    ),
+
+                  // Section 14: INDIA
+                  if (_india.isNotEmpty)
+                    SliverToBoxAdapter(
+                      child: _buildCategorySection(
+                        title: '🇮🇳 FILM INDIA (BOLLYWOOD)',
+                        movies: _india,
+                        onSeeAll: () => _openCategory('Film India', '/country/india'),
                       ),
                     ),
                 ],
