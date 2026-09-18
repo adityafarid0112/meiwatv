@@ -1,0 +1,66 @@
+{
+  "appName": "MeiwaStudio",
+  "version": "1.0.0",
+  "versionCode": 1,
+  "sources": [
+    {
+      "name": "LK21 Official Main",
+      "baseUrl": "https://tv12.lk21official.cc",
+      "priority": 1,
+      "isActive": true
+    },
+    {
+      "name": "LK21 Auto-Redirect Mirror",
+      "baseUrl": "https://www.lk21.de",
+      "priority": 2,
+      "isActive": true
+    },
+    {
+      "name": "LK21 Dev Mirror",
+      "baseUrl": "https://tv.lk21official.dev",
+      "priority": 3,
+      "isActive": true
+    },
+    {
+      "name": "Layarkaca21 Backup",
+      "baseUrl": "https://lite.dadadidi.de",
+      "priority": 4,
+      "isActive": true
+    }
+  ],
+  "genres": [
+    {"title": "Semua", "slug": ""},
+    {"title": "Action", "slug": "action"},
+    {"title": "Drama Korea (Drakor)", "slug": "drama"},
+    {"title": "Horor", "slug": "horror"},
+    {"title": "Sci-Fi", "slug": "sci-fi"},
+    {"title": "Romance", "slug": "romance"},
+    {"title": "Komedi", "slug": "comedy"},
+    {"title": "Animasi / Anime", "slug": "animation"},
+    {"title": "Petualangan", "slug": "adventure"},
+    {"title": "Crime", "slug": "crime"},
+    {"title": "Thriller", "slug": "thriller"},
+    {"title": "Misteri", "slug": "mystery"},
+    {"title": "Family", "slug": "family"}
+  ],
+  "featuredSlugs": [
+    "the-year-earth-changed-2021",
+    "reacher-2022",
+    "flexxcop-2024"
+  ],
+  "adBlockList": [
+    "*doubleclick.net*",
+    "*profitablecpmrate*",
+    "*highrevenueformat*",
+    "*adcash*",
+    "*popads*",
+    "*propellerads*",
+    "*exoclick*",
+    "*onclickmega*",
+    "*betting*",
+    "*slot*",
+    "*judol*"
+  ],
+  "appMessage": "Selamat datang di MeiwaStudio! Nonton film & series favorit gratis tanpa batas.",
+  "updatedAt": "2026-09-18T14:55:00.000Z"
+}
