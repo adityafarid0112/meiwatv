@@ -9,6 +9,7 @@ import '../widgets/tv_focusable_widget.dart';
 import '../widgets/tv_movie_card.dart';
 import 'category_list_screen.dart';
 import 'movie_detail_screen.dart';
+import 'search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,13 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Movie> _topBulanIni = [];
   List<Movie> _topRating = [];
   List<Movie> _genreMovies = [];
-  List<Movie> _searchResults = [];
   
   final PageController _heroPageController = PageController();
   int _currentHeroIndex = 0;
   Timer? _heroTimer;
-  
-  final TextEditingController _searchController = TextEditingController();
 
   static const String saweriaUrl = 'https://saweria.co/meiwatv';
 
@@ -92,7 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     _heroTimer?.cancel();
     _heroPageController.dispose();
-    _searchController.dispose();
     super.dispose();
   }
 
@@ -183,64 +180,27 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  void _showSearchDialog() {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: const Color(0xFF0E131F),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: Color(0xFFA855F7), width: 1.5),
-        ),
-        title: const Text('Cari Judul Film / Series', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        content: TextField(
-          controller: _searchController,
-          autofocus: true,
-          style: const TextStyle(color: Colors.white),
-          decoration: InputDecoration(
-            hintText: 'Misal: Reacher, Avatar, Fast...',
-            hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.4)),
-            prefixIcon: const Icon(Icons.search_rounded, color: Color(0xFFA855F7)),
-            filled: true,
-            fillColor: Colors.black.withValues(alpha: 0.4),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
-          ),
-          onSubmitted: (query) {
-            Navigator.of(ctx).pop();
-            _performSearch(query);
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Batal', style: TextStyle(color: Colors.white60)),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFA855F7),
-              foregroundColor: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              _performSearch(_searchController.text);
-            },
-            child: const Text('Cari'),
-          ),
-        ],
+  void _openSearch() {
+    final allMovies = <Movie>[];
+    final seen = <String>{};
+    for (final m in [
+      ..._topBulanIni,
+      ..._filmTerbaru,
+      ..._seriesUnggulan,
+      ..._seriesUpdate,
+      ..._topRating,
+      ..._genreMovies,
+    ]) {
+      if (seen.add(m.slug)) {
+        allMovies.add(m);
+      }
+    }
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => SearchScreen(initialRecommendations: allMovies),
       ),
     );
-  }
-
-  Future<void> _performSearch(String query) async {
-    if (query.trim().isEmpty) return;
-    setState(() => _isLoading = true);
-    final results = await _scraper.searchMovies(query);
-    if (mounted) {
-      setState(() {
-        _searchResults = results;
-        _isLoading = false;
-      });
-    }
   }
 
   @override
@@ -297,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       // Search Button (TV Focusable)
                       TVFocusableWidget(
-                        onTap: _showSearchDialog,
+                        onTap: _openSearch,
                         borderRadius: BorderRadius.circular(30),
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -337,55 +297,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              // 2. Search Results View (if active)
-              if (_searchResults.isNotEmpty) ...[
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
-                    child: Row(
-                      children: [
-                        const Text(
-                          'Hasil Pencarian Film',
-                          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800),
-                        ),
-                        const Spacer(),
-                        TextButton.icon(
-                          icon: const Icon(Icons.close_rounded, size: 16, color: Color(0xFFA855F7)),
-                          label: const Text('Tutup', style: TextStyle(color: Color(0xFFA855F7), fontWeight: FontWeight.bold)),
-                          onPressed: () => setState(() => _searchResults.clear()),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  sliver: SliverGrid(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: MediaQuery.of(context).size.width > 900
-                          ? 6
-                          : (MediaQuery.of(context).size.width > 600 ? 4 : 3),
-                      childAspectRatio: 0.62,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 14,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        final movie = _searchResults[index];
-                        return TVMovieCard(
-                          movie: movie,
-                          onTap: () => _openDetail(movie),
-                        );
-                      },
-                      childCount: _searchResults.length,
-                    ),
-                  ),
-                ),
-              ] else ...[
-                // 3. Hero Top 5 Featured Movies Slider
-                Builder(
-                  builder: (context) {
-                    final heroMovies = _getFeaturedMovies();
+              // 2. Hero Top 5 Featured Movies Slider
+              Builder(
+                builder: (context) {
+                  final heroMovies = _getFeaturedMovies();
                     if (heroMovies.isEmpty) {
                       return const SliverToBoxAdapter(child: SizedBox(height: 8));
                     }
@@ -636,7 +551,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                 ],
-              ],
 
               const SliverToBoxAdapter(child: SizedBox(height: 40)),
             ],

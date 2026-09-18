@@ -292,15 +292,79 @@ class LK21ScraperService {
     }
   }
 
-  /// Search Movies
+  /// Search Movies & Series across all sources with clean filtering
   Future<List<Movie>> searchMovies(String query, {int page = 1}) async {
+    final cleanQuery = query.trim();
+    if (cleanQuery.isEmpty) return [];
+
     try {
-      final encoded = Uri.encodeComponent(query);
+      final encoded = Uri.encodeComponent(cleanQuery);
       final path = page == 1 ? '/?s=$encoded' : '/page/$page/?s=$encoded';
-      final html = await _fetchHtmlWithFailover(path, defaultHost: _config.activeBaseUrl);
-      return parseMoviesFromHtml(html, defaultHost: _config.activeBaseUrl);
+
+      // Concurrently query LK21 (Movies) and NontonDrama (Series/Drakor)
+      final results = await Future.wait([
+        _fetchAndParseSearch(path, _config.activeBaseUrl, cleanQuery),
+        _fetchAndParseSearch(path, _config.dramaBaseUrl, cleanQuery),
+      ]);
+
+      final all = <Movie>[];
+      final seenSlugs = <String>{};
+
+      for (final list in results) {
+        for (final m in list) {
+          if (seenSlugs.add(m.slug)) {
+            all.add(m);
+          }
+        }
+      }
+
+      // Rank results: exact match first, then startsWith, then contains
+      final qLower = cleanQuery.toLowerCase();
+      all.sort((a, b) {
+        final aTitle = a.title.toLowerCase();
+        final bTitle = b.title.toLowerCase();
+        if (aTitle == qLower && bTitle != qLower) return -1;
+        if (bTitle == qLower && aTitle != qLower) return 1;
+        if (aTitle.startsWith(qLower) && !bTitle.startsWith(qLower)) return -1;
+        if (bTitle.startsWith(qLower) && !aTitle.startsWith(qLower)) return 1;
+        return 0;
+      });
+
+      return all;
     } catch (e) {
-      debugPrint('[Scraper] Error searching $query: $e');
+      debugPrint('[Scraper] Error searching $cleanQuery: $e');
+      return [];
+    }
+  }
+
+  Future<List<Movie>> _fetchAndParseSearch(String path, String defaultHost, String query) async {
+    try {
+      String html = await _fetchHtmlWithFailover(path, defaultHost: defaultHost);
+      if (html.isEmpty) return [];
+
+      // Strip out sidebars, widgets, headers, footers so sidebar movies don't pollute search
+      html = html
+          .replaceAll(RegExp(r'<aside[\s\S]*?<\/aside>', caseSensitive: false), '')
+          .replaceAll(RegExp(r'<footer[\s\S]*?<\/footer>', caseSensitive: false), '')
+          .replaceAll(RegExp(r'<div[^>]*class="[^"]*(?:sidebar|widget|popular-posts)[^"]*"[\s\S]*?<\/div>', caseSensitive: false), '');
+
+      final parsed = parseMoviesFromHtml(html, defaultHost: defaultHost);
+
+      // Filter to ensure relevance to the search query
+      final qWords = query.toLowerCase().split(RegExp(r'\s+')).where((w) => w.length > 1).toList();
+      if (qWords.isEmpty) {
+        return parsed;
+      }
+
+      final filtered = parsed.where((m) {
+        final titleLower = m.title.toLowerCase();
+        final slugLower = m.slug.toLowerCase();
+        return qWords.any((word) => titleLower.contains(word) || slugLower.contains(word));
+      }).toList();
+
+      return filtered.isNotEmpty ? filtered : parsed;
+    } catch (e) {
+      debugPrint('[Scraper] Error in _fetchAndParseSearch: $e');
       return [];
     }
   }
