@@ -189,13 +189,28 @@ async function scrapeAll() {
             const kickoffText = `${hour}:${min} WIB (${day}/${month})`;
             const matchPageUrl = `${src.domain}${relUrl}`;
 
-            // Penentuan Status LIVE yang akurat langsung dari sumbernya:
-            // 1 = Upcoming, 2 = 1st Half / Quarter, 3 = 2nd Half / Late, 4 = FT, 51/52 = Tennis Live, 438 = Live
+            // Penentuan Status LIVE yang akurat untuk SEMUA cabang olahraga:
             let status = 0;
-            if (['2', '3', '51', '52', '438'].includes(rawStatus) || cardContent.includes('is-live') || cardContent.includes('badge-live')) {
+            const liveFootball = ['2', '3'];
+            const liveBasketball = ['2', '3', '4', '5'];
+            const liveTennis = ['51', '52', '53', '54', '55'];
+            const liveVolleyball = ['431', '432', '433', '434', '435', '436', '437', '438'];
+            const liveEsports = ['2', '3', '4'];
+
+            if (sportType === 'football' && liveFootball.includes(rawStatus)) {
                 status = 1; // 🔴 LIVE SEKARANG
-            } else if (rawStatus === '4') {
-                status = 2; // Selesai (Full Time)
+            } else if (sportType === 'basketball' && liveBasketball.includes(rawStatus)) {
+                status = 1; // 🔴 LIVE SEKARANG
+            } else if (sportType === 'tennis' && liveTennis.includes(rawStatus)) {
+                status = 1; // 🔴 LIVE SEKARANG
+            } else if (sportType === 'volleyball' && liveVolleyball.includes(rawStatus)) {
+                status = 1; // 🔴 LIVE SEKARANG
+            } else if (['lol', 'csgo', 'dota2'].includes(sportType) && liveEsports.includes(rawStatus)) {
+                status = 1; // 🔴 LIVE SEKARANG
+            } else if (cardContent.includes('is-live') || cardContent.includes('badge-live') || cardContent.includes('grid-match-live')) {
+                status = 1; // 🔴 LIVE SEKARANG
+            } else if (rawStatus === '4' || (sportType === 'basketball' && rawStatus === '6')) {
+                status = 2; // Selesai (Full Time / FT)
             } else {
                 status = 0; // 📅 Jadwal Hari Ini / Upcoming
             }
