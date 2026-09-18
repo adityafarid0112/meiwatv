@@ -17,6 +17,8 @@ class LK21ScraperService {
     'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
   };
 
+  final Map<String, String> _htmlCache = {};
+
   String _normalizeUrl(String path, {String? defaultHost}) {
     if (path.startsWith('http')) return path;
     final host = defaultHost ?? (path.contains('series') || path.contains('drama') || path.contains('episode')
@@ -28,28 +30,60 @@ class LK21ScraperService {
   }
 
   Future<String> _fetchHtmlWithFailover(String path, {String? defaultHost}) async {
+    final cacheKey = '$defaultHost|$path';
+    if (_htmlCache.containsKey(cacheKey) && _htmlCache[cacheKey]!.isNotEmpty) {
+      return _htmlCache[cacheKey]!;
+    }
+
     String fullUrl = _normalizeUrl(path, defaultHost: defaultHost);
 
+    // 1. Fast Direct Request (Timeout 3.5s)
     try {
-      final res = await http.get(Uri.parse(fullUrl), headers: _headers).timeout(const Duration(seconds: 8));
-      
-      if (res.statusCode == 200) {
+      final res = await http.get(Uri.parse(fullUrl), headers: _headers).timeout(const Duration(milliseconds: 3500));
+      if (res.statusCode == 200 && res.body.isNotEmpty && (res.body.contains('<article') || res.body.contains('<html') || res.body.contains('<!DOCTYPE'))) {
+        _htmlCache[cacheKey] = res.body;
         return res.body;
       } else if (res.statusCode >= 300 && res.statusCode < 400 && res.headers['location'] != null) {
-        String loc = res.headers['location']!;
-        return _fetchHtmlWithFailover(loc, defaultHost: defaultHost);
+        return _fetchHtmlWithFailover(res.headers['location']!, defaultHost: defaultHost);
       }
     } catch (e) {
-      debugPrint('[Scraper] Error fetching from $fullUrl: $e. Resolving new mirror...');
-      await _config.resolveActiveBaseUrl();
-      fullUrl = _normalizeUrl(path, defaultHost: defaultHost);
+      debugPrint('[Scraper] Direct fetch failed for $fullUrl ($e), switching to fast proxy relays...');
+    }
+
+    // 2. High-Speed Proxy Relays (Bypasses Telkomsel / Indihome / XL / Tri blocks)
+    final proxyUrls = [
+      'https://api.allorigins.win/raw?url=${Uri.encodeComponent(fullUrl)}',
+      'https://api.codetabs.com/v1/proxy?quest=${Uri.encodeComponent(fullUrl)}',
+      'https://corsproxy.io/?url=${Uri.encodeComponent(fullUrl)}',
+    ];
+
+    for (final pUrl in proxyUrls) {
       try {
-        final res = await http.get(Uri.parse(fullUrl), headers: _headers).timeout(const Duration(seconds: 8));
-        return res.body;
-      } catch (e2) {
-        debugPrint('[Scraper] Retry mirror failed: $e2');
+        final res = await http.get(Uri.parse(pUrl), headers: _headers).timeout(const Duration(seconds: 4));
+        if (res.statusCode == 200 && res.body.isNotEmpty && (res.body.contains('<article') || res.body.contains('<html') || res.body.contains('<!DOCTYPE'))) {
+          debugPrint('[Scraper] Successfully fetched data via proxy relay: $pUrl');
+          _htmlCache[cacheKey] = res.body;
+          return res.body;
+        }
+      } catch (e) {
+        debugPrint('[Scraper] Proxy relay failed: $pUrl ($e)');
       }
     }
+
+    // 3. Alternative Mirror Hosts
+    for (final src in _config.sources) {
+      if (src.baseUrl == _config.activeBaseUrl) continue;
+      final altUrl = _normalizeUrl(path, defaultHost: src.baseUrl);
+      try {
+        final res = await http.get(Uri.parse(altUrl), headers: _headers).timeout(const Duration(seconds: 3));
+        if (res.statusCode == 200 && res.body.isNotEmpty) {
+          _config.switchBaseUrl(src.baseUrl);
+          _htmlCache[cacheKey] = res.body;
+          return res.body;
+        }
+      } catch (_) {}
+    }
+
     return '';
   }
 

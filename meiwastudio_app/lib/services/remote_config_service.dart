@@ -53,6 +53,7 @@ class RemoteConfigService {
     'judol'
   ];
 
+  List<StudioSource> get sources => _sources;
   String get activeBaseUrl => _activeBaseUrl;
   String get dramaBaseUrl => _dramaBaseUrl;
   List<GenreCategory> get genres => _genres;
@@ -64,10 +65,10 @@ class RemoteConfigService {
       http.Response? response;
       
       try {
-        response = await http.get(Uri.parse(primaryConfigUrl)).timeout(const Duration(seconds: 4));
+        response = await http.get(Uri.parse(primaryConfigUrl)).timeout(const Duration(seconds: 3));
       } catch (e) {
         debugPrint('[RemoteConfig] Primary failed, trying fallback: $e');
-        response = await http.get(Uri.parse(fallbackConfigUrl)).timeout(const Duration(seconds: 4));
+        response = await http.get(Uri.parse(fallbackConfigUrl)).timeout(const Duration(seconds: 3));
       }
 
       if (response.statusCode == 200) {
@@ -96,8 +97,8 @@ class RemoteConfigService {
       debugPrint('[RemoteConfig] Failed to fetch remote config, using embedded fallbacks: $e');
     }
 
-    // Resolve working base URL
-    await resolveActiveBaseUrl();
+    // Resolve working base URL in background / fast check
+    resolveActiveBaseUrl();
   }
 
   /// Automatically tests candidate sources and selects the fastest responsive working URL
@@ -107,7 +108,7 @@ class RemoteConfigService {
         final uri = Uri.parse(src.baseUrl);
         final res = await http.get(uri, headers: {
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-        }).timeout(const Duration(seconds: 5));
+        }).timeout(const Duration(milliseconds: 2500));
 
         if (res.statusCode == 200 || (res.statusCode >= 300 && res.statusCode < 400)) {
           if (res.headers['location'] != null && res.headers['location']!.startsWith('http')) {
@@ -119,7 +120,7 @@ class RemoteConfigService {
           return _activeBaseUrl;
         }
       } catch (e) {
-        debugPrint('[RemoteConfig] Candidate ${src.baseUrl} failed: $e, trying next mirror...');
+        debugPrint('[RemoteConfig] Candidate ${src.baseUrl} timeout/error ($e), checking next...');
       }
     }
 

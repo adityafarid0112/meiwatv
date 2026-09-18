@@ -50,37 +50,58 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _loadAllCategories() async {
-    try {
-      final results = await Future.wait([
-        _scraper.fetchFilmTerbaru(),
-        _scraper.fetchSeriesUnggulan(),
-        _scraper.fetchSeriesUpdate(),
-        _scraper.fetchTopBulanIni(),
-        _scraper.fetchTopRating(),
-        _scraper.fetchMoviesByGenre(_selectedGenreSlug.isNotEmpty ? _selectedGenreSlug : 'action'),
-      ]);
-
-      if (mounted) {
-        setState(() {
-          _filmTerbaru = results[0];
-          _seriesUnggulan = results[1];
-          _seriesUpdate = results[2];
-          _topBulanIni = results[3];
-          _topRating = results[4];
-          _genreMovies = results[5];
-
-          if (_filmTerbaru.isNotEmpty) {
-            _featuredMovie = _filmTerbaru.first;
-          } else if (_topBulanIni.isNotEmpty) {
-            _featuredMovie = _topBulanIni.first;
-          }
-          _isLoading = false;
-        });
-      }
-    } catch (e) {
-      debugPrint('[HomeScreen] Error loading categories: $e');
-      if (mounted) setState(() => _isLoading = false);
+    // Helper to run safely
+    void safeRun(Future<List<Movie>> future, Function(List<Movie>) onData) {
+      future.then((list) {
+        if (mounted && list.isNotEmpty) {
+          setState(() {
+            onData(list);
+            _isLoading = false;
+          });
+        }
+      }).catchError((e) {
+        debugPrint('[HomeScreen] Load error: $e');
+      });
     }
+
+    // 1. Fetch Film Terbaru
+    safeRun(_scraper.fetchFilmTerbaru(), (list) {
+      _filmTerbaru = list;
+      _featuredMovie ??= list.first;
+    });
+
+    // 2. Fetch Series Unggulan
+    safeRun(_scraper.fetchSeriesUnggulan(), (list) {
+      _seriesUnggulan = list;
+    });
+
+    // 3. Fetch Series Update
+    safeRun(_scraper.fetchSeriesUpdate(), (list) {
+      _seriesUpdate = list;
+    });
+
+    // 4. Fetch Top Bulan Ini
+    safeRun(_scraper.fetchTopBulanIni(), (list) {
+      _topBulanIni = list;
+      _featuredMovie ??= list.first;
+    });
+
+    // 5. Fetch Top Rating
+    safeRun(_scraper.fetchTopRating(), (list) {
+      _topRating = list;
+    });
+
+    // 6. Fetch Genre movies
+    safeRun(_scraper.fetchMoviesByGenre(_selectedGenreSlug.isNotEmpty ? _selectedGenreSlug : 'action'), (list) {
+      _genreMovies = list;
+    });
+
+    // Safety timeout: dismiss spinner after 4 seconds max
+    Future.delayed(const Duration(seconds: 4), () {
+      if (mounted && _isLoading) {
+        setState(() => _isLoading = false);
+      }
+    });
   }
 
   void _onGenreSelected(String slug) {
