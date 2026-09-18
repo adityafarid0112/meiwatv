@@ -1,0 +1,28 @@
+{
+  "saweriaUrl": "https://saweria.co/meiwatv",
+  "popunderUrls": [
+    "https://www.profitableratecpmnetwork.com/r1x7jbv2ys?key=c06365de807e3e8605b4e7e665953775",
+    "https://www.profitableratecpmnetwork.com/nhgf41xe?key=c1f7258bb9659ab225647c310b68619e"
+  ],
+  "banners": {
+    "banner_728x90": {
+      "key": "0b453dca166b5389587addc2ba0a053a",
+      "width": 728,
+      "height": 90,
+      "script": "https://www.highrevenueformat.com/0b453dca166b5389587addc2ba0a053a/invoke.js"
+    },
+    "banner_300x250": {
+      "key": "dc4ffb491cd457659d1c3eea5b5db6ca",
+      "width": 300,
+      "height": 250,
+      "script": "https://www.highrevenueformat.com/dc4ffb491cd457659d1c3eea5b5db6ca/invoke.js"
+    },
+    "banner_468x60": {
+      "key": "b3ebfb84dfe7f276ec8ca6b0601afc33",
+      "width": 468,
+      "height": 60,
+      "script": "https://www.highrevenueformat.com/b3ebfb84dfe7f276ec8ca6b0601afc33/invoke.js"
+    }
+  },
+  "updatedAt": "2026-09-18T14:17:20.501Z"
+}
