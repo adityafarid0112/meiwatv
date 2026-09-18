@@ -441,14 +441,14 @@ class LK21ScraperService {
         String displayName = label.isNotEmpty ? label.toUpperCase() : serverKey.toUpperCase();
         String quality = '720p HD';
 
-        if (serverKey == 'turbovip') {
-          displayName = 'TURBOVIP • 720p HD';
+        if (serverKey == 'hydrax') {
+          displayName = 'HYDRAX • Multi-Kualitas (480p - 1080p)';
+          quality = '480p - 1080p FHD';
+        } else if (serverKey == 'turbovip') {
+          displayName = 'TURBOVIP • Cadangan (720p)';
           quality = '720p HD';
-        } else if (serverKey == 'hydrax') {
-          displayName = 'HYDRAX • 1080p FHD';
-          quality = '1080p Full HD';
         } else if (serverKey == 'p2p') {
-          displayName = 'P2P • 480p SD (Cepat)';
+          displayName = 'P2P • Cadangan Cepat (480p)';
           quality = '480p SD';
         } else if (serverKey == 'cast') {
           displayName = 'CAST • Mirror HD';
@@ -514,6 +514,11 @@ class LK21ScraperService {
   /// Resolves the actual direct embed URL from videonode.de (e.g. emturbovid, abyssplayer, playcdn)
   Future<String> resolveDirectEmbedUrl(String serverKey, String url) async {
     try {
+      // Hydrax must use videonode.de as its authorized parent frame to avoid abyss.to redirect
+      if (serverKey == 'hydrax') {
+        return url;
+      }
+
       if (!url.contains('videonode.de/iframe3/')) {
         return url;
       }

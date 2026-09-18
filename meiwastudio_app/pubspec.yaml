@@ -2,7 +2,7 @@ name: meiwastudio_app
 description: "MeiwaStudio - Nonton Film, Drama Korea, Anime & Series Sub Indo"
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.0+2002
 
 environment:
   sdk: ^3.12.1
