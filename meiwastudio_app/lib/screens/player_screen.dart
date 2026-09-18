@@ -141,23 +141,30 @@ class _PlayerScreenState extends State<PlayerScreen> {
             setState(() => _isLoading = false);
             _controller.runJavaScript('''
               (function() {
-                var ads = document.querySelectorAll('#adContainer, .ads, [class*="ad-"], [id*="ad-"], .popunder, #skipAds');
+                var ads = document.querySelectorAll('#uyeouyeo, a#uyeouyeo, .message-box, #loading-spinner, .spinner-overlay, #adContainer, .ads, [class*="ad-"], [id*="ad-"], .popunder, #skipAds');
                 ads.forEach(function(el) { if (el) el.remove(); });
                 
-                // Auto click play if poster exists
+                // Auto click play on direct players
                 setTimeout(function() {
-                  var playBtn = document.querySelector('.jw-display-icon-container, .vjs-big-play-button, .play-button, .play-btn, [class*="play"], button.play');
+                  var playBtn = document.querySelector('.jw-display-icon-container, .vjs-big-play-button, .play-button, .play-btn, [class*="play"], button.play, #customPlayButton, .play-wrapper');
                   if (playBtn) playBtn.click();
-                }, 1000);
+                }, 800);
               })();
             ''');
           },
           onNavigationRequest: (request) {
             final targetUrl = request.url.toLowerCase();
             
-            // Allow primary player and video stream hosts
+            // Allow primary player and high quality direct video stream hosts
             if (targetUrl.contains('videonode.de') ||
                 targetUrl.contains('playcdn.de') ||
+                targetUrl.contains('emturbovid.com') ||
+                targetUrl.contains('turbovid') ||
+                targetUrl.contains('abyssplayer.com') ||
+                targetUrl.contains('abyss') ||
+                targetUrl.contains('streamwish') ||
+                targetUrl.contains('filelions') ||
+                targetUrl.contains('dood') ||
                 targetUrl.contains('lk21') ||
                 targetUrl.contains('nontondrama') ||
                 targetUrl.contains('about:blank') ||
@@ -253,14 +260,22 @@ class _PlayerScreenState extends State<PlayerScreen> {
     _renderPlayerHtml(_activeEmbedUrl);
   }
 
-  void _switchServer(VideoServer server) {
+  Future<void> _switchServer(VideoServer server) async {
     if (_activeServer?.url == server.url) return;
+    
+    String targetUrl = server.url;
+    if (targetUrl.contains('videonode.de/iframe3/')) {
+      setState(() => _isLoading = true);
+      targetUrl = await _scraper.resolveDirectEmbedUrl(server.serverKey, targetUrl);
+    }
+
+    if (!mounted) return;
     setState(() {
       _activeServer = server;
-      _activeEmbedUrl = server.url;
+      _activeEmbedUrl = targetUrl;
       _isLoading = true;
     });
-    _renderPlayerHtml(server.url);
+    _renderPlayerHtml(targetUrl);
     _startControlsTimer();
   }
 

@@ -511,6 +511,47 @@ class LK21ScraperService {
     return servers;
   }
 
+  /// Resolves the actual direct embed URL from videonode.de (e.g. emturbovid, abyssplayer, playcdn)
+  Future<String> resolveDirectEmbedUrl(String serverKey, String url) async {
+    try {
+      if (!url.contains('videonode.de/iframe3/')) {
+        return url;
+      }
+
+      final uri = Uri.parse(url);
+      final segments = uri.pathSegments;
+      if (segments.length >= 3) {
+        final host = segments[segments.length - 2];
+        final id = segments.last;
+
+        final apiUri = Uri.parse('https://videonode.de/api.php');
+        final res = await http.post(
+          apiUri,
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 12; Android TV Build/STTE.220623.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Referer': url,
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: 'host=$host&id=$id',
+        ).timeout(const Duration(milliseconds: 4000));
+
+        if (res.statusCode == 200) {
+          final data = json.decode(res.body);
+          if (data['embedUrl'] != null && data['embedUrl'].toString().isNotEmpty) {
+            String directUrl = data['embedUrl'].toString();
+            if (directUrl.startsWith('//')) directUrl = 'https:$directUrl';
+            debugPrint('[Scraper] Resolved $serverKey ($host) direct stream URL: $directUrl');
+            return directUrl;
+          }
+        }
+      }
+    } catch (e) {
+      debugPrint('[Scraper] Error resolving direct embed URL for $url: $e');
+    }
+    return url;
+  }
+
   /// Fetch Direct Episode Embed URL and Servers
   Future<SeriesEpisode> fetchEpisodeDetails(SeriesEpisode episode) async {
     try {
@@ -527,7 +568,17 @@ class LK21ScraperService {
         if (embedUrl.startsWith('//')) embedUrl = 'https:$embedUrl';
       }
 
-      final servers = extractVideoServers(html, fallbackUrl: embedUrl);
+      final rawServers = extractVideoServers(html, fallbackUrl: embedUrl);
+      final servers = await Future.wait(rawServers.map((s) async {
+        final directUrl = await resolveDirectEmbedUrl(s.serverKey, s.url);
+        return VideoServer(
+          name: s.name,
+          serverKey: s.serverKey,
+          url: directUrl,
+          qualityLabel: s.qualityLabel,
+        );
+      }));
+
       if (embedUrl.isEmpty && servers.isNotEmpty) {
         embedUrl = servers.first.url;
       }
@@ -657,7 +708,16 @@ class LK21ScraperService {
         }
       }
 
-      final servers = extractVideoServers(html, fallbackUrl: embedUrl);
+      final rawServers = extractVideoServers(html, fallbackUrl: embedUrl);
+      final servers = await Future.wait(rawServers.map((s) async {
+        final directUrl = await resolveDirectEmbedUrl(s.serverKey, s.url);
+        return VideoServer(
+          name: s.name,
+          serverKey: s.serverKey,
+          url: directUrl,
+          qualityLabel: s.qualityLabel,
+        );
+      }));
 
       // If embedUrl empty, use first server URL
       if (embedUrl.isEmpty && servers.isNotEmpty) {
