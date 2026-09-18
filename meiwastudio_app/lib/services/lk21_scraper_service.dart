@@ -11,7 +11,7 @@ class LK21ScraperService {
   final RemoteConfigService _config = RemoteConfigService();
 
   Map<String, String> get _headers => {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
   };
@@ -47,55 +47,76 @@ class LK21ScraperService {
 
     for (final m in matches) {
       final block = m.group(1) ?? '';
-      
-      // Title and Link
-      String title = '';
+
+      // 1. URL & Slug
       String url = '';
       String slug = '';
+      final urlMatch = RegExp(r'href="([^"]+)"', caseSensitive: false).firstMatch(block);
+      if (urlMatch != null) {
+        url = urlMatch.group(1) ?? '';
+        slug = url.replaceAll(RegExp(r'^https?:\/\/[^\/]+'), '').replaceAll('/', '').trim();
+      }
 
-      final titleMatch = RegExp(r'<h\d[^>]*><a[^>]*href="([^"]*)"[^>]*>([^<]*)<\/a>', caseSensitive: false).firstMatch(block) ??
-                         RegExp(r'<a[^>]*href="([^"]*)"[^>]*title="([^"]*)"', caseSensitive: false).firstMatch(block);
+      // 2. Title
+      String title = '';
+      final titleMatch = RegExp(r'<h\d[^>]*class="[^"]*poster-title[^"]*"[^>]*>([^<]+)<\/h\d>', caseSensitive: false).firstMatch(block) ??
+                         RegExp(r'itemprop="name"[^>]*>([^<]+)<\/h\d>', caseSensitive: false).firstMatch(block) ??
+                         RegExp(r'alt="([^"]+)"', caseSensitive: false).firstMatch(block) ??
+                         RegExp(r'title="([^"]+)"', caseSensitive: false).firstMatch(block);
       if (titleMatch != null) {
-        url = titleMatch.group(1) ?? '';
-        title = titleMatch.group(2) ?? '';
-        // Clean title prefixes like "Nonton series", "Nonton film", etc.
+        title = titleMatch.group(1)?.trim() ?? '';
         title = title.replaceAll(RegExp(r'^Nonton\s+(?:film|series|movie)?\s*', caseSensitive: false), '')
                      .replaceAll(RegExp(r'\s*streaming\s+download\s+movie\s*$', caseSensitive: false), '')
                      .replaceAll(RegExp(r'\s*streaming\s+gratis\s*$', caseSensitive: false), '')
                      .trim();
-        slug = url.replaceAll(RegExp(r'^https?:\/\/[^\/]+'), '').replaceAll('/', '').trim();
       }
 
-      // Poster Image
+      // 3. Poster Image
       String posterUrl = '';
-      final imgMatch = RegExp(r'<img[^>]*src="([^"]*)"', caseSensitive: false).firstMatch(block) ??
-                       RegExp(r'<img[^>]*data-src="([^"]*)"', caseSensitive: false).firstMatch(block);
+      final imgMatch = RegExp(r'<img[^>]*src="([^"]+)"', caseSensitive: false).firstMatch(block) ??
+                       RegExp(r'<source[^>]*srcset="([^"]+)"', caseSensitive: false).firstMatch(block);
       if (imgMatch != null) {
         posterUrl = imgMatch.group(1) ?? '';
+        if (posterUrl.contains(' ')) posterUrl = posterUrl.split(' ').first;
+        if (posterUrl.startsWith('//')) posterUrl = 'https:$posterUrl';
       }
 
-      // Rating
+      // 4. Rating
       String rating = '';
-      final ratingMatch = RegExp(r'class="rating"[^>]*>([^<]*)', caseSensitive: false).firstMatch(block) ??
-                          RegExp(r'class="rating-label"[^>]*>([^<]*)', caseSensitive: false).firstMatch(block) ??
-                          RegExp(r'(\d+\.\d+)\s*(?:<\/div>|\/10)', caseSensitive: false).firstMatch(block);
+      final ratingMatch = RegExp(r'itemprop="ratingValue">([^<]+)<\/span>', caseSensitive: false).firstMatch(block) ??
+                          RegExp(r'class="rating"[^>]*>[\s\S]*?(\d+\.\d+)[\s\S]*?<\/span>', caseSensitive: false).firstMatch(block);
       if (ratingMatch != null) {
         rating = ratingMatch.group(1)?.trim() ?? '';
       }
 
-      // Quality
+      // 5. Quality
       String quality = 'HD';
-      final qualityMatch = RegExp(r'class="quality"[^>]*>([^<]*)', caseSensitive: false).firstMatch(block) ??
-                           RegExp(r'class="label"[^>]*>([^<]*)', caseSensitive: false).firstMatch(block);
-      if (qualityMatch != null) {
-        quality = qualityMatch.group(1)?.trim() ?? 'HD';
+      final qualMatch = RegExp(r'class="label[^"]*">([^<]+)<\/span>', caseSensitive: false).firstMatch(block);
+      if (qualMatch != null) {
+        quality = qualMatch.group(1)?.trim() ?? 'HD';
       }
 
-      // Year
-      String year = '';
-      final yearMatch = RegExp(r'\((\d{4})\)').firstMatch(title);
+      // 6. Year
+      String year = '2026';
+      final yearMatch = RegExp(r'class="year"[^>]*>([^<]+)<\/span>', caseSensitive: false).firstMatch(block);
       if (yearMatch != null) {
-        year = yearMatch.group(1) ?? '';
+        year = yearMatch.group(1)?.trim() ?? '2026';
+      }
+
+      // 7. Duration
+      String duration = '';
+      final durMatch = RegExp(r'class="duration"[^>]*>([^<]+)<\/span>', caseSensitive: false).firstMatch(block);
+      if (durMatch != null) {
+        duration = durMatch.group(1)?.trim() ?? '';
+      }
+
+      // 8. Genres
+      final List<String> genres = [];
+      final genreMeta = RegExp(r'itemprop="genre"\s+content="([^"]+)"', caseSensitive: false).firstMatch(block) ??
+                        RegExp(r'<div class="genre">\s*([^<]+)\s*<\/div>', caseSensitive: false).firstMatch(block);
+      if (genreMeta != null) {
+        final raw = genreMeta.group(1) ?? '';
+        genres.addAll(raw.split(',').map((s) => s.trim()).where((s) => s.isNotEmpty));
       }
 
       final isSeries = url.contains('nontondrama') || url.contains('series');
@@ -108,7 +129,9 @@ class LK21ScraperService {
           posterUrl: posterUrl,
           rating: rating.isNotEmpty ? rating : '7.8',
           quality: quality,
-          year: year.isNotEmpty ? year : '2026',
+          year: year,
+          duration: duration,
+          genres: genres,
           isSeries: isSeries,
         ));
       }
@@ -143,7 +166,7 @@ class LK21ScraperService {
   /// Fetch Movies by Genre
   Future<List<Movie>> fetchMoviesByGenre(String genreSlug, {int page = 1}) async {
     try {
-      if (genreSlug.isEmpty) return fetchLatestMovies(page: page);
+      if (genreSlug.isEmpty) return fetchPopularMovies();
       final path = page == 1 ? '/genre/$genreSlug' : '/genre/$genreSlug/page/$page';
       final html = await _fetchHtmlWithFailover(path);
       return parseMoviesFromHtml(html);
@@ -199,7 +222,7 @@ class LK21ScraperService {
         }
       }
 
-      // 4. Video Embed URL (e.g. videonode, feurl, dood, lk21 player)
+      // 4. Video Embed URL
       String embedUrl = '';
       final iframeMatch = RegExp(r'<iframe[^>]*id="main-player"[^>]*src="([^"]*)"', caseSensitive: false).firstMatch(html) ??
                           RegExp(r'<iframe[^>]*src="([^"]*(?:videonode|player|embed|stream)[^"]*)"', caseSensitive: false).firstMatch(html);
@@ -210,15 +233,14 @@ class LK21ScraperService {
         }
       }
 
-      // Fallback embed URL to activeBaseUrl + movie url if not extracted
       if (embedUrl.isEmpty) {
         embedUrl = movie.url.startsWith('http') ? movie.url : '${_config.activeBaseUrl}${movie.url}';
       }
 
       return movie.copyWith(
         synopsis: synopsis.isNotEmpty ? synopsis : 'Film seru pilihan terbaik siap menemani waktu santai Anda dengan kualitas Full HD dan subtitle bahasa Indonesia.',
-        duration: duration.isNotEmpty ? duration : '1 jam 45 mnt',
-        genres: genres.isNotEmpty ? genres : ['Action', 'Drama', 'HD'],
+        duration: duration.isNotEmpty ? duration : (movie.duration.isNotEmpty ? movie.duration : '1 jam 45 mnt'),
+        genres: genres.isNotEmpty ? genres : (movie.genres.isNotEmpty ? movie.genres : ['Action', 'Drama', 'HD']),
         embedUrl: embedUrl,
       );
     } catch (e) {

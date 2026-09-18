@@ -165,25 +165,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
                   child: Row(
                     children: [
-                      // Brand Logo & Name
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            'assets/images/logo_icon.png',
-                            height: 34,
-                            errorBuilder: (context, error, stackTrace) => const Icon(Icons.movie_filter_rounded, color: Color(0xFFA855F7), size: 32),
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            'MEIWA',
-                            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w900),
-                          ),
-                          const Text(
-                            'STUDIO',
-                            style: TextStyle(color: Color(0xFFA855F7), fontSize: 18, fontWeight: FontWeight.w900),
-                          ),
-                        ],
+                      // Brand Logo Image (meiwa studio.png)
+                      Image.asset(
+                        'assets/images/header_logo.png',
+                        height: 36,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) => Image.asset(
+                          'assets/images/logo_icon.png',
+                          height: 34,
+                        ),
                       ),
                       const Spacer(),
                       // Search Button (TV Focusable)
