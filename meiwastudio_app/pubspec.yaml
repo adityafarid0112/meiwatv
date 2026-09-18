@@ -1,0 +1,45 @@
+name: meiwastudio_app
+description: "MeiwaStudio - Nonton Film, Drama Korea, Anime & Series Sub Indo"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  http: ^1.6.0
+  intl: ^0.20.2
+  cached_network_image: ^3.4.1
+  flutter_animate: ^4.5.2
+  google_fonts: ^8.2.1
+  wakelock_plus: ^1.2.8
+  webview_flutter: ^4.14.1
+  webview_flutter_android: ^4.14.1
+  url_launcher: ^6.3.2
+  share_plus: ^13.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/data/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#080E1A"
+  adaptive_icon_foreground: "assets/images/app_icon.png"
