@@ -26,23 +26,43 @@ class _PlayerScreenState extends State<PlayerScreen> {
   late final WebViewController _controller;
   bool _isLoading = true;
   bool _showControls = true;
-  bool _showEpisodePanel = false;
   Timer? _controlsTimer;
   final RemoteConfigService _config = RemoteConfigService();
   final LK21ScraperService _scraper = LK21ScraperService();
   
   late SeriesEpisode? _currentEpisode;
+  List<SeriesEpisode> _episodes = [];
   String _activeEmbedUrl = '';
 
   @override
   void initState() {
     super.initState();
+    _episodes = List.from(widget.movie.episodes);
     _currentEpisode = widget.initialEpisode ??
-        (widget.movie.episodes.isNotEmpty ? widget.movie.episodes.first : null);
+        (_episodes.isNotEmpty ? _episodes.first : null);
     _initWakelockAndOrientation();
     _setupWebViewController();
     _loadSelectedEpisode();
     _startControlsTimer();
+
+    // If episodes list is empty and it's a drama/series, fetch in background
+    if (_episodes.isEmpty && (widget.movie.isSeries || widget.movie.url.contains('/series/') || widget.movie.url.contains('nontondrama'))) {
+      _fetchEpisodesBackground();
+    }
+  }
+
+  Future<void> _fetchEpisodesBackground() async {
+    try {
+      final detail = await _scraper.fetchMovieDetail(widget.movie);
+      if (mounted && detail.episodes.isNotEmpty) {
+        setState(() {
+          _episodes = detail.episodes;
+          _currentEpisode ??= _episodes.first;
+        });
+      }
+    } catch (e) {
+      debugPrint('[Player] Error fetching episodes in background: $e');
+    }
   }
 
   Future<void> _initWakelockAndOrientation() async {
@@ -64,8 +84,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   void _startControlsTimer() {
     _controlsTimer?.cancel();
-    _controlsTimer = Timer(const Duration(seconds: 4), () {
-      if (mounted && _showControls && !_showEpisodePanel) {
+    _controlsTimer = Timer(const Duration(seconds: 7), () {
+      if (mounted && _showControls) {
         setState(() => _showControls = false);
       }
     });
@@ -74,7 +94,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
   void _toggleControls() {
     setState(() {
       _showControls = !_showControls;
-      if (!_showControls) _showEpisodePanel = false;
     });
     if (_showControls) {
       _startControlsTimer();
@@ -86,6 +105,17 @@ class _PlayerScreenState extends State<PlayerScreen> {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.black)
       ..setUserAgent('Mozilla/5.0 (Linux; Android 12; Android TV Build/STTE.220623.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36')
+      ..addJavaScriptChannel(
+        'FlutterPlayer',
+        onMessageReceived: (JavaScriptMessage message) {
+          if (message.message == 'toggleControls') {
+            _toggleControls();
+          } else if (message.message == 'showControls') {
+            setState(() => _showControls = true);
+            _startControlsTimer();
+          }
+        },
+      )
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (progress) {
@@ -162,6 +192,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
       } else {
         final detail = await _scraper.fetchMovieDetail(widget.movie);
         embedUrl = detail.embedUrl;
+        if (_episodes.isEmpty && detail.episodes.isNotEmpty) {
+          _episodes = detail.episodes;
+        }
       }
     }
 
@@ -172,7 +205,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     _activeEmbedUrl = embedUrl;
 
     // Build the isolated HTML container with an iframe
-    // This CRITICALLY ensures window.self !== window.top so anti-framing redirects NEVER trigger!
+    // This ensures window.self !== window.top so anti-framing redirects NEVER trigger!
     final htmlContent = '''
       <!DOCTYPE html>
       <html lang="id">
@@ -198,7 +231,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 999999;
+            z-index: 1;
           }
         </style>
       </head>
@@ -212,6 +245,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
           mozallowfullscreen="true"
           allow="screen-wake-lock; autoplay; fullscreen; picture-in-picture">
         </iframe>
+        <script>
+          window.addEventListener('click', function() {
+            if (window.FlutterPlayer) {
+              FlutterPlayer.postMessage('toggleControls');
+            }
+          });
+        </script>
       </body>
       </html>
     ''';
@@ -228,9 +268,25 @@ class _PlayerScreenState extends State<PlayerScreen> {
     }
     setState(() {
       _currentEpisode = ep;
-      _showEpisodePanel = false;
     });
+    _startControlsTimer();
     _loadSelectedEpisode();
+  }
+
+  void _playNextEpisode() {
+    if (_episodes.isEmpty || _currentEpisode == null) return;
+    final currentIndex = _episodes.indexWhere((e) => e.episodeNo == _currentEpisode!.episodeNo && e.season == _currentEpisode!.season);
+    if (currentIndex != -1 && currentIndex < _episodes.length - 1) {
+      _switchEpisode(_episodes[currentIndex + 1]);
+    }
+  }
+
+  void _playPreviousEpisode() {
+    if (_episodes.isEmpty || _currentEpisode == null) return;
+    final currentIndex = _episodes.indexWhere((e) => e.episodeNo == _currentEpisode!.episodeNo && e.season == _currentEpisode!.season);
+    if (currentIndex > 0) {
+      _switchEpisode(_episodes[currentIndex - 1]);
+    }
   }
 
   @override
@@ -249,8 +305,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final episodes = widget.movie.episodes;
-    final isSeries = widget.movie.isSeries || episodes.isNotEmpty;
+    final isSeries = widget.movie.isSeries || _episodes.isNotEmpty;
 
     return PopScope(
       canPop: true,
@@ -297,223 +352,241 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   ),
                 ),
 
-              // 3. Floating Top Bar Overlay Controls
+              // 3. Persistent Mini Floating Episode Pill (Visible when controls hidden for series)
+              if (!_showControls && isSeries && _episodes.isNotEmpty)
+                Positioned(
+                  top: 14,
+                  right: 14,
+                  child: TVFocusableWidget(
+                    onTap: _toggleControls,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.65),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: const Color(0xFFA855F7).withValues(alpha: 0.6)),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.playlist_play_rounded, color: Color(0xFFC084FC), size: 16),
+                          const SizedBox(width: 4),
+                          Text(
+                            _currentEpisode != null ? 'EPS ${_currentEpisode!.episodeNo}' : 'Episode',
+                            style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+              // 4. Floating Top Bar Overlay Controls & In-Player Episode Selector
               if (_showControls)
                 Positioned(
                   top: 0,
                   left: 0,
                   right: 0,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 14),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Colors.black.withValues(alpha: 0.9),
+                          Colors.black.withValues(alpha: 0.95),
+                          Colors.black.withValues(alpha: 0.8),
                           Colors.transparent,
                         ],
                       ),
                     ),
-                    child: Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Back Button
-                        TVFocusableWidget(
-                          autofocus: true,
-                          onTap: () => Navigator.of(context).pop(),
-                          borderRadius: BorderRadius.circular(20),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: Colors.black.withValues(alpha: 0.6),
+                        // Top Action Row
+                        Row(
+                          children: [
+                            // Back Button
+                            TVFocusableWidget(
+                              autofocus: true,
+                              onTap: () => Navigator.of(context).pop(),
                               borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withValues(alpha: 0.6),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                                ),
+                                child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.arrow_back_rounded, color: Colors.white, size: 20),
+                                    SizedBox(width: 6),
+                                    Text(
+                                      'Kembali',
+                                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.arrow_back_rounded, color: Colors.white, size: 20),
-                                SizedBox(width: 6),
-                                Text(
-                                  'Kembali',
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 14),
-                        // Title & Episode Info
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                widget.movie.title,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                _currentEpisode != null
-                                    ? '${_currentEpisode!.title} • Full HD • Screen Awake Active ⚡'
-                                    : '${widget.movie.quality} • Subtitle Indonesia • Screen Awake Active ⚡',
-                                style: const TextStyle(
-                                  color: Color(0xFFC084FC),
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // Episode List Button (for Drama / Series)
-                        if (isSeries && episodes.isNotEmpty) ...[
-                          TVFocusableWidget(
-                            onTap: () {
-                              setState(() => _showEpisodePanel = !_showEpisodePanel);
-                            },
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: _showEpisodePanel ? const Color(0xFFA855F7) : Colors.black.withValues(alpha: 0.6),
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: const Color(0xFFA855F7).withValues(alpha: 0.6)),
-                              ),
-                              child: Row(
+                            const SizedBox(width: 14),
+
+                            // Title & Episode Info
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Icon(Icons.playlist_play_rounded, color: Colors.white, size: 20),
-                                  const SizedBox(width: 6),
                                   Text(
-                                    'Episode (${episodes.length})',
-                                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),
+                                    widget.movie.title,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Text(
+                                    _currentEpisode != null
+                                        ? '${_currentEpisode!.title} • Layar Selalu Hidup ⚡'
+                                        : '${widget.movie.quality} • Subtitle Indonesia • Layar Selalu Hidup ⚡',
+                                    style: const TextStyle(
+                                      color: Color(0xFFC084FC),
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 8),
-                        ],
-                        // Reload Button
-                        TVFocusableWidget(
-                          onTap: _loadSelectedEpisode,
-                          borderRadius: BorderRadius.circular(20),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: Colors.black.withValues(alpha: 0.6),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-                            ),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.refresh_rounded, color: Colors.white, size: 18),
-                                SizedBox(width: 4),
-                                Text('Reload', style: TextStyle(color: Colors.white, fontSize: 12)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
 
-              // 4. In-Player Side Episode Selector Panel (Matching Screenshot 2)
-              if (_showEpisodePanel && isSeries && episodes.isNotEmpty)
-                Positioned(
-                  top: 60,
-                  right: 16,
-                  bottom: 16,
-                  child: Container(
-                    width: 320,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF0E131F).withValues(alpha: 0.95),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: const Color(0xFFA855F7).withValues(alpha: 0.5)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.8),
-                          blurRadius: 20,
-                          offset: const Offset(0, 8),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(Icons.movie_filter_rounded, color: Color(0xFFA855F7), size: 20),
-                            const SizedBox(width: 8),
-                            const Text(
-                              'PILIH EPISODE',
-                              style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w800),
-                            ),
-                            const Spacer(),
-                            IconButton(
-                              icon: const Icon(Icons.close_rounded, color: Colors.white70, size: 20),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                              onPressed: () => setState(() => _showEpisodePanel = false),
+                            // Quick Prev / Next for Series
+                            if (isSeries && _episodes.length > 1) ...[
+                              TVFocusableWidget(
+                                onTap: _playPreviousEpisode,
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withValues(alpha: 0.6),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                                  ),
+                                  child: const Icon(Icons.skip_previous_rounded, color: Colors.white, size: 18),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              TVFocusableWidget(
+                                onTap: _playNextEpisode,
+                                borderRadius: BorderRadius.circular(20),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withValues(alpha: 0.6),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                                  ),
+                                  child: const Icon(Icons.skip_next_rounded, color: Colors.white, size: 18),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                            ],
+
+                            // Reload Button
+                            TVFocusableWidget(
+                              onTap: _loadSelectedEpisode,
+                              borderRadius: BorderRadius.circular(20),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withValues(alpha: 0.6),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                                ),
+                                child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.refresh_rounded, color: Colors.white, size: 18),
+                                    SizedBox(width: 4),
+                                    Text('Reload', style: TextStyle(color: Colors.white, fontSize: 12)),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 12),
-                        const Divider(color: Colors.white10, height: 1),
-                        const SizedBox(height: 12),
-                        // Grid of Episode numbers
-                        Expanded(
-                          child: GridView.builder(
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 8,
-                              childAspectRatio: 1.3,
-                            ),
-                            itemCount: episodes.length,
-                            itemBuilder: (context, index) {
-                              final ep = episodes[index];
-                              final isCurrent = _currentEpisode?.episodeNo == ep.episodeNo &&
-                                                _currentEpisode?.season == ep.season;
 
-                              return TVFocusableWidget(
-                                onTap: () => _switchEpisode(ep),
-                                borderRadius: BorderRadius.circular(8),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: isCurrent
-                                        ? const Color(0xFFA855F7)
-                                        : Colors.white.withValues(alpha: 0.08),
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: isCurrent ? const Color(0xFFA855F7) : Colors.white12,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '${ep.episodeNo}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: isCurrent ? FontWeight.w900 : FontWeight.w600,
+                        // Direct In-Player Episode Selector Row (Visible directly at top on click)
+                        if (isSeries && _episodes.isNotEmpty) ...[
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              const Icon(Icons.playlist_play_rounded, color: Color(0xFFA855F7), size: 18),
+                              const SizedBox(width: 6),
+                              Text(
+                                'Daftar Episode (${_episodes.length} Episode Tersedia):',
+                                style: TextStyle(color: Colors.white.withValues(alpha: 0.85), fontSize: 11, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          SizedBox(
+                            height: 38,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: _episodes.length,
+                              separatorBuilder: (context, index) => const SizedBox(width: 8),
+                              itemBuilder: (context, index) {
+                                final ep = _episodes[index];
+                                final isCurrent = _currentEpisode?.episodeNo == ep.episodeNo &&
+                                                  _currentEpisode?.season == ep.season;
+
+                                return TVFocusableWidget(
+                                  onTap: () => _switchEpisode(ep),
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                                    decoration: BoxDecoration(
+                                      gradient: isCurrent
+                                          ? const LinearGradient(
+                                              colors: [Color(0xFFEC4899), Color(0xFF8B5CF6)],
+                                            )
+                                          : null,
+                                      color: isCurrent ? null : Colors.white.withValues(alpha: 0.12),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.2),
+                                        width: isCurrent ? 1.5 : 1,
                                       ),
                                     ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        if (isCurrent) ...[
+                                          const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 14),
+                                          const SizedBox(width: 4),
+                                        ],
+                                        Text(
+                                          'EPS ${ep.episodeNo}',
+                                          style: TextStyle(
+                                            color: isCurrent ? Colors.white : Colors.white.withValues(alpha: 0.9),
+                                            fontSize: 12,
+                                            fontWeight: isCurrent ? FontWeight.w900 : FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           ),
-                        ),
+                        ],
                       ],
                     ),
                   ),

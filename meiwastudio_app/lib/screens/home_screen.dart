@@ -216,11 +216,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       // Header Logo Image (meiwa studio.png)
                       Image.asset(
                         'assets/images/header_logo.png',
-                        height: 38,
+                        height: 42,
                         fit: BoxFit.contain,
                         errorBuilder: (context, error, stackTrace) => Image.asset(
                           'assets/images/logo_icon.png',
-                          height: 34,
+                          height: 38,
                         ),
                       ),
                       const Spacer(),
@@ -568,7 +568,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
                         title: '🎬 FILM TERBARU',
-                        subtitle: 'Koleksi rilis bioskop & film terupdate',
                         movies: _filmTerbaru,
                         onSeeAll: () => _openCategory('Film Terbaru', '/latest'),
                       ),
@@ -579,7 +578,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
                         title: '⭐ SERIES UNGGULAN',
-                        subtitle: 'Serial drama & series paling populer hari ini',
                         movies: _seriesUnggulan,
                         onSeeAll: () => _openCategory('Series Unggulan', '/top-series-today'),
                       ),
@@ -590,7 +588,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
                         title: '📺 SERIES UPDATE',
-                        subtitle: 'Episode & series terbaru yang baru ditambahkan',
                         movies: _seriesUpdate,
                         onSeeAll: () => _openCategory('Series Update', '/latest-series'),
                       ),
@@ -601,7 +598,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
                         title: '🔥 TOP BULAN INI',
-                        subtitle: 'Film paling banyak ditonton bulan ini',
                         movies: _topBulanIni,
                         onSeeAll: () => _openCategory('Top Bulan Ini', '/populer'),
                       ),
@@ -612,7 +608,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
                         title: '🏆 TOP RATING',
-                        subtitle: 'Film dengan rating penonton tertinggi',
                         movies: _topRating,
                         onSeeAll: () => _openCategory('Top Rating', '/rating'),
                       ),
@@ -623,7 +618,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
                         title: '🗂️ ${_selectedGenreSlug.isNotEmpty ? "GENRE: ${_config.genres.firstWhere((g) => g.slug == _selectedGenreSlug, orElse: () => const GenreCategory(title: 'Pilihan', slug: '')).title.toUpperCase()}" : "GENRE: ACTION & POPULER"}',
-                        subtitle: 'Eksplorasi ribuan film berdasarkan kategori',
                         movies: _genreMovies,
                         onSeeAll: () => _openCategory(
                           _selectedGenreSlug.isNotEmpty
@@ -644,11 +638,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Text(
                             '📌 SEMUA KATEGORI & GENRE',
                             style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'Pilih genre untuk melihat seluruh koleksi film & series',
-                            style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12),
                           ),
                           const SizedBox(height: 14),
                           Wrap(
@@ -698,7 +687,6 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Reusable Horizontal Section with Header & "Semua" Button
   Widget _buildCategorySection({
     required String title,
-    required String subtitle,
     required List<Movie> movies,
     required VoidCallback onSeeAll,
   }) {
@@ -713,27 +701,14 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          letterSpacing: 0.3,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        subtitle,
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.5),
-                          fontSize: 11,
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.3,
+                    ),
                   ),
                 ),
                 // "Semua" / "Lihat Semua" Button (TV Focusable)
