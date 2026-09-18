@@ -14,7 +14,7 @@ class TVFocusableWidget extends StatefulWidget {
     super.key,
     required this.child,
     required this.onTap,
-    this.scaleFactor = 1.05,
+    this.scaleFactor = 1.06,
     this.borderRadius,
     this.focusGlowColor = const Color(0xFFA855F7),
     this.autofocus = false,
@@ -51,11 +51,11 @@ class _TVFocusableWidgetState extends State<TVFocusableWidget> {
     });
 
     if (_isFocused) {
-      // Auto-scroll into view when focused by TV remote
+      // Auto-scroll into view when focused by TV remote D-Pad
       Scrollable.ensureVisible(
         context,
         alignment: 0.5,
-        duration: const Duration(milliseconds: 250),
+        duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
       );
     }
@@ -65,28 +65,28 @@ class _TVFocusableWidgetState extends State<TVFocusableWidget> {
   Widget build(BuildContext context) {
     final radius = widget.borderRadius ?? BorderRadius.circular(12);
 
-    return FocusableActionDetector(
+    return Focus(
       focusNode: _node,
       autofocus: widget.autofocus,
-      onShowFocusHighlight: (v) => setState(() => _isFocused = v),
-      actions: {
-        ActivateIntent: CallbackAction<ActivateIntent>(
-          onInvoke: (intent) {
+      onFocusChange: (v) => setState(() => _isFocused = v),
+      onKeyEvent: (node, event) {
+        if (event is KeyDownEvent) {
+          final key = event.logicalKey;
+          if (key == LogicalKeyboardKey.select ||
+              key == LogicalKeyboardKey.enter ||
+              key == LogicalKeyboardKey.numpadEnter ||
+              key == LogicalKeyboardKey.space ||
+              key == LogicalKeyboardKey.gameButtonA) {
             widget.onTap();
-            return null;
-          },
-        ),
-      },
-      shortcuts: const {
-        SingleActivator(LogicalKeyboardKey.select): ActivateIntent(),
-        SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
-        SingleActivator(LogicalKeyboardKey.numpadEnter): ActivateIntent(),
-        SingleActivator(LogicalKeyboardKey.space): ActivateIntent(),
+            return KeyEventResult.handled;
+          }
+        }
+        return KeyEventResult.ignored;
       },
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 180),
           curve: Curves.easeOutCubic,
           transform: Matrix4.diagonal3Values(
             _isFocused ? widget.scaleFactor : 1.0,
@@ -99,20 +99,20 @@ class _TVFocusableWidgetState extends State<TVFocusableWidget> {
             boxShadow: _isFocused
                 ? [
                     BoxShadow(
-                      color: widget.focusGlowColor.withValues(alpha: 0.5),
-                      blurRadius: 16,
-                      spreadRadius: 2,
+                      color: widget.focusGlowColor.withValues(alpha: 0.6),
+                      blurRadius: 18,
+                      spreadRadius: 2.5,
                     ),
                     BoxShadow(
-                      color: Colors.white.withValues(alpha: 0.15),
-                      blurRadius: 4,
+                      color: Colors.white.withValues(alpha: 0.25),
+                      blurRadius: 6,
                       spreadRadius: 1,
                     ),
                   ]
                 : [],
           ),
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 180),
             decoration: BoxDecoration(
               borderRadius: radius,
               border: Border.all(

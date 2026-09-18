@@ -34,11 +34,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
   List<SeriesEpisode> _episodes = [];
   String _activeEmbedUrl = '';
 
-  // HUD Toast State
-  String? _hudText;
-  IconData? _hudIcon;
-  Timer? _hudTimer;
-
   @override
   void initState() {
     super.initState();
@@ -108,56 +103,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
     }
   }
 
-  void _showHud(String text, IconData icon) {
-    _hudTimer?.cancel();
-    setState(() {
-      _hudText = text;
-      _hudIcon = icon;
-    });
-    _hudTimer = Timer(const Duration(milliseconds: 1400), () {
-      if (mounted) {
-        setState(() {
-          _hudText = null;
-          _hudIcon = null;
-        });
-      }
-    });
-  }
-
-  // --- TV REMOTE VIDEO ACTIONS ---
-
-  void _tvPlayPause() {
-    _controller.runJavaScript("if (window.tvControl) window.tvControl('togglePlay');");
-    _showHud('Play / Pause', Icons.play_circle_fill_rounded);
-    if (_showControls) _startControlsTimer();
-  }
-
-  void _tvSeek(int seconds) {
-    _controller.runJavaScript("if (window.tvControl) window.tvControl('seek', $seconds);");
-    if (seconds > 0) {
-      _showHud('+$seconds Detik', Icons.fast_forward_rounded);
-    } else {
-      _showHud('$seconds Detik', Icons.fast_rewind_rounded);
-    }
-    if (_showControls) _startControlsTimer();
-  }
-
-  void _tvVolume(double delta) {
-    _controller.runJavaScript("if (window.tvControl) window.tvControl('volume', $delta);");
-    if (delta > 0) {
-      _showHud('Volume +', Icons.volume_up_rounded);
-    } else {
-      _showHud('Volume -', Icons.volume_down_rounded);
-    }
-    if (_showControls) _startControlsTimer();
-  }
-
-  void _tvToggleMute() {
-    _controller.runJavaScript("if (window.tvControl) window.tvControl('toggleMute');");
-    _showHud('Mute / Suara', Icons.volume_off_rounded);
-    if (_showControls) _startControlsTimer();
-  }
-
   void _setupWebViewController() {
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -187,7 +132,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
             setState(() => _isLoading = false);
             _controller.runJavaScript('''
               (function() {
-                // Remove ads
                 var ads = document.querySelectorAll('#adContainer, .ads, [class*="ad-"], [id*="ad-"], .popunder, #skipAds');
                 ads.forEach(function(el) { if (el) el.remove(); });
                 
@@ -268,7 +212,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
     _activeEmbedUrl = embedUrl;
 
-    // Build the isolated HTML container with TV control bridge
+    // Build the clean, isolated HTML container
     final htmlContent = '''
       <!DOCTYPE html>
       <html lang="id">
@@ -310,90 +254,25 @@ class _PlayerScreenState extends State<PlayerScreen> {
           allow="screen-wake-lock; autoplay; fullscreen; picture-in-picture">
         </iframe>
         <script>
-          // TV Remote Command Bridge
-          window.tvControl = function(action, val) {
+          window.tvControl = function(action) {
             try {
-              function getAllVideos(root) {
-                var res = [];
-                try {
-                  var vids = root.querySelectorAll('video');
-                  for (var i = 0; i < vids.length; i++) res.push(vids[i]);
-                  var ifrs = root.querySelectorAll('iframe');
-                  for (var j = 0; j < ifrs.length; j++) {
-                    try {
-                      var cw = ifrs[j].contentWindow;
-                      if (cw && cw.document) res = res.concat(getAllVideos(cw.document));
-                    } catch(e) {}
-                  }
-                } catch(e) {}
-                return res;
+              var v = document.querySelector('video');
+              if (v) {
+                if (action === 'togglePlay') {
+                  if (v.paused) v.play(); else v.pause();
+                }
+              } else {
+                var playBtn = document.querySelector('.jw-display-icon-container, .vjs-big-play-button, .play-button, .play-btn, [class*="play"], button.play');
+                if (playBtn) playBtn.click();
               }
-
-              var videos = getAllVideos(document);
-
-              if (action === 'togglePlay' || action === 'play' || action === 'pause') {
-                if (videos.length > 0) {
-                  var v = videos[0];
-                  if (action === 'play') { v.play(); }
-                  else if (action === 'pause') { v.pause(); }
-                  else {
-                    if (v.paused) v.play(); else v.pause();
-                  }
-                }
-                
-                // Click play buttons in DOM
-                var playBtns = document.querySelectorAll('.jw-display-icon-container, .vjs-big-play-button, .play-button, .play-btn, [class*="play"], button, #play');
-                playBtns.forEach(function(b) { try { b.click(); } catch(e){} });
-
-                // Dispatch postMessage to iframe
-                var ifrs = document.querySelectorAll('iframe');
-                ifrs.forEach(function(ifr) {
-                  try {
-                    ifr.contentWindow.postMessage({ action: action, command: action }, '*');
-                    ifr.contentWindow.postMessage('togglePlay', '*');
-                    ifr.contentWindow.postMessage(JSON.stringify({ event: action, type: action }), '*');
-                  } catch(e) {}
-                });
-
-                // Simulate central click event
-                var cx = window.innerWidth / 2;
-                var cy = window.innerHeight / 2;
-                var el = document.elementFromPoint(cx, cy);
-                if (el) {
-                  try {
-                    el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, clientX: cx, clientY: cy }));
-                    el.click();
-                  } catch(e){}
-                }
-              } else if (action === 'seek') {
-                var offset = Number(val) || 10;
-                if (videos.length > 0) {
-                  var v = videos[0];
-                  v.currentTime = Math.max(0, Math.min(v.duration || 999999, (v.currentTime || 0) + offset));
-                }
-                var ifrs = document.querySelectorAll('iframe');
-                ifrs.forEach(function(ifr) {
-                  try {
-                    ifr.contentWindow.postMessage({ action: 'seek', offset: offset }, '*');
-                    ifr.contentWindow.postMessage(JSON.stringify({ type: 'seek', offset: offset }), '*');
-                  } catch(e) {}
-                });
-              } else if (action === 'volume') {
-                var delta = Number(val) || 0.1;
-                if (videos.length > 0) {
-                  var v = videos[0];
-                  v.muted = false;
-                  v.volume = Math.max(0, Math.min(1, (v.volume || 1.0) + delta));
-                }
-              } else if (action === 'toggleMute') {
-                if (videos.length > 0) {
-                  var v = videos[0];
-                  v.muted = !v.muted;
-                }
+              var cx = window.innerWidth / 2;
+              var cy = window.innerHeight / 2;
+              var el = document.elementFromPoint(cx, cy);
+              if (el) {
+                el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, clientX: cx, clientY: cy }));
+                el.click();
               }
-            } catch(err) {
-              console.log('[TVControl Bridge Error]', err);
-            }
+            } catch(e) {}
           };
 
           window.addEventListener('click', function() {
@@ -442,7 +321,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
   @override
   void dispose() {
     _controlsTimer?.cancel();
-    _hudTimer?.cancel();
     WakelockPlus.disable();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setPreferredOrientations([
@@ -465,81 +343,28 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
         final key = event.logicalKey;
 
-        // 1. Center / OK / Enter / Space / Media PlayPause
-        if (key == LogicalKeyboardKey.select ||
-            key == LogicalKeyboardKey.enter ||
-            key == LogicalKeyboardKey.numpadEnter ||
-            key == LogicalKeyboardKey.space ||
-            key == LogicalKeyboardKey.mediaPlayPause ||
-            key == LogicalKeyboardKey.mediaPlay ||
-            key == LogicalKeyboardKey.mediaPause) {
-          if (!_showControls) {
-            _tvPlayPause();
-            return KeyEventResult.handled;
-          }
-          return KeyEventResult.ignored;
-        }
-
-        // 2. D-Pad Left / Fast Rewind (-10s)
-        if (key == LogicalKeyboardKey.arrowLeft ||
-            key == LogicalKeyboardKey.mediaRewind) {
-          if (!_showControls) {
-            _tvSeek(-10);
-            return KeyEventResult.handled;
-          }
-          return KeyEventResult.ignored;
-        }
-
-        // 3. D-Pad Right / Fast Forward (+10s)
-        if (key == LogicalKeyboardKey.arrowRight ||
-            key == LogicalKeyboardKey.mediaFastForward) {
-          if (!_showControls) {
-            _tvSeek(10);
-            return KeyEventResult.handled;
-          }
-          return KeyEventResult.ignored;
-        }
-
-        // 4. D-Pad Up (Show controls / Volume +)
-        if (key == LogicalKeyboardKey.arrowUp) {
-          if (!_showControls) {
+        // If controls are hidden, any navigation/select key will open controls and make icons selectable!
+        if (!_showControls) {
+          if (key == LogicalKeyboardKey.select ||
+              key == LogicalKeyboardKey.enter ||
+              key == LogicalKeyboardKey.space ||
+              key == LogicalKeyboardKey.arrowUp ||
+              key == LogicalKeyboardKey.arrowDown ||
+              key == LogicalKeyboardKey.arrowLeft ||
+              key == LogicalKeyboardKey.arrowRight ||
+              key == LogicalKeyboardKey.mediaPlayPause) {
             _showControlsOverlay();
-            _tvVolume(0.1);
+            _controller.runJavaScript("if (window.tvControl) window.tvControl('togglePlay');");
             return KeyEventResult.handled;
           }
+        } else {
+          // If controls are open, reset timer on each D-pad press so menu doesn't disappear
           _startControlsTimer();
-          return KeyEventResult.ignored;
-        }
 
-        // 5. D-Pad Down (Show controls / Volume -)
-        if (key == LogicalKeyboardKey.arrowDown) {
-          if (!_showControls) {
-            _showControlsOverlay();
-            _tvVolume(-0.1);
-            return KeyEventResult.handled;
-          }
-          _startControlsTimer();
-          return KeyEventResult.ignored;
-        }
-
-        // 6. Mute Key
-        if (key == LogicalKeyboardKey.audioVolumeMute) {
-          _tvToggleMute();
-          return KeyEventResult.handled;
-        }
-
-        // 7. Escape / Back Key
-        if (key == LogicalKeyboardKey.escape) {
-          if (_showControls) {
+          if (key == LogicalKeyboardKey.escape) {
             setState(() => _showControls = false);
             return KeyEventResult.handled;
           }
-          Navigator.of(context).pop();
-          return KeyEventResult.handled;
-        }
-
-        if (_showControls) {
-          _startControlsTimer();
         }
 
         return KeyEventResult.ignored;
@@ -589,45 +414,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     ),
                   ),
 
-                // 3. Center HUD Feedback (Play/Pause/Seek/Volume)
-                if (_hudText != null)
-                  Center(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.85),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: const Color(0xFFA855F7), width: 1.5),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFFA855F7).withValues(alpha: 0.4),
-                            blurRadius: 20,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (_hudIcon != null) ...[
-                            Icon(_hudIcon, color: const Color(0xFFC084FC), size: 28),
-                            const SizedBox(width: 10),
-                          ],
-                          Text(
-                            _hudText!,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                // 4. Persistent Mini Floating Episode Pill (Visible when controls hidden for series)
+                // 3. Persistent Mini Floating Episode Pill (Visible when controls hidden for series)
                 if (!_showControls && isSeries && _episodes.isNotEmpty)
                   Positioned(
                     top: 14,
@@ -657,7 +444,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     ),
                   ),
 
-                // 5. Floating Top Bar Overlay Controls & In-Player Episode Selector
+                // 4. Floating Top Bar Overlay Controls & In-Player Episode Selector
                 if (_showControls)
                   Positioned(
                     top: 0,
@@ -683,8 +470,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           // Top Action Row
                           Row(
                             children: [
-                              // Back Button
+                              // Back Button (D-Pad Focusable with Glow)
                               TVFocusableWidget(
+                                autofocus: true,
                                 onTap: () => Navigator.of(context).pop(),
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
@@ -739,7 +527,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 ),
                               ),
 
-                              // Quick Prev / Next for Series
+                              // Quick Prev / Next for Series (D-Pad Focusable)
                               if (isSeries && _episodes.length > 1) ...[
                                 TVFocusableWidget(
                                   onTap: _playPreviousEpisode,
@@ -754,7 +542,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                     child: const Icon(Icons.skip_previous_rounded, color: Colors.white, size: 18),
                                   ),
                                 ),
-                                const SizedBox(width: 6),
+                                const SizedBox(width: 8),
                                 TVFocusableWidget(
                                   onTap: _playNextEpisode,
                                   borderRadius: BorderRadius.circular(20),
@@ -771,7 +559,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                 const SizedBox(width: 8),
                               ],
 
-                              // Reload Button
+                              // Reload Button (D-Pad Focusable)
                               TVFocusableWidget(
                                 onTap: _loadSelectedEpisode,
                                 borderRadius: BorderRadius.circular(20),
@@ -795,7 +583,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             ],
                           ),
 
-                          // Direct In-Player Episode Selector Row
+                          // Direct In-Player Episode Selector Row (D-Pad Focusable Chips)
                           if (isSeries && _episodes.isNotEmpty) ...[
                             const SizedBox(height: 12),
                             Row(
@@ -861,136 +649,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
                               ),
                             ),
                           ],
-                        ],
-                      ),
-                    ),
-                  ),
-
-                // 6. Floating Bottom TV Player Control Bar (D-Pad Interactive)
-                if (_showControls)
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          colors: [
-                            Colors.black.withValues(alpha: 0.95),
-                            Colors.black.withValues(alpha: 0.8),
-                            Colors.transparent,
-                          ],
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Seek -10s Button
-                          TVFocusableWidget(
-                            onTap: () => _tvSeek(-10),
-                            borderRadius: BorderRadius.circular(24),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(24),
-                                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-                              ),
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.replay_10_rounded, color: Colors.white, size: 20),
-                                  SizedBox(width: 6),
-                                  Text('-10 Detik', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 14),
-
-                          // Play / Pause Primary Button
-                          TVFocusableWidget(
-                            autofocus: true,
-                            onTap: _tvPlayPause,
-                            borderRadius: BorderRadius.circular(28),
-                            focusGlowColor: const Color(0xFFEC4899),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 11),
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [Color(0xFFEC4899), Color(0xFF8B5CF6)],
-                                ),
-                                borderRadius: BorderRadius.circular(28),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0xFF8B5CF6).withValues(alpha: 0.4),
-                                    blurRadius: 16,
-                                    spreadRadius: 2,
-                                  ),
-                                ],
-                              ),
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.play_circle_fill_rounded, color: Colors.white, size: 24),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Play / Pause',
-                                    style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w900),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 14),
-
-                          // Seek +10s Button
-                          TVFocusableWidget(
-                            onTap: () => _tvSeek(10),
-                            borderRadius: BorderRadius.circular(24),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(24),
-                                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-                              ),
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.forward_10_rounded, color: Colors.white, size: 20),
-                                  SizedBox(width: 6),
-                                  Text('+10 Detik', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 14),
-
-                          // Mute / Unmute Button
-                          TVFocusableWidget(
-                            onTap: _tvToggleMute,
-                            borderRadius: BorderRadius.circular(24),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(24),
-                                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
-                              ),
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.volume_up_rounded, color: Colors.white, size: 20),
-                                  SizedBox(width: 6),
-                                  Text('Suara', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
