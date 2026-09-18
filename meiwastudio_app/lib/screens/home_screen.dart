@@ -36,14 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   static const String saweriaUrl = 'https://saweria.co/meiwatv';
-  static const String adsterraUrl1 = 'https://www.profitableratecpmnetwork.com/r1x7jbv2ys?key=c06365de807e3e8605b4e7e665953775';
-  static const String adsterraUrl2 = 'https://www.profitableratecpmnetwork.com/nhgf41xe?key=c1f7258bb9659ab225647c310b68619e';
-
-  int _adClickCount = 0;
-  void _openPartnerAd() {
-    _adClickCount++;
-    _launchExternalUrl(_adClickCount % 2 == 0 ? adsterraUrl1 : adsterraUrl2);
-  }
 
   @override
   void initState() {
@@ -436,60 +428,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
 
-                // 4. Adsterra Sponsor & Dukungan Banner Card
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-                    child: TVFocusableWidget(
-                      onTap: _openPartnerAd,
-                      borderRadius: BorderRadius.circular(14),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              const Color(0xFF8B5CF6).withValues(alpha: 0.2),
-                              const Color(0xFF3B82F6).withValues(alpha: 0.2),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(14),
-                          border: Border.all(color: const Color(0xFFA855F7).withValues(alpha: 0.3)),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFA855F7).withValues(alpha: 0.2),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(Icons.card_giftcard_rounded, color: Color(0xFFC084FC), size: 20),
-                            ),
-                            const SizedBox(width: 12),
-                            const Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '🎁 Promo & Sponsor Partner MeiwaStudio',
-                                    style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w800),
-                                  ),
-                                  Text(
-                                    'Klik di sini untuk dukung server & nikmati tayangan gratis selamanya',
-                                    style: TextStyle(color: Colors.white60, fontSize: 10),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Icon(Icons.open_in_new_rounded, color: Color(0xFFC084FC), size: 16),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-                // 5. Quick Genre Pills Bar
+                // 4. Quick Genre Pills Bar
                 SliverToBoxAdapter(
                   child: SizedBox(
                     height: 38,
@@ -539,7 +478,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
-                // 6. Loading State
+                // 5. Loading State
                 if (_isLoading)
                   const SliverToBoxAdapter(
                     child: Padding(
@@ -627,52 +566,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-
-                  // Section 7: Semua Genre Exploration Grid
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            '📌 SEMUA KATEGORI & GENRE',
-                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800),
-                          ),
-                          const SizedBox(height: 14),
-                          Wrap(
-                            spacing: 10,
-                            runSpacing: 10,
-                            children: _config.genres.where((g) => g.slug.isNotEmpty).map((genre) {
-                              return TVFocusableWidget(
-                                onTap: () => _openCategory('Genre: ${genre.title}', '/genre/${genre.slug}'),
-                                borderRadius: BorderRadius.circular(12),
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFF0E131F),
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        genre.title,
-                                        style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
-                                      ),
-                                      const SizedBox(width: 6),
-                                      const Icon(Icons.arrow_forward_ios_rounded, color: Color(0xFFA855F7), size: 12),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                 ],
               ],
 

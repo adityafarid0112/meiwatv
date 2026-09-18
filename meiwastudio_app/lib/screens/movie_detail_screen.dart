@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/movie_model.dart';
 import '../services/lk21_scraper_service.dart';
 import '../widgets/tv_focusable_widget.dart';
@@ -21,6 +22,21 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   bool _isLoadingDetail = true;
   int _selectedSeason = 1;
 
+  static const String adsterraUrl1 = 'https://www.profitableratecpmnetwork.com/r1x7jbv2ys?key=c06365de807e3e8605b4e7e665953775';
+  static const String adsterraUrl2 = 'https://www.profitableratecpmnetwork.com/nhgf41xe?key=c1f7258bb9659ab225647c310b68619e';
+  static int _adCounter = 0;
+
+  void _triggerPopUnder() {
+    try {
+      _adCounter++;
+      final targetAd = (_adCounter % 2 == 1) ? adsterraUrl1 : adsterraUrl2;
+      launchUrl(Uri.parse(targetAd), mode: LaunchMode.externalApplication);
+      debugPrint('[Adsterra] Pop-under triggered on Play: $targetAd');
+    } catch (e) {
+      debugPrint('[Adsterra] Pop-under error: $e');
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +56,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   }
 
   void _openPlayer({SeriesEpisode? episode}) {
+    // Trigger pop-under ad every time play is clicked
+    _triggerPopUnder();
+
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => PlayerScreen(
