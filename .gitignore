@@ -17,8 +17,8 @@ token.json
 *.apk
 *.zip
 
-# Temporary test screens
-screen*.png
+# Temporary test screens in root
+/screen*.png
 source_dump.html
 
 # Node modules
