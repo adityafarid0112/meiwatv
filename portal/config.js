@@ -69,14 +69,14 @@ const MEIWA_CONFIG = {
       supportsTV: true,
 
       // Link Download APK (Google Drive)
-      downloadUrlUniversal: "https://drive.google.com/uc?export=download&id=1P84kJAU4M_lmjr6upcboHHhNHe0LqS1c",
-      downloadUrlSTB: "https://drive.google.com/uc?export=download&id=1DjRWYcw43G-3AEfAxb0qI-sXTNPWw_Tt",
-      downloadUrlHP: "https://drive.google.com/uc?export=download&id=1fUypMiBVXvzLeirHdimQA_EsTnkqPeOt",
+      downloadUrlUniversal: "https://drive.google.com/uc?export=download&id=1Y01DPoU_4APCMT4jL15KbTlUQaMmG6aV",
+      downloadUrlSTB: "https://drive.google.com/uc?export=download&id=14RbJlvur9X56_g6euebG0YAeDQexpj_2",
+      downloadUrlHP: "https://drive.google.com/uc?export=download&id=1zNSZeck_9-MxtOg9DwawVEbdiGGFQ4mJ",
       
       // Mirror / Preview Links
-      driveViewUniversal: "https://drive.google.com/file/d/1P84kJAU4M_lmjr6upcboHHhNHe0LqS1c/view?usp=sharing",
-      driveViewSTB: "https://drive.google.com/file/d/1DjRWYcw43G-3AEfAxb0qI-sXTNPWw_Tt/view?usp=sharing",
-      driveViewHP: "https://drive.google.com/file/d/1fUypMiBVXvzLeirHdimQA_EsTnkqPeOt/view?usp=sharing",
+      driveViewUniversal: "https://drive.google.com/file/d/1Y01DPoU_4APCMT4jL15KbTlUQaMmG6aV/view?usp=sharing",
+      driveViewSTB: "https://drive.google.com/file/d/14RbJlvur9X56_g6euebG0YAeDQexpj_2/view?usp=sharing",
+      driveViewHP: "https://drive.google.com/file/d/1zNSZeck_9-MxtOg9DwawVEbdiGGFQ4mJ/view?usp=sharing",
 
       rating: "4.8",
       totalDownloads: "12K+",
