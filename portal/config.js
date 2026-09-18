@@ -64,19 +64,19 @@ const MEIWA_CONFIG = {
       version: "v1.0.0",
       versionCode: 1,
       releaseDate: "September 2026",
-      fileSize: "15.6 MB (STB) / 18 MB (HP)",
+      fileSize: "15.6 MB (STB) / 18.1 MB (HP)",
       minAndroid: "Android 5.0+ (Lollipop ke atas)",
       supportsTV: true,
 
       // Link Download APK (Google Drive)
-      downloadUrlUniversal: "https://drive.google.com/uc?export=download&id=1Y01DPoU_4APCMT4jL15KbTlUQaMmG6aV",
-      downloadUrlSTB: "https://drive.google.com/uc?export=download&id=14RbJlvur9X56_g6euebG0YAeDQexpj_2",
-      downloadUrlHP: "https://drive.google.com/uc?export=download&id=1zNSZeck_9-MxtOg9DwawVEbdiGGFQ4mJ",
+      downloadUrlUniversal: "https://drive.google.com/uc?export=download&id=1iJSlxHl2gb3omFR_rVGdsPr9JnP-CVC2",
+      downloadUrlSTB: "https://drive.google.com/uc?export=download&id=1No7NFfkLCvZb4RUdqO1yhKZzB5mFPPxj",
+      downloadUrlHP: "https://drive.google.com/uc?export=download&id=1elPWgczMwY7oJ4T1MM7nyO8SqFH0zrd7",
       
       // Mirror / Preview Links
-      driveViewUniversal: "https://drive.google.com/file/d/1Y01DPoU_4APCMT4jL15KbTlUQaMmG6aV/view?usp=sharing",
-      driveViewSTB: "https://drive.google.com/file/d/14RbJlvur9X56_g6euebG0YAeDQexpj_2/view?usp=sharing",
-      driveViewHP: "https://drive.google.com/file/d/1zNSZeck_9-MxtOg9DwawVEbdiGGFQ4mJ/view?usp=sharing",
+      driveViewUniversal: "https://drive.google.com/file/d/1iJSlxHl2gb3omFR_rVGdsPr9JnP-CVC2/view?usp=sharing",
+      driveViewSTB: "https://drive.google.com/file/d/1No7NFfkLCvZb4RUdqO1yhKZzB5mFPPxj/view?usp=sharing",
+      driveViewHP: "https://drive.google.com/file/d/1elPWgczMwY7oJ4T1MM7nyO8SqFH0zrd7/view?usp=sharing",
 
       rating: "4.8",
       totalDownloads: "12K+",
