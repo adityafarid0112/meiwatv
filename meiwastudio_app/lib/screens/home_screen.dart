@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final RemoteConfigService _config = RemoteConfigService();
 
   bool _isLoading = true;
-  String _selectedGenreSlug = '';
   
   // Category Lists
   List<Movie> _filmTerbaru = [];
@@ -31,7 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Movie> _topRating = [];
   List<Movie> _genreMovies = [];
   List<Movie> _searchResults = [];
-  Movie? _featuredMovie;
+  
+  final PageController _heroPageController = PageController();
+  int _currentHeroIndex = 0;
+  Timer? _heroTimer;
   
   final TextEditingController _searchController = TextEditingController();
 
@@ -41,6 +44,56 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _initApp();
+    _startHeroTimer();
+  }
+
+  void _startHeroTimer() {
+    _heroTimer?.cancel();
+    _heroTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (!mounted) return;
+      final heroMovies = _getFeaturedMovies();
+      if (heroMovies.length > 1 && _heroPageController.hasClients) {
+        final nextIndex = (_currentHeroIndex + 1) % heroMovies.length;
+        _heroPageController.animateToPage(
+          nextIndex,
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.easeInOutCubic,
+        );
+      }
+    });
+  }
+
+  List<Movie> _getFeaturedMovies() {
+    if (_topBulanIni.isNotEmpty) {
+      return _topBulanIni.take(5).toList();
+    }
+    if (_filmTerbaru.isNotEmpty) {
+      return _filmTerbaru.take(5).toList();
+    }
+    return [];
+  }
+
+  Color _getQualityColor(String quality, bool isSeries) {
+    if (isSeries) return const Color(0xFF8B5CF6);
+    final q = quality.toUpperCase();
+    if (q.contains('CAM') || q.contains('TS') || q.contains('TELESYNC') || q.contains('WORKPRINT')) {
+      return const Color(0xFFEF4444); // Red for CAM
+    }
+    if (q.contains('HD') || q.contains('FHD') || q.contains('4K') || q.contains('1080') || q.contains('720') || q.contains('BLURAY') || q.contains('WEB')) {
+      return const Color(0xFF10B981); // Green for HD
+    }
+    if (q.contains('SD') || q.contains('DVD') || q.contains('HDRIP')) {
+      return const Color(0xFFF59E0B); // Amber for SD
+    }
+    return const Color(0xFF10B981);
+  }
+
+  @override
+  void dispose() {
+    _heroTimer?.cancel();
+    _heroPageController.dispose();
+    _searchController.dispose();
+    super.dispose();
   }
 
   Future<void> _initApp() async {
@@ -67,7 +120,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // 1. Fetch Film Terbaru
     safeRun(_scraper.fetchFilmTerbaru(), (list) {
       _filmTerbaru = list;
-      _featuredMovie ??= list.first;
     });
 
     // 2. Fetch Series Unggulan
@@ -83,7 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // 4. Fetch Top Bulan Ini
     safeRun(_scraper.fetchTopBulanIni(), (list) {
       _topBulanIni = list;
-      _featuredMovie ??= list.first;
     });
 
     // 5. Fetch Top Rating
@@ -91,8 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
       _topRating = list;
     });
 
-    // 6. Fetch Genre movies
-    safeRun(_scraper.fetchMoviesByGenre(_selectedGenreSlug.isNotEmpty ? _selectedGenreSlug : 'action'), (list) {
+    // 6. Fetch Genre movies (Action)
+    safeRun(_scraper.fetchMoviesByGenre('action'), (list) {
       _genreMovies = list;
     });
 
@@ -102,23 +153,6 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() => _isLoading = false);
       }
     });
-  }
-
-  void _onGenreSelected(String slug) {
-    setState(() {
-      _selectedGenreSlug = slug;
-      _searchResults.clear();
-    });
-    _loadGenreMovies(slug);
-  }
-
-  Future<void> _loadGenreMovies(String slug) async {
-    final list = await _scraper.fetchMoviesByGenre(slug);
-    if (mounted) {
-      setState(() {
-        _genreMovies = list;
-      });
-    }
   }
 
   void _openDetail(Movie movie) {
@@ -348,156 +382,175 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ] else ...[
-                // 3. Hero Featured Movie Banner
-                if (_featuredMovie != null)
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 8, 20, 14),
-                      child: TVFocusableWidget(
-                        onTap: () => _openDetail(_featuredMovie!),
-                        scaleFactor: 1.02,
-                        borderRadius: BorderRadius.circular(18),
-                        child: Container(
-                          height: 195,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
-                          ),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              CachedNetworkImage(
-                                imageUrl: _featuredMovie!.posterUrl,
-                                fit: BoxFit.cover,
-                                errorWidget: (context, url, error) => Container(color: const Color(0xFF131A29)),
+                // 3. Hero Top 5 Featured Movies Slider
+                Builder(
+                  builder: (context) {
+                    final heroMovies = _getFeaturedMovies();
+                    if (heroMovies.isEmpty) {
+                      return const SliverToBoxAdapter(child: SizedBox(height: 8));
+                    }
+
+                    return SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 200,
+                              child: PageView.builder(
+                                controller: _heroPageController,
+                                itemCount: heroMovies.length,
+                                onPageChanged: (index) {
+                                  setState(() {
+                                    _currentHeroIndex = index;
+                                  });
+                                },
+                                itemBuilder: (context, index) {
+                                  final movie = heroMovies[index];
+                                  final qColor = _getQualityColor(movie.quality, movie.isSeries);
+
+                                  return TVFocusableWidget(
+                                    onTap: () => _openDetail(movie),
+                                    scaleFactor: 1.02,
+                                    borderRadius: BorderRadius.circular(18),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18),
+                                        border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
+                                      ),
+                                      child: Stack(
+                                        fit: StackFit.expand,
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(18),
+                                            child: CachedNetworkImage(
+                                              imageUrl: movie.posterUrl,
+                                              fit: BoxFit.cover,
+                                              errorWidget: (context, url, error) => Container(color: const Color(0xFF131A29)),
+                                            ),
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(18),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.centerLeft,
+                                                end: Alignment.centerRight,
+                                                colors: [
+                                                  Colors.black.withValues(alpha: 0.95),
+                                                  Colors.black.withValues(alpha: 0.7),
+                                                  Colors.transparent,
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            top: 18,
+                                            left: 20,
+                                            bottom: 18,
+                                            right: 120,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                                      decoration: BoxDecoration(
+                                                        color: const Color(0xFFEC4899),
+                                                        borderRadius: BorderRadius.circular(6),
+                                                      ),
+                                                      child: Text(
+                                                        '🔥 TOP ${index + 1} BULAN INI',
+                                                        style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w900),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 8),
+                                                    Container(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                                                      decoration: BoxDecoration(
+                                                        color: qColor.withValues(alpha: 0.25),
+                                                        borderRadius: BorderRadius.circular(6),
+                                                        border: Border.all(color: qColor.withValues(alpha: 0.7)),
+                                                      ),
+                                                      child: Text(
+                                                        movie.isSeries ? 'SERIES' : movie.quality,
+                                                        style: TextStyle(color: qColor, fontSize: 9, fontWeight: FontWeight.w900),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 8),
+                                                Text(
+                                                  movie.title,
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w800,
+                                                    height: 1.2,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 10),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                                      decoration: BoxDecoration(
+                                                        gradient: const LinearGradient(
+                                                          colors: [Color(0xFFEC4899), Color(0xFF8B5CF6)],
+                                                        ),
+                                                        borderRadius: BorderRadius.circular(20),
+                                                      ),
+                                                      child: const Row(
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        children: [
+                                                          Icon(Icons.play_arrow_rounded, color: Colors.white, size: 18),
+                                                          SizedBox(width: 4),
+                                                          Text('Tonton Sekarang', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(18),
-                                  gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      Colors.black.withValues(alpha: 0.92),
-                                      Colors.black.withValues(alpha: 0.6),
-                                      Colors.transparent,
-                                    ],
+                            ),
+                            if (heroMovies.length > 1) ...[
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: List.generate(
+                                  heroMovies.length,
+                                  (dotIndex) => AnimatedContainer(
+                                    duration: const Duration(milliseconds: 300),
+                                    margin: const EdgeInsets.symmetric(horizontal: 3),
+                                    width: _currentHeroIndex == dotIndex ? 20 : 6,
+                                    height: 5,
+                                    decoration: BoxDecoration(
+                                      color: _currentHeroIndex == dotIndex
+                                          ? const Color(0xFFA855F7)
+                                          : Colors.white.withValues(alpha: 0.2),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
                                   ),
                                 ),
                               ),
-                              Positioned(
-                                top: 20,
-                                left: 20,
-                                bottom: 20,
-                                right: 120,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFFEC4899),
-                                        borderRadius: BorderRadius.circular(6),
-                                      ),
-                                      child: const Text(
-                                        '🔥 REKOMENDASI HARI INI',
-                                        style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w900),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Text(
-                                      _featuredMovie!.title,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w800,
-                                        height: 1.2,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                                          decoration: BoxDecoration(
-                                            gradient: const LinearGradient(
-                                              colors: [Color(0xFFEC4899), Color(0xFF8B5CF6)],
-                                            ),
-                                            borderRadius: BorderRadius.circular(20),
-                                          ),
-                                          child: const Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(Icons.play_arrow_rounded, color: Colors.white, size: 18),
-                                              SizedBox(width: 4),
-                                              Text('Tonton Sekarang', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
                             ],
-                          ),
+                          ],
                         ),
                       ),
-                    ),
-                  ),
-
-                // 4. Quick Genre Pills Bar
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 38,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      itemCount: _config.genres.length,
-                      separatorBuilder: (context, index) => const SizedBox(width: 8),
-                      itemBuilder: (context, index) {
-                        final genre = _config.genres[index];
-                        final isSelected = _selectedGenreSlug == genre.slug;
-
-                        return TVFocusableWidget(
-                          onTap: () {
-                            if (genre.slug.isEmpty) {
-                              _openCategory('Semua Film Terbaru', '/latest');
-                            } else {
-                              _onGenreSelected(genre.slug);
-                            }
-                          },
-                          borderRadius: BorderRadius.circular(20),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: isSelected ? const Color(0xFFA855F7) : Colors.white.withValues(alpha: 0.05),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: isSelected ? const Color(0xFFA855F7) : Colors.white.withValues(alpha: 0.08),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                genre.title,
-                                style: TextStyle(
-                                  color: isSelected ? Colors.white : Colors.white.withValues(alpha: 0.75),
-                                  fontSize: 12,
-                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                    );
+                  },
                 ),
-
-                const SliverToBoxAdapter(child: SizedBox(height: 16)),
 
                 // 5. Loading State
                 if (_isLoading)
@@ -573,18 +626,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
 
-                  // Section 6: Dynamic Selected Genre Row
+                  // Section 6: Action / Popular Movies
                   if (_genreMovies.isNotEmpty)
                     SliverToBoxAdapter(
                       child: _buildCategorySection(
-                        title: '🗂️ ${_selectedGenreSlug.isNotEmpty ? "GENRE: ${_config.genres.firstWhere((g) => g.slug == _selectedGenreSlug, orElse: () => const GenreCategory(title: 'Pilihan', slug: '')).title.toUpperCase()}" : "GENRE: ACTION & POPULER"}',
+                        title: '🎬 FILM ACTION TERPOPULER',
                         movies: _genreMovies,
-                        onSeeAll: () => _openCategory(
-                          _selectedGenreSlug.isNotEmpty
-                              ? 'Genre: ${_config.genres.firstWhere((g) => g.slug == _selectedGenreSlug, orElse: () => const GenreCategory(title: 'Genre', slug: '')).title}'
-                              : 'Semua Film Action',
-                          _selectedGenreSlug.isNotEmpty ? '/genre/$_selectedGenreSlug' : '/genre/action',
-                        ),
+                        onSeeAll: () => _openCategory('Semua Film Action', '/genre/action'),
                       ),
                     ),
                 ],

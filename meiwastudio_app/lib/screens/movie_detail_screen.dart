@@ -207,17 +207,22 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                     ),
                                     const SizedBox(width: 8),
                                   ],
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF10B981).withValues(alpha: 0.2),
-                                      borderRadius: BorderRadius.circular(6),
-                                      border: Border.all(color: const Color(0xFF10B981).withValues(alpha: 0.5)),
-                                    ),
-                                    child: Text(
-                                      isSeries ? 'SERIES' : _currentMovie.quality,
-                                      style: const TextStyle(color: Color(0xFF34D399), fontSize: 11, fontWeight: FontWeight.bold),
-                                    ),
+                                  Builder(
+                                    builder: (context) {
+                                      final qColor = _getQualityColor(_currentMovie.quality, isSeries);
+                                      return Container(
+                                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                        decoration: BoxDecoration(
+                                          color: qColor.withValues(alpha: 0.2),
+                                          borderRadius: BorderRadius.circular(6),
+                                          border: Border.all(color: qColor.withValues(alpha: 0.6)),
+                                        ),
+                                        child: Text(
+                                          isSeries ? 'SERIES' : _currentMovie.quality,
+                                          style: TextStyle(color: qColor, fontSize: 11, fontWeight: FontWeight.bold),
+                                        ),
+                                      );
+                                    },
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
@@ -532,5 +537,20 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
         ),
       ],
     );
+  }
+
+  Color _getQualityColor(String quality, bool isSeries) {
+    if (isSeries) return const Color(0xFF8B5CF6);
+    final q = quality.toUpperCase();
+    if (q.contains('CAM') || q.contains('TS') || q.contains('TELESYNC') || q.contains('WORKPRINT')) {
+      return const Color(0xFFEF4444); // Red for CAM
+    }
+    if (q.contains('HD') || q.contains('FHD') || q.contains('4K') || q.contains('1080') || q.contains('720') || q.contains('BLURAY') || q.contains('WEB')) {
+      return const Color(0xFF10B981); // Green for HD
+    }
+    if (q.contains('SD') || q.contains('DVD') || q.contains('HDRIP')) {
+      return const Color(0xFFF59E0B); // Amber for SD
+    }
+    return const Color(0xFF10B981);
   }
 }

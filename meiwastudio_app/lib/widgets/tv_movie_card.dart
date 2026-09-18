@@ -91,7 +91,7 @@ class TVMovieCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                     decoration: BoxDecoration(
-                      color: movie.isSeries ? const Color(0xFF8B5CF6) : const Color(0xFF10B981),
+                      color: _getQualityBadgeColor(movie.quality, movie.isSeries),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -156,5 +156,20 @@ class TVMovieCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color _getQualityBadgeColor(String quality, bool isSeries) {
+    if (isSeries) return const Color(0xFF8B5CF6);
+    final q = quality.toUpperCase();
+    if (q.contains('CAM') || q.contains('TS') || q.contains('TELESYNC') || q.contains('WORKPRINT')) {
+      return const Color(0xFFEF4444); // Red for CAM
+    }
+    if (q.contains('HD') || q.contains('FHD') || q.contains('4K') || q.contains('1080') || q.contains('720') || q.contains('BLURAY') || q.contains('WEB')) {
+      return const Color(0xFF10B981); // Green for HD / Web-DL / BluRay
+    }
+    if (q.contains('SD') || q.contains('DVD') || q.contains('HDRIP')) {
+      return const Color(0xFFF59E0B); // Amber for SD / DVD
+    }
+    return const Color(0xFF10B981);
   }
 }
