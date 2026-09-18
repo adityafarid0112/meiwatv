@@ -75,34 +75,56 @@ function initModalLogic() {
 
     // Servers
     const serverList = document.getElementById("modalServerList");
-    let serverHtml = `
-      <a href="${app.downloadUrlPrimary}" class="server-btn" target="_blank" rel="noopener noreferrer">
-        <div class="server-btn-info">
-          <span class="server-btn-title">🚀 Direct Download (Google Drive Cepat)</span>
-          <span class="server-btn-sub">Download langsung file APK ke HP Anda</span>
-        </div>
-        <span class="server-badge">Direct</span>
-      </a>
-    `;
+    let serverHtml = '';
 
-    if (app.downloadUrlMirror1) {
+    // 1. Versi Ringan STB / Smart TV (Sangat Hemat Memori)
+    if (app.downloadUrlSTB) {
       serverHtml += `
-        <a href="${app.downloadUrlMirror1}" class="server-btn" target="_blank" rel="noopener noreferrer">
+        <a href="${app.downloadUrlSTB}" class="server-btn" download>
           <div class="server-btn-info">
-            <span class="server-btn-title">☁️ Alternatif: Halaman Google Drive</span>
-            <span class="server-btn-sub">Buka file di preview Google Drive</span>
+            <span class="server-btn-title">📺 Versi Ringan: STB / Smart TV (Hemat Memori)</span>
+            <span class="server-btn-sub">Format 32-bit (armeabi-v7a) • Sangat ringan & anti-lag di TV Box</span>
           </div>
+          <span class="server-badge" style="background: #10B981; color: #fff;">TV Box</span>
         </a>
       `;
     }
 
-    if (app.downloadUrlMirror2) {
+    // 2. Versi Khusus HP Android (64-bit)
+    if (app.downloadUrlHP) {
       serverHtml += `
-        <a href="${app.downloadUrlMirror2}" class="server-btn" target="_blank" rel="noopener noreferrer">
+        <a href="${app.downloadUrlHP}" class="server-btn" download>
           <div class="server-btn-info">
-            <span class="server-btn-title">📦 Server Cadangan</span>
-            <span class="server-btn-sub">Mirror cadangan external</span>
+            <span class="server-btn-title">📱 Versi Ringan: HP Android (64-Bit)</span>
+            <span class="server-btn-sub">Format ARM64 • Dioptimalkan untuk Smartphone modern</span>
           </div>
+          <span class="server-badge" style="background: #8B5CF6; color: #fff;">HP</span>
+        </a>
+      `;
+    }
+
+    // 3. Versi Universal (Semua Tipe HP & TV)
+    if (app.downloadUrlUniversal) {
+      serverHtml += `
+        <a href="${app.downloadUrlUniversal}" class="server-btn" download>
+          <div class="server-btn-info">
+            <span class="server-btn-title">🌐 Versi Universal (Semua Jenis HP & TV)</span>
+            <span class="server-btn-sub">Format Fat APK Kompatibel untuk semua perangkat Android</span>
+          </div>
+          <span class="server-badge" style="background: #64748B; color: #fff;">All-in-1</span>
+        </a>
+      `;
+    }
+
+    // 4. Google Drive (Opsional jika link diisi)
+    if (app.downloadUrlGoogleDrive && app.downloadUrlGoogleDrive.trim() !== '') {
+      serverHtml += `
+        <a href="${app.downloadUrlGoogleDrive}" class="server-btn" target="_blank" rel="noopener noreferrer">
+          <div class="server-btn-info">
+            <span class="server-btn-title">☁️ Alternatif: Google Drive</span>
+            <span class="server-btn-sub">Download via link Google Drive</span>
+          </div>
+          <span class="server-badge" style="background: #3B82F6; color: #fff;">Drive</span>
         </a>
       `;
     }

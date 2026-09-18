@@ -27,9 +27,10 @@ const MEIWA_CONFIG = {
       supportsTV: true,
       
       // Link Download APK
-      downloadUrlPrimary: "https://drive.google.com/uc?export=download&id=1KSH0CrNvoD9le4PG7kuC3fl5vMV4sVk4",
-      downloadUrlMirror1: "https://drive.google.com/file/d/1KSH0CrNvoD9le4PG7kuC3fl5vMV4sVk4/view?usp=sharing",
-      downloadUrlMirror2: "",
+      downloadUrlUniversal: "downloads/MeiwaSports.apk",
+      downloadUrlSTB: "downloads/MeiwaSports-stb-lite.apk",
+      downloadUrlHP: "downloads/MeiwaSports-hp.apk",
+      downloadUrlGoogleDrive: "", // Isi link Google Drive di sini jika sudah diupload (opsional)
 
       rating: "4.9",
       totalDownloads: "15K+",
@@ -47,7 +48,7 @@ const MEIWA_CONFIG = {
         "Rilis versi perdana MeiwaSports 1.0.0",
         "Dukungan player ExoPlayer dengan adaptasi resolusi otomatis (360p - 1080p 60fps)",
         "Fitur remote D-Pad navigation untuk Android TV Box",
-        "Mode Gelap (OLED Dark Mode) hemat baterai"
+        "Tersedia versi Ringan khusus STB / TV Box hemat memori"
       ]
     },
 
@@ -59,14 +60,15 @@ const MEIWA_CONFIG = {
       version: "v1.0.0",
       versionCode: 1,
       releaseDate: "September 2026",
-      fileSize: "26.8 MB",
+      fileSize: "15.6 MB (STB) / 18 MB (HP)",
       minAndroid: "Android 5.0+ (Lollipop ke atas)",
       supportsTV: true,
 
       // Link Download APK
-      downloadUrlPrimary: "https://drive.google.com/uc?export=download&id=1KSH0CrNvoD9le4PG7kuC3fl5vMV4sVk4",
-      downloadUrlMirror1: "https://drive.google.com/file/d/1KSH0CrNvoD9le4PG7kuC3fl5vMV4sVk4/view?usp=sharing",
-      downloadUrlMirror2: "",
+      downloadUrlUniversal: "downloads/meiwastudio.apk",
+      downloadUrlSTB: "downloads/meiwastudio-stb-lite.apk",
+      downloadUrlHP: "downloads/meiwastudio-hp.apk",
+      downloadUrlGoogleDrive: "", // Isi link Google Drive di sini jika sudah diupload (opsional)
 
       rating: "4.8",
       totalDownloads: "12K+",
