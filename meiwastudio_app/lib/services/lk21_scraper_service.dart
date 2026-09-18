@@ -496,11 +496,11 @@ class LK21ScraperService {
       ));
     }
 
-    // Order: TURBOVIP (720p) -> HYDRAX (1080p) -> P2P (480p) -> CAST
+    // Order: HYDRAX (1080p FHD) -> TURBOVIP (720p HD) -> P2P (480p) -> CAST
     servers.sort((a, b) {
       int score(VideoServer s) {
-        if (s.serverKey == 'turbovip') return 1;
-        if (s.serverKey == 'hydrax') return 2;
+        if (s.serverKey == 'hydrax') return 1;
+        if (s.serverKey == 'turbovip') return 2;
         if (s.serverKey == 'p2p') return 3;
         if (s.serverKey == 'cast') return 4;
         return 5;

@@ -26,6 +26,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
   late final WebViewController _controller;
   bool _isLoading = true;
   bool _showControls = true;
+  bool _isPlaying = true;
+  bool _isMuted = false;
   Timer? _controlsTimer;
   final RemoteConfigService _config = RemoteConfigService();
   final LK21ScraperService _scraper = LK21ScraperService();
@@ -110,6 +112,33 @@ class _PlayerScreenState extends State<PlayerScreen> {
     if (_showControls) {
       _startControlsTimer();
     }
+  }
+
+  void _togglePlay() {
+    setState(() => _isPlaying = !_isPlaying);
+    _controller.runJavaScript("if (window.tvControl) window.tvControl('togglePlay');");
+    _startControlsTimer();
+  }
+
+  void _rewind10() {
+    _controller.runJavaScript("if (window.tvControl) window.tvControl('rewind10');");
+    _startControlsTimer();
+  }
+
+  void _forward10() {
+    _controller.runJavaScript("if (window.tvControl) window.tvControl('forward10');");
+    _startControlsTimer();
+  }
+
+  void _toggleMute() {
+    setState(() => _isMuted = !_isMuted);
+    _controller.runJavaScript("if (window.tvControl) window.tvControl('toggleMute');");
+    _startControlsTimer();
+  }
+
+  void _toggleFullscreen() {
+    _controller.runJavaScript("if (window.tvControl) window.tvControl('toggleFullscreen');");
+    _startControlsTimer();
   }
 
   void _setupWebViewController() {
@@ -231,17 +260,26 @@ class _PlayerScreenState extends State<PlayerScreen> {
     }
 
     if (availableServers.isNotEmpty) {
-      // Pick TURBOVIP (720p) or HYDRAX (1080p) or first available server
+      // Prioritize HYDRAX (1080p FHD) first, then TURBOVIP (720p HD), then others
       VideoServer? preferred;
       if (_activeServer != null) {
         preferred = availableServers.firstWhere(
           (s) => s.serverKey == _activeServer!.serverKey,
-          orElse: () => availableServers.first,
+          orElse: () => availableServers.firstWhere(
+            (s) => s.serverKey == 'hydrax',
+            orElse: () => availableServers.firstWhere(
+              (s) => s.serverKey == 'turbovip',
+              orElse: () => availableServers.first,
+            ),
+          ),
         );
       } else {
         preferred = availableServers.firstWhere(
-          (s) => s.serverKey == 'turbovip' || s.serverKey == 'hydrax',
-          orElse: () => availableServers.first,
+          (s) => s.serverKey == 'hydrax',
+          orElse: () => availableServers.firstWhere(
+            (s) => s.serverKey == 'turbovip',
+            orElse: () => availableServers.first,
+          ),
         );
       }
       _activeServer = preferred;
@@ -324,20 +362,53 @@ class _PlayerScreenState extends State<PlayerScreen> {
           window.tvControl = function(action) {
             try {
               var v = document.querySelector('video');
-              if (v) {
-                if (action === 'togglePlay') {
-                  if (v.paused) v.play(); else v.pause();
+              if (!v) {
+                var iframes = document.querySelectorAll('iframe');
+                for (var i = 0; i < iframes.length; i++) {
+                  try {
+                    var iv = iframes[i].contentDocument.querySelector('video');
+                    if (iv) { v = iv; break; }
+                  } catch(e) {}
                 }
-              } else {
-                var playBtn = document.querySelector('.jw-display-icon-container, .vjs-big-play-button, .play-button, .play-btn, [class*="play"], button.play');
-                if (playBtn) playBtn.click();
               }
-              var cx = window.innerWidth / 2;
-              var cy = window.innerHeight / 2;
-              var el = document.elementFromPoint(cx, cy);
-              if (el) {
-                el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, clientX: cx, clientY: cy }));
-                el.click();
+
+              if (action === 'togglePlay') {
+                if (v) {
+                  if (v.paused) v.play(); else v.pause();
+                } else {
+                  var playBtn = document.querySelector('.jw-display-icon-container, .vjs-big-play-button, .play-button, .play-btn, [class*="play"], button.play, #customPlayButton, .play-wrapper');
+                  if (playBtn) playBtn.click();
+                }
+              } else if (action === 'rewind10') {
+                if (v) {
+                  v.currentTime = Math.max(0, v.currentTime - 10);
+                } else {
+                  var rBtn = document.querySelector('[class*="rewind"], .jw-icon-rewind, [aria-label*="Rewind"], [aria-label*="10s"]');
+                  if (rBtn) rBtn.click();
+                }
+              } else if (action === 'forward10') {
+                if (v) {
+                  v.currentTime = Math.min((v.duration || (v.currentTime + 10)), v.currentTime + 10);
+                } else {
+                  var fBtn = document.querySelector('[class*="forward"], .jw-icon-forward, [aria-label*="Forward"], [aria-label*="10s"]');
+                  if (fBtn) fBtn.click();
+                }
+              } else if (action === 'toggleMute') {
+                if (v) {
+                  v.muted = !v.muted;
+                }
+              } else if (action === 'toggleFullscreen') {
+                var fsBtn = document.querySelector('#fullscreen-btn, .jw-icon-fullscreen, .vjs-fullscreen-control, [class*="fullscreen"]');
+                if (fsBtn) {
+                  fsBtn.click();
+                } else {
+                  var el = document.documentElement;
+                  if (document.fullscreenElement) {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                  } else {
+                    if (el.requestFullscreen) el.requestFullscreen();
+                  }
+                }
               }
             } catch(e) {}
           };
@@ -509,7 +580,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             Text(
                               _activeServer != null
                                   ? _activeServer!.qualityLabel
-                                  : (isSeries && _currentEpisode != null ? 'EPS ${_currentEpisode!.episodeNo}' : 'HD'),
+                                  : (isSeries && _currentEpisode != null ? 'EPS ${_currentEpisode!.episodeNo}' : '1080p FHD'),
                               style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -546,7 +617,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             children: [
                               // Back Button (D-Pad Focusable with Glow)
                               TVFocusableWidget(
-                                autofocus: true,
+                                autofocus: false,
                                 onTap: () => Navigator.of(context).pop(),
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
@@ -590,7 +661,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                     Text(
                                       _currentEpisode != null
                                           ? '${_currentEpisode!.title} • Layar Selalu Hidup ⚡'
-                                          : '${widget.movie.quality} • Subtitle Indonesia • Layar Selalu Hidup ⚡',
+                                          : '${widget.movie.quality} • 1080p FHD • Subtitle Indonesia • Layar Selalu Hidup ⚡',
                                       style: const TextStyle(
                                         color: Color(0xFFC084FC),
                                         fontSize: 11,
@@ -815,6 +886,164 @@ class _PlayerScreenState extends State<PlayerScreen> {
                               ),
                             ),
                           ],
+                        ],
+                      ),
+                    ),
+                  ),
+
+                // 5. Floating Bottom Player Control Bar (Play/Pause, -10s, +10s, Mute, Status, Fullscreen)
+                if (_showControls)
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(20, 14, 20, 16),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black.withValues(alpha: 0.95),
+                            Colors.black.withValues(alpha: 0.8),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          // Play / Pause Button (D-Pad Focusable)
+                          TVFocusableWidget(
+                            autofocus: true,
+                            onTap: _togglePlay,
+                            borderRadius: BorderRadius.circular(25),
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.15),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+                              ),
+                              child: Icon(
+                                _isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                                color: Colors.white,
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+
+                          // Rewind 10s Button (D-Pad Focusable)
+                          TVFocusableWidget(
+                            onTap: _rewind10,
+                            borderRadius: BorderRadius.circular(25),
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.12),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                              ),
+                              child: const Icon(
+                                Icons.replay_10_rounded,
+                                color: Colors.white,
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+
+                          // Forward 10s Button (D-Pad Focusable)
+                          TVFocusableWidget(
+                            onTap: _forward10,
+                            borderRadius: BorderRadius.circular(25),
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.12),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                              ),
+                              child: const Icon(
+                                Icons.forward_10_rounded,
+                                color: Colors.white,
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+
+                          // Mute / Volume Button (D-Pad Focusable)
+                          TVFocusableWidget(
+                            onTap: _toggleMute,
+                            borderRadius: BorderRadius.circular(25),
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.12),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                              ),
+                              child: Icon(
+                                _isMuted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
+                                color: _isMuted ? const Color(0xFFF87171) : Colors.white,
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+
+                          // Active Quality & Engine Badge
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF0284C7).withValues(alpha: 0.25),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: const Color(0xFF38BDF8).withValues(alpha: 0.4)),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(Icons.hd_rounded, color: Color(0xFF38BDF8), size: 14),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        _activeServer != null
+                                            ? '${_activeServer!.qualityLabel} (${_activeServer!.name})'
+                                            : '1080p FHD (HYDRAX)',
+                                        style: const TextStyle(
+                                          color: Color(0xFF38BDF8),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          // Fullscreen Button (D-Pad Focusable)
+                          TVFocusableWidget(
+                            onTap: _toggleFullscreen,
+                            borderRadius: BorderRadius.circular(25),
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.15),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+                              ),
+                              child: const Icon(
+                                Icons.fullscreen_rounded,
+                                color: Colors.white,
+                                size: 22,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
