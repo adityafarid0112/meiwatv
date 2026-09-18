@@ -357,31 +357,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
 
                   const SizedBox(height: 20),
 
-                  // Genre Tags
-                  if (_currentMovie.genres.isNotEmpty) ...[
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: _currentMovie.genres.map((g) => Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.06),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
-                        ),
-                        child: Text(
-                          g,
-                          style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.8),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      )).toList(),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-
                   // Series Episode Grid Section (Matching Screenshot 1)
                   if (isSeries && episodes.isNotEmpty) ...[
                     Row(
