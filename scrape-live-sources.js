@@ -870,7 +870,24 @@ async function scrapeAll() {
             }
 
             // Ambil semua channel URL resmi dari DaddyLive
-            const daddyChannelUrls = channels.map(c => c.url).filter(u => u && u.startsWith('http'));
+            // Decode %2F → / agar embed berfungsi sempurna di WebView iframe
+            function decodeDaddyUrl(url) {
+                if (!url) return '';
+                return url.replace(/%2F/gi, '/').replace(/%26/gi, '&').replace(/%3D/gi, '=');
+            }
+            function getQualityOrder(url) {
+                if (!url) return 99;
+                const lower = url.toLowerCase();
+                if (lower.includes('/hd/')) return 0;
+                if (lower.includes('/deluxe/')) return 1;
+                if (lower.includes('/pro/')) return 2;
+                if (lower.includes('/sd/')) return 4;
+                return 3;
+            }
+            const daddyChannelUrls = channels
+                .map(c => decodeDaddyUrl(c.url))
+                .filter(u => u && u.startsWith('http'))
+                .sort((a, b) => getQualityOrder(a) - getQualityOrder(b));
 
             if (matchedKey) {
                 // Merge dengan Xoilac:
@@ -881,12 +898,17 @@ async function scrapeAll() {
 
                 // AKUMULASI: Tambah semua channel baru ke streamUrls yang sudah ada
                 if (!existing.streamUrls) existing.streamUrls = [];
-                // Hapus URL Xoilac dari posisi awal agar DaddyLive selalu duluan
-                const filteredExisting = existing.streamUrls.filter(u => u && u.includes('daddylive.app'));
+                // Decode existing URLs juga untuk perbandingan akurat
+                const normalizeUrl = u => u ? u.replace(/%2F/gi, '/').replace(/%26/gi, '&').split('&source=')[0] : '';
+                const filteredExisting = existing.streamUrls
+                    .filter(u => u && u.includes('daddylive.app'))
+                    .map(u => u.replace(/%2F/gi, '/').replace(/%26/gi, '&'));
                 
-                // Gabungkan: channel DaddyLive lama + baru (deduplikasi)
+                // Gabungkan: channel DaddyLive lama + baru (deduplikasi berdasarkan path tanpa source param)
                 for (const url of daddyChannelUrls) {
-                    if (!filteredExisting.includes(url)) {
+                    const normUrl = normalizeUrl(url);
+                    const alreadyExists = filteredExisting.some(u => normalizeUrl(u) === normUrl);
+                    if (!alreadyExists) {
                         filteredExisting.push(url);
                     }
                 }
