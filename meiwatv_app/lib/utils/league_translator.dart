@@ -55,9 +55,9 @@ class LeagueTranslator {
       MapEntry(RegExp(r'Ngoại Hạng Darwin', caseSensitive: false), 'Liga Darwin Australia'),
 
       // Liga Inggris
-      MapEntry(RegExp(r'Ngoại Hạng Anh|^Premier League(\s*\(Inggris\))?$', caseSensitive: false), 'Liga Inggris'),
-      MapEntry(RegExp(r'Hạng Nhất Anh|^Championship$', caseSensitive: false), 'Liga Championship Inggris'),
-      MapEntry(RegExp(r'Cúp FA|^FA Cup$', caseSensitive: false), 'Piala FA Inggris'),
+      MapEntry(RegExp(r'Ngoại Hạng Anh|Premier League', caseSensitive: false), 'Liga Inggris'),
+      MapEntry(RegExp(r'Hạng Nhất Anh|Championship', caseSensitive: false), 'Liga Championship Inggris'),
+      MapEntry(RegExp(r'Cúp FA|FA Cup', caseSensitive: false), 'Piala FA Inggris'),
       MapEntry(RegExp(r'Cúp Liên Đoàn Anh|EFL Cup|Carabao Cup', caseSensitive: false), 'Piala Carabao Inggris'),
 
       // Indonesia
@@ -71,44 +71,44 @@ class LeagueTranslator {
       MapEntry(RegExp(r'Hạng Nhất Việt Nam|V\.League\s*2', caseSensitive: false), 'Liga Vietnam 2 (V.League 2)'),
 
       // Spanyol
-      MapEntry(RegExp(r'VĐQG Tây Ban Nha|^La\s*Liga(\s*\(Spanyol\))?$', caseSensitive: false), 'La Liga Spanyol'),
+      MapEntry(RegExp(r'VĐQG Tây Ban Nha|La\s*Liga(?!\s*2)', caseSensitive: false), 'La Liga Spanyol'),
       MapEntry(RegExp(r'Hạng 2 Tây Ban Nha|La\s*Liga\s*2|Segunda\s*División', caseSensitive: false), 'La Liga 2 Spanyol'),
-      MapEntry(RegExp(r'Cúp Nhà Vua|^Copa del Rey$', caseSensitive: false), 'Piala Raja Spanyol (Copa del Rey)'),
+      MapEntry(RegExp(r'Cúp Nhà Vua|Copa del Rey(?! de Baloncesto)', caseSensitive: false), 'Piala Raja Spanyol (Copa del Rey)'),
       MapEntry(RegExp(r'Copa del Rey de Baloncesto', caseSensitive: false), 'Piala Raja Basket Spanyol'),
       MapEntry(RegExp(r'Spain Basketball Supercopa', caseSensitive: false), 'Piala Super Basket Spanyol'),
 
       // Italia
-      MapEntry(RegExp(r'VĐQG Ý|^Serie\s*A(\s*\(Italia\))?$', caseSensitive: false), 'Serie A Italia'),
-      MapEntry(RegExp(r'Hạng 2 Ý|^Serie\s*B', caseSensitive: false), 'Serie B Italia'),
+      MapEntry(RegExp(r'VĐQG Ý|Serie\s*A', caseSensitive: false), 'Serie A Italia'),
+      MapEntry(RegExp(r'Hạng 2 Ý|Serie\s*B', caseSensitive: false), 'Serie B Italia'),
       MapEntry(RegExp(r'Cúp Quốc Gia Ý|Coppa Italia', caseSensitive: false), 'Piala Italia (Coppa Italia)'),
       MapEntry(RegExp(r'Italy Super Cup', caseSensitive: false), 'Piala Super Italia'),
 
       // Jerman
-      MapEntry(RegExp(r'VĐQG Đức|^Bundesliga(\s*\(Jerman\))?$', caseSensitive: false), 'Bundesliga Jerman'),
+      MapEntry(RegExp(r'VĐQG Đức|Bundesliga(?!\s*2)(?! Basket)', caseSensitive: false), 'Bundesliga Jerman'),
       MapEntry(RegExp(r'Hạng 2 Đức|2\.\s*Bundesliga|Bundesliga\s*2', caseSensitive: false), '2. Bundesliga Jerman'),
       MapEntry(RegExp(r'Cúp Quốc Gia Đức|DFB[- ]Pokal', caseSensitive: false), 'Piala DFB Jerman'),
       MapEntry(RegExp(r'Basketball Bundesliga', caseSensitive: false), 'Bundesliga Basket Jerman'),
 
       // Prancis
-      MapEntry(RegExp(r'VĐQG Pháp|^Ligue\s*1(\s*\(Prancis\))?$', caseSensitive: false), 'Ligue 1 Prancis'),
-      MapEntry(RegExp(r'Hạng 2 Pháp|^Ligue\s*2', caseSensitive: false), 'Ligue 2 Prancis'),
+      MapEntry(RegExp(r'VĐQG Pháp|Ligue\s*1', caseSensitive: false), 'Ligue 1 Prancis'),
+      MapEntry(RegExp(r'Hạng 2 Pháp|Ligue\s*2', caseSensitive: false), 'Ligue 2 Prancis'),
 
       // Belanda & Portugal
-      MapEntry(RegExp(r'VĐQG Hà Lan|^Eredivisie(\s*\(Belanda\))?$', caseSensitive: false), 'Eredivisie Belanda'),
-      MapEntry(RegExp(r'VĐQG Bồ Đào Nha|^Liga\s*Portugal$|^Primeira\s*Liga$', caseSensitive: false), 'Liga Portugal'),
+      MapEntry(RegExp(r'VĐQG Hà Lan|Eredivisie', caseSensitive: false), 'Eredivisie Belanda'),
+      MapEntry(RegExp(r'VĐQG Bồ Đào Nha|Liga\s*Portugal|Primeira\s*Liga', caseSensitive: false), 'Liga Portugal'),
 
       // Arab Saudi
       MapEntry(RegExp(r'VĐQG Saudi Arabia|VĐQG Ả Rập Xê Út|Saudi\s*Pro\s*League', caseSensitive: false), 'Saudi Pro League (Arab Saudi)'),
 
       // Jepang
-      MapEntry(RegExp(r'VĐQG Nhật Bản|^J1\s*League(\s*\(Jepang\))?$', caseSensitive: false), 'J1 League Jepang'),
-      MapEntry(RegExp(r'Hạng 2 Nhật Bản|^J2\s*League(\s*\(Jepang\))?$', caseSensitive: false), 'J2 League Jepang'),
-      MapEntry(RegExp(r'Hạng 3 Nhật Bản|^J3\s*League(\s*\(Jepang\))?$', caseSensitive: false), 'J3 League Jepang'),
-      MapEntry(RegExp(r'Japan Football League|^JFL$', caseSensitive: false), 'Liga Sepak Bola Jepang (JFL)'),
+      MapEntry(RegExp(r'VĐQG Nhật Bản|J1\s*League', caseSensitive: false), 'J1 League Jepang'),
+      MapEntry(RegExp(r'Hạng 2 Nhật Bản|J2\s*League', caseSensitive: false), 'J2 League Jepang'),
+      MapEntry(RegExp(r'Hạng 3 Nhật Bản|J3\s*League', caseSensitive: false), 'J3 League Jepang'),
+      MapEntry(RegExp(r'Japan Football League|\bJFL\b', caseSensitive: false), 'Liga Sepak Bola Jepang (JFL)'),
 
       // Korea Selatan
-      MapEntry(RegExp(r'VĐQG Hàn Quốc|^K\s*League\s*1(\s*\(Korea Selatan\))?$', caseSensitive: false), 'K League 1 Korea Selatan'),
-      MapEntry(RegExp(r'Hạng 2 Hàn Quốc|^K\s*League\s*2', caseSensitive: false), 'K League 2 Korea Selatan'),
+      MapEntry(RegExp(r'VĐQG Hàn Quốc|K\s*League\s*1', caseSensitive: false), 'K League 1 Korea Selatan'),
+      MapEntry(RegExp(r'Hạng 2 Hàn Quốc|K\s*League\s*2', caseSensitive: false), 'K League 2 Korea Selatan'),
 
       // Lainnya
       MapEntry(RegExp(r'Hạng Nhất Ukraina', caseSensitive: false), 'Liga Utama Ukraina'),

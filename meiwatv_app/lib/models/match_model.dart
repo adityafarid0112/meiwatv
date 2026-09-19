@@ -3,9 +3,9 @@ import '../utils/league_translator.dart';
 
 class MatchModel {
   final String id;
-  final String title;
-  final String homeTeam;
-  final String awayTeam;
+  final String _title;
+  final String _homeTeam;
+  final String _awayTeam;
   final String? homeLogo;
   final String? awayLogo;
   final String? homeScore;
@@ -23,9 +23,9 @@ class MatchModel {
 
   const MatchModel({
     required this.id,
-    required this.title,
-    required this.homeTeam,
-    required this.awayTeam,
+    required String title,
+    required String homeTeam,
+    required String awayTeam,
     this.homeLogo,
     this.awayLogo,
     this.homeScore,
@@ -40,8 +40,21 @@ class MatchModel {
     required this.streamJalur1,
     required this.streamJalur2,
     required this.streamJalur3,
-  }) : _league = league;
+  })  : _title = title,
+        _homeTeam = homeTeam,
+        _awayTeam = awayTeam,
+        _league = league;
 
+  String get homeTeam => LeagueTranslator.cleanTeamName(_homeTeam);
+  String get awayTeam => LeagueTranslator.cleanTeamName(_awayTeam);
+  String get title {
+    final h = homeTeam;
+    final a = awayTeam;
+    if (h.isNotEmpty && a.isNotEmpty) {
+      return '$h vs $a';
+    }
+    return LeagueTranslator.cleanTeamName(_title);
+  }
   String get league => LeagueTranslator.translate(_league);
 
   bool get isLive => status == 1;
