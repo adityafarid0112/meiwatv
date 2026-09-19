@@ -1029,12 +1029,19 @@ function generateBloggerTemplate() {
     const playlistTotalCount = document.getElementById('playlistTotalCount');
     if (!playlistContainer) return;
 
+    const liveCount = allLoadedMatches.filter(m => m.status === 1).length;
+
     let filtered = allLoadedMatches.filter(m => {
       const sportMeta = getSportCategoryMeta(m.sportCategory || '', m.title || '', m.league || '');
       const isLive = m.status === 1;
 
       if (currentCategoryFilter === 'live') {
-        if (!isLive) return false;
+        if (liveCount > 0) {
+          if (!isLive) return false;
+        } else {
+          // Jika belum ada live, tampilkan semua jadwal hari ini agar list tidak kosong
+          // Loloskan
+        }
       } else if (currentCategoryFilter !== 'all') {
         if (sportMeta.key !== currentCategoryFilter) return false;
       }
@@ -1048,7 +1055,7 @@ function generateBloggerTemplate() {
     });
 
     const titlesMap = {
-      live: { icon: '🔴', title: 'Pertandingan SEDANG LIVE' },
+      live: { icon: '🔴', title: liveCount > 0 ? 'Pertandingan SEDANG LIVE' : 'Semua Jadwal Olahraga Hari Ini' },
       football: { icon: '⚽', title: 'Jadwal & Live Sepak Bola' },
       basketball: { icon: '🏀', title: 'Jadwal & Live Bola Basket' },
       badminton: { icon: '🏸', title: 'Jadwal & Live Bulu Tangkis' },
@@ -1067,8 +1074,8 @@ function generateBloggerTemplate() {
       playlistContainer.innerHTML = \`
         <div style="text-align:center; padding:40px 10px; color:var(--text-muted);">
           <i class="fa-solid fa-calendar-xmark fa-2x" style="color:var(--text-dim); margin-bottom:8px;"></i>
-          <p style="font-weight:700; font-size:13px; color:#fff;">Tidak ada pertandingan saat ini</p>
-          <p style="font-size:11.5px; color:var(--text-dim); margin-top:2px;">Silakan pilih cabang olahraga lain di menu atas.</p>
+          <p style="font-weight:700; font-size:13px; color:#fff;">Tidak ada pertandingan ditemukan</p>
+          <p style="font-size:11.5px; color:var(--text-dim); margin-top:2px;">Silakan pilih kategori lain atau ubah kata kunci pencarian.</p>
         </div>\`;
       return;
     }
@@ -1483,15 +1490,35 @@ function generateBloggerTemplate() {
     copyTextToClipboard(url, '✅ Link pertandingan ' + match.title + ' berhasil disalin!');
   }
 
+  function fallbackCopyText(text, successMsg) {
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      textArea.style.top = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      if (successful) {
+        showToastNotification(successMsg || 'Link berhasil disalin!');
+        return;
+      }
+    } catch (_) {}
+    prompt('Salin link pertandingan berikut:', text);
+  }
+
   function copyTextToClipboard(text, successMsg) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(() => {
         showToastNotification(successMsg || 'Link berhasil disalin!');
       }).catch(() => {
-        prompt('Salin link pertandingan berikut:', text);
+        fallbackCopyText(text, successMsg);
       });
     } else {
-      prompt('Salin link pertandingan berikut:', text);
+      fallbackCopyText(text, successMsg);
     }
   }
 
@@ -1605,6 +1632,14 @@ function generateBloggerTemplate() {
 
   // 9. INIT ON DOM LOAD
   function initLivePortal() {
+    const hasLive = AUTO_LIVE_DATASET.some(m => m.status === 1);
+    if (!hasLive) {
+      currentCategoryFilter = 'all';
+      document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
+      const allNavBtn = document.querySelector('[data-cat="all"]');
+      if (allNavBtn) allNavBtn.classList.add('active');
+    }
+
     renderInteractivePlaylist(AUTO_LIVE_DATASET);
 
     const matchFound = activateMatchFromUrl();
@@ -1616,6 +1651,7 @@ function generateBloggerTemplate() {
     setTimeout(function() {
       fetchLiveMatchesDirect();
       setInterval(fetchLiveMatchesDirect, 120000);
+    }, 4000);
   }
 
   document.addEventListener('DOMContentLoaded', initLivePortal);
