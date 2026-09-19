@@ -3854,9 +3854,32 @@
 
   // 7. COPY LINK PERTANDINGAN BLOG (E.G. HTTPS://MEIWAOLAHRAGA.BLOGSPOT.COM/?MATCH=...)
   function getMatchBlogLink(match) {
-    const baseUrl = window.location.origin + window.location.pathname;
-    const matchSlug = match.id || match.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    return baseUrl + '?match=' + matchSlug;
+    let baseUrl = window.location.href.split('?')[0].split('#')[0];
+    const slug = (match.title || match.id || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    return baseUrl + '?match=' + encodeURIComponent(slug);
+  }
+
+  function findMatchByKeywordOrSlug(param) {
+    if (!param || !allLoadedMatches || allLoadedMatches.length === 0) return -1;
+    const cleanParam = decodeURIComponent(param).toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (!cleanParam) return -1;
+
+    // 1. Cek exact slug atau ID
+    let idx = allLoadedMatches.findIndex(m => {
+      const slug = (m.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const mId = (m.id || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      return slug === cleanParam || mId === cleanParam;
+    });
+    if (idx >= 0) return idx;
+
+    // 2. Cek substring match pada title / tim
+    idx = allLoadedMatches.findIndex(m => {
+      const slug = (m.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const home = (m.homeTeam || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      const away = (m.awayTeam || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      return slug.includes(cleanParam) || cleanParam.includes(slug) || (home && cleanParam.includes(home)) || (away && cleanParam.includes(away));
+    });
+    return idx;
   }
 
   function copyCurrentMatchBlogLink() {
@@ -3944,6 +3967,12 @@
           if (Array.isArray(data) && data.length > 0) {
             allLoadedMatches = data;
             renderInteractivePlaylist(allLoadedMatches);
+            if (currentActiveMatch) {
+              const updated = allLoadedMatches.find(m => m.id === currentActiveMatch.id || m.title === currentActiveMatch.title);
+              if (updated) {
+                setHeroMatchPreview(updated);
+              }
+            }
           }
         })
         .catch(() => {
@@ -3954,35 +3983,61 @@
     tryFetchSource(0);
   }
 
+  function activateMatchFromUrl() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      let matchParam = urlParams.get('match') || urlParams.get('m_id');
+      if (!matchParam && window.location.hash) {
+        matchParam = window.location.hash.replace('#', '').replace('match=', '').replace('match-', '');
+      }
+
+      if (matchParam && allLoadedMatches.length > 0) {
+        const foundIdx = findMatchByKeywordOrSlug(matchParam);
+        if (foundIdx >= 0) {
+          const targetMatch = allLoadedMatches[foundIdx];
+          const sportMeta = getSportCategoryMeta(targetMatch.sportCategory || '', targetMatch.title || '', targetMatch.league || '');
+
+          if (targetMatch.status === 1) {
+            currentCategoryFilter = 'live';
+          } else {
+            currentCategoryFilter = sportMeta.key || 'all';
+          }
+
+          document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
+          const activeNavBtn = document.querySelector('[data-cat="' + currentCategoryFilter + '"]');
+          if (activeNavBtn) activeNavBtn.classList.add('active');
+
+          renderInteractivePlaylist(allLoadedMatches);
+          setHeroMatchPreview(targetMatch);
+
+          if (targetMatch.status === 1) {
+            playMatchDirect(foundIdx, 1);
+          } else {
+            const stage = document.getElementById('playerStage');
+            const video = document.getElementById('mainVideoPlayer');
+            if (stage) stage.style.display = 'flex';
+            if (video) { video.pause(); video.style.display = 'none'; }
+          }
+          return true;
+        }
+      }
+    } catch (_) {}
+    return false;
+  }
+
   // 9. INIT ON DOM LOAD
   function initLivePortal() {
     renderInteractivePlaylist(AUTO_LIVE_DATASET);
 
-    // Cek apakah ada parameter ?match= di URL browser
-    let matchTargetFound = false;
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const matchParam = urlParams.get('match');
-      if (matchParam && allLoadedMatches.length > 0) {
-        const foundIdx = allLoadedMatches.findIndex(m => {
-          const slug = m.id || m.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-          return slug.toLowerCase() === matchParam.toLowerCase() || m.id === matchParam;
-        });
-        if (foundIdx >= 0) {
-          selectMatchCard(foundIdx);
-          matchTargetFound = true;
-        }
-      }
-    } catch (_) {}
+    const matchFound = activateMatchFromUrl();
 
-    if (!matchTargetFound && allLoadedMatches.length > 0) {
+    if (!matchFound && allLoadedMatches.length > 0) {
       setHeroMatchPreview(allLoadedMatches[0]);
     }
 
     setTimeout(function() {
       fetchLiveMatchesDirect();
       setInterval(fetchLiveMatchesDirect, 120000);
-    }, 4000);
   }
 
   document.addEventListener('DOMContentLoaded', initLivePortal);
