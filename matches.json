@@ -1,32 +1,6 @@
 [
   {
-    "id": "match_1_vila-nova-vs-america-mg",
-    "title": "Vila Nova vs America MG",
-    "homeTeam": "Vila Nova",
-    "awayTeam": "America MG",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l5ergphon1vr8k0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/y0or5jh44x8qwzv/image/small",
-    "homeScore": "1",
-    "awayScore": "2",
-    "scoreText": "1 - 2",
-    "matchMinute": "",
-    "league": "Hạng 2 Brazil",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T05:30:00+07:00",
-    "kickoffText": "05:30 WIB (19/09)",
-    "status": 2,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel1/off-tvc?is_off_add=false",
-    "streamJalur2": "https://blognation.com/truc-tiep/vila-nova-vs-america-mg-luc-0530-ngay-19-09-2026/",
-    "streamJalur3": "https://blognation.com/truc-tiep/vila-nova-vs-america-mg-luc-0530-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel1/off-tvc?is_off_add=false",
-      "jalur2": "https://blognation.com/truc-tiep/vila-nova-vs-america-mg-luc-0530-ngay-19-09-2026/",
-      "jalur3": "https://blognation.com/truc-tiep/vila-nova-vs-america-mg-luc-0530-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T00:19:25.181Z"
-  },
-  {
-    "id": "match_2_nu-dc-power-vs-nu-tampa-b",
+    "id": "match_1_nu-dc-power-vs-nu-tampa-b",
     "title": "Nữ DC Power vs Nữ Tampa Bay",
     "homeTeam": "Nữ DC Power",
     "awayTeam": "Nữ Tampa Bay",
@@ -49,10 +23,10 @@
       "jalur2": "https://blognation.com/truc-tiep/nu-dc-power-vs-nu-tampa-bay-luc-0600-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/nu-dc-power-vs-nu-tampa-bay-luc-0600-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.244Z"
+    "updatedAt": "2026-09-19T00:44:59.302Z"
   },
   {
-    "id": "match_3_tauro-r-vs-cd-arabe-unido",
+    "id": "match_2_tauro-r-vs-cd-arabe-unido",
     "title": "Tauro (R) vs CD Arabe Unido (R)",
     "homeTeam": "Tauro (R)",
     "awayTeam": "CD Arabe Unido (R)",
@@ -75,10 +49,10 @@
       "jalur2": "https://blognation.com/truc-tiep/tauro-r-vs-cd-arabe-unido-r-luc-0600-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/tauro-r-vs-cd-arabe-unido-r-luc-0600-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.252Z"
+    "updatedAt": "2026-09-19T00:44:59.371Z"
   },
   {
-    "id": "match_4_patriotas-fc-vs-union-mag",
+    "id": "match_3_patriotas-fc-vs-union-mag",
     "title": "Patriotas FC vs Union Magdalena",
     "homeTeam": "Patriotas FC",
     "awayTeam": "Union Magdalena",
@@ -101,10 +75,10 @@
       "jalur2": "https://blognation.com/truc-tiep/patriotas-fc-vs-union-magdalena-luc-0605-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/patriotas-fc-vs-union-magdalena-luc-0605-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.250Z"
+    "updatedAt": "2026-09-19T00:44:59.370Z"
   },
   {
-    "id": "match_5_in-petrolero-vs-s-antonio",
+    "id": "match_4_in-petrolero-vs-s-antonio",
     "title": "In. Petrolero vs S. Antonio Bulo",
     "homeTeam": "In. Petrolero",
     "awayTeam": "S. Antonio Bulo",
@@ -118,7 +92,7 @@
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T06:00:00+07:00",
     "kickoffText": "06:00 WIB (19/09)",
-    "status": 1,
+    "status": 2,
     "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel2/off-tvc?is_off_add=false",
     "streamJalur2": "https://blognation.com/truc-tiep/in-petrolero-vs-s-antonio-bulo-luc-0600-ngay-19-09-2026/",
     "streamJalur3": "https://blognation.com/truc-tiep/in-petrolero-vs-s-antonio-bulo-luc-0600-ngay-19-09-2026/",
@@ -127,10 +101,10 @@
       "jalur2": "https://blognation.com/truc-tiep/in-petrolero-vs-s-antonio-bulo-luc-0600-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/in-petrolero-vs-s-antonio-bulo-luc-0600-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.245Z"
+    "updatedAt": "2026-09-19T00:44:59.338Z"
   },
   {
-    "id": "match_6_ceara-vs-novorizontino",
+    "id": "match_5_ceara-vs-novorizontino",
     "title": "Ceara vs Novorizontino",
     "homeTeam": "Ceara",
     "awayTeam": "Novorizontino",
@@ -153,10 +127,10 @@
       "jalur2": "https://blognation.com/truc-tiep/ceara-vs-novorizontino-luc-0630-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/ceara-vs-novorizontino-luc-0630-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.248Z"
+    "updatedAt": "2026-09-19T00:44:59.373Z"
   },
   {
-    "id": "match_7_nu-fort-lauderdale-utd-vs",
+    "id": "match_6_nu-fort-lauderdale-utd-vs",
     "title": "Nữ Fort Lauderdale Utd vs Nữ Dallas Trinity",
     "homeTeam": "Nữ Fort Lauderdale Utd",
     "awayTeam": "Nữ Dallas Trinity",
@@ -179,10 +153,10 @@
       "jalur2": "https://blognation.com/truc-tiep/nu-fort-lauderdale-utd-vs-nu-dallas-trinity-luc-0630-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/nu-fort-lauderdale-utd-vs-nu-dallas-trinity-luc-0630-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.248Z"
+    "updatedAt": "2026-09-19T00:44:59.397Z"
   },
   {
-    "id": "match_8_new-york-city-vs-ny-red-b",
+    "id": "match_7_new-york-city-vs-ny-red-b",
     "title": "New York City vs NY Red Bulls",
     "homeTeam": "New York City",
     "awayTeam": "NY Red Bulls",
@@ -205,10 +179,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-22/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/new-york-city-vs-ny-red-bulls-luc-0630-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.243Z"
+    "updatedAt": "2026-09-19T00:44:59.374Z"
   },
   {
-    "id": "match_9_sao-bernardo-vs-atl-goian",
+    "id": "match_8_sao-bernardo-vs-atl-goian",
     "title": "Sao Bernardo vs Atl. Goianiense",
     "homeTeam": "Sao Bernardo",
     "awayTeam": "Atl. Goianiense",
@@ -231,36 +205,10 @@
       "jalur2": "https://blognation.com/truc-tiep/sao-bernardo-vs-atl-goianiense-luc-0700-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/sao-bernardo-vs-atl-goianiense-luc-0700-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.246Z"
+    "updatedAt": "2026-09-19T00:44:59.375Z"
   },
   {
-    "id": "match_10_heroes-zaci-fc-vs-mineros",
-    "title": "Héroes Zaci FC vs Mineros de Fresnillo",
-    "homeTeam": "Héroes Zaci FC",
-    "awayTeam": "Mineros de Fresnillo",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/jw2r09hwll2rz84/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh40g9r1ge/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Hạng 3 Mexico",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T07:00:00+07:00",
-    "kickoffText": "07:00 WIB (19/09)",
-    "status": 0,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
-    "streamJalur2": "https://blognation.com/truc-tiep/heroes-zaci-fc-vs-mineros-de-fresnillo-luc-0700-ngay-19-09-2026/",
-    "streamJalur3": "https://blognation.com/truc-tiep/heroes-zaci-fc-vs-mineros-de-fresnillo-luc-0700-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
-      "jalur2": "https://blognation.com/truc-tiep/heroes-zaci-fc-vs-mineros-de-fresnillo-luc-0700-ngay-19-09-2026/",
-      "jalur3": "https://blognation.com/truc-tiep/heroes-zaci-fc-vs-mineros-de-fresnillo-luc-0700-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T00:19:25.251Z"
-  },
-  {
-    "id": "match_11_fc-santiago-vs-atletico-s",
+    "id": "match_9_fc-santiago-vs-atletico-s",
     "title": "FC Santiago vs Atletico Saltillo",
     "homeTeam": "FC Santiago",
     "awayTeam": "Atletico Saltillo",
@@ -283,10 +231,10 @@
       "jalur2": "https://blognation.com/truc-tiep/fc-santiago-vs-atletico-saltillo-luc-0700-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/fc-santiago-vs-atletico-saltillo-luc-0700-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.287Z"
+    "updatedAt": "2026-09-19T00:44:59.377Z"
   },
   {
-    "id": "match_12_cd-inca-aruba-vs-fuerte-s",
+    "id": "match_10_cd-inca-aruba-vs-fuerte-s",
     "title": "CD INCA-Aruba vs Fuerte San Francisco",
     "homeTeam": "CD INCA-Aruba",
     "awayTeam": "Fuerte San Francisco",
@@ -309,10 +257,10 @@
       "jalur2": "https://blognation.com/truc-tiep/cd-inca-aruba-vs-fuerte-san-francisco-luc-0700-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/cd-inca-aruba-vs-fuerte-san-francisco-luc-0700-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.290Z"
+    "updatedAt": "2026-09-19T00:44:59.372Z"
   },
   {
-    "id": "match_13_juventud-antoniana-vs-clu",
+    "id": "match_11_juventud-antoniana-vs-clu",
     "title": "Juventud Antoniana vs Club Cipolletti",
     "homeTeam": "Juventud Antoniana",
     "awayTeam": "Club Cipolletti",
@@ -335,10 +283,10 @@
       "jalur2": "https://blognation.com/truc-tiep/juventud-antoniana-vs-club-cipolletti-luc-0700-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/juventud-antoniana-vs-club-cipolletti-luc-0700-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.298Z"
+    "updatedAt": "2026-09-19T00:44:59.434Z"
   },
   {
-    "id": "match_14_racing-club-vs-sarmiento-",
+    "id": "match_12_racing-club-vs-sarmiento-",
     "title": "Racing Club vs Sarmiento Junin",
     "homeTeam": "Racing Club",
     "awayTeam": "Sarmiento Junin",
@@ -352,7 +300,7 @@
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T07:15:00+07:00",
     "kickoffText": "07:15 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel28/off-tvc?is_off_add=false",
     "streamJalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-28/off-tvc?is_off_add=false",
     "streamJalur3": "https://blognation.com/truc-tiep/racing-club-vs-sarmiento-junin-luc-0715-ngay-19-09-2026/",
@@ -361,10 +309,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-28/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/racing-club-vs-sarmiento-junin-luc-0715-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.292Z"
+    "updatedAt": "2026-09-19T00:44:59.441Z"
   },
   {
-    "id": "match_15_deportiva-aucas-vs-macara",
+    "id": "match_13_deportiva-aucas-vs-macara",
     "title": "Deportiva Aucas vs Macara",
     "homeTeam": "Deportiva Aucas",
     "awayTeam": "Macara",
@@ -378,7 +326,7 @@
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T07:30:00+07:00",
     "kickoffText": "07:30 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel26/off-tvc?is_off_add=false",
     "streamJalur2": "https://blognation.com/truc-tiep/deportiva-aucas-vs-macara-luc-0730-ngay-19-09-2026/",
     "streamJalur3": "https://blognation.com/truc-tiep/deportiva-aucas-vs-macara-luc-0730-ngay-19-09-2026/",
@@ -387,10 +335,10 @@
       "jalur2": "https://blognation.com/truc-tiep/deportiva-aucas-vs-macara-luc-0730-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/deportiva-aucas-vs-macara-luc-0730-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.299Z"
+    "updatedAt": "2026-09-19T00:44:59.440Z"
   },
   {
-    "id": "match_16_circle-newtown-united-vs-",
+    "id": "match_14_circle-newtown-united-vs-",
     "title": "Circle Newtown United vs Flow 4G Cayon Rockets",
     "homeTeam": "Circle Newtown United",
     "awayTeam": "Flow 4G Cayon Rockets",
@@ -404,7 +352,7 @@
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T07:30:00+07:00",
     "kickoffText": "07:30 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel27/off-tvc?is_off_add=false",
     "streamJalur2": "https://blognation.com/truc-tiep/circle-newtown-united-vs-flow-4g-cayon-rockets-luc-0730-ngay-19-09-2026/",
     "streamJalur3": "https://blognation.com/truc-tiep/circle-newtown-united-vs-flow-4g-cayon-rockets-luc-0730-ngay-19-09-2026/",
@@ -413,10 +361,36 @@
       "jalur2": "https://blognation.com/truc-tiep/circle-newtown-united-vs-flow-4g-cayon-rockets-luc-0730-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/circle-newtown-united-vs-flow-4g-cayon-rockets-luc-0730-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.294Z"
+    "updatedAt": "2026-09-19T00:44:59.437Z"
   },
   {
-    "id": "match_17_puebla-vs-atlante-fc",
+    "id": "match_15_heroes-zaci-fc-vs-mineros",
+    "title": "Héroes Zaci FC vs Mineros de Fresnillo",
+    "homeTeam": "Héroes Zaci FC",
+    "awayTeam": "Mineros de Fresnillo",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/jw2r09hwll2rz84/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh40g9r1ge/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "0 - 0",
+    "league": "Hạng 3 Mexico",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T07:00:00+07:00",
+    "kickoffText": "07:00 WIB (19/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
+    "streamJalur2": "https://blognation.com/truc-tiep/heroes-zaci-fc-vs-mineros-de-fresnillo-luc-0700-ngay-19-09-2026/",
+    "streamJalur3": "https://blognation.com/truc-tiep/heroes-zaci-fc-vs-mineros-de-fresnillo-luc-0700-ngay-19-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
+      "jalur2": "https://blognation.com/truc-tiep/heroes-zaci-fc-vs-mineros-de-fresnillo-luc-0700-ngay-19-09-2026/",
+      "jalur3": "https://blognation.com/truc-tiep/heroes-zaci-fc-vs-mineros-de-fresnillo-luc-0700-ngay-19-09-2026/"
+    },
+    "updatedAt": "2026-09-19T00:44:59.742Z"
+  },
+  {
+    "id": "match_16_puebla-vs-atlante-fc",
     "title": "Puebla vs Atlante FC",
     "homeTeam": "Puebla",
     "awayTeam": "Atlante FC",
@@ -439,10 +413,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-20/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/puebla-vs-atlante-fc-luc-0800-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.297Z"
+    "updatedAt": "2026-09-19T00:44:59.448Z"
   },
   {
-    "id": "match_18_alianza-lima-vs-ad-tarma",
+    "id": "match_17_alianza-lima-vs-ad-tarma",
     "title": "Alianza Lima vs AD Tarma",
     "homeTeam": "Alianza Lima",
     "awayTeam": "AD Tarma",
@@ -465,10 +439,10 @@
       "jalur2": "https://blognation.com/truc-tiep/alianza-lima-vs-ad-tarma-luc-0800-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/alianza-lima-vs-ad-tarma-luc-0800-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.296Z"
+    "updatedAt": "2026-09-19T00:44:59.443Z"
   },
   {
-    "id": "match_19_piratas-fc-vs-venados-fc-",
+    "id": "match_18_piratas-fc-vs-venados-fc-",
     "title": "Piratas FC vs Venados FC Yucatán",
     "homeTeam": "Piratas FC",
     "awayTeam": "Venados FC Yucatán",
@@ -491,10 +465,10 @@
       "jalur2": "https://blognation.com/truc-tiep/piratas-fc-vs-venados-fc-yucatan-luc-0800-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/piratas-fc-vs-venados-fc-yucatan-luc-0800-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.295Z"
+    "updatedAt": "2026-09-19T00:44:59.594Z"
   },
   {
-    "id": "match_20_tepatitlan-fc-vs-m-zacate",
+    "id": "match_19_tepatitlan-fc-vs-m-zacate",
     "title": "Tepatitlan FC vs M. Zacatecas",
     "homeTeam": "Tepatitlan FC",
     "awayTeam": "M. Zacatecas",
@@ -517,7 +491,33 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-10/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/tepatitlan-fc-vs-m-zacatecas-luc-0800-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.315Z"
+    "updatedAt": "2026-09-19T00:44:59.483Z"
+  },
+  {
+    "id": "match_20_guerreros-del-pacifico-vs",
+    "title": "Guerreros del Pacifico vs Acambaro FC",
+    "homeTeam": "Guerreros del Pacifico",
+    "awayTeam": "Acambaro FC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l5ergphp98er8k0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/4jwq2gh15nom0ve/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "0 - 0",
+    "league": "Hạng 3 Mexico",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T08:00:00+07:00",
+    "kickoffText": "08:00 WIB (19/09)",
+    "status": 0,
+    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
+    "streamJalur2": "https://blognation.com/truc-tiep/guerreros-del-pacifico-vs-acambaro-fc-luc-0800-ngay-19-09-2026/",
+    "streamJalur3": "https://blognation.com/truc-tiep/guerreros-del-pacifico-vs-acambaro-fc-luc-0800-ngay-19-09-2026/",
+    "streams": {
+      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
+      "jalur2": "https://blognation.com/truc-tiep/guerreros-del-pacifico-vs-acambaro-fc-luc-0800-ngay-19-09-2026/",
+      "jalur3": "https://blognation.com/truc-tiep/guerreros-del-pacifico-vs-acambaro-fc-luc-0800-ngay-19-09-2026/"
+    },
+    "updatedAt": "2026-09-19T00:44:59.454Z"
   },
   {
     "id": "match_21_nu-toronto-tempo-vs-nu-in",
@@ -543,7 +543,7 @@
       "jalur2": "https://blognation.com/truc-tiep/nu-toronto-tempo-vs-nu-indiana-fever-luc-0630-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/nu-toronto-tempo-vs-nu-indiana-fever-luc-0630-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.354Z"
+    "updatedAt": "2026-09-19T00:44:59.777Z"
   },
   {
     "id": "match_22_nu-minnesota-lynx-vs-nu-n",
@@ -560,7 +560,7 @@
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T06:30:00+07:00",
     "kickoffText": "06:30 WIB (19/09)",
-    "status": 1,
+    "status": 2,
     "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel41/off-tvc?is_off_add=false",
     "streamJalur2": "https://blognation.com/truc-tiep/nu-minnesota-lynx-vs-nu-ny-liberty-luc-0630-ngay-19-09-2026/",
     "streamJalur3": "https://blognation.com/truc-tiep/nu-minnesota-lynx-vs-nu-ny-liberty-luc-0630-ngay-19-09-2026/",
@@ -569,7 +569,7 @@
       "jalur2": "https://blognation.com/truc-tiep/nu-minnesota-lynx-vs-nu-ny-liberty-luc-0630-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/nu-minnesota-lynx-vs-nu-ny-liberty-luc-0630-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.359Z"
+    "updatedAt": "2026-09-19T00:44:59.792Z"
   },
   {
     "id": "match_23_nu-thai-lan-vs-nu-trung-q",
@@ -595,7 +595,7 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/nu-thai-lan-vs-nu-trung-quoc-luc-0800-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.361Z"
+    "updatedAt": "2026-09-19T00:44:59.791Z"
   },
   {
     "id": "match_24_nu-golden-state-vs-nu-por",
@@ -621,7 +621,7 @@
       "jalur2": "https://blognation.com/truc-tiep/nu-golden-state-vs-nu-portland-fire-luc-0900-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/nu-golden-state-vs-nu-portland-fire-luc-0900-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.358Z"
+    "updatedAt": "2026-09-19T00:44:59.785Z"
   },
   {
     "id": "match_25_melbourne-united-vs-adela",
@@ -647,7 +647,7 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.362Z"
+    "updatedAt": "2026-09-19T00:44:59.789Z"
   },
   {
     "id": "match_26_ankaragucu-mamak-vs-mersi",
@@ -673,7 +673,7 @@
       "jalur2": "https://blognation.com/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.364Z"
+    "updatedAt": "2026-09-19T00:44:59.792Z"
   },
   {
     "id": "match_27_perth-wildcats-vs-sem-pho",
@@ -699,7 +699,7 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.365Z"
+    "updatedAt": "2026-09-19T00:44:59.793Z"
   },
   {
     "id": "match_28_ha-noi-buffalo-vs-sai-gon",
@@ -725,7 +725,7 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.361Z"
+    "updatedAt": "2026-09-19T00:44:59.795Z"
   },
   {
     "id": "match_29_anadolu-efes1976-vs-unics",
@@ -751,7 +751,7 @@
       "jalur2": "https://blognation.com/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.363Z"
+    "updatedAt": "2026-09-19T00:44:59.801Z"
   },
   {
     "id": "match_30_derthona-basket-vs-reyer-",
@@ -777,7 +777,7 @@
       "jalur2": "https://blognation.com/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.366Z"
+    "updatedAt": "2026-09-19T00:44:59.788Z"
   },
   {
     "id": "match_31_rostock-seawolves-vs-phoe",
@@ -803,7 +803,7 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.404Z"
+    "updatedAt": "2026-09-19T00:44:59.839Z"
   },
   {
     "id": "match_32_olimpia-milano-vs-virtus-",
@@ -829,7 +829,7 @@
       "jalur2": "https://blognation.com/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.408Z"
+    "updatedAt": "2026-09-19T00:44:59.845Z"
   },
   {
     "id": "match_33_telekom-baskets-bonn-vs-h",
@@ -855,7 +855,7 @@
       "jalur2": "https://blognation.com/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.412Z"
+    "updatedAt": "2026-09-19T00:44:59.849Z"
   },
   {
     "id": "match_34_valencia-vs-barcelona",
@@ -881,7 +881,7 @@
       "jalur2": "https://blognation.com/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.411Z"
+    "updatedAt": "2026-09-19T00:44:59.850Z"
   },
   {
     "id": "match_35_nu-atlanta-dream-vs-nu-ch",
@@ -907,7 +907,7 @@
       "jalur2": "https://blognation.com/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.409Z"
+    "updatedAt": "2026-09-19T00:44:59.851Z"
   },
   {
     "id": "match_36_astros-de-jalisco-vs-dora",
@@ -933,7 +933,7 @@
       "jalur2": "https://blognation.com/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.407Z"
+    "updatedAt": "2026-09-19T00:44:59.886Z"
   },
   {
     "id": "match_37_nu-golden-state-vs-nu-sea",
@@ -959,7 +959,7 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.412Z"
+    "updatedAt": "2026-09-19T00:44:59.850Z"
   },
   {
     "id": "match_38_nu-hong-kong-vs-nu-philip",
@@ -985,7 +985,7 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.410Z"
+    "updatedAt": "2026-09-19T00:44:59.852Z"
   },
   {
     "id": "match_39_nu-kazakhstan-vs-nu-nhat-",
@@ -1011,7 +1011,7 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.407Z"
+    "updatedAt": "2026-09-19T00:44:59.853Z"
   },
   {
     "id": "match_40_new-zealand-breakers-vs-l",
@@ -1037,36 +1037,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.413Z"
+    "updatedAt": "2026-09-19T00:44:59.845Z"
   },
   {
-    "id": "match_41_ignacio-buse-vs-hernando-",
-    "title": "Ignacio Buse vs Hernando Jose Escurra Isnardi",
-    "homeTeam": "Ignacio Buse",
-    "awayTeam": "Hernando Jose Escurra Isnardi",
-    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/6ypq3pfzx98rd7o/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4fn5e9r1ge/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Davis Cup",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-19T04:00:00+07:00",
-    "kickoffText": "04:00 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel58/off-tvc?is_off_add=false",
-    "streamJalur2": "https://blognation.com/truc-tiep/ignacio-buse-vs-hernando-jose-escurra-isnardi-luc-0400-ngay-19-09-2026/",
-    "streamJalur3": "https://blognation.com/truc-tiep/ignacio-buse-vs-hernando-jose-escurra-isnardi-luc-0400-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel58/off-tvc?is_off_add=false",
-      "jalur2": "https://blognation.com/truc-tiep/ignacio-buse-vs-hernando-jose-escurra-isnardi-luc-0400-ngay-19-09-2026/",
-      "jalur3": "https://blognation.com/truc-tiep/ignacio-buse-vs-hernando-jose-escurra-isnardi-luc-0400-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T00:19:25.444Z"
-  },
-  {
-    "id": "match_42_nadia-podoroska-vs-suzan-",
+    "id": "match_41_nadia-podoroska-vs-suzan-",
     "title": "Nadia Podoroska vs Suzan Lamens",
     "homeTeam": "Nadia Podoroska",
     "awayTeam": "Suzan Lamens",
@@ -1089,10 +1063,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-31/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/nadia-podoroska-vs-suzan-lamens-luc-0440-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.448Z"
+    "updatedAt": "2026-09-19T00:44:59.920Z"
   },
   {
-    "id": "match_43_cristina-bucsa-vs-iva-jov",
+    "id": "match_42_cristina-bucsa-vs-iva-jov",
     "title": "Cristina Bucsa vs Iva Jovic",
     "homeTeam": "Cristina Bucsa",
     "awayTeam": "Iva Jovic",
@@ -1115,10 +1089,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/cristina-bucsa-vs-iva-jovic-luc-0600-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.452Z"
+    "updatedAt": "2026-09-19T00:44:59.926Z"
   },
   {
-    "id": "match_44_jeffrey-john-wolf-vs-seba",
+    "id": "match_43_jeffrey-john-wolf-vs-seba",
     "title": "Jeffrey John Wolf vs Sebastian Gorzny",
     "homeTeam": "Jeffrey John Wolf",
     "awayTeam": "Sebastian Gorzny",
@@ -1141,10 +1115,10 @@
       "jalur2": "https://blognation.com/truc-tiep/jeffrey-john-wolf-vs-sebastian-gorzny-luc-0600-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/jeffrey-john-wolf-vs-sebastian-gorzny-luc-0600-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.443Z"
+    "updatedAt": "2026-09-19T00:44:59.924Z"
   },
   {
-    "id": "match_45_felix-auger-aliassime-vs-",
+    "id": "match_44_felix-auger-aliassime-vs-",
     "title": "Felix Auger Aliassime vs Quentin Halys",
     "homeTeam": "Felix Auger Aliassime",
     "awayTeam": "Quentin Halys",
@@ -1167,10 +1141,10 @@
       "jalur2": "https://blognation.com/truc-tiep/felix-auger-aliassime-vs-quentin-halys-luc-0510-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/felix-auger-aliassime-vs-quentin-halys-luc-0510-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.445Z"
+    "updatedAt": "2026-09-19T00:44:59.937Z"
   },
   {
-    "id": "match_46_juan-pablo-varillas-vs-ad",
+    "id": "match_45_juan-pablo-varillas-vs-ad",
     "title": "Juan Pablo Varillas vs Adolfo Daniel Vallejo",
     "homeTeam": "Juan Pablo Varillas",
     "awayTeam": "Adolfo Daniel Vallejo",
@@ -1193,10 +1167,10 @@
       "jalur2": "https://blognation.com/truc-tiep/juan-pablo-varillas-vs-adolfo-daniel-vallejo-luc-0510-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/juan-pablo-varillas-vs-adolfo-daniel-vallejo-luc-0510-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.450Z"
+    "updatedAt": "2026-09-19T00:44:59.929Z"
   },
   {
-    "id": "match_47_anton-shepp-vs-rei-sakamo",
+    "id": "match_46_anton-shepp-vs-rei-sakamo",
     "title": "Anton Shepp vs Rei Sakamoto",
     "homeTeam": "Anton Shepp",
     "awayTeam": "Rei Sakamoto",
@@ -1210,7 +1184,7 @@
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T07:00:00+07:00",
     "kickoffText": "07:00 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel62/off-tvc?is_off_add=false",
     "streamJalur2": "https://blognation.com/truc-tiep/anton-shepp-vs-rei-sakamoto-luc-0700-ngay-19-09-2026/",
     "streamJalur3": "https://blognation.com/truc-tiep/anton-shepp-vs-rei-sakamoto-luc-0700-ngay-19-09-2026/",
@@ -1219,10 +1193,10 @@
       "jalur2": "https://blognation.com/truc-tiep/anton-shepp-vs-rei-sakamoto-luc-0700-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/anton-shepp-vs-rei-sakamoto-luc-0700-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.449Z"
+    "updatedAt": "2026-09-19T00:44:59.928Z"
   },
   {
-    "id": "match_48_liudmila-samsonova-vs-pey",
+    "id": "match_47_liudmila-samsonova-vs-pey",
     "title": "Liudmila Samsonova vs Peyton Stearns",
     "homeTeam": "Liudmila Samsonova",
     "awayTeam": "Peyton Stearns",
@@ -1245,10 +1219,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/liudmila-samsonova-vs-peyton-stearns-luc-0710-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.447Z"
+    "updatedAt": "2026-09-19T00:44:59.931Z"
   },
   {
-    "id": "match_49_james-watt-vs-sho-shimabu",
+    "id": "match_48_james-watt-vs-sho-shimabu",
     "title": "James Watt vs Sho Shimabukuro",
     "homeTeam": "James Watt",
     "awayTeam": "Sho Shimabukuro",
@@ -1271,10 +1245,10 @@
       "jalur2": "https://blognation.com/truc-tiep/james-watt-vs-sho-shimabukuro-luc-0810-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/james-watt-vs-sho-shimabukuro-luc-0810-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.446Z"
+    "updatedAt": "2026-09-19T00:44:59.936Z"
   },
   {
-    "id": "match_50_ilia-simakin-vs-hunter-he",
+    "id": "match_49_ilia-simakin-vs-hunter-he",
     "title": "Ilia Simakin vs Hunter Heck",
     "homeTeam": "Ilia Simakin",
     "awayTeam": "Hunter Heck",
@@ -1297,10 +1271,10 @@
       "jalur2": "https://blognation.com/truc-tiep/ilia-simakin-vs-hunter-heck-luc-1000-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/ilia-simakin-vs-hunter-heck-luc-1000-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.454Z"
+    "updatedAt": "2026-09-19T00:44:59.940Z"
   },
   {
-    "id": "match_51_alex-de-minaur-vs-maks-ka",
+    "id": "match_50_alex-de-minaur-vs-maks-ka",
     "title": "Alex de Minaur vs Maks Kasnikowski",
     "homeTeam": "Alex de Minaur",
     "awayTeam": "Maks Kasnikowski",
@@ -1323,10 +1297,10 @@
       "jalur2": "https://blognation.com/truc-tiep/alex-de-minaur-vs-maks-kasnikowski-luc-1000-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/alex-de-minaur-vs-maks-kasnikowski-luc-1000-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.481Z"
+    "updatedAt": "2026-09-19T00:44:59.933Z"
   },
   {
-    "id": "match_52_james-duckworth-vs-kamil-",
+    "id": "match_51_james-duckworth-vs-kamil-",
     "title": "James Duckworth vs Kamil Majchrzak",
     "homeTeam": "James Duckworth",
     "awayTeam": "Kamil Majchrzak",
@@ -1349,10 +1323,10 @@
       "jalur2": "https://blognation.com/truc-tiep/james-duckworth-vs-kamil-majchrzak-luc-1110-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/james-duckworth-vs-kamil-majchrzak-luc-1110-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.494Z"
+    "updatedAt": "2026-09-19T00:44:59.974Z"
   },
   {
-    "id": "match_53_chung-hyeon-vs-dhakshines",
+    "id": "match_52_chung-hyeon-vs-dhakshines",
     "title": "Chung Hyeon vs Dhakshineswar Suresh",
     "homeTeam": "Chung Hyeon",
     "awayTeam": "Dhakshineswar Suresh",
@@ -1375,10 +1349,10 @@
       "jalur2": "https://blognation.com/truc-tiep/chung-hyeon-vs-dhakshineswar-suresh-luc-1220-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/chung-hyeon-vs-dhakshineswar-suresh-luc-1220-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.496Z"
+    "updatedAt": "2026-09-19T00:44:59.989Z"
   },
   {
-    "id": "match_54_ba-lan-vs-latvia",
+    "id": "match_53_ba-lan-vs-latvia",
     "title": "Ba Lan vs Latvia",
     "homeTeam": "Ba Lan",
     "awayTeam": "Latvia",
@@ -1401,10 +1375,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.481Z"
+    "updatedAt": "2026-09-19T00:44:59.990Z"
   },
   {
-    "id": "match_55_duc-vs-bulgaria",
+    "id": "match_54_duc-vs-bulgaria",
     "title": "Đức vs Bulgaria",
     "homeTeam": "Đức",
     "awayTeam": "Bulgaria",
@@ -1427,10 +1401,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.491Z"
+    "updatedAt": "2026-09-19T00:44:59.989Z"
   },
   {
-    "id": "match_56_invictus-gaming-vs-jd-gam",
+    "id": "match_55_invictus-gaming-vs-jd-gam",
     "title": "Invictus Gaming vs JD Gaming",
     "homeTeam": "Invictus Gaming",
     "awayTeam": "JD Gaming",
@@ -1453,10 +1427,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.492Z"
+    "updatedAt": "2026-09-19T00:44:59.971Z"
   },
   {
-    "id": "match_57_mvk-academy-vs-saigon-din",
+    "id": "match_56_mvk-academy-vs-saigon-din",
     "title": "MVK Academy vs Saigon Dino",
     "homeTeam": "MVK Academy",
     "awayTeam": "Saigon Dino",
@@ -1479,10 +1453,10 @@
       "jalur2": "https://blognation.com/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.495Z"
+    "updatedAt": "2026-09-19T00:45:00.020Z"
   },
   {
-    "id": "match_58_forsaken-vs-bomba-team",
+    "id": "match_57_forsaken-vs-bomba-team",
     "title": "Forsaken vs BOMBA Team",
     "homeTeam": "Forsaken",
     "awayTeam": "BOMBA Team",
@@ -1505,10 +1479,10 @@
       "jalur2": "https://blognation.com/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.495Z"
+    "updatedAt": "2026-09-19T00:44:59.991Z"
   },
   {
-    "id": "match_59_9gaming-vs-cybercore-espo",
+    "id": "match_58_9gaming-vs-cybercore-espo",
     "title": "9Gaming vs CyberCore Esports",
     "homeTeam": "9Gaming",
     "awayTeam": "CyberCore Esports",
@@ -1531,10 +1505,10 @@
       "jalur2": "https://blognation.com/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.490Z"
+    "updatedAt": "2026-09-19T00:45:00.022Z"
   },
   {
-    "id": "match_60_karmine-corp-vs-movistar-",
+    "id": "match_59_karmine-corp-vs-movistar-",
     "title": "Karmine Corp vs Movistar KOI",
     "homeTeam": "Karmine Corp",
     "awayTeam": "Movistar KOI",
@@ -1557,10 +1531,10 @@
       "jalur2": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
       "jalur3": "https://blognation.com/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.498Z"
+    "updatedAt": "2026-09-19T00:44:59.999Z"
   },
   {
-    "id": "match_61_hmble-vs-colossal-gaming",
+    "id": "match_60_hmble-vs-colossal-gaming",
     "title": "HMBLE vs Colossal Gaming",
     "homeTeam": "HMBLE",
     "awayTeam": "Colossal Gaming",
@@ -1583,10 +1557,10 @@
       "jalur2": "https://blognation.com/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.534Z"
+    "updatedAt": "2026-09-19T00:45:00.014Z"
   },
   {
-    "id": "match_62_lyon-gaming-vs-cloud9",
+    "id": "match_61_lyon-gaming-vs-cloud9",
     "title": "Lyon Gaming vs Cloud9",
     "homeTeam": "Lyon Gaming",
     "awayTeam": "Cloud9",
@@ -1609,36 +1583,10 @@
       "jalur2": "https://blognation.com/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.527Z"
+    "updatedAt": "2026-09-19T00:45:00.058Z"
   },
   {
-    "id": "match_63_shinden-vs-turma-do-pagod",
-    "title": "ShindeN vs Turma do Pagode",
-    "homeTeam": "ShindeN",
-    "awayTeam": "Turma do Pagode",
-    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/dj2ryyvfkgvwr1z/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/pxwrx8gh3vgqyk0/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Circuit X Curitiba Fall 2026",
-    "sportCategory": "🏎️ Olahraga Lainnya",
-    "kickoffIso": "2026-09-19T05:00:00+07:00",
-    "kickoffText": "05:00 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel74/off-tvc?is_off_add=false",
-    "streamJalur2": "https://blognation.com/truc-tiep/shinden-vs-turma-do-pagode-luc-0500-ngay-19-09-2026/",
-    "streamJalur3": "https://blognation.com/truc-tiep/shinden-vs-turma-do-pagode-luc-0500-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel74/off-tvc?is_off_add=false",
-      "jalur2": "https://blognation.com/truc-tiep/shinden-vs-turma-do-pagode-luc-0500-ngay-19-09-2026/",
-      "jalur3": "https://blognation.com/truc-tiep/shinden-vs-turma-do-pagode-luc-0500-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T00:19:25.535Z"
-  },
-  {
-    "id": "match_64_imperial-vs-bestia",
+    "id": "match_62_imperial-vs-bestia",
     "title": "Imperial vs BESTIA",
     "homeTeam": "Imperial",
     "awayTeam": "BESTIA",
@@ -1661,10 +1609,10 @@
       "jalur2": "https://blognation.com/truc-tiep/imperial-vs-bestia-luc-0700-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/imperial-vs-bestia-luc-0700-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.524Z"
+    "updatedAt": "2026-09-19T00:45:00.056Z"
   },
   {
-    "id": "match_65_nexus-vs-permitta",
+    "id": "match_63_nexus-vs-permitta",
     "title": "Nexus vs Permitta",
     "homeTeam": "Nexus",
     "awayTeam": "Permitta",
@@ -1687,10 +1635,10 @@
       "jalur2": "https://blognation.com/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.530Z"
+    "updatedAt": "2026-09-19T00:45:00.092Z"
   },
   {
-    "id": "match_66_mouz-vs-furia",
+    "id": "match_64_mouz-vs-furia",
     "title": "MOUZ vs FURIA",
     "homeTeam": "MOUZ",
     "awayTeam": "FURIA",
@@ -1713,10 +1661,10 @@
       "jalur2": "https://blognation.com/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.530Z"
+    "updatedAt": "2026-09-19T00:45:00.057Z"
   },
   {
-    "id": "match_67_aurora-vs-vitality",
+    "id": "match_65_aurora-vs-vitality",
     "title": "Aurora vs Vitality",
     "homeTeam": "Aurora",
     "awayTeam": "Vitality",
@@ -1739,10 +1687,10 @@
       "jalur2": "https://blognation.com/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.532Z"
+    "updatedAt": "2026-09-19T00:45:00.079Z"
   },
   {
-    "id": "match_68_black-phoenix-vs-baks",
+    "id": "match_66_black-phoenix-vs-baks",
     "title": "Black Phoenix vs BAKS",
     "homeTeam": "Black Phoenix",
     "awayTeam": "BAKS",
@@ -1765,10 +1713,10 @@
       "jalur2": "https://blognation.com/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.525Z"
+    "updatedAt": "2026-09-19T00:45:00.061Z"
   },
   {
-    "id": "match_69_genone-vs-berg-famalicao-",
+    "id": "match_67_genone-vs-berg-famalicao-",
     "title": "GenOne vs BERG/Famalicão winner",
     "homeTeam": "GenOne",
     "awayTeam": "BERG/Famalicão winner",
@@ -1791,10 +1739,10 @@
       "jalur2": "https://blognation.com/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.528Z"
+    "updatedAt": "2026-09-19T00:45:00.065Z"
   },
   {
-    "id": "match_70_regain-vs-without-a-roof",
+    "id": "match_68_regain-vs-without-a-roof",
     "title": "regain vs Without a Roof",
     "homeTeam": "regain",
     "awayTeam": "Without a Roof",
@@ -1817,10 +1765,10 @@
       "jalur2": "https://blognation.com/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.536Z"
+    "updatedAt": "2026-09-19T00:45:00.078Z"
   },
   {
-    "id": "match_71_1w-team-vs-team-nemesis",
+    "id": "match_69_1w-team-vs-team-nemesis",
     "title": "1w Team vs Team Nemesis",
     "homeTeam": "1w Team",
     "awayTeam": "Team Nemesis",
@@ -1843,10 +1791,10 @@
       "jalur2": "https://blognation.com/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.572Z"
+    "updatedAt": "2026-09-19T00:45:00.094Z"
   },
   {
-    "id": "match_72_xtreme-gaming-vs-pibbles-",
+    "id": "match_70_xtreme-gaming-vs-pibbles-",
     "title": "Xtreme Gaming vs Pibbles Corp",
     "homeTeam": "Xtreme Gaming",
     "awayTeam": "Pibbles Corp",
@@ -1869,10 +1817,10 @@
       "jalur2": "https://blognation.com/truc-tiep/xtreme-gaming-vs-pibbles-corp-luc-1400-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/xtreme-gaming-vs-pibbles-corp-luc-1400-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.579Z"
+    "updatedAt": "2026-09-19T00:45:00.100Z"
   },
   {
-    "id": "match_73_natus-vincere-vs-hokori",
+    "id": "match_71_natus-vincere-vs-hokori",
     "title": "Natus Vincere vs Hokori",
     "homeTeam": "Natus Vincere",
     "awayTeam": "Hokori",
@@ -1895,10 +1843,10 @@
       "jalur2": "https://blognation.com/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.578Z"
+    "updatedAt": "2026-09-19T00:45:00.146Z"
   },
   {
-    "id": "match_74_team-spirit-academy-vs-in",
+    "id": "match_72_team-spirit-academy-vs-in",
     "title": "Team Spirit Academy vs Inner Circle X Insanity",
     "homeTeam": "Team Spirit Academy",
     "awayTeam": "Inner Circle X Insanity",
@@ -1921,10 +1869,10 @@
       "jalur2": "https://blognation.com/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.572Z"
+    "updatedAt": "2026-09-19T00:45:00.144Z"
   },
   {
-    "id": "match_75_kalmychata-vs-yellow-subm",
+    "id": "match_73_kalmychata-vs-yellow-subm",
     "title": "Kalmychata vs Yellow Submarine",
     "homeTeam": "Kalmychata",
     "awayTeam": "Yellow Submarine",
@@ -1947,10 +1895,10 @@
       "jalur2": "https://blognation.com/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.569Z"
+    "updatedAt": "2026-09-19T00:45:00.143Z"
   },
   {
-    "id": "match_76_team-yandex-vs-mousesport",
+    "id": "match_74_team-yandex-vs-mousesport",
     "title": "Team Yandex vs Mousesports",
     "homeTeam": "Team Yandex",
     "awayTeam": "Mousesports",
@@ -1973,10 +1921,10 @@
       "jalur2": "https://blognation.com/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.573Z"
+    "updatedAt": "2026-09-19T00:45:00.147Z"
   },
   {
-    "id": "match_77_team-lynx-vs-balu-team",
+    "id": "match_75_team-lynx-vs-balu-team",
     "title": "Team lynx vs Balu Team",
     "homeTeam": "Team lynx",
     "awayTeam": "Balu Team",
@@ -1999,10 +1947,10 @@
       "jalur2": "https://blognation.com/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.577Z"
+    "updatedAt": "2026-09-19T00:45:00.187Z"
   },
   {
-    "id": "match_78_puckchamp-vs-balu-team",
+    "id": "match_76_puckchamp-vs-balu-team",
     "title": "Puckchamp vs Balu Team",
     "homeTeam": "Puckchamp",
     "awayTeam": "Balu Team",
@@ -2025,10 +1973,10 @@
       "jalur2": "https://blognation.com/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.570Z"
+    "updatedAt": "2026-09-19T00:45:00.144Z"
   },
   {
-    "id": "match_79_kalmychata-vs-two-move",
+    "id": "match_77_kalmychata-vs-two-move",
     "title": "Kalmychata vs Two Move",
     "homeTeam": "Kalmychata",
     "awayTeam": "Two Move",
@@ -2051,36 +1999,10 @@
       "jalur2": "https://blognation.com/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
       "jalur3": "https://blognation.com/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.577Z"
+    "updatedAt": "2026-09-19T00:45:00.150Z"
   },
   {
-    "id": "match_80_guerreros-del-pacifico-vs",
-    "title": "Guerreros del Pacifico vs Acambaro FC",
-    "homeTeam": "Guerreros del Pacifico",
-    "awayTeam": "Acambaro FC",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l5ergphp98er8k0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/4jwq2gh15nom0ve/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Hạng 3 Mexico",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T08:00:00+07:00",
-    "kickoffText": "08:00 WIB (19/09)",
-    "status": 0,
-    "streamJalur1": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
-    "streamJalur2": "https://theceoschool.co/truc-tiep/guerreros-del-pacifico-vs-acambaro-fc-luc-0800-ngay-19-09-2026/",
-    "streamJalur3": "https://theceoschool.co/truc-tiep/guerreros-del-pacifico-vs-acambaro-fc-luc-0800-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
-      "jalur2": "https://theceoschool.co/truc-tiep/guerreros-del-pacifico-vs-acambaro-fc-luc-0800-ngay-19-09-2026/",
-      "jalur3": "https://theceoschool.co/truc-tiep/guerreros-del-pacifico-vs-acambaro-fc-luc-0800-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T00:19:25.580Z"
-  },
-  {
-    "id": "match_81_western-springs-afc-vs-ch",
+    "id": "match_78_western-springs-afc-vs-ch",
     "title": "Western Springs AFC vs Christchurch United",
     "homeTeam": "Western Springs AFC",
     "awayTeam": "Christchurch United",
@@ -2103,10 +2025,10 @@
       "jalur2": "https://theceoschool.co/truc-tiep/western-springs-afc-vs-christchurch-united-luc-0800-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/western-springs-afc-vs-christchurch-united-luc-0800-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.637Z"
+    "updatedAt": "2026-09-19T00:45:00.625Z"
   },
   {
-    "id": "match_82_politecnico-j-i-c-vs-dime",
+    "id": "match_79_politecnico-j-i-c-vs-dime",
     "title": "Politecnico J.I.C. vs Dimelo Jara FC",
     "homeTeam": "Politecnico J.I.C.",
     "awayTeam": "Dimelo Jara FC",
@@ -2129,10 +2051,10 @@
       "jalur2": "https://theceoschool.co/truc-tiep/politecnico-j-i-c-vs-dimelo-jara-fc-luc-0800-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/politecnico-j-i-c-vs-dimelo-jara-fc-luc-0800-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.640Z"
+    "updatedAt": "2026-09-19T00:45:00.167Z"
   },
   {
-    "id": "match_83_san-francisco-vs-cd-arabe",
+    "id": "match_80_san-francisco-vs-cd-arabe",
     "title": "San Francisco vs CD Arabe Unido",
     "homeTeam": "San Francisco",
     "awayTeam": "CD Arabe Unido",
@@ -2155,10 +2077,10 @@
       "jalur2": "https://theceoschool.co/truc-tiep/san-francisco-vs-cd-arabe-unido-luc-0830-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/san-francisco-vs-cd-arabe-unido-luc-0830-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.648Z"
+    "updatedAt": "2026-09-19T00:45:00.347Z"
   },
   {
-    "id": "match_84_atletico-choloma-vs-estre",
+    "id": "match_81_atletico-choloma-vs-estre",
     "title": "Atletico Choloma vs Estrella Roja",
     "homeTeam": "Atletico Choloma",
     "awayTeam": "Estrella Roja",
@@ -2181,10 +2103,10 @@
       "jalur2": "https://theceoschool.co/truc-tiep/atletico-choloma-vs-estrella-roja-luc-0830-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/atletico-choloma-vs-estrella-roja-luc-0830-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.640Z"
+    "updatedAt": "2026-09-19T00:45:01.364Z"
   },
   {
-    "id": "match_85_shenzhen-peng-u15-vs-lune",
+    "id": "match_82_shenzhen-peng-u15-vs-lune",
     "title": "Shenzhen Peng U15 vs Luneng Football U14",
     "homeTeam": "Shenzhen Peng U15",
     "awayTeam": "Luneng Football U14",
@@ -2207,10 +2129,10 @@
       "jalur2": "https://theceoschool.co/truc-tiep/shenzhen-peng-u15-vs-luneng-football-u14-luc-0830-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/shenzhen-peng-u15-vs-luneng-football-u14-luc-0830-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.658Z"
+    "updatedAt": "2026-09-19T00:45:00.832Z"
   },
   {
-    "id": "match_86_hebi-heteng-u15-vs-shenzh",
+    "id": "match_83_hebi-heteng-u15-vs-shenzh",
     "title": "Hebi Heteng U15 vs Shenzhen Juniors U15",
     "homeTeam": "Hebi Heteng U15",
     "awayTeam": "Shenzhen Juniors U15",
@@ -2233,10 +2155,10 @@
       "jalur2": "https://theceoschool.co/truc-tiep/hebi-heteng-u15-vs-shenzhen-juniors-u15-luc-0830-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/hebi-heteng-u15-vs-shenzhen-juniors-u15-luc-0830-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.670Z"
+    "updatedAt": "2026-09-19T00:45:00.831Z"
   },
   {
-    "id": "match_87_dalian-yingbo-u15-vs-shij",
+    "id": "match_84_dalian-yingbo-u15-vs-shij",
     "title": "Dalian Yingbo U15 vs Shijiazhuang U15",
     "homeTeam": "Dalian Yingbo U15",
     "awayTeam": "Shijiazhuang U15",
@@ -2259,10 +2181,10 @@
       "jalur2": "https://theceoschool.co/truc-tiep/dalian-yingbo-u15-vs-shijiazhuang-u15-luc-0830-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/dalian-yingbo-u15-vs-shijiazhuang-u15-luc-0830-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.801Z"
+    "updatedAt": "2026-09-19T00:45:00.723Z"
   },
   {
-    "id": "match_88_zhejiang-professional-fc-",
+    "id": "match_85_zhejiang-professional-fc-",
     "title": "Zhejiang Professional FC U15 vs Chongqing Lvyin U15",
     "homeTeam": "Zhejiang Professional FC U15",
     "awayTeam": "Chongqing Lvyin U15",
@@ -2285,10 +2207,10 @@
       "jalur2": "https://theceoschool.co/truc-tiep/zhejiang-professional-fc-u15-vs-chongqing-lvyin-u15-luc-0830-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/zhejiang-professional-fc-u15-vs-chongqing-lvyin-u15-luc-0830-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.681Z"
+    "updatedAt": "2026-09-19T00:45:00.708Z"
   },
   {
-    "id": "match_89_municipal-perez-zeledon-v",
+    "id": "match_86_municipal-perez-zeledon-v",
     "title": "Municipal Pérez Zeledón vs Sporting FC",
     "homeTeam": "Municipal Pérez Zeledón",
     "awayTeam": "Sporting FC",
@@ -2311,6 +2233,32 @@
       "jalur2": "https://theceoschool.co/truc-tiep/municipal-perez-zeledon-vs-sporting-fc-luc-0900-ngay-19-09-2026/",
       "jalur3": "https://theceoschool.co/truc-tiep/municipal-perez-zeledon-vs-sporting-fc-luc-0900-ngay-19-09-2026/"
     },
-    "updatedAt": "2026-09-19T00:19:25.796Z"
+    "updatedAt": "2026-09-19T00:45:00.861Z"
+  },
+  {
+    "id": "match_87_comunicaciones-vs-guastat",
+    "title": "Comunicaciones vs Guastatoya",
+    "homeTeam": "Comunicaciones",
+    "awayTeam": "Guastatoya",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekhvj60repz/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/l7oqdehn7v9r510/image/small",
+    "homeScore": "1",
+    "awayScore": "0",
+    "scoreText": "1 - 0",
+    "matchMinute": "",
+    "league": "VĐQG Guatemala",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T09:00:00+07:00",
+    "kickoffText": "09:00 WIB (19/09)",
+    "status": 0,
+    "streamJalur1": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel20/off-tvc?is_off_add=false",
+    "streamJalur2": "https://theceoschool.co/truc-tiep/comunicaciones-vs-guastatoya-luc-0900-ngay-19-09-2026/",
+    "streamJalur3": "https://theceoschool.co/truc-tiep/comunicaciones-vs-guastatoya-luc-0900-ngay-19-09-2026/",
+    "streams": {
+      "jalur1": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel20/off-tvc?is_off_add=false",
+      "jalur2": "https://theceoschool.co/truc-tiep/comunicaciones-vs-guastatoya-luc-0900-ngay-19-09-2026/",
+      "jalur3": "https://theceoschool.co/truc-tiep/comunicaciones-vs-guastatoya-luc-0900-ngay-19-09-2026/"
+    },
+    "updatedAt": "2026-09-19T00:45:00.870Z"
   }
 ]
