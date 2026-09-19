@@ -59,10 +59,17 @@ class MatchModel {
     final rawLeague = json['league'] as String? ?? 'Live Sports';
     final translatedLeague = LeagueTranslator.translate(rawLeague);
 
-    final title = json['title'] as String? ?? 'Pertandingan Olahraga';
-    final parts = title.split(RegExp(r'\s+vs\s+|\s+-\s+', caseSensitive: false));
+    final rawTitle = json['title'] as String? ?? 'Pertandingan Olahraga';
+    final parts = rawTitle.split(RegExp(r'\s+vs\s+|\s+-\s+', caseSensitive: false));
     final defaultHome = parts.isNotEmpty ? parts[0].trim() : 'Tim Tuan Rumah';
     final defaultAway = parts.length > 1 ? parts[1].trim() : 'Tim Tamu';
+
+    final rawHome = json['homeTeam'] as String? ?? defaultHome;
+    final rawAway = json['awayTeam'] as String? ?? defaultAway;
+
+    final home = LeagueTranslator.cleanTeamName(rawHome);
+    final away = LeagueTranslator.cleanTeamName(rawAway);
+    final title = '$home vs $away';
 
     final streams = json['streams'] is Map<String, dynamic>
         ? json['streams'] as Map<String, dynamic>
@@ -71,8 +78,8 @@ class MatchModel {
     return MatchModel(
       id: docId ?? json['id'] as String? ?? UniqueKey().toString(),
       title: title,
-      homeTeam: json['homeTeam'] as String? ?? defaultHome,
-      awayTeam: json['awayTeam'] as String? ?? defaultAway,
+      homeTeam: home,
+      awayTeam: away,
       homeLogo: json['homeLogo'] as String?,
       awayLogo: json['awayLogo'] as String?,
       homeScore: json['homeScore']?.toString(),

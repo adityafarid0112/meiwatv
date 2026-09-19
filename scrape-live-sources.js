@@ -1,63 +1,109 @@
 const fs = require('fs');
 const path = require('path');
 
+// Bersihkan karakter diakritik khusus Vietnam agar menjadi teks bersih
+function cleanVietnameseDiacritics(str) {
+    if (!str) return '';
+    return str
+        .replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, 'a')
+        .replace(/[ÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴ]/g, 'A')
+        .replace(/[èéẹẻẽêềếệểễ]/g, 'e')
+        .replace(/[ÈÉẸẺẼÊỀẾỆỂỄ]/g, 'E')
+        .replace(/[ìíịỉĩ]/g, 'i')
+        .replace(/[ÌÍỊỈĨ]/g, 'I')
+        .replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, 'o')
+        .replace(/[ÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠ]/g, 'O')
+        .replace(/[ùúụủũưừứựửữ]/g, 'u')
+        .replace(/[ÙÚỤỦŨƯỪỨỰỬỮ]/g, 'U')
+        .replace(/[ỳýỵỷỹ]/g, 'y')
+        .replace(/[ỲÝỴỶỸ]/g, 'Y')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
 // Terjemahkan nama liga, turnamen, dan tim ke Bahasa Indonesia Resmi
 function translateToId(str) {
     if (!str) return '';
-    let text = str;
+    let text = str.trim();
 
-    const leagueMap = [
-        // Sepak Bola - Liga Populer & Dunia
-        { pattern: /Ngoại Hạng Anh/gi, replace: 'Premier League (Inggris)' },
-        { pattern: /VĐQG Indonesia/gi, replace: 'BRI Liga 1 Indonesia' },
-        { pattern: /Hạng 2 Indonesia/gi, replace: 'Liga 2 Indonesia' },
-        { pattern: /Hạng 3 Indonesia/gi, replace: 'Liga 3 Indonesia' },
-        { pattern: /Cúp Quốc Gia Việt Nam/gi, replace: 'Piala Nasional Vietnam' },
-        { pattern: /VĐQG Việt Nam|V\.League\s*1/gi, replace: 'V.League 1 (Vietnam)' },
-        { pattern: /VĐQG Tây Ban Nha/gi, replace: 'La Liga (Spanyol)' },
-        { pattern: /VĐQG Ý/gi, replace: 'Serie A (Italia)' },
-        { pattern: /VĐQG Đức/gi, replace: 'Bundesliga (Jerman)' },
-        { pattern: /VĐQG Pháp/gi, replace: 'Ligue 1 (Prancis)' },
-        { pattern: /VĐQG Hà Lan/gi, replace: 'Eredivisie (Belanda)' },
-        { pattern: /VĐQG Bồ Đào Nha/gi, replace: 'Liga Portugal' },
-        { pattern: /VĐQG Saudi Arabia|VĐQG Ả Rập Xê Út/gi, replace: 'Saudi Pro League' },
-        { pattern: /VĐQG Nhật Bản/gi, replace: 'J1 League (Jepang)' },
-        { pattern: /VĐQG Hàn Quốc/gi, replace: 'K League 1 (Korea Selatan)' },
-        { pattern: /Hạng Nhất Ukraina/gi, replace: 'Liga Utama Ukraina' },
-        { pattern: /Hạng Nhất Anh/gi, replace: 'Championship (Inggris)' },
-        { pattern: /Hạng 2 Trung Quốc/gi, replace: 'Liga 2 China' },
-        { pattern: /Hạng 2 Romania/gi, replace: 'Liga 2 Rumania' },
-        { pattern: /Hạng 2 Tây Ban Nha/gi, replace: 'La Liga 2 (Spanyol)' },
-        { pattern: /Hạng 2 Đức/gi, replace: '2. Bundesliga (Jerman)' },
-        { pattern: /Hạng 2 Ý/gi, replace: 'Serie B (Italia)' },
-        { pattern: /Hạng 2 Pháp/gi, replace: 'Ligue 2 (Prancis)' },
-        { pattern: /Ngoại Hạng Darwin/gi, replace: 'Liga Utama Darwin (Australia)' },
-        { pattern: /Czech 3 liga/gi, replace: 'Liga 3 Republik Ceko' },
-        { pattern: /Bangladesh Premier League/gi, replace: 'Liga Utama Bangladesh' },
-        { pattern: /\bJFL\b/g, replace: 'Liga Sepak Bola Jepang (JFL)' },
-        { pattern: /\bJ1 League\b/g, replace: 'J1 League (Jepang)' },
-        { pattern: /\bJ2 League\b/g, replace: 'J2 League (Jepang)' },
-        { pattern: /\bJ3 League\b/g, replace: 'J3 League (Jepang)' },
-        { pattern: /\bK League 1\b/g, replace: 'K League 1 (Korea Selatan)' },
-        { pattern: /\bK4 League\b/g, replace: 'K4 League (Korea Selatan)' },
+    const directList = [
+        // Bangladesh & negara lain yang memakai nama 'Premier League'
+        { pattern: /Bangladesh\s*Premier\s*League/gi, replace: 'Liga Utama Bangladesh' },
+        { pattern: /Czech\s*3\s*liga/gi, replace: 'Liga 3 Ceko' },
+        { pattern: /Ngoại Hạng Darwin/gi, replace: 'Liga Darwin Australia' },
 
-        // Bola Basket
-        { pattern: /National Basketball League/gi, replace: 'Liga Basket Nasional (NBL)' },
-        { pattern: /Philippines University Athletic Association/gi, replace: 'Liga Universitas Filipina (UAAP)' },
-        { pattern: /Turkish Basketball First League/gi, replace: 'Liga Basket Divisi 1 Turki' },
-        { pattern: /Vietnam VBA/gi, replace: 'Liga Basket Vietnam (VBA)' },
-        { pattern: /VTB United League Supercup/gi, replace: 'Piala Super VTB United League' },
-        { pattern: /Italy Super Cup/gi, replace: 'Piala Super Italia' },
-        { pattern: /Basketball Bundesliga/gi, replace: 'Bundesliga Basket (Jerman)' },
-        { pattern: /Spain Basketball Supercopa/gi, replace: 'Piala Super Basket Spanyol' },
-        { pattern: /Women National Basketball Association/gi, replace: 'Liga Basket Wanita Amerika (WNBA)' },
-        { pattern: /Liga Nacional de Baloncesto Profesional/gi, replace: 'Liga Basket Profesional Meksiko (LNBP)' },
-        { pattern: /Asian Games - Women's Basketball/gi, replace: 'Asian Games - Bola Basket Putri' },
+        // Liga Inggris
+        { pattern: /Ngoại Hạng Anh|^Premier League(\s*\(Inggris\))?$/gi, replace: 'Liga Inggris' },
+        { pattern: /Hạng Nhất Anh|^Championship$/gi, replace: 'Liga Championship Inggris' },
+        { pattern: /Cúp FA|^FA Cup$/gi, replace: 'Piala FA Inggris' },
+        { pattern: /Cúp Liên Đoàn Anh|EFL Cup|Carabao Cup/gi, replace: 'Piala Carabao Inggris' },
+
+        // Indonesia
+        { pattern: /VĐQG Indonesia|Liga\s*1\s*Indonesia|BRI Liga 1/gi, replace: 'BRI Liga 1 Indonesia' },
+        { pattern: /Hạng 2 Indonesia|Liga\s*2\s*Indonesia/gi, replace: 'Liga 2 Indonesia' },
+        { pattern: /Hạng 3 Indonesia|Liga\s*3\s*Indonesia/gi, replace: 'Liga 3 Indonesia' },
+
+        // Vietnam
+        { pattern: /Cúp Quốc Gia Việt Nam|Cúp Quốc Gia/gi, replace: 'Piala Nasional Vietnam' },
+        { pattern: /VĐQG Việt Nam|V\.League\s*1/gi, replace: 'Liga Vietnam (V.League 1)' },
+        { pattern: /Hạng Nhất Việt Nam|V\.League\s*2/gi, replace: 'Liga Vietnam 2 (V.League 2)' },
+
+        // Spanyol
+        { pattern: /VĐQG Tây Ban Nha|^La\s*Liga(\s*\(Spanyol\))?$/gi, replace: 'La Liga Spanyol' },
+        { pattern: /Hạng 2 Tây Ban Nha|La\s*Liga\s*2|Segunda\s*División/gi, replace: 'La Liga 2 Spanyol' },
+        { pattern: /Cúp Nhà Vua|^Copa del Rey$/gi, replace: 'Piala Raja Spanyol (Copa del Rey)' },
         { pattern: /Copa del Rey de Baloncesto/gi, replace: 'Piala Raja Basket Spanyol' },
+        { pattern: /Spain Basketball Supercopa/gi, replace: 'Piala Super Basket Spanyol' },
 
-        // Tenis, Bulu Tangkis, Voli
-        { pattern: /WTA Seoul, Korea Republic Women Singles/gi, replace: 'WTA Seoul (Tunggal Putri Korea Selatan)' },
-        { pattern: /Davis Cup/gi, replace: 'Piala Davis (Tenis)' },
+        // Italia
+        { pattern: /VĐQG Ý|^Serie\s*A(\s*\(Italia\))?$/gi, replace: 'Serie A Italia' },
+        { pattern: /Hạng 2 Ý|^Serie\s*B/gi, replace: 'Serie B Italia' },
+        { pattern: /Cúp Quốc Gia Ý|Coppa Italia/gi, replace: 'Piala Italia (Coppa Italia)' },
+        { pattern: /Italy Super Cup/gi, replace: 'Piala Super Italia' },
+
+        // Jerman
+        { pattern: /VĐQG Đức|^Bundesliga(\s*\(Jerman\))?$/gi, replace: 'Bundesliga Jerman' },
+        { pattern: /Hạng 2 Đức|2\.\s*Bundesliga|Bundesliga\s*2/gi, replace: '2. Bundesliga Jerman' },
+        { pattern: /Cúp Quốc Gia Đức|DFB[- ]Pokal/gi, replace: 'Piala DFB Jerman' },
+        { pattern: /Basketball Bundesliga/gi, replace: 'Bundesliga Basket Jerman' },
+
+        // Prancis
+        { pattern: /VĐQG Pháp|^Ligue\s*1(\s*\(Prancis\))?$/gi, replace: 'Ligue 1 Prancis' },
+        { pattern: /Hạng 2 Pháp|^Ligue\s*2/gi, replace: 'Ligue 2 Prancis' },
+
+        // Belanda & Portugal
+        { pattern: /VĐQG Hà Lan|^Eredivisie(\s*\(Belanda\))?$/gi, replace: 'Eredivisie Belanda' },
+        { pattern: /VĐQG Bồ Đào Nha|^Liga\s*Portugal$|^Primeira\s*Liga$/gi, replace: 'Liga Portugal' },
+
+        // Arab Saudi
+        { pattern: /VĐQG Saudi Arabia|VĐQG Ả Rập Xê Út|Saudi\s*Pro\s*League/gi, replace: 'Saudi Pro League (Arab Saudi)' },
+
+        // Jepang
+        { pattern: /VĐQG Nhật Bản|^J1\s*League(\s*\(Jepang\))?$/gi, replace: 'J1 League Jepang' },
+        { pattern: /Hạng 2 Nhật Bản|^J2\s*League(\s*\(Jepang\))?$/gi, replace: 'J2 League Jepang' },
+        { pattern: /Hạng 3 Nhật Bản|^J3\s*League(\s*\(Jepang\))?$/gi, replace: 'J3 League Jepang' },
+        { pattern: /Japan Football League|^JFL$/gi, replace: 'Liga Sepak Bola Jepang (JFL)' },
+
+        // Korea Selatan
+        { pattern: /VĐQG Hàn Quốc|^K\s*League\s*1(\s*\(Korea Selatan\))?$/gi, replace: 'K League 1 Korea Selatan' },
+        { pattern: /Hạng 2 Hàn Quốc|^K\s*League\s*2/gi, replace: 'K League 2 Korea Selatan' },
+
+        // Lainnya
+        { pattern: /Hạng Nhất Ukraina/gi, replace: 'Liga Utama Ukraina' },
+        { pattern: /Hạng 2 Trung Quốc|China\s*League\s*One/gi, replace: 'Liga 2 China' },
+        { pattern: /Hạng 2 Romania/gi, replace: 'Liga 2 Rumania' },
+        { pattern: /National Basketball League|^NBL$/gi, replace: 'Liga Basket Australia (NBL)' },
+        { pattern: /Philippines University Athletic Association|^UAAP$/gi, replace: 'Liga Kampus Filipina (UAAP)' },
+        { pattern: /Turkish Basketball First League/gi, replace: 'Liga Basket Turki (TBL)' },
+        { pattern: /Vietnam VBA|^VBA$/gi, replace: 'Liga Basket Vietnam (VBA)' },
+        { pattern: /VTB United League Supercup/gi, replace: 'Piala Super VTB Liga' },
+        { pattern: /Women National Basketball Association|^WNBA$/gi, replace: 'Liga Basket Wanita Amerika (WNBA)' },
+        { pattern: /Liga Nacional de Baloncesto Profesional|^LNBP$/gi, replace: 'Liga Basket Meksiko (LNBP)' },
+        { pattern: /Asian Games - Women'?s Basketball/gi, replace: 'Asian Games - Bola Basket Putri' },
+        { pattern: /WTA Seoul.*/gi, replace: 'WTA Seoul Tenis Putri' },
+        { pattern: /Davis Cup/gi, replace: 'Piala Davis Tenis' },
         { pattern: /European Championships/gi, replace: 'Kejuaraan Eropa' },
 
         // Esports
@@ -75,13 +121,10 @@ function translateToId(str) {
         { pattern: /HyperX Retake Season 12/gi, replace: 'HyperX Retake Musim 12' },
         { pattern: /CROSSFIRE Season 6/gi, replace: 'CROSSFIRE Musim 6' },
 
-        // Turnamen & Kompetisi Umum
+        // Turnamen & Piala Internasional
         { pattern: /Cúp C1|Champions League/gi, replace: 'Liga Champions' },
         { pattern: /Cúp C2|Europa League/gi, replace: 'Liga Europa' },
         { pattern: /Cúp C3|Conference League/gi, replace: 'Liga Konferensi Eropa' },
-        { pattern: /Cúp FA/gi, replace: 'Piala FA (Inggris)' },
-        { pattern: /Cúp Nhà Vua/gi, replace: 'Copa del Rey (Spanyol)' },
-        { pattern: /Cúp Quốc Gia/gi, replace: 'Piala Nasional' },
         { pattern: /Cúp Liên Đoàn/gi, replace: 'Piala Liga' },
         { pattern: /Siêu Cúp/gi, replace: 'Piala Super' },
         { pattern: /Giao hữu quốc tế/gi, replace: 'Laga Persahabatan Internasional' },
@@ -100,11 +143,17 @@ function translateToId(str) {
         { pattern: /Hạng 3/gi, replace: 'Divisi 3' },
         { pattern: /Hạng 4/gi, replace: 'Divisi 4' },
         { pattern: /Hạng Nhất/gi, replace: 'Divisi Utama' },
+        { pattern: /Ngoại Hạng/gi, replace: 'Liga Utama' },
         { pattern: /VĐQG/gi, replace: 'Liga Utama' },
         { pattern: /Cúp/gi, replace: 'Piala' }
     ];
 
-    leagueMap.forEach(item => { text = text.replace(item.pattern, item.replace); });
+    for (const item of directList) {
+        if (item.pattern.test(text)) {
+            text = text.replace(item.pattern, item.replace);
+            break;
+        }
+    }
 
     const wordMap = [
         { pattern: /\bSeason\b/gi, replace: 'Musim' },
@@ -124,10 +173,7 @@ function translateToId(str) {
         { pattern: /\bCLB\s+/gi, replace: 'Klub ' },
         { pattern: /\bNhật Bản\b/gi, replace: 'Jepang' },
         { pattern: /\bHàn Quốc\b/gi, replace: 'Korea Selatan' },
-        { pattern: /\bTriều Tiên\b/gi, replace: 'Korea Utara' },
         { pattern: /\bTrung Quốc\b/gi, replace: 'China' },
-        { pattern: /\bĐài Loan\b/gi, replace: 'Taiwan' },
-        { pattern: /\bHồng Kông\b/gi, replace: 'Hong Kong' },
         { pattern: /\bTây Ban Nha\b/gi, replace: 'Spanyol' },
         { pattern: /\bÝ\b/g, replace: 'Italia' },
         { pattern: /\bĐức\b/gi, replace: 'Jerman' },
@@ -138,17 +184,17 @@ function translateToId(str) {
         { pattern: /\bThái Lan\b/gi, replace: 'Thailand' },
         { pattern: /\bMỹ\b|\bHoa Kỳ\b/gi, replace: 'Amerika Serikat' },
         { pattern: /\bÚc\b/gi, replace: 'Australia' },
-        { pattern: /\bThụy Sĩ\b/gi, replace: 'Swiss' },
-        { pattern: /\bThụy Điển\b/gi, replace: 'Swedia' },
-        { pattern: /\bThổ Nhĩ Kỳ\b/gi, replace: 'Turki' },
-        { pattern: /\bNga\b/g, replace: 'Rusia' },
-        { pattern: /\bHy Lạp\b/gi, replace: 'Yunani' },
-        { pattern: /\bẢ Rập Xê Út\b/gi, replace: 'Arab Saudi' },
-        { pattern: /\bIndonesia\b/gi, replace: 'Indonesia' },
+        { pattern: /\bẢ Rập Xê Út\b|\bẢ Rập Saudi\b/gi, replace: 'Arab Saudi' },
         { pattern: /\bViệt Nam\b/gi, replace: 'Vietnam' }
     ];
 
     wordMap.forEach(item => { text = text.replace(item.pattern, item.replace); });
+
+    // Hapus duplikasi tanda kurung atau pengulangan negara
+    text = text.replace(/\(([^)]+)\)\s*\(\1\)/gi, '($1)');
+    text = text.replace(/\b(Jepang|Inggris|Spanyol|Italia|Jerman|Prancis|Belanda|Portugal|Vietnam|China|Korea Selatan|Australia)\s+\(\1\)/gi, '$1');
+    text = text.replace(/\((Jepang|Inggris|Spanyol|Italia|Jerman|Prancis|Belanda|Portugal|Vietnam|China|Korea Selatan|Australia)\)\s+\1/gi, '$1');
+
     return text.replace(/\s+/g, ' ').trim();
 }
 
@@ -327,8 +373,8 @@ async function scrapeAll() {
                     away = away || (parts.length > 1 ? parts[1].trim() : 'Tim 2');
                 }
 
-                home = translateToId(home);
-                away = translateToId(away);
+                home = cleanVietnameseDiacritics(translateToId(home));
+                away = cleanVietnameseDiacritics(translateToId(away));
                 const title = `${home} vs ${away}`;
 
                 // Kategori Olahraga
