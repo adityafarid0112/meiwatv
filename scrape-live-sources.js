@@ -1,10 +1,40 @@
 const fs = require('fs');
 const path = require('path');
 
-// Bersihkan karakter diakritik khusus Vietnam agar menjadi teks bersih
+// Bersihkan karakter diakritik khusus Vietnam dan terjemahkan kata negara/gender
 function cleanVietnameseDiacritics(str) {
     if (!str) return '';
-    return str
+    let text = str.trim();
+
+    const teamWordMap = [
+        { pattern: /\bNữ\s+/gi, replace: '' },
+        { pattern: /\bNam\s+/gi, replace: '' },
+        { pattern: /\bBa Lan\b/gi, replace: 'Polandia' },
+        { pattern: /\bĐức\b/gi, replace: 'Jerman' },
+        { pattern: /\bTây Ban Nha\b/gi, replace: 'Spanyol' },
+        { pattern: /\bÝ\b/g, replace: 'Italia' },
+        { pattern: /\bPháp\b/gi, replace: 'Prancis' },
+        { pattern: /\bAnh\b/g, replace: 'Inggris' },
+        { pattern: /\bHà Lan\b/gi, replace: 'Belanda' },
+        { pattern: /\bBồ Đào Nha\b/gi, replace: 'Portugal' },
+        { pattern: /\bThái Lan\b/gi, replace: 'Thailand' },
+        { pattern: /\bNhật Bản\b/gi, replace: 'Jepang' },
+        { pattern: /\bHàn Quốc\b/gi, replace: 'Korea Selatan' },
+        { pattern: /\bTrung Quốc\b/gi, replace: 'China' },
+        { pattern: /\bMỹ\b|\bHoa Kỳ\b/gi, replace: 'Amerika Serikat' },
+        { pattern: /\bÚc\b/gi, replace: 'Australia' },
+        { pattern: /\bHy Lạp\b/gi, replace: 'Yunani' },
+        { pattern: /\bThụy Sĩ\b/gi, replace: 'Swiss' },
+        { pattern: /\bThụy Điển\b/gi, replace: 'Swedia' },
+        { pattern: /\bThổ Nhĩ Kỳ\b/gi, replace: 'Turki' },
+        { pattern: /\bNga\b/g, replace: 'Rusia' },
+        { pattern: /\bẢ Rập Xê Út\b|\bẢ Rập Saudi\b/gi, replace: 'Arab Saudi' },
+        { pattern: /\bViệt Nam\b/gi, replace: 'Vietnam' }
+    ];
+
+    teamWordMap.forEach(item => { text = text.replace(item.pattern, item.replace); });
+
+    return text
         .replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, 'a')
         .replace(/[ÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴ]/g, 'A')
         .replace(/[èéẹẻẽêềếệểễ]/g, 'e')
@@ -35,60 +65,60 @@ function translateToId(str) {
         { pattern: /Ngoại Hạng Darwin/gi, replace: 'Liga Darwin Australia' },
 
         // Liga Inggris
-        { pattern: /Ngoại Hạng Anh|^Premier League(\s*\(Inggris\))?$/gi, replace: 'Liga Inggris' },
-        { pattern: /Hạng Nhất Anh|^Championship$/gi, replace: 'Liga Championship Inggris' },
-        { pattern: /Cúp FA|^FA Cup$/gi, replace: 'Piala FA Inggris' },
+        { pattern: /Ngoại Hạng Anh|Premier League(\s*\(Inggris\))?/gi, replace: 'Liga Inggris' },
+        { pattern: /Hạng Nhất Anh|Championship(\s*\(Inggris\))?/gi, replace: 'Liga Championship Inggris' },
+        { pattern: /Cúp FA|FA Cup(\s*\(Inggris\))?/gi, replace: 'Piala FA Inggris' },
         { pattern: /Cúp Liên Đoàn Anh|EFL Cup|Carabao Cup/gi, replace: 'Piala Carabao Inggris' },
 
         // Indonesia
-        { pattern: /VĐQG Indonesia|Liga\s*1\s*Indonesia|BRI Liga 1/gi, replace: 'BRI Liga 1 Indonesia' },
+        { pattern: /VĐQG Indonesia|Liga\s*1\s*Indonesia|BRI Liga 1(\s*Indonesia)?/gi, replace: 'BRI Liga 1 Indonesia' },
         { pattern: /Hạng 2 Indonesia|Liga\s*2\s*Indonesia/gi, replace: 'Liga 2 Indonesia' },
         { pattern: /Hạng 3 Indonesia|Liga\s*3\s*Indonesia/gi, replace: 'Liga 3 Indonesia' },
 
         // Vietnam
         { pattern: /Cúp Quốc Gia Việt Nam|Cúp Quốc Gia/gi, replace: 'Piala Nasional Vietnam' },
-        { pattern: /VĐQG Việt Nam|V\.League\s*1/gi, replace: 'Liga Vietnam (V.League 1)' },
-        { pattern: /Hạng Nhất Việt Nam|V\.League\s*2/gi, replace: 'Liga Vietnam 2 (V.League 2)' },
+        { pattern: /VĐQG Việt Nam|V\.League\s*1(\s*\(Vietnam\))?/gi, replace: 'Liga Vietnam (V.League 1)' },
+        { pattern: /Hạng Nhất Việt Nam|V\.League\s*2(\s*\(Vietnam\))?/gi, replace: 'Liga Vietnam 2 (V.League 2)' },
 
         // Spanyol
-        { pattern: /VĐQG Tây Ban Nha|^La\s*Liga(\s*\(Spanyol\))?$/gi, replace: 'La Liga Spanyol' },
-        { pattern: /Hạng 2 Tây Ban Nha|La\s*Liga\s*2|Segunda\s*División/gi, replace: 'La Liga 2 Spanyol' },
-        { pattern: /Cúp Nhà Vua|^Copa del Rey$/gi, replace: 'Piala Raja Spanyol (Copa del Rey)' },
+        { pattern: /VĐQG Tây Ban Nha|La\s*Liga(\s*\(Spanyol\))?(?!\s*2)/gi, replace: 'La Liga Spanyol' },
+        { pattern: /Hạng 2 Tây Ban Nha|La\s*Liga\s*2(\s*\(Spanyol\))?|Segunda\s*División/gi, replace: 'La Liga 2 Spanyol' },
+        { pattern: /Cúp Nhà Vua|Copa del Rey(?! de Baloncesto)/gi, replace: 'Piala Raja Spanyol (Copa del Rey)' },
         { pattern: /Copa del Rey de Baloncesto/gi, replace: 'Piala Raja Basket Spanyol' },
         { pattern: /Spain Basketball Supercopa/gi, replace: 'Piala Super Basket Spanyol' },
 
         // Italia
-        { pattern: /VĐQG Ý|^Serie\s*A(\s*\(Italia\))?$/gi, replace: 'Serie A Italia' },
-        { pattern: /Hạng 2 Ý|^Serie\s*B/gi, replace: 'Serie B Italia' },
+        { pattern: /VĐQG Ý|Serie\s*A(\s*\(Italia\))?/gi, replace: 'Serie A Italia' },
+        { pattern: /Hạng 2 Ý|Serie\s*B(\s*\(Italia\))?/gi, replace: 'Serie B Italia' },
         { pattern: /Cúp Quốc Gia Ý|Coppa Italia/gi, replace: 'Piala Italia (Coppa Italia)' },
         { pattern: /Italy Super Cup/gi, replace: 'Piala Super Italia' },
 
         // Jerman
-        { pattern: /VĐQG Đức|^Bundesliga(\s*\(Jerman\))?$/gi, replace: 'Bundesliga Jerman' },
-        { pattern: /Hạng 2 Đức|2\.\s*Bundesliga|Bundesliga\s*2/gi, replace: '2. Bundesliga Jerman' },
+        { pattern: /VĐQG Đức|Bundesliga(\s*\(Jerman\))?(?!\s*2)(?! Basket)/gi, replace: 'Bundesliga Jerman' },
+        { pattern: /Hạng 2 Đức|2\.\s*Bundesliga(\s*\(Jerman\))?|Bundesliga\s*2(\s*\(Jerman\))?/gi, replace: '2. Bundesliga Jerman' },
         { pattern: /Cúp Quốc Gia Đức|DFB[- ]Pokal/gi, replace: 'Piala DFB Jerman' },
         { pattern: /Basketball Bundesliga/gi, replace: 'Bundesliga Basket Jerman' },
 
         // Prancis
-        { pattern: /VĐQG Pháp|^Ligue\s*1(\s*\(Prancis\))?$/gi, replace: 'Ligue 1 Prancis' },
-        { pattern: /Hạng 2 Pháp|^Ligue\s*2/gi, replace: 'Ligue 2 Prancis' },
+        { pattern: /VĐQG Pháp|Ligue\s*1(\s*\(Prancis\))?/gi, replace: 'Ligue 1 Prancis' },
+        { pattern: /Hạng 2 Pháp|Ligue\s*2(\s*\(Prancis\))?/gi, replace: 'Ligue 2 Prancis' },
 
         // Belanda & Portugal
-        { pattern: /VĐQG Hà Lan|^Eredivisie(\s*\(Belanda\))?$/gi, replace: 'Eredivisie Belanda' },
-        { pattern: /VĐQG Bồ Đào Nha|^Liga\s*Portugal$|^Primeira\s*Liga$/gi, replace: 'Liga Portugal' },
+        { pattern: /VĐQG Hà Lan|Eredivisie(\s*\(Belanda\))?/gi, replace: 'Eredivisie Belanda' },
+        { pattern: /VĐQG Bồ Đào Nha|Liga\s*Portugal|Primeira\s*Liga/gi, replace: 'Liga Portugal' },
 
         // Arab Saudi
         { pattern: /VĐQG Saudi Arabia|VĐQG Ả Rập Xê Út|Saudi\s*Pro\s*League/gi, replace: 'Saudi Pro League (Arab Saudi)' },
 
         // Jepang
-        { pattern: /VĐQG Nhật Bản|^J1\s*League(\s*\(Jepang\))?$/gi, replace: 'J1 League Jepang' },
-        { pattern: /Hạng 2 Nhật Bản|^J2\s*League(\s*\(Jepang\))?$/gi, replace: 'J2 League Jepang' },
-        { pattern: /Hạng 3 Nhật Bản|^J3\s*League(\s*\(Jepang\))?$/gi, replace: 'J3 League Jepang' },
-        { pattern: /Japan Football League|^JFL$/gi, replace: 'Liga Sepak Bola Jepang (JFL)' },
+        { pattern: /VĐQG Nhật Bản|J1\s*League(\s*\(Jepang\))?/gi, replace: 'J1 League Jepang' },
+        { pattern: /Hạng 2 Nhật Bản|J2\s*League(\s*\(Jepang\))?/gi, replace: 'J2 League Jepang' },
+        { pattern: /Hạng 3 Nhật Bản|J3\s*League(\s*\(Jepang\))?/gi, replace: 'J3 League Jepang' },
+        { pattern: /Japan Football League|\bJFL\b/gi, replace: 'Liga Sepak Bola Jepang (JFL)' },
 
         // Korea Selatan
-        { pattern: /VĐQG Hàn Quốc|^K\s*League\s*1(\s*\(Korea Selatan\))?$/gi, replace: 'K League 1 Korea Selatan' },
-        { pattern: /Hạng 2 Hàn Quốc|^K\s*League\s*2/gi, replace: 'K League 2 Korea Selatan' },
+        { pattern: /VĐQG Hàn Quốc|K\s*League\s*1(\s*\(Korea Selatan\))?/gi, replace: 'K League 1 Korea Selatan' },
+        { pattern: /Hạng 2 Hàn Quốc|K\s*League\s*2(\s*\(Korea Selatan\))?/gi, replace: 'K League 2 Korea Selatan' },
 
         // Lainnya
         { pattern: /Hạng Nhất Ukraina/gi, replace: 'Liga Utama Ukraina' },
@@ -150,8 +180,7 @@ function translateToId(str) {
 
     for (const item of directList) {
         if (item.pattern.test(text)) {
-            text = text.replace(item.pattern, item.replace);
-            break;
+            return text.replace(item.pattern, item.replace).trim();
         }
     }
 
@@ -190,10 +219,16 @@ function translateToId(str) {
 
     wordMap.forEach(item => { text = text.replace(item.pattern, item.replace); });
 
-    // Hapus duplikasi tanda kurung atau pengulangan negara
-    text = text.replace(/\(([^)]+)\)\s*\(\1\)/gi, '($1)');
-    text = text.replace(/\b(Jepang|Inggris|Spanyol|Italia|Jerman|Prancis|Belanda|Portugal|Vietnam|China|Korea Selatan|Australia)\s+\(\1\)/gi, '$1');
-    text = text.replace(/\((Jepang|Inggris|Spanyol|Italia|Jerman|Prancis|Belanda|Portugal|Vietnam|China|Korea Selatan|Australia)\)\s+\1/gi, '$1');
+    text = text
+        .replace(/\s*\(\s*Jepang\s*\)\s*\(\s*Jepang\s*\)/gi, ' Jepang')
+        .replace(/Jepang\s*\(\s*Jepang\s*\)/gi, 'Jepang')
+        .replace(/Inggris\s*\(\s*Inggris\s*\)/gi, 'Inggris')
+        .replace(/Spanyol\s*\(\s*Spanyol\s*\)/gi, 'Spanyol')
+        .replace(/Italia\s*\(\s*Italia\s*\)/gi, 'Italia')
+        .replace(/Jerman\s*\(\s*Jerman\s*\)/gi, 'Jerman')
+        .replace(/Prancis\s*\(\s*Prancis\s*\)/gi, 'Prancis')
+        .replace(/Vietnam\s*\(\s*Vietnam\s*\)/gi, 'Vietnam')
+        .replace(/Indonesia\s*\(\s*Indonesia\s*\)/gi, 'Indonesia');
 
     return text.replace(/\s+/g, ' ').trim();
 }

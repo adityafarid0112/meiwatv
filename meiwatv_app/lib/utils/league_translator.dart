@@ -4,6 +4,45 @@ class LeagueTranslator {
     if (raw == null || raw.trim().isEmpty) return '';
     String text = raw.trim();
 
+    // Terjemahkan nama negara / kategori tim jika bertanding antar-negara / putri
+    final teamWordMap = <Pattern, String>{
+      RegExp(r'\bU23\s+', caseSensitive: false): 'U-23 ',
+      RegExp(r'\bU21\s+', caseSensitive: false): 'U-21 ',
+      RegExp(r'\bU20\s+', caseSensitive: false): 'U-20 ',
+      RegExp(r'\bU19\s+', caseSensitive: false): 'U-19 ',
+      RegExp(r'\bU17\s+', caseSensitive: false): 'U-17 ',
+      RegExp(r'\bU16\s+', caseSensitive: false): 'U-16 ',
+      RegExp(r'\bNữ\b', caseSensitive: false): '(Putri)',
+      RegExp(r'\bNam\b', caseSensitive: false): '(Putra)',
+      RegExp(r'\bTrẻ\b', caseSensitive: false): 'Muda',
+      RegExp(r'\bCLB\s+', caseSensitive: false): 'Klub ',
+      RegExp(r'\bBa Lan\b', caseSensitive: false): 'Polandia',
+      RegExp(r'\bĐức\b', caseSensitive: false): 'Jerman',
+      RegExp(r'\bTây Ban Nha\b', caseSensitive: false): 'Spanyol',
+      RegExp(r'\bÝ\b'): 'Italia',
+      RegExp(r'\bPháp\b', caseSensitive: false): 'Prancis',
+      RegExp(r'\bAnh\b'): 'Inggris',
+      RegExp(r'\bHà Lan\b', caseSensitive: false): 'Belanda',
+      RegExp(r'\bBồ Đào Nha\b', caseSensitive: false): 'Portugal',
+      RegExp(r'\bThái Lan\b', caseSensitive: false): 'Thailand',
+      RegExp(r'\bNhật Bản\b', caseSensitive: false): 'Jepang',
+      RegExp(r'\bHàn Quốc\b', caseSensitive: false): 'Korea Selatan',
+      RegExp(r'\bTrung Quốc\b', caseSensitive: false): 'China',
+      RegExp(r'\bMỹ\b|\bHoa Kỳ\b', caseSensitive: false): 'Amerika Serikat',
+      RegExp(r'\bÚc\b', caseSensitive: false): 'Australia',
+      RegExp(r'\bHy Lạp\b', caseSensitive: false): 'Yunani',
+      RegExp(r'\bThụy Sĩ\b', caseSensitive: false): 'Swiss',
+      RegExp(r'\bThụy Điển\b', caseSensitive: false): 'Swedia',
+      RegExp(r'\bThổ Nhĩ Kỳ\b', caseSensitive: false): 'Turki',
+      RegExp(r'\bNga\b'): 'Rusia',
+      RegExp(r'\bẢ Rập Xê Út\b|\bẢ Rập Saudi\b', caseSensitive: false): 'Arab Saudi',
+      RegExp(r'\bViệt Nam\b', caseSensitive: false): 'Vietnam',
+    };
+
+    teamWordMap.forEach((k, v) {
+      text = text.replaceAll(k, v);
+    });
+
     const diacriticsMap = {
       'à': 'a', 'á': 'a', 'ạ': 'a', 'ả': 'a', 'ã': 'a',
       'â': 'a', 'ầ': 'a', 'ấ': 'a', 'ậ': 'a', 'ẩ': 'a', 'ẫ': 'a',
@@ -55,60 +94,64 @@ class LeagueTranslator {
       MapEntry(RegExp(r'Ngoại Hạng Darwin', caseSensitive: false), 'Liga Darwin Australia'),
 
       // Liga Inggris
-      MapEntry(RegExp(r'Ngoại Hạng Anh|Premier League', caseSensitive: false), 'Liga Inggris'),
-      MapEntry(RegExp(r'Hạng Nhất Anh|Championship', caseSensitive: false), 'Liga Championship Inggris'),
-      MapEntry(RegExp(r'Cúp FA|FA Cup', caseSensitive: false), 'Piala FA Inggris'),
+      MapEntry(RegExp(r'^(Giải\s*)?(Ngoại Hạng Anh|Premier League|English Premier League)(\s*\(Inggris\))?$', caseSensitive: false), 'Liga Inggris'),
+      MapEntry(RegExp(r'Ngoại Hạng Anh|English Premier League', caseSensitive: false), 'Liga Inggris'),
+      MapEntry(RegExp(r'\bPremier League(\s*\(Inggris\))?\b', caseSensitive: false), 'Liga Inggris'),
+      MapEntry(RegExp(r'Hạng Nhất Anh|Championship(\s*\(Inggris\))?|EFL Championship', caseSensitive: false), 'Liga Championship Inggris'),
+      MapEntry(RegExp(r'Cúp FA|FA Cup(\s*\(Inggris\))?', caseSensitive: false), 'Piala FA Inggris'),
       MapEntry(RegExp(r'Cúp Liên Đoàn Anh|EFL Cup|Carabao Cup', caseSensitive: false), 'Piala Carabao Inggris'),
+      MapEntry(RegExp(r'League One', caseSensitive: false), 'Liga 1 Inggris (League One)'),
+      MapEntry(RegExp(r'League Two', caseSensitive: false), 'Liga 2 Inggris (League Two)'),
 
       // Indonesia
-      MapEntry(RegExp(r'VĐQG Indonesia|Liga\s*1\s*Indonesia|BRI Liga 1', caseSensitive: false), 'BRI Liga 1 Indonesia'),
+      MapEntry(RegExp(r'VĐQG Indonesia|Liga\s*1\s*Indonesia|BRI Liga 1(\s*Indonesia)?', caseSensitive: false), 'BRI Liga 1 Indonesia'),
       MapEntry(RegExp(r'Hạng 2 Indonesia|Liga\s*2\s*Indonesia', caseSensitive: false), 'Liga 2 Indonesia'),
       MapEntry(RegExp(r'Hạng 3 Indonesia|Liga\s*3\s*Indonesia', caseSensitive: false), 'Liga 3 Indonesia'),
 
       // Vietnam
       MapEntry(RegExp(r'Cúp Quốc Gia Việt Nam|Cúp Quốc Gia', caseSensitive: false), 'Piala Nasional Vietnam'),
-      MapEntry(RegExp(r'VĐQG Việt Nam|V\.League\s*1', caseSensitive: false), 'Liga Vietnam (V.League 1)'),
-      MapEntry(RegExp(r'Hạng Nhất Việt Nam|V\.League\s*2', caseSensitive: false), 'Liga Vietnam 2 (V.League 2)'),
+      MapEntry(RegExp(r'VĐQG Việt Nam|V\.League\s*1(\s*\(Vietnam\))?', caseSensitive: false), 'Liga Vietnam (V.League 1)'),
+      MapEntry(RegExp(r'Hạng Nhất Việt Nam|V\.League\s*2(\s*\(Vietnam\))?', caseSensitive: false), 'Liga Vietnam 2 (V.League 2)'),
 
       // Spanyol
-      MapEntry(RegExp(r'VĐQG Tây Ban Nha|La\s*Liga(?!\s*2)', caseSensitive: false), 'La Liga Spanyol'),
-      MapEntry(RegExp(r'Hạng 2 Tây Ban Nha|La\s*Liga\s*2|Segunda\s*División', caseSensitive: false), 'La Liga 2 Spanyol'),
+      MapEntry(RegExp(r'VĐQG Tây Ban Nha|La\s*Liga(\s*\(Spanyol\))?(?!\s*2)', caseSensitive: false), 'La Liga Spanyol'),
+      MapEntry(RegExp(r'Hạng 2 Tây Ban Nha|La\s*Liga\s*2(\s*\(Spanyol\))?|Segunda\s*División', caseSensitive: false), 'La Liga 2 Spanyol'),
       MapEntry(RegExp(r'Cúp Nhà Vua|Copa del Rey(?! de Baloncesto)', caseSensitive: false), 'Piala Raja Spanyol (Copa del Rey)'),
       MapEntry(RegExp(r'Copa del Rey de Baloncesto', caseSensitive: false), 'Piala Raja Basket Spanyol'),
       MapEntry(RegExp(r'Spain Basketball Supercopa', caseSensitive: false), 'Piala Super Basket Spanyol'),
 
       // Italia
-      MapEntry(RegExp(r'VĐQG Ý|Serie\s*A', caseSensitive: false), 'Serie A Italia'),
-      MapEntry(RegExp(r'Hạng 2 Ý|Serie\s*B', caseSensitive: false), 'Serie B Italia'),
+      MapEntry(RegExp(r'VĐQG Ý|Serie\s*A(\s*\(Italia\))?', caseSensitive: false), 'Serie A Italia'),
+      MapEntry(RegExp(r'Hạng 2 Ý|Serie\s*B(\s*\(Italia\))?', caseSensitive: false), 'Serie B Italia'),
       MapEntry(RegExp(r'Cúp Quốc Gia Ý|Coppa Italia', caseSensitive: false), 'Piala Italia (Coppa Italia)'),
       MapEntry(RegExp(r'Italy Super Cup', caseSensitive: false), 'Piala Super Italia'),
 
       // Jerman
-      MapEntry(RegExp(r'VĐQG Đức|Bundesliga(?!\s*2)(?! Basket)', caseSensitive: false), 'Bundesliga Jerman'),
-      MapEntry(RegExp(r'Hạng 2 Đức|2\.\s*Bundesliga|Bundesliga\s*2', caseSensitive: false), '2. Bundesliga Jerman'),
+      MapEntry(RegExp(r'VĐQG Đức|Bundesliga(\s*\(Jerman\))?(?!\s*2)(?! Basket)', caseSensitive: false), 'Bundesliga Jerman'),
+      MapEntry(RegExp(r'Hạng 2 Đức|2\.\s*Bundesliga(\s*\(Jerman\))?|Bundesliga\s*2(\s*\(Jerman\))?', caseSensitive: false), '2. Bundesliga Jerman'),
       MapEntry(RegExp(r'Cúp Quốc Gia Đức|DFB[- ]Pokal', caseSensitive: false), 'Piala DFB Jerman'),
       MapEntry(RegExp(r'Basketball Bundesliga', caseSensitive: false), 'Bundesliga Basket Jerman'),
 
       // Prancis
-      MapEntry(RegExp(r'VĐQG Pháp|Ligue\s*1', caseSensitive: false), 'Ligue 1 Prancis'),
-      MapEntry(RegExp(r'Hạng 2 Pháp|Ligue\s*2', caseSensitive: false), 'Ligue 2 Prancis'),
+      MapEntry(RegExp(r'VĐQG Pháp|Ligue\s*1(\s*\(Prancis\))?', caseSensitive: false), 'Ligue 1 Prancis'),
+      MapEntry(RegExp(r'Hạng 2 Pháp|Ligue\s*2(\s*\(Prancis\))?', caseSensitive: false), 'Ligue 2 Prancis'),
 
       // Belanda & Portugal
-      MapEntry(RegExp(r'VĐQG Hà Lan|Eredivisie', caseSensitive: false), 'Eredivisie Belanda'),
+      MapEntry(RegExp(r'VĐQG Hà Lan|Eredivisie(\s*\(Belanda\))?', caseSensitive: false), 'Eredivisie Belanda'),
       MapEntry(RegExp(r'VĐQG Bồ Đào Nha|Liga\s*Portugal|Primeira\s*Liga', caseSensitive: false), 'Liga Portugal'),
 
       // Arab Saudi
       MapEntry(RegExp(r'VĐQG Saudi Arabia|VĐQG Ả Rập Xê Út|Saudi\s*Pro\s*League', caseSensitive: false), 'Saudi Pro League (Arab Saudi)'),
 
       // Jepang
-      MapEntry(RegExp(r'VĐQG Nhật Bản|J1\s*League', caseSensitive: false), 'J1 League Jepang'),
-      MapEntry(RegExp(r'Hạng 2 Nhật Bản|J2\s*League', caseSensitive: false), 'J2 League Jepang'),
-      MapEntry(RegExp(r'Hạng 3 Nhật Bản|J3\s*League', caseSensitive: false), 'J3 League Jepang'),
+      MapEntry(RegExp(r'VĐQG Nhật Bản|J1\s*League(\s*\(Jepang\))?', caseSensitive: false), 'J1 League Jepang'),
+      MapEntry(RegExp(r'Hạng 2 Nhật Bản|J2\s*League(\s*\(Jepang\))?', caseSensitive: false), 'J2 League Jepang'),
+      MapEntry(RegExp(r'Hạng 3 Nhật Bản|J3\s*League(\s*\(Jepang\))?', caseSensitive: false), 'J3 League Jepang'),
       MapEntry(RegExp(r'Japan Football League|\bJFL\b', caseSensitive: false), 'Liga Sepak Bola Jepang (JFL)'),
 
       // Korea Selatan
-      MapEntry(RegExp(r'VĐQG Hàn Quốc|K\s*League\s*1', caseSensitive: false), 'K League 1 Korea Selatan'),
-      MapEntry(RegExp(r'Hạng 2 Hàn Quốc|K\s*League\s*2', caseSensitive: false), 'K League 2 Korea Selatan'),
+      MapEntry(RegExp(r'VĐQG Hàn Quốc|K\s*League\s*1(\s*\(Korea Selatan\))?', caseSensitive: false), 'K League 1 Korea Selatan'),
+      MapEntry(RegExp(r'Hạng 2 Hàn Quốc|K\s*League\s*2(\s*\(Korea Selatan\))?', caseSensitive: false), 'K League 2 Korea Selatan'),
 
       // Lainnya
       MapEntry(RegExp(r'Hạng Nhất Ukraina', caseSensitive: false), 'Liga Utama Ukraina'),
@@ -170,7 +213,7 @@ class LeagueTranslator {
 
     for (final item in directList) {
       if (item.key.allMatches(text).isNotEmpty) {
-        text = text.replaceAll(item.key, item.value);
+        text = text.replaceAll(item.key, item.value).trim();
         break;
       }
     }
@@ -212,10 +255,17 @@ class LeagueTranslator {
       text = text.replaceAll(item.key, item.value);
     }
 
-    // 3. Hapus duplikasi tanda kurung atau pengulangan nama negara seperti (Jepang) (Jepang) atau Jepang (Jepang)
-    text = text.replaceAll(RegExp(r'\(([^)]+)\)\s*\(\1\)', caseSensitive: false), r'($1)');
-    text = text.replaceAll(RegExp(r'\b(Jepang|Inggris|Spanyol|Italia|Jerman|Prancis|Belanda|Portugal|Vietnam|China|Korea Selatan|Australia)\s+\(\1\)', caseSensitive: false), r'$1');
-    text = text.replaceAll(RegExp(r'\((Jepang|Inggris|Spanyol|Italia|Jerman|Prancis|Belanda|Portugal|Vietnam|China|Korea Selatan|Australia)\)\s+\1', caseSensitive: false), r'$1');
+    // 3. Bersihkan duplikasi negara / tanda kurung
+    text = text
+        .replaceAll(RegExp(r'\s*\(\s*Jepang\s*\)\s*\(\s*Jepang\s*\)', caseSensitive: false), ' Jepang')
+        .replaceAll(RegExp(r'Jepang\s*\(\s*Jepang\s*\)', caseSensitive: false), 'Jepang')
+        .replaceAll(RegExp(r'Inggris\s*\(\s*Inggris\s*\)', caseSensitive: false), 'Inggris')
+        .replaceAll(RegExp(r'Spanyol\s*\(\s*Spanyol\s*\)', caseSensitive: false), 'Spanyol')
+        .replaceAll(RegExp(r'Italia\s*\(\s*Italia\s*\)', caseSensitive: false), 'Italia')
+        .replaceAll(RegExp(r'Jerman\s*\(\s*Jerman\s*\)', caseSensitive: false), 'Jerman')
+        .replaceAll(RegExp(r'Prancis\s*\(\s*Prancis\s*\)', caseSensitive: false), 'Prancis')
+        .replaceAll(RegExp(r'Vietnam\s*\(\s*Vietnam\s*\)', caseSensitive: false), 'Vietnam')
+        .replaceAll(RegExp(r'Indonesia\s*\(\s*Indonesia\s*\)', caseSensitive: false), 'Indonesia');
 
     return text.replaceAll(RegExp(r'\s+'), ' ').trim();
   }

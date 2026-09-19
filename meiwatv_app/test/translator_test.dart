@@ -1,0 +1,52 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:meiwatv_app/utils/league_translator.dart';
+import 'package:meiwatv_app/models/match_model.dart';
+
+void main() {
+  test('LeagueTranslator maps all Vietnamese and English leagues correctly', () {
+    expect(LeagueTranslator.translate('Ngoại Hạng Anh'), equals('Liga Inggris'));
+    expect(LeagueTranslator.translate('Premier League'), equals('Liga Inggris'));
+    expect(LeagueTranslator.translate('Premier League (Inggris)'), equals('Liga Inggris'));
+    expect(LeagueTranslator.translate('Cúp Quốc Gia Việt Nam'), equals('Piala Nasional Vietnam'));
+    expect(LeagueTranslator.translate('VĐQG Việt Nam'), equals('Liga Vietnam (V.League 1)'));
+    expect(LeagueTranslator.translate('V.League 1'), equals('Liga Vietnam (V.League 1)'));
+    expect(LeagueTranslator.translate('J1 League'), equals('J1 League Jepang'));
+    expect(LeagueTranslator.translate('J2 League'), equals('J2 League Jepang'));
+    expect(LeagueTranslator.translate('J3 League'), equals('J3 League Jepang'));
+    expect(LeagueTranslator.translate('K League 1'), equals('K League 1 Korea Selatan'));
+    expect(LeagueTranslator.translate('Bangladesh Premier League'), equals('Liga Utama Bangladesh'));
+    expect(LeagueTranslator.translate('Vietnam VBA'), equals('Liga Basket Vietnam (VBA)'));
+  });
+
+  test('LeagueTranslator cleans Vietnamese diacritics in team names', () {
+    expect(LeagueTranslator.cleanTeamName('Đông Á Thanh Hóa'), equals('Dong A Thanh Hoa'));
+    expect(LeagueTranslator.cleanTeamName('Becamex Hồ Chí Minh'), equals('Becamex Ho Chi Minh'));
+    expect(LeagueTranslator.cleanTeamName('Đồng Tâm Long An'), equals('Dong Tam Long An'));
+    expect(LeagueTranslator.cleanTeamName('Bắc Ninh'), equals('Bac Ninh'));
+    expect(LeagueTranslator.cleanTeamName('Khánh Hòa'), equals('Khanh Hoa'));
+    expect(LeagueTranslator.cleanTeamName('Văn Hiến'), equals('Van Hien'));
+    expect(LeagueTranslator.cleanTeamName('Hà Nội Buffalo'), equals('Ha Noi Buffalo'));
+    expect(LeagueTranslator.cleanTeamName('Sài Gòn Heat'), equals('Sai Gon Heat'));
+  });
+
+  test('MatchModel translates league and cleans team names via getters', () {
+    final match = MatchModel(
+      id: 'test_1',
+      title: 'Đông Á Thanh Hóa vs Becamex Hồ Chí Minh',
+      homeTeam: 'Đông Á Thanh Hóa',
+      awayTeam: 'Becamex Hồ Chí Minh',
+      league: 'Ngoại Hạng Anh',
+      kickoffIso: '',
+      kickoffText: '19:00 WIB',
+      status: 1,
+      streamJalur1: '',
+      streamJalur2: '',
+      streamJalur3: '',
+    );
+
+    expect(match.league, equals('Liga Inggris'));
+    expect(match.homeTeam, equals('Dong A Thanh Hoa'));
+    expect(match.awayTeam, equals('Becamex Ho Chi Minh'));
+    expect(match.title, equals('Dong A Thanh Hoa vs Becamex Ho Chi Minh'));
+  });
+}
