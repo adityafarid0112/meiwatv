@@ -3586,11 +3586,6 @@
     });
 
     playlistContainer.innerHTML = fullHtml;
-
-    // Auto-load match jika belum terpilih
-    if (!currentActiveMatch && filtered.length > 0) {
-      setHeroMatchPreview(filtered[0]);
-    }
   }
 
   // 3. FILTER MATCHES BY SPORT (HEADER TABS CLICK)
@@ -3628,15 +3623,17 @@
   }
 
   function setHeroMatchPreview(match) {
+    if (!match) return;
     currentActiveMatch = match;
     activeStreamUrlServer1 = match.streamJalur1 || (match.streams ? match.streams.jalur1 : '') || match.postUrl || '';
     activeStreamUrlServer2 = match.streamJalur2 || (match.streams ? match.streams.jalur2 : '') || '';
     activeStreamUrlServer3 = match.streamJalur3 || (match.streams ? match.streams.jalur3 : '') || '';
 
-    // Update URL parameter di browser agar link pertandingan bisa langsung dibagikan
+    // Update URL parameter di browser agar link pertandingan sinkron
     try {
-      const matchSlug = match.id || match.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      window.history.replaceState(null, '', '?match=' + matchSlug);
+      const slug = (match.title || match.id || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      const newUrl = window.location.pathname + '?match=' + encodeURIComponent(slug);
+      window.history.replaceState(null, '', newUrl);
     } catch (_) {}
 
     const leagueEl = document.getElementById('playerLeagueText');
@@ -4010,64 +4007,57 @@
     tryFetchSource(0);
   }
 
-  function activateMatchFromUrl() {
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      let matchParam = urlParams.get('match') || urlParams.get('m_id');
-      if (!matchParam && window.location.hash) {
-        matchParam = window.location.hash.replace('#', '').replace('match=', '').replace('match-', '');
-      }
-
-      if (matchParam && allLoadedMatches.length > 0) {
-        const foundIdx = findMatchByKeywordOrSlug(matchParam);
-        if (foundIdx >= 0) {
-          const targetMatch = allLoadedMatches[foundIdx];
-          const sportMeta = getSportCategoryMeta(targetMatch.sportCategory || '', targetMatch.title || '', targetMatch.league || '');
-
-          if (targetMatch.status === 1) {
-            currentCategoryFilter = 'live';
-          } else {
-            currentCategoryFilter = sportMeta.key || 'all';
-          }
-
-          document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
-          const activeNavBtn = document.querySelector('[data-cat="' + currentCategoryFilter + '"]');
-          if (activeNavBtn) activeNavBtn.classList.add('active');
-
-          renderInteractivePlaylist(allLoadedMatches);
-          setHeroMatchPreview(targetMatch);
-
-          if (targetMatch.status === 1) {
-            playMatchDirect(foundIdx, 1);
-          } else {
-            const stage = document.getElementById('playerStage');
-            const video = document.getElementById('mainVideoPlayer');
-            if (stage) stage.style.display = 'flex';
-            if (video) { video.pause(); video.style.display = 'none'; }
-          }
-          return true;
-        }
-      }
-    } catch (_) {}
-    return false;
-  }
-
   // 9. INIT ON DOM LOAD
   function initLivePortal() {
-    const hasLive = AUTO_LIVE_DATASET.some(m => m.status === 1);
-    if (!hasLive) {
-      currentCategoryFilter = 'all';
-      document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
-      const allNavBtn = document.querySelector('[data-cat="all"]');
-      if (allNavBtn) allNavBtn.classList.add('active');
+    let initialMatchParam = null;
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      initialMatchParam = urlParams.get('match') || urlParams.get('m_id');
+      if (!initialMatchParam && window.location.hash) {
+        initialMatchParam = window.location.hash.replace('#', '').replace('match=', '').replace('match-', '');
+      }
+    } catch (_) {}
+
+    let targetMatch = null;
+    let targetIdx = -1;
+    if (initialMatchParam && AUTO_LIVE_DATASET.length > 0) {
+      targetIdx = findMatchByKeywordOrSlug(initialMatchParam);
+      if (targetIdx >= 0) {
+        targetMatch = AUTO_LIVE_DATASET[targetIdx];
+      }
     }
+
+    if (targetMatch) {
+      const sportMeta = getSportCategoryMeta(targetMatch.sportCategory || '', targetMatch.title || '', targetMatch.league || '');
+      if (targetMatch.status === 1) {
+        currentCategoryFilter = 'live';
+      } else {
+        currentCategoryFilter = sportMeta.key || 'all';
+      }
+      currentActiveMatch = targetMatch;
+    } else {
+      const hasLive = AUTO_LIVE_DATASET.some(m => m.status === 1);
+      if (!hasLive) {
+        currentCategoryFilter = 'all';
+      } else {
+        currentCategoryFilter = 'live';
+      }
+      if (AUTO_LIVE_DATASET.length > 0) {
+        currentActiveMatch = AUTO_LIVE_DATASET[0];
+      }
+    }
+
+    document.querySelectorAll('.nav-item-btn').forEach(el => el.classList.remove('active'));
+    const activeNavBtn = document.querySelector('[data-cat="' + currentCategoryFilter + '"]');
+    if (activeNavBtn) activeNavBtn.classList.add('active');
 
     renderInteractivePlaylist(AUTO_LIVE_DATASET);
 
-    const matchFound = activateMatchFromUrl();
-
-    if (!matchFound && allLoadedMatches.length > 0) {
-      setHeroMatchPreview(allLoadedMatches[0]);
+    if (currentActiveMatch) {
+      setHeroMatchPreview(currentActiveMatch);
+      if (targetMatch && targetMatch.status === 1) {
+        playMatchDirect(targetIdx, 1);
+      }
     }
 
     setTimeout(function() {
