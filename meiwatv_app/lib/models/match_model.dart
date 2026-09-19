@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '../utils/league_translator.dart';
 
 class MatchModel {
   final String id;
@@ -11,7 +12,7 @@ class MatchModel {
   final String? awayScore;
   final String? scoreText;
   final String? matchMinute;
-  final String league;
+  final String _league;
   final String kickoffIso;
   final String kickoffText;
   final int status; // 0 = Upcoming, 1 = Live, 2 = Finished
@@ -31,7 +32,7 @@ class MatchModel {
     this.awayScore,
     this.scoreText,
     this.matchMinute,
-    required this.league,
+    required String league,
     required this.kickoffIso,
     required this.kickoffText,
     required this.status,
@@ -39,7 +40,9 @@ class MatchModel {
     required this.streamJalur1,
     required this.streamJalur2,
     required this.streamJalur3,
-  });
+  }) : _league = league;
+
+  String get league => LeagueTranslator.translate(_league);
 
   bool get isLive => status == 1;
   bool get isUpcoming => status == 0;
@@ -53,6 +56,9 @@ class MatchModel {
           (scoreText != null && scoreText!.isNotEmpty)));
 
   factory MatchModel.fromJson(Map<String, dynamic> json, {String? docId}) {
+    final rawLeague = json['league'] as String? ?? 'Live Sports';
+    final translatedLeague = LeagueTranslator.translate(rawLeague);
+
     final title = json['title'] as String? ?? 'Pertandingan Olahraga';
     final parts = title.split(RegExp(r'\s+vs\s+|\s+-\s+', caseSensitive: false));
     final defaultHome = parts.isNotEmpty ? parts[0].trim() : 'Tim Tuan Rumah';
@@ -73,7 +79,7 @@ class MatchModel {
       awayScore: json['awayScore']?.toString(),
       scoreText: json['scoreText'] as String?,
       matchMinute: json['matchMinute'] as String?,
-      league: json['league'] as String? ?? 'Live Sports',
+      league: translatedLeague,
       kickoffIso: json['kickoffIso'] as String? ?? '',
       kickoffText: json['kickoffText'] as String? ?? 'Live Hari Ini',
       status: json['status'] is int
