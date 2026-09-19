@@ -2,15 +2,24 @@ const fs = require('fs');
 const path = require('path');
 
 const BLOG_ID = '8531123332112355973'; // ID Blog Blogger meiwaolaharaga.blogspot.com
-const credentialsPath = path.join(__dirname, 'client_secrets.json');
-const tokenPath = path.join(__dirname, 'token.json');
+
+// Cari file kredensial di folder saat ini atau folder blogger/
+let credentialsPath = path.join(__dirname, 'client_secrets.json');
+if (!fs.existsSync(credentialsPath)) {
+  credentialsPath = path.join(__dirname, 'blogger', 'client_secrets.json');
+}
+
+let tokenPath = path.join(__dirname, 'token.json');
+if (!fs.existsSync(tokenPath)) {
+  tokenPath = path.join(__dirname, 'blogger', 'token.json');
+}
 
 // 1. Dapatkan Access Token yang Valid
 async function getValidAccessToken() {
   if (!fs.existsSync(tokenPath)) {
     console.error('❌ File token.json belum ditemukan!');
     console.log('👉 Silakan jalankan otentikasi terlebih dahulu dengan perintah: node auth.js');
-    process.exit(1);
+    return null;
   }
 
   const credentials = JSON.parse(fs.readFileSync(credentialsPath, 'utf8')).installed;
@@ -64,225 +73,109 @@ async function getExistingPostTitles(accessToken) {
   return existing;
 }
 
-// 3. Scraper Pintar Xoilac dengan Dynamic Redirect Follower
-// Daftar mirror seed jika ada domain yang diblokir ISP / berubah
-const SEED_DOMAINS = [
-  'https://xoilacz.vip/',
-  'https://tft-forests.org/',
-  'https://xoilaczbj.tv/',
-  'https://xoilac.org/'
-];
+// 3. Load Matches from matches.json or Scrape
+async function loadMatchesData() {
+  let matchesFilePath = path.join(__dirname, 'matches.json');
+  if (!fs.existsSync(matchesFilePath)) {
+    matchesFilePath = path.join(__dirname, '..', 'matches.json');
+  }
 
-async function scrapeXoilacMatches() {
-  let html = '';
-  let activeDomain = '';
-
-  for (const seed of SEED_DOMAINS) {
+  if (fs.existsSync(matchesFilePath)) {
     try {
-      console.log(`📡 Menghubungi seed domain: ${seed}...`);
-      const response = await fetch(seed, {
-        redirect: 'follow',
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-        }
-      });
-
-      if (response.ok) {
-        html = await response.text();
-        // Dapatkan domain tujuan akhir setelah redirect secara dinamis
-        activeDomain = new URL(response.url).origin;
-        console.log(`✅ Berhasil terhubung! Domain aktif saat ini (setelah direct/redirect): ${activeDomain}`);
-        break;
+      const data = JSON.parse(fs.readFileSync(matchesFilePath, 'utf8'));
+      if (Array.isArray(data) && data.length > 0) {
+        console.log(`📦 Memuat ${data.length} jadwal pertandingan dari matches.json`);
+        return data;
       }
     } catch (e) {
-      console.warn(`⚠️ Gagal menghubungi ${seed}: ${e.message}`);
+      console.warn('⚠️ Gagal membaca matches.json:', e.message);
     }
   }
 
-  if (!html || !activeDomain) {
-    throw new Error('Gagal mengambil data dari semua seed domain Xoilac yang tersedia.');
-  }
-
-  const allSlugs = html.match(/\/truc-tiep\/([a-z0-9\-]+)-luc-(\d{4})-ngay-(\d{2})-(\d{2})-(\d{4})\//gi) || [];
-  const uniqueSlugs = [...new Set(allSlugs)];
-
-  const matches = [];
-
-  for (const slug of uniqueSlugs) {
-    const parsed = slug.match(/\/truc-tiep\/([a-z0-9\-]+)-luc-(\d{4})-ngay-(\d{2})-(\d{2})-(\d{4})\//i);
-    if (parsed) {
-      const slugName = parsed[1];
-      const rawTitle = slugName.replace(/-/g, ' ');
-      const title = rawTitle.replace(/\b\w/g, l => l.toUpperCase()).replace(/ Vs /g, ' vs ');
-      const timeStr = parsed[2];
-      const day = parsed[3];
-      const month = parsed[4];
-      const year = parsed[5];
-      const hour = timeStr.slice(0, 2);
-      const min = timeStr.slice(2, 4);
-
-      // Vietnam UTC+7 sama dengan WIB (UTC+7)
-      const kickoffIso = `${year}-${month}-${day}T${hour}:${min}:00+07:00`;
-      const kickoffText = `${day}/${month}/${year}, ${hour}:${min} WIB`;
-      // Buat URL halaman pertandingan menggunakan activeDomain yang didapat dinamis
-      const matchPageUrl = `${activeDomain}/truc-tiep/${slugName}-luc-${timeStr}-ngay-${day}-${month}-${year}/`;
-
-      // Deteksi liga / turnamen dari nama tim
-      let league = "Live Match";
-      if (title.includes('Milan') || title.includes('Roma') || title.includes('Parma') || title.includes('Como') || title.includes('Juventus') || title.includes('Napoli') || title.includes('Inter')) {
-        league = "Italian Serie A";
-      } else if (title.includes('Madrid') || title.includes('Barcelona') || title.includes('Atletico') || title.includes('Sevilla')) {
-        league = "La Liga Spain";
-      } else if (title.includes('Arsenal') || title.includes('Chelsea') || title.includes('Liverpool') || title.includes('Newcastle') || title.includes('City') || title.includes('United')) {
-        league = "Premier League";
-      } else if (title.includes('Munchen') || title.includes('Dortmund') || title.includes('Leverkusen')) {
-        league = "German Bundesliga";
-      }
-
-      matches.push({
-        title,
-        matchPageUrl,
-        kickoffIso,
-        kickoffText,
-        league
-      });
-    }
-  }
-
-  return matches;
+  return [];
 }
 
-// 4. Ekstraksi Link Stream Embed Langsung dari Halaman Pertandingan Xoilac (Auto Follow Redirect)
-async function extractDirectEmbedStreams(matchPageUrl) {
-  let server1Url = '';
-  let server2Url = '';
-
-  try {
-    const res = await fetch(matchPageUrl, {
-      redirect: 'follow',
-      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
-    });
-    const pageHtml = await res.text();
-    const listStreamMatch = pageHtml.match(/var list_stream\s*=\s*(\[[\s\S]*?\]);/);
-    if (listStreamMatch) {
-      const rawJson = listStreamMatch[1].replace(/\\/g, '');
-      const listStream = JSON.parse(rawJson);
-      if (listStream[0] && listStream[0][0]) {
-        server1Url = listStream[0][0] + '/off-tvc?is_off_add=false';
-      }
-      if (listStream[1] && listStream[1][0]) {
-        server2Url = listStream[1][0] + '/off-tvc?is_off_add=false';
-      } else if (listStream[0] && listStream[0][1]) {
-        server2Url = listStream[0][1] + '/off-tvc?is_off_add=false';
-      }
-    }
-  } catch (err) {
-    console.warn(`   ⚠️ Tidak dapat mengekstrak stream embed langsung untuk ${matchPageUrl}:`, err.message);
-  }
-
-  return { server1Url, server2Url };
-}
-
-// 5. Buat Konten HTML Postingan Blogger
+// 4. Buat Konten HTML Postingan Blogger
 function generatePostHtml(match) {
-  const primaryStream = match.server1Url || `${match.matchPageUrl}link/0`;
-  const secondaryStream = match.server2Url || `${match.matchPageUrl}link/1`;
+  const stream1 = match.streamUrl || match.streamJalur1 || '';
+  const stream2 = match.server2Url || match.streamJalur2 || '';
+  const stream3 = match.streamJalur3 || match.postUrl || '#';
+  const home = match.homeTeam || match.title.split(' vs ')[0] || 'Tuan Rumah';
+  const away = match.awayTeam || match.title.split(' vs ')[1] || 'Tamu';
+  const homeLogo = match.homeLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
+  const awayLogo = match.awayLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
 
-  return `<!-- FORMAT POSTINGAN PERTANDINGAN OTOMATIS (SPORTSTREAM BOT) -->
-<!-- 1. DATA KONTROL STREAM & JADWAL -->
+  return `<!-- FORMAT POSTINGAN PERTANDINGAN MEIWASPORTS PRO -->
 <div id="stream-meta" 
-     data-streamurl="${primaryStream}" 
-     data-server2="${secondaryStream}"
-     data-sourceurl="${match.matchPageUrl}"
-     data-kickoff="${match.kickoffIso}" 
-     data-kickoff-text="${match.kickoffText}" 
-     data-league="${match.league}">
+     data-streamurl="${stream1}" 
+     data-server2="${stream2}"
+     data-sourceurl="${stream3}"
+     data-kickoff="${match.kickoffIso || ''}" 
+     data-kickoff-text="${match.kickoffText || ''}" 
+     data-league="${match.league || 'Sport Match'}">
 </div>
 
-<!-- 2. KARTU INFORMASI PERTANDINGAN -->
-<div style="background: #111826; border-radius: 12px; padding: 20px; border: 1px solid rgba(255,255,255,0.08); margin: 15px 0; color: #fff; text-align: center;">
-  <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; font-weight: 700; padding: 4px 14px; border-radius: 50px; font-size: 13px;">
-    📌 ${match.league}
+<div style="background:#0e1422; border-radius:16px; padding:24px; border:1px solid rgba(255,255,255,0.08); margin:15px 0; color:#fff; text-align:center; font-family:'Outfit',sans-serif;">
+  <span style="background:rgba(16,185,129,0.15); color:#10b981; font-weight:800; padding:5px 16px; border-radius:50px; font-size:13px; text-transform:uppercase; letter-spacing:0.5px;">
+    📌 ${match.league || 'Sport Match'}
   </span>
-  <h2 style="font-size: 20px; margin: 15px 0;">${match.title}</h2>
-  <p style="color: #94a3b8; font-size: 14px;">⏰ Kickoff: ${match.kickoffText}</p>
-</div>
+  
+  <div style="display:flex; align-items:center; justify-content:center; gap:20px; margin:20px 0;">
+    <div style="flex:1; text-align:right;">
+      <img src="${homeLogo}" alt="${home}" style="width:48px; height:48px; object-fit:contain; vertical-align:middle;" />
+      <h3 style="margin:6px 0 0 0; font-size:16px; color:#fff;">${home}</h3>
+    </div>
+    <div style="background:#000; color:#ffe400; font-weight:800; padding:6px 14px; border-radius:8px; font-size:16px; border:1px solid rgba(255,228,0,0.3);">
+      ${match.status === 1 ? (match.scoreText || 'LIVE') : 'VS'}
+    </div>
+    <div style="flex:1; text-align:left;">
+      <img src="${awayLogo}" alt="${away}" style="width:48px; height:48px; object-fit:contain; vertical-align:middle;" />
+      <h3 style="margin:6px 0 0 0; font-size:16px; color:#fff;">${away}</h3>
+    </div>
+  </div>
 
-<!-- 3. TOMBOL CEPAT SIARAN -->
-<div style="text-align: center; margin-top: 15px;">
-  <a href="${primaryStream}" target="_blank" style="background: #10b981; color: #000; padding: 10px 22px; border-radius: 8px; font-weight: 800; text-decoration: none; font-size: 14px; display: inline-block;">
-    ▶ Putar Siaran Langsung (Player HD)
-  </a>
+  <p style="color:#94a3b8; font-size:14px; margin:10px 0;">⏰ Jadwal Kick-off: <b style="color:#ffe400;">${match.kickoffText || 'Siap Tayang'}</b></p>
+  
+  <div style="display:flex; justify-content:center; gap:10px; margin-top:18px; flex-wrap:wrap;">
+    <a href="${stream1 || stream3}" target="_blank" style="background:#10b981; color:#000; padding:10px 22px; border-radius:8px; font-weight:800; text-decoration:none; font-size:13px; display:inline-flex; align-items:center; gap:6px;">
+      ▶ Putar Siaran (Jalur 1 HD)
+    </a>
+    <a href="${stream2 || stream3}" target="_blank" style="background:#1e293b; color:#fff; border:1px solid rgba(255,255,255,0.15); padding:10px 22px; border-radius:8px; font-weight:700; text-decoration:none; font-size:13px; display:inline-flex; align-items:center; gap:6px;">
+      ⚡ Jalur 2 (FHD)
+    </a>
+  </div>
 </div>`;
 }
 
-// 6. Eksekusi Bot Utama
+// 5. Eksekusi Bot Utama
 async function runBot() {
   console.log('==================================================');
-  console.log('🤖 SPORTSTREAM AUTO-POSTER BOT BERJALAN');
+  console.log('🤖 MEIWASPORTS BLOGGER AUTO-POSTER BERJALAN');
   console.log('==================================================\n');
 
   const accessToken = await getValidAccessToken();
+  if (!accessToken) {
+    console.error('❌ Tidak dapat melanjutkan tanpa access token.');
+    return;
+  }
+
   const existingTitles = await getExistingPostTitles(accessToken);
   console.log(`ℹ️ Ditemukan ${existingTitles.size} postingan yang sudah ada di blog.\n`);
 
-  const matches = await scrapeXoilacMatches();
-  console.log(`🎯 Berhasil mendapatkan ${matches.length} jadwal pertandingan dari Xoilac.\n`);
+  const matches = await loadMatchesData();
+  if (matches.length === 0) {
+    console.log('⚠️ Tidak ada data pertandingan untuk diposting.');
+    return;
+  }
 
   let postedCount = 0;
   let skippedCount = 0;
 
-  const nowTime = new Date().getTime();
-  matches.forEach(m => {
-    const kickoffTime = new Date(m.kickoffIso).getTime();
-    const diff = kickoffTime - nowTime;
-    if (diff <= 0 && diff > -10800000) {
-      m.status = 0; // Live Now
-      m.statusLabel = '🔴 SEDANG LIVE';
-    } else if (diff <= -10800000) {
-      m.status = 2; // Selesai
-      m.statusLabel = 'SELESAI';
-    } else {
-      m.status = 1; // Menunggu
-      m.statusLabel = 'MENUNGGU';
-    }
-    m.kickoffTime = kickoffTime;
+  // Prioritaskan pertandingan LIVE dan yang akan mulai segera
+  const candidateMatches = matches.filter(m => m.status !== 2); // Exclude finished
 
-    let priorityScore = 0;
-    const lowerTitle = m.title.toLowerCase();
-    if (lowerTitle.includes('milan') || lowerTitle.includes('roma') || lowerTitle.includes('parma') || lowerTitle.includes('como') || lowerTitle.includes('juventus') || lowerTitle.includes('napoli') || lowerTitle.includes('inter') || lowerTitle.includes('torino') || lowerTitle.includes('udinese') || lowerTitle.includes('lazio') || lowerTitle.includes('atalanta') || lowerTitle.includes('fiorentina')) {
-      m.league = "Italian Serie A";
-      priorityScore += 100;
-    } else if (lowerTitle.includes('madrid') || lowerTitle.includes('barcelona') || lowerTitle.includes('atletico') || lowerTitle.includes('sevilla') || lowerTitle.includes('valencia')) {
-      m.league = "La Liga Spain";
-      priorityScore += 100;
-    } else if (lowerTitle.includes('arsenal') || lowerTitle.includes('chelsea') || lowerTitle.includes('liverpool') || lowerTitle.includes('newcastle') || lowerTitle.includes('city') || lowerTitle.includes('united') || lowerTitle.includes('tottenham') || lowerTitle.includes('leeds')) {
-      m.league = "Premier League";
-      priorityScore += 100;
-    } else if (lowerTitle.includes('munchen') || lowerTitle.includes('dortmund') || lowerTitle.includes('leverkusen')) {
-      m.league = "German Bundesliga";
-      priorityScore += 80;
-    }
-
-    if (lowerTitle.includes('como') || lowerTitle.includes('parma') || lowerTitle.includes('torino') || lowerTitle.includes('roma') || lowerTitle.includes('inter') || lowerTitle.includes('udinese') || lowerTitle.includes('leeds') || lowerTitle.includes('newcastle')) {
-      priorityScore += 300;
-    }
-    m.priorityScore = priorityScore;
-  });
-
-  // Prioritaskan: 1. Priority Score Tertinggi, 2. Live Now, 3. Upcoming Terdekat
-  const validMatches = matches.filter(m => m.status !== 2);
-  validMatches.sort((a, b) => {
-    if (a.priorityScore !== b.priorityScore) return b.priorityScore - a.priorityScore;
-    if (a.status !== b.status) return a.status - b.status;
-    return a.kickoffTime - b.kickoffTime;
-  });
-
-  // Batasi maksimal 15 pertandingan per run
-  const maxToProcess = validMatches.slice(0, 15);
-
-  for (const match of maxToProcess) {
-    const postTitle = `${match.title} - ${match.league}`;
+  for (const match of candidateMatches) {
+    const postTitle = `${match.title} - ${match.league || 'Live Sports'}`;
     const simpleTitle = match.title.toLowerCase();
 
     // Cek apakah sudah pernah diposting
@@ -295,23 +188,17 @@ async function runBot() {
     }
 
     if (alreadyExists) {
-      console.log(`⏭️ Dilewati (Sudah Ada): ${postTitle}`);
       skippedCount++;
       continue;
     }
 
-    console.log(`🔍 Mengekstrak stream embed: ${match.title}...`);
-    const streams = await extractDirectEmbedStreams(match.matchPageUrl);
-    match.server1Url = streams.server1Url;
-    match.server2Url = streams.server2Url;
-
-    console.log(`📤 Memposting: ${postTitle} (${match.kickoffText})...`);
+    console.log(`📤 Memposting ke Blogger: ${postTitle} (${match.kickoffText || ''})...`);
 
     const postBody = {
       kind: 'blogger#post',
       title: postTitle,
       content: generatePostHtml(match),
-      labels: [match.league, match.status === 0 ? 'Live Now' : 'Upcoming', 'Xoilac']
+      labels: [match.league || 'Sport', match.status === 1 ? '🔴 LIVE' : '⏰ Siap Tayang', 'MeiwaSports']
     };
 
     try {
@@ -329,17 +216,11 @@ async function runBot() {
         console.log(`   ✅ SUKSES DITERBITKAN: ${result.url}`);
         existingTitles.add(simpleTitle);
         postedCount++;
-      } else if (result.error && result.error.status === 'PERMISSION_DENIED') {
-        console.error(`\n❌ ERROR IZIN AKSES GOOGLE BLOGGER (PERMISSION DENIED):`);
-        console.error(`1. Pastikan "Blogger API v3" sudah AKTIF di Google Cloud Console:`);
-        console.error(`   👉 https://console.cloud.google.com/apis/library/blogger.googleapis.com?project=sportstream-bot`);
-        console.error(`2. Jalankan ulang LOGIN_GOOGLE.bat dan pilih akun Google pemilik blog ini.\n`);
-        break;
       } else {
-        console.warn(`   ⚠️ Status: ${result.message || JSON.stringify(result.error || result)}`);
+        console.warn(`   ⚠️ Respon Blogger API:`, result.message || JSON.stringify(result.error || result));
       }
     } catch (err) {
-      console.error(`   ❌ Error: ${err.message}`);
+      console.error(`   ❌ Error posting: ${err.message}`);
     }
 
     // Jeda 2 detik antar postingan agar aman dari rate limit
@@ -347,40 +228,35 @@ async function runBot() {
   }
 
   console.log('\n==================================================');
-  console.log(`🎉 SIKLUS SELESAI (${new Date().toLocaleTimeString()} WIB):`);
+  console.log(`🎉 SIKLUS AUTO-POST SELESAI (${new Date().toLocaleTimeString()}):`);
   console.log(`   - Berhasil diposting baru: ${postedCount} pertandingan`);
   console.log(`   - Dilewati (karena sudah ada): ${skippedCount} pertandingan`);
   console.log('==================================================');
 }
 
-// 7. Kontrol Eksekusi: Mode Sekali Jalan vs Mode Loop Otomatis
+// 6. Main Runner
 async function main() {
   const args = process.argv.slice(2);
   const isLoop = args.includes('--loop') || args.includes('-l') || args.includes('--watch');
-  
-  let intervalMinutes = 15;
-  const intervalIdx = args.indexOf('--interval');
-  if (intervalIdx !== -1 && args[intervalIdx + 1]) {
-    const parsed = parseInt(args[intervalIdx + 1], 10);
-    if (!isNaN(parsed) && parsed > 0) intervalMinutes = parsed;
-  }
 
   if (!isLoop) {
-    // Mode Sekali Jalan
     await runBot();
   } else {
-    // Mode Loop Otomatis Terus Menerus
-    console.log(`🔁 BOT BERJALAN DALAM MODE OTOMATIS (UPDATE SETIAP ${intervalMinutes} MENIT)`);
-    console.log(`Tekan Ctrl+C di terminal ini kapan saja untuk menghentikan bot.\n`);
+    let intervalMinutes = 15;
+    const intervalIdx = args.indexOf('--interval');
+    if (intervalIdx !== -1 && args[intervalIdx + 1]) {
+      const parsed = parseInt(args[intervalIdx + 1], 10);
+      if (!isNaN(parsed) && parsed > 0) intervalMinutes = parsed;
+    }
 
+    console.log(`🔁 BOT BERJALAN DALAM MODE OTOMATIS (UPDATE SETIAP ${intervalMinutes} MENIT)\n`);
     while (true) {
       try {
         await runBot();
       } catch (err) {
-        console.error('⚠️ Terjadi kendala pada siklus ini:', err.message);
+        console.error('⚠️ Terjadi kendala:', err.message);
       }
-
-      console.log(`\n⏳ Menunggu ${intervalMinutes} menit untuk pembaruan berikutnya...`);
+      console.log(`\n⏳ Menunggu ${intervalMinutes} menit untuk siklus berikutnya...`);
       await new Promise(r => setTimeout(r, intervalMinutes * 60 * 1000));
     }
   }

@@ -55,7 +55,7 @@ async function testCreatePost() {
     labels: ['CONCACAF Champions Cup', 'Live Now', 'Xoilac']
   };
 
-  const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/`, {
+  const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,

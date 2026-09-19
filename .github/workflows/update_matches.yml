@@ -1,22 +1,23 @@
-name: Update Live Sports Matches
+name: Update Live Sports Matches & Auto-Post to Blogger
 
 on:
   schedule:
-    # Berjalan otomatis setiap 15 menit
+    # Berjalan otomatis setiap 15 menit (24 jam) di cloud
     - cron: '*/15 * * * *'
-  workflow_dispatch: # Bisa dijalankan manual lewat tombol di GitHub kapan saja
+  workflow_dispatch: # Tombol manual trigger di tab Actions GitHub
   push:
     branches:
       - main
     paths:
       - 'scrape-live-sources.js'
       - 'Link nonton Online.txt'
+      - 'blogger/auto-poster.js'
 
 permissions:
   contents: write
 
 jobs:
-  sync-matches:
+  sync-matches-and-post:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,13 +29,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Scrape Live Sports Matches
+      - name: Scrape Live Sports Matches & Dynamic Domains
         run: node scrape-live-sources.js
 
-      - name: Commit and Push Updated Matches
+      - name: Auto-Post Matches to Blogger
+        run: node blogger/auto-poster.js
+
+      - name: Commit and Push Updated Matches & Blogger Sync
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add matches.json app_config.json
-          git commit -m "chore(bot): update live sports matches & ads config [skip ci]" || echo "No changes to commit"
+          git add matches.json app_config.json blogger/token.json token.json
+          git commit -m "chore(bot): auto-update live matches, domain shifts & blogger posts [skip ci]" || echo "No changes to commit"
           git push
