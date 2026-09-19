@@ -15,15 +15,16 @@
     "kickoffIso": "2026-09-19T18:30:00+07:00",
     "kickoffText": "18:30 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel1.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel2.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel24.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel1.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel2.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel24.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.483Z"
+    "updatedAt": "2026-09-19T09:37:15.160Z"
   },
   {
     "id": "match_2_brighton-vs-arsenal",
@@ -41,148 +42,19 @@
     "kickoffIso": "2026-09-19T21:00:00+07:00",
     "kickoffText": "21:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel1.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel5.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel1.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel5.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.484Z"
+    "updatedAt": "2026-09-19T09:37:15.161Z"
   },
   {
-    "id": "match_3_jeonnam-dragons-vs-suwon-",
-    "title": "Jeonnam Dragons vs Suwon FC",
-    "homeTeam": "Jeonnam Dragons",
-    "awayTeam": "Suwon FC",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/9dn1m1ghzeemoep/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkh3yopqg8n/image/small",
-    "homeScore": "5",
-    "awayScore": "0",
-    "scoreText": "5 - 0",
-    "matchMinute": "",
-    "league": "K League 2",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T14:30:00+07:00",
-    "kickoffText": "14:30 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/jeonnam-dragons-vs-suwon-fc-luc-1430-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/jeonnam-dragons-vs-suwon-fc-luc-1430-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/jeonnam-dragons-vs-suwon-fc-luc-1430-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/jeonnam-dragons-vs-suwon-fc-luc-1430-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/jeonnam-dragons-vs-suwon-fc-luc-1430-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/jeonnam-dragons-vs-suwon-fc-luc-1430-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:11.485Z"
-  },
-  {
-    "id": "match_4_chungnam-asan-vs-cheonan-",
-    "title": "Chungnam Asan vs Cheonan City",
-    "homeTeam": "Chungnam Asan",
-    "awayTeam": "Cheonan City",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/x7lm7phwgelm2wd/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnh6p61m7vx/image/small",
-    "homeScore": "1",
-    "awayScore": "0",
-    "scoreText": "1 - 0",
-    "matchMinute": "",
-    "league": "K League 2",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T14:30:00+07:00",
-    "kickoffText": "14:30 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/chungnam-asan-vs-cheonan-city-luc-1430-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/chungnam-asan-vs-cheonan-city-luc-1430-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/chungnam-asan-vs-cheonan-city-luc-1430-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/chungnam-asan-vs-cheonan-city-luc-1430-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/chungnam-asan-vs-cheonan-city-luc-1430-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/chungnam-asan-vs-cheonan-city-luc-1430-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:11.485Z"
-  },
-  {
-    "id": "match_5_armadale-sc-vs-uwa-nedlan",
-    "title": "Armadale SC vs UWA-Nedlands FC",
-    "homeTeam": "Armadale SC",
-    "awayTeam": "UWA-Nedlands FC",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/zp5rzghj5okq82w/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh439jr1ge/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Western Australia NPL",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T14:30:00+07:00",
-    "kickoffText": "14:30 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:11.485Z"
-  },
-  {
-    "id": "match_6_liangjiang-vs-jiulong-pan",
-    "title": "Liangjiang vs Jiulong Panda",
-    "homeTeam": "Liangjiang",
-    "awayTeam": "Jiulong Panda",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/dn1m1gh1dvwmoep/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/l7oqdeh1555r510/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Chongqing City Football Super League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T14:30:00+07:00",
-    "kickoffText": "14:30 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:11.485Z"
-  },
-  {
-    "id": "match_7_tonglianglong-vs-nanchuan",
-    "title": "Tonglianglong vs Nanchuan Jinfo Mountain",
-    "homeTeam": "Tonglianglong",
-    "awayTeam": "Nanchuan Jinfo Mountain",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/jw2r09h1dl4rz84/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dn1m1gh1wwdmoep/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Chongqing City Football Super League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T14:30:00+07:00",
-    "kickoffText": "14:30 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
-  },
-  {
-    "id": "match_8_shanghai-second-vs-hubei-",
+    "id": "match_3_shanghai-second-vs-hubei-",
     "title": "Shanghai Second vs Hubei Istar",
     "homeTeam": "Shanghai Second",
     "awayTeam": "Hubei Istar",
@@ -197,18 +69,19 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel11.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel11.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel11.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel11.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
+    "updatedAt": "2026-09-19T09:37:15.161Z"
   },
   {
-    "id": "match_9_xian-ronghai-fc-vs-guizho",
+    "id": "match_4_xian-ronghai-fc-vs-guizho",
     "title": "Xian Ronghai FC vs Guizhou Guiyang Athletic",
     "homeTeam": "Xian Ronghai FC",
     "awayTeam": "Guizhou Guiyang Athletic",
@@ -223,18 +96,19 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel12.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel12.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel12.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel12.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel12.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel12.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_10_dalian-yingbo-b-vs-guangz",
+    "id": "match_5_dalian-yingbo-b-vs-guangz",
     "title": "Dalian Yingbo B vs Guangzhou Dandelion FC",
     "homeTeam": "Dalian Yingbo B",
     "awayTeam": "Guangzhou Dandelion FC",
@@ -249,18 +123,19 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel13.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel13.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_11_csa-steaua-bucuresti-vs-a",
+    "id": "match_6_csa-steaua-bucuresti-vs-a",
     "title": "CSA Steaua Bucuresti vs A.C.F. Gloria Bistrita",
     "homeTeam": "CSA Steaua Bucuresti",
     "awayTeam": "A.C.F. Gloria Bistrita",
@@ -275,18 +150,19 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel14.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel14.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel14.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel14.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel14.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel14.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_12_jecheon-citizen-fc-vs-geo",
+    "id": "match_7_jecheon-citizen-fc-vs-geo",
     "title": "Jecheon Citizen FC vs Geoje Citizen",
     "homeTeam": "Jecheon Citizen FC",
     "awayTeam": "Geoje Citizen",
@@ -301,18 +177,19 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel27.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel27.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel27.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel27.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel27.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel27.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_13_fc-bacau-vs-cetate-suceav",
+    "id": "match_8_fc-bacau-vs-cetate-suceav",
     "title": "FC Bacau vs Cetate Suceava",
     "homeTeam": "FC Bacau",
     "awayTeam": "Cetate Suceava",
@@ -327,18 +204,19 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel10.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel10.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel10.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel10.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel10.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel10.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_14_csm-slatina-vs-selimbar",
+    "id": "match_9_csm-slatina-vs-selimbar",
     "title": "CSM Slatina vs Selimbar",
     "homeTeam": "CSM Slatina",
     "awayTeam": "Selimbar",
@@ -353,18 +231,19 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel65.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel65.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel65.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel65.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel65.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel65.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_15_lindab-stefanesti-vs-meta",
+    "id": "match_10_lindab-stefanesti-vs-meta",
     "title": "Lindab Stefanesti vs Metaloglobus",
     "homeTeam": "Lindab Stefanesti",
     "awayTeam": "Metaloglobus",
@@ -379,18 +258,19 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel66.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel66.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel66.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel66.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel66.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel66.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.486Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_16_sk-motorlet-praha-vs-bene",
+    "id": "match_11_sk-motorlet-praha-vs-bene",
     "title": "SK Motorlet Praha vs Benesov",
     "homeTeam": "SK Motorlet Praha",
     "awayTeam": "Benesov",
@@ -405,18 +285,19 @@
     "kickoffIso": "2026-09-19T15:15:00+07:00",
     "kickoffText": "15:15 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel15.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel15.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.487Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_17_slavia-prague-c-vs-domazl",
+    "id": "match_12_slavia-prague-c-vs-domazl",
     "title": "Slavia Prague C vs Domazlice",
     "homeTeam": "Slavia Prague C",
     "awayTeam": "Domazlice",
@@ -431,18 +312,19 @@
     "kickoffIso": "2026-09-19T15:15:00+07:00",
     "kickoffText": "15:15 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel16.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel16.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel16.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel16.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel16.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel16.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.487Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_18_psm-makassar-vs-persita",
+    "id": "match_13_psm-makassar-vs-persita",
     "title": "PSM Makassar vs Persita",
     "homeTeam": "PSM Makassar",
     "awayTeam": "Persita",
@@ -457,18 +339,19 @@
     "kickoffIso": "2026-09-19T15:30:00+07:00",
     "kickoffText": "15:30 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel18.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel18.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.487Z"
+    "updatedAt": "2026-09-19T09:37:15.162Z"
   },
   {
-    "id": "match_19_persebaya-vs-garudayaksa-",
+    "id": "match_14_persebaya-vs-garudayaksa-",
     "title": "Persebaya vs Garudayaksa FC",
     "homeTeam": "Persebaya",
     "awayTeam": "Garudayaksa FC",
@@ -483,18 +366,19 @@
     "kickoffIso": "2026-09-19T15:30:00+07:00",
     "kickoffText": "15:30 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel13.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel13.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.487Z"
+    "updatedAt": "2026-09-19T09:37:15.163Z"
   },
   {
-    "id": "match_20_darwin-olympics-vs-port-d",
+    "id": "match_15_darwin-olympics-vs-port-d",
     "title": "Darwin Olympics vs Port Darwin FC",
     "homeTeam": "Darwin Olympics",
     "awayTeam": "Port Darwin FC",
@@ -509,15 +393,151 @@
     "kickoffIso": "2026-09-19T15:30:00+07:00",
     "kickoffText": "15:30 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/darwin-olympics-vs-port-darwin-fc-luc-1530-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/darwin-olympics-vs-port-darwin-fc-luc-1530-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/darwin-olympics-vs-port-darwin-fc-luc-1530-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/darwin-olympics-vs-port-darwin-fc-luc-1530-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel17.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel17.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel17.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/darwin-olympics-vs-port-darwin-fc-luc-1530-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/darwin-olympics-vs-port-darwin-fc-luc-1530-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/darwin-olympics-vs-port-darwin-fc-luc-1530-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel17.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel17.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel17.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.487Z"
+    "updatedAt": "2026-09-19T09:37:15.163Z"
+  },
+  {
+    "id": "match_16_kawasaki-frontale-vs-kash",
+    "title": "Kawasaki Frontale vs Kashima Antlers",
+    "homeTeam": "Kawasaki Frontale",
+    "awayTeam": "Kashima Antlers",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/gpxwrxlho65ryk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/j1l4rjnhp8nm7vx/image/small",
+    "homeScore": "0",
+    "awayScore": "2",
+    "scoreText": "0 - 2",
+    "matchMinute": "",
+    "league": "J1 League",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel16.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel16.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel16.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel16.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel16.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel16.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:15.163Z"
+  },
+  {
+    "id": "match_17_avispa-fukuoka-vs-sanfrec",
+    "title": "Avispa Fukuoka vs Sanfrecce Hiroshima",
+    "homeTeam": "Avispa Fukuoka",
+    "awayTeam": "Sanfrecce Hiroshima",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9dn1m1ghdp1moep/image/small",
+    "homeScore": "2",
+    "awayScore": "2",
+    "scoreText": "2 - 2",
+    "matchMinute": "",
+    "league": "J1 League",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel17.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel17.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel17.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel17.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel17.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel17.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:15.163Z"
+  },
+  {
+    "id": "match_18_dong-tam-long-an-vs-bac-n",
+    "title": "Đồng Tâm Long An vs Bắc Ninh",
+    "homeTeam": "Đồng Tâm Long An",
+    "awayTeam": "Bắc Ninh",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4wyrn4h8wo6q86p/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnhz9yxm7vx/image/small",
+    "homeScore": "0",
+    "awayScore": "1",
+    "scoreText": "0 - 1",
+    "matchMinute": "",
+    "league": "Piala Nasional Vietnam",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel4.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel4.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel4.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel4.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel4.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel4.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:15.163Z"
+  },
+  {
+    "id": "match_19_dalian-kewei-vs-shenzhen-",
+    "title": "Dalian Kewei vs Shenzhen 2028",
+    "homeTeam": "Dalian Kewei",
+    "awayTeam": "Shenzhen 2028",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/8yomo4hz9e9q0j6/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/2y8m4zhzl0eql07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "0 - 0",
+    "league": "Liga 2 China",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/dalian-kewei-vs-shenzhen-2028-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel20.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel20.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:15.163Z"
+  },
+  {
+    "id": "match_20_veertien-mie-vs-yokogawa-",
+    "title": "Veertien Mie vs Yokogawa Musa",
+    "homeTeam": "Veertien Mie",
+    "awayTeam": "Yokogawa Musa",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/3glrw7hwn0pqdyj/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkh3l3jqg8n/image/small",
+    "homeScore": "0",
+    "awayScore": "2",
+    "scoreText": "0 - 2",
+    "matchMinute": "",
+    "league": "JFL",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/veertien-mie-vs-yokogawa-musa-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel21.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel21.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel21.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel21.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel21.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel21.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:15.163Z"
   },
   {
     "id": "match_21_melbourne-united-vs-adela",
@@ -535,15 +555,16 @@
     "kickoffIso": "2026-09-19T16:30:00+07:00",
     "kickoffText": "16:30 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.487Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_22_ateneo-blue-eagles-vs-fig",
@@ -561,15 +582,16 @@
     "kickoffIso": "2026-09-19T16:30:00+07:00",
     "kickoffText": "16:30 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel42.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel42.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel42.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel42.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel42.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel42.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.487Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_23_ankaragucu-mamak-vs-mersi",
@@ -587,15 +609,16 @@
     "kickoffIso": "2026-09-19T18:00:00+07:00",
     "kickoffText": "18:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_24_perth-wildcats-vs-sem-pho",
@@ -613,15 +636,16 @@
     "kickoffIso": "2026-09-19T18:30:00+07:00",
     "kickoffText": "18:30 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_25_ha-noi-buffalo-vs-sai-gon",
@@ -639,15 +663,16 @@
     "kickoffIso": "2026-09-19T19:30:00+07:00",
     "kickoffText": "19:30 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_26_anadolu-efes1976-vs-unics",
@@ -665,15 +690,16 @@
     "kickoffIso": "2026-09-19T20:00:00+07:00",
     "kickoffText": "20:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel41.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel41.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_27_derthona-basket-vs-reyer-",
@@ -691,15 +717,16 @@
     "kickoffIso": "2026-09-19T22:00:00+07:00",
     "kickoffText": "22:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_28_rostock-seawolves-vs-phoe",
@@ -717,15 +744,16 @@
     "kickoffIso": "2026-09-19T23:30:00+07:00",
     "kickoffText": "23:30 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_29_olimpia-milano-vs-virtus-",
@@ -743,15 +771,16 @@
     "kickoffIso": "2026-09-20T00:45:00+07:00",
     "kickoffText": "00:45 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel42.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel42.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel42.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel42.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel42.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel42.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_30_telekom-baskets-bonn-vs-h",
@@ -769,15 +798,16 @@
     "kickoffIso": "2026-09-20T01:00:00+07:00",
     "kickoffText": "01:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_31_valencia-vs-barcelona",
@@ -795,15 +825,16 @@
     "kickoffIso": "2026-09-20T02:00:00+07:00",
     "kickoffText": "02:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel41.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel41.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_32_nu-atlanta-dream-vs-nu-ch",
@@ -821,15 +852,16 @@
     "kickoffIso": "2026-09-20T06:00:00+07:00",
     "kickoffText": "06:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_33_astros-de-jalisco-vs-dora",
@@ -847,15 +879,16 @@
     "kickoffIso": "2026-09-20T07:15:00+07:00",
     "kickoffText": "07:15 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel41.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel41.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_34_nu-golden-state-vs-nu-sea",
@@ -873,15 +906,16 @@
     "kickoffIso": "2026-09-20T08:00:00+07:00",
     "kickoffText": "08:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.164Z"
   },
   {
     "id": "match_35_nu-hong-kong-vs-nu-philip",
@@ -899,15 +933,16 @@
     "kickoffIso": "2026-09-20T08:00:00+07:00",
     "kickoffText": "08:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.488Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_36_nu-kazakhstan-vs-nu-nhat-",
@@ -925,15 +960,16 @@
     "kickoffIso": "2026-09-20T11:50:00+07:00",
     "kickoffText": "11:50 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_37_new-zealand-breakers-vs-l",
@@ -951,15 +987,16 @@
     "kickoffIso": "2026-09-20T12:00:00+07:00",
     "kickoffText": "12:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_38_sydney-kings-vs-cairns-ta",
@@ -977,15 +1014,16 @@
     "kickoffIso": "2026-09-20T14:00:00+07:00",
     "kickoffText": "14:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_39_melilla-baloncesto-vs-jae",
@@ -1003,15 +1041,16 @@
     "kickoffIso": "2026-09-20T17:30:00+07:00",
     "kickoffText": "17:30 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_40_konya-buyuksehir-vs-harem",
@@ -1029,15 +1068,16 @@
     "kickoffIso": "2026-09-20T19:00:00+07:00",
     "kickoffText": "19:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/konya-buyuksehir-vs-harem-spor-luc-1900-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/konya-buyuksehir-vs-harem-spor-luc-1900-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/konya-buyuksehir-vs-harem-spor-luc-1900-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/konya-buyuksehir-vs-harem-spor-luc-1900-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel41.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/konya-buyuksehir-vs-harem-spor-luc-1900-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/konya-buyuksehir-vs-harem-spor-luc-1900-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/konya-buyuksehir-vs-harem-spor-luc-1900-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel41.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_41_yao-xinxin-vs-priscilla-h",
@@ -1055,15 +1095,16 @@
     "kickoffIso": "2026-09-19T13:45:00+07:00",
     "kickoffText": "13:45 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel57.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel57.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_42_liang-en-shuo-vs-sara-sai",
@@ -1081,15 +1122,16 @@
     "kickoffIso": "2026-09-19T14:50:00+07:00",
     "kickoffText": "14:50 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel50.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel50.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel50.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel50.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_43_alexander-shevchenko-vs-k",
@@ -1107,15 +1149,16 @@
     "kickoffIso": "2026-09-19T15:10:00+07:00",
     "kickoffText": "15:10 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel51.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel51.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel51.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel51.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_44_alevtina-ibragimova-vs-ri",
@@ -1133,15 +1176,16 @@
     "kickoffIso": "2026-09-19T14:30:00+07:00",
     "kickoffText": "14:30 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel58.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel58.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel58.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel58.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_45_menelaos-efstathiou-vs-ol",
@@ -1159,15 +1203,16 @@
     "kickoffIso": "2026-09-19T16:10:00+07:00",
     "kickoffText": "16:10 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel52.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel52.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel52.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel52.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_46_jurij-rodionov-vs-zizou-b",
@@ -1185,15 +1230,16 @@
     "kickoffIso": "2026-09-19T17:10:00+07:00",
     "kickoffText": "17:10 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel53.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel53.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel53.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel53.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel53.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel53.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_47_norbert-gombos-vs-stefano",
@@ -1211,15 +1257,16 @@
     "kickoffIso": "2026-09-19T18:10:00+07:00",
     "kickoffText": "18:10 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel54.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel54.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel54.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel54.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel54.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel54.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_48_alexander-zverev-vs-matej",
@@ -1237,15 +1284,16 @@
     "kickoffIso": "2026-09-19T19:00:00+07:00",
     "kickoffText": "19:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel55.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel55.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel55.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel55.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel55.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel55.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.489Z"
+    "updatedAt": "2026-09-19T09:37:15.165Z"
   },
   {
     "id": "match_49_adam-pavlasek-patrik-rikl",
@@ -1263,15 +1311,16 @@
     "kickoffIso": "2026-09-19T19:00:00+07:00",
     "kickoffText": "19:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel32.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel32.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel32.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel32.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel32.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel32.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_50_arthur-fery-vs-alvaro-gui",
@@ -1289,15 +1338,16 @@
     "kickoffIso": "2026-09-19T20:10:00+07:00",
     "kickoffText": "20:10 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel56.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel56.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel56.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel56.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel56.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel56.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_51_jakub-mensik-vs-ben-shelt",
@@ -1315,15 +1365,16 @@
     "kickoffIso": "2026-09-19T20:10:00+07:00",
     "kickoffText": "20:10 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel32.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel32.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel32.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel32.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel32.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel32.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_52_casper-ruud-vs-cui-jie",
@@ -1341,15 +1392,16 @@
     "kickoffIso": "2026-09-19T21:40:00+07:00",
     "kickoffText": "21:40 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel57.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel57.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_53_cristian-garin-vs-rafael-",
@@ -1367,15 +1419,16 @@
     "kickoffIso": "2026-09-20T00:10:00+07:00",
     "kickoffText": "00:10 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel58.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel58.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel58.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel58.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_54_felix-auger-aliassime-vs-",
@@ -1393,15 +1446,16 @@
     "kickoffIso": "2026-09-20T02:10:00+07:00",
     "kickoffText": "02:10 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel59.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel59.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel59.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel59.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel59.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel59.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_55_liam-draxl-vs-quentin-hal",
@@ -1419,15 +1473,16 @@
     "kickoffIso": "2026-09-20T03:20:00+07:00",
     "kickoffText": "03:20 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel50.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel50.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel50.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel50.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_56_joaquin-aguilar-cardozo-v",
@@ -1445,15 +1500,16 @@
     "kickoffIso": "2026-09-20T03:20:00+07:00",
     "kickoffText": "03:20 WIB (20/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel51.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel51.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel51.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel51.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_57_juan-pablo-varillas-vs-he",
@@ -1471,15 +1527,16 @@
     "kickoffIso": "2026-09-20T04:20:00+07:00",
     "kickoffText": "04:20 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel52.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel52.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel52.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel52.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_58_ba-lan-vs-latvia",
@@ -1497,15 +1554,16 @@
     "kickoffIso": "2026-09-19T20:00:00+07:00",
     "kickoffText": "20:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel33.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel33.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel33.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel33.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel33.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel33.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_59_duc-vs-bulgaria",
@@ -1523,15 +1581,16 @@
     "kickoffIso": "2026-09-19T23:00:00+07:00",
     "kickoffText": "23:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel33.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel33.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel33.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel33.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel33.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel33.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.166Z"
   },
   {
     "id": "match_60_invictus-gaming-vs-jd-gam",
@@ -1549,15 +1608,16 @@
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel30.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel30.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel30.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel30.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel30.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel30.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.490Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_61_mvk-academy-vs-saigon-din",
@@ -1575,15 +1635,16 @@
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_62_forsaken-vs-bomba-team",
@@ -1601,15 +1662,16 @@
     "kickoffIso": "2026-09-19T17:00:00+07:00",
     "kickoffText": "17:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel71.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel71.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel71.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel71.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel71.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel71.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_63_9gaming-vs-cybercore-espo",
@@ -1627,15 +1689,16 @@
     "kickoffIso": "2026-09-19T19:00:00+07:00",
     "kickoffText": "19:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel72.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel72.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_64_karmine-corp-vs-movistar-",
@@ -1653,15 +1716,16 @@
     "kickoffIso": "2026-09-19T22:00:00+07:00",
     "kickoffText": "22:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel30.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel30.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel30.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel30.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel30.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel30.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_65_hmble-vs-colossal-gaming",
@@ -1679,15 +1743,16 @@
     "kickoffIso": "2026-09-19T23:00:00+07:00",
     "kickoffText": "23:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_66_lyon-gaming-vs-cloud9",
@@ -1705,15 +1770,16 @@
     "kickoffIso": "2026-09-20T03:00:00+07:00",
     "kickoffText": "03:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_67_1w-team-vs-team-nemesis",
@@ -1731,15 +1797,16 @@
     "kickoffIso": "2026-09-19T14:00:00+07:00",
     "kickoffText": "14:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel72.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel72.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_68_natus-vincere-vs-hokori",
@@ -1757,15 +1824,16 @@
     "kickoffIso": "2026-09-19T17:00:00+07:00",
     "kickoffText": "17:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel74.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel74.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel74.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel74.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_69_team-spirit-academy-vs-in",
@@ -1783,15 +1851,16 @@
     "kickoffIso": "2026-09-19T19:00:00+07:00",
     "kickoffText": "19:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_70_kalmychata-vs-yellow-subm",
@@ -1809,15 +1878,16 @@
     "kickoffIso": "2026-09-18T01:00:00+07:00",
     "kickoffText": "01:00 WIB (18/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel72.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel72.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.167Z"
   },
   {
     "id": "match_71_team-yandex-vs-mousesport",
@@ -1835,15 +1905,16 @@
     "kickoffIso": "2026-09-19T23:00:00+07:00",
     "kickoffText": "23:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel73.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel73.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel73.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel73.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.491Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_72_team-lynx-vs-balu-team",
@@ -1861,15 +1932,16 @@
     "kickoffIso": "2026-09-20T01:00:00+07:00",
     "kickoffText": "01:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel74.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel74.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel74.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel74.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.492Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_73_puckchamp-vs-balu-team",
@@ -1887,15 +1959,16 @@
     "kickoffIso": "2026-09-17T16:00:00+07:00",
     "kickoffText": "16:00 WIB (17/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.492Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_74_kalmychata-vs-two-move",
@@ -1913,15 +1986,16 @@
     "kickoffIso": "2026-09-15T16:00:00+07:00",
     "kickoffText": "16:00 WIB (15/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel73.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel73.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel73.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel73.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.492Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_75_nexus-vs-permitta",
@@ -1939,15 +2013,16 @@
     "kickoffIso": "2026-09-19T15:00:00+07:00",
     "kickoffText": "15:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.492Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_76_mouz-vs-furia",
@@ -1965,15 +2040,16 @@
     "kickoffIso": "2026-09-19T19:30:00+07:00",
     "kickoffText": "19:30 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel76.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel76.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel76.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel76.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel76.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel76.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.492Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_77_aurora-vs-vitality",
@@ -1991,15 +2067,16 @@
     "kickoffIso": "2026-09-19T22:00:00+07:00",
     "kickoffText": "22:00 WIB (19/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel77.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel77.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel77.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel77.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel77.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel77.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.492Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_78_black-phoenix-vs-baks",
@@ -2017,15 +2094,16 @@
     "kickoffIso": "2026-09-20T00:00:00+07:00",
     "kickoffText": "00:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel78.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel78.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel78.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel78.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel78.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel78.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.492Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_79_genone-vs-berg-famalicao-",
@@ -2043,15 +2121,16 @@
     "kickoffIso": "2026-09-20T01:00:00+07:00",
     "kickoffText": "01:00 WIB (20/09)",
     "status": 0,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel79.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel79.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel79.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel79.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel79.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel79.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.492Z"
+    "updatedAt": "2026-09-19T09:37:15.168Z"
   },
   {
     "id": "match_80_regain-vs-without-a-roof",
@@ -2069,174 +2148,19 @@
     "kickoffIso": "2026-09-20T07:00:00+07:00",
     "kickoffText": "07:00 WIB (20/09)",
     "status": 1,
-    "streamJalur1": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
-    "streamJalur2": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
-    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8",
     "streams": {
-      "jalur1": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
-      "jalur2": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
-      "jalur3": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:11.493Z"
+    "updatedAt": "2026-09-19T09:37:15.169Z"
   },
   {
-    "id": "match_81_bucheon-1995-vs-gimcheon-",
-    "title": "Bucheon 1995 vs Gimcheon Sangmu",
-    "homeTeam": "Bucheon 1995",
-    "awayTeam": "Gimcheon Sangmu",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/318q66hogyeqo9j/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/56ypq3nho79md7o/image/small",
-    "homeScore": "1",
-    "awayScore": "1",
-    "scoreText": "1 - 1",
-    "matchMinute": "",
-    "league": "K League 1",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T14:30:00+07:00",
-    "kickoffText": "14:30 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/bucheon-1995-vs-gimcheon-sangmu-luc-1430-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/bucheon-1995-vs-gimcheon-sangmu-luc-1430-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/bucheon-1995-vs-gimcheon-sangmu-luc-1430-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/bucheon-1995-vs-gimcheon-sangmu-luc-1430-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/bucheon-1995-vs-gimcheon-sangmu-luc-1430-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/bucheon-1995-vs-gimcheon-sangmu-luc-1430-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
-  },
-  {
-    "id": "match_82_kawasaki-frontale-vs-kash",
-    "title": "Kawasaki Frontale vs Kashima Antlers",
-    "homeTeam": "Kawasaki Frontale",
-    "awayTeam": "Kashima Antlers",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/gpxwrxlho65ryk0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/j1l4rjnhp8nm7vx/image/small",
-    "homeScore": "0",
-    "awayScore": "2",
-    "scoreText": "0 - 2",
-    "matchMinute": "",
-    "league": "J1 League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
-  },
-  {
-    "id": "match_83_avispa-fukuoka-vs-sanfrec",
-    "title": "Avispa Fukuoka vs Sanfrecce Hiroshima",
-    "homeTeam": "Avispa Fukuoka",
-    "awayTeam": "Sanfrecce Hiroshima",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9dn1m1ghdp1moep/image/small",
-    "homeScore": "2",
-    "awayScore": "2",
-    "scoreText": "2 - 2",
-    "matchMinute": "",
-    "league": "J1 League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
-  },
-  {
-    "id": "match_84_dong-tam-long-an-vs-bac-n",
-    "title": "Đồng Tâm Long An vs Bắc Ninh",
-    "homeTeam": "Đồng Tâm Long An",
-    "awayTeam": "Bắc Ninh",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4wyrn4h8wo6q86p/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnhz9yxm7vx/image/small",
-    "homeScore": "0",
-    "awayScore": "1",
-    "scoreText": "0 - 1",
-    "matchMinute": "",
-    "league": "Piala Nasional Vietnam",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
-  },
-  {
-    "id": "match_85_dalian-kewei-vs-shenzhen-",
-    "title": "Dalian Kewei vs Shenzhen 2028",
-    "homeTeam": "Dalian Kewei",
-    "awayTeam": "Shenzhen 2028",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/8yomo4hz9e9q0j6/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/2y8m4zhzl0eql07/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Liga 2 China",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/dalian-kewei-vs-shenzhen-2028-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/dalian-kewei-vs-shenzhen-2028-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/dalian-kewei-vs-shenzhen-2028-luc-1600-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/dalian-kewei-vs-shenzhen-2028-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/dalian-kewei-vs-shenzhen-2028-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/dalian-kewei-vs-shenzhen-2028-luc-1600-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
-  },
-  {
-    "id": "match_86_veertien-mie-vs-yokogawa-",
-    "title": "Veertien Mie vs Yokogawa Musa",
-    "homeTeam": "Veertien Mie",
-    "awayTeam": "Yokogawa Musa",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/3glrw7hwn0pqdyj/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkh3l3jqg8n/image/small",
-    "homeScore": "0",
-    "awayScore": "2",
-    "scoreText": "0 - 2",
-    "matchMinute": "",
-    "league": "JFL",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (19/09)",
-    "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/veertien-mie-vs-yokogawa-musa-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/veertien-mie-vs-yokogawa-musa-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/veertien-mie-vs-yokogawa-musa-luc-1600-ngay-19-09-2026/",
-    "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/veertien-mie-vs-yokogawa-musa-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/veertien-mie-vs-yokogawa-musa-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/veertien-mie-vs-yokogawa-musa-luc-1600-ngay-19-09-2026/"
-    },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
-  },
-  {
-    "id": "match_87_reinmeer-aomori-vs-honda-",
+    "id": "match_81_reinmeer-aomori-vs-honda-",
     "title": "Reinmeer Aomori vs Honda FC",
     "homeTeam": "Reinmeer Aomori",
     "awayTeam": "Honda FC",
@@ -2251,18 +2175,19 @@
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/",
+    "postUrl": "https://atttvnow.com/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel22.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel22.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel22.m3u8",
     "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel22.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel22.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel22.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
+    "updatedAt": "2026-09-19T09:37:16.287Z"
   },
   {
-    "id": "match_88_arambagh-ks-vs-bashundhar",
+    "id": "match_82_arambagh-ks-vs-bashundhar",
     "title": "Arambagh KS vs Bashundhara Kings",
     "homeTeam": "Arambagh KS",
     "awayTeam": "Bashundhara Kings",
@@ -2277,18 +2202,46 @@
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/",
+    "postUrl": "https://atttvnow.com/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel18.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8",
     "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel18.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
+    "updatedAt": "2026-09-19T09:37:16.287Z"
   },
   {
-    "id": "match_89_shimizu-s-pulse-vs-jef-un",
+    "id": "match_83_vonds-ichihara-vs-maruyas",
+    "title": "VONDS Ichihara vs Maruyasu",
+    "homeTeam": "VONDS Ichihara",
+    "awayTeam": "Maruyasu",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8gh4jj8r6od/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/2y8m4zhjjk4ql07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "JFL",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/vonds-ichihara-vs-maruyasu-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel19.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:16.288Z"
+  },
+  {
+    "id": "match_84_shimizu-s-pulse-vs-jef-un",
     "title": "Shimizu S-Pulse vs JEF United",
     "homeTeam": "Shimizu S-Pulse",
     "awayTeam": "JEF United",
@@ -2302,19 +2255,20 @@
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T16:30:00+07:00",
     "kickoffText": "16:30 WIB (19/09)",
-    "status": 0,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel20.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8",
     "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel20.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:12.163Z"
+    "updatedAt": "2026-09-19T09:37:16.288Z"
   },
   {
-    "id": "match_90_v-varen-nagasaki-vs-cerez",
+    "id": "match_85_v-varen-nagasaki-vs-cerez",
     "title": "V-Varen Nagasaki vs Cerezo Osaka",
     "homeTeam": "V-Varen Nagasaki",
     "awayTeam": "Cerezo Osaka",
@@ -2329,14 +2283,150 @@
     "kickoffIso": "2026-09-19T16:30:00+07:00",
     "kickoffText": "16:30 WIB (19/09)",
     "status": 1,
-    "streamJalur1": "https://atttvnow.com/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/",
-    "streamJalur2": "https://atttvnow.com/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/",
-    "streamJalur3": "https://atttvnow.com/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/",
+    "postUrl": "https://atttvnow.com/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel28.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8",
     "streams": {
-      "jalur1": "https://atttvnow.com/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/",
-      "jalur2": "https://atttvnow.com/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/",
-      "jalur3": "https://atttvnow.com/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel28.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8"
     },
-    "updatedAt": "2026-09-19T09:25:12.164Z"
+    "updatedAt": "2026-09-19T09:37:16.288Z"
+  },
+  {
+    "id": "match_86_urawa-red-vs-tokyo-verdy",
+    "title": "Urawa Red vs Tokyo Verdy",
+    "homeTeam": "Urawa Red",
+    "awayTeam": "Tokyo Verdy",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7hev1qdyj/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7hexlqdyj/image/small",
+    "homeScore": "1",
+    "awayScore": "1",
+    "scoreText": "1 - 1",
+    "matchMinute": "",
+    "league": "J1 League",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/urawa-red-vs-tokyo-verdy-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel23.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel23.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel23.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel23.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel23.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel23.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:16.288Z"
+  },
+  {
+    "id": "match_87_fujieda-myfc-vs-rb-omiya-",
+    "title": "Fujieda MYFC vs RB Omiya Ardija",
+    "homeTeam": "Fujieda MYFC",
+    "awayTeam": "RB Omiya Ardija",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh7967r1ge/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/p4jwq2ghle0m0ve/image/small",
+    "homeScore": "1",
+    "awayScore": "1",
+    "scoreText": "1 - 1",
+    "matchMinute": "",
+    "league": "J2 League",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/fujieda-myfc-vs-rb-omiya-ardija-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel26.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel26.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel26.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel26.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel26.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel26.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:16.288Z"
+  },
+  {
+    "id": "match_88_ehime-fc-vs-kamatamare-sk",
+    "title": "Ehime FC vs Kamatamare Sk",
+    "homeTeam": "Ehime FC",
+    "awayTeam": "Kamatamare Sk",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnh66zzm7vx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh4l65r1ge/image/small",
+    "homeScore": "3",
+    "awayScore": "0",
+    "scoreText": "3 - 0",
+    "matchMinute": "",
+    "league": "J3 League",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/ehime-fc-vs-kamatamare-sk-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel28.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel28.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:16.288Z"
+  },
+  {
+    "id": "match_89_gloria-popesti-leordeni-v",
+    "title": "Gloria Popesti-Leordeni vs ASU Politehnica Timișoara",
+    "homeTeam": "Gloria Popesti-Leordeni",
+    "awayTeam": "ASU Politehnica Timișoara",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/x7lm7phkyegm2wd/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/gpxwrxlho70ryk0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Liga 2 Rumania",
+    "sportCategory": "🎮 Esports & Gaming",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/gloria-popesti-leordeni-vs-asu-politehnica-timisoara-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:16.288Z"
+  },
+  {
+    "id": "match_90_fc-anyang-vs-ulsan-hyunda",
+    "title": "FC Anyang vs Ulsan Hyundai",
+    "homeTeam": "FC Anyang",
+    "awayTeam": "Ulsan Hyundai",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/dn1m1ghe8y7moep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9k82rekh49zrepz/image/small",
+    "homeScore": "3",
+    "awayScore": "1",
+    "scoreText": "3 - 1",
+    "matchMinute": "",
+    "league": "K League 1",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/fc-anyang-vs-ulsan-hyundai-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel15.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel15.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8"
+    },
+    "updatedAt": "2026-09-19T09:37:16.289Z"
   }
 ]
