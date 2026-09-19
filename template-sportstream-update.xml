@@ -20,12 +20,12 @@
 
   <b:skin><![CDATA[
   /* ==========================================================================
-     MEIWATV - USER-FRIENDLY LIVE SPORTS PORTAL (PRO EDITION)
+     MEIWATV - UNIFIED THEATER STREAMING PORTAL (PRO EDITION)
      ========================================================================== */
   :root {
     --bg-dark: #070a10;
     --bg-card: #0e1422;
-    --bg-card-hover: #151e33;
+    --bg-card-hover: #162035;
     --bg-surface: #121929;
     --bg-header: #05080e;
     
@@ -88,14 +88,14 @@
   }
 
   .nav-container {
-    max-width: 1440px;
+    max-width: 1560px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 16px;
     height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
   }
 
   .brand-logo {
@@ -103,7 +103,7 @@
     align-items: center;
     gap: 8px;
     background: linear-gradient(135deg, #101726, #1c2840);
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 12px;
     border: 1px solid var(--border-subtle);
     text-decoration: none;
@@ -114,16 +114,16 @@
     box-shadow: 0 4px 20px var(--primary-glow);
   }
   .brand-logo-img {
-    height: 36px;
+    height: 34px;
     width: auto;
     object-fit: contain;
   }
 
-  /* Navigation Links - Mulai dengan LIVE, tanpa Beranda */
+  /* Header Tabs (Directly linked to right playlist) */
   .nav-menu-links {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     list-style: none;
     overflow-x: auto;
     scrollbar-width: none;
@@ -137,15 +137,15 @@
     background: transparent;
     border: 1px solid transparent;
     color: var(--text-muted);
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 700;
-    padding: 8px 14px;
+    padding: 7px 12px;
     border-radius: var(--radius-full);
     cursor: pointer;
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     white-space: nowrap;
   }
   .nav-item-btn:hover {
@@ -167,81 +167,76 @@
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-shrink: 0;
   }
   .btn-saweria-top {
     background: linear-gradient(135deg, #ffbe0b, #fb5607);
     color: #000 !important;
     font-weight: 800;
-    font-size: 12.5px;
-    padding: 7px 14px;
+    font-size: 12px;
+    padding: 6px 12px;
     border-radius: var(--radius-full);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 10px rgba(251, 86, 7, 0.3);
-  }
-  .btn-saweria-top:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(251, 86, 7, 0.5);
+    gap: 5px;
   }
   .btn-apk-top {
     background: var(--bg-surface);
     color: var(--primary-green) !important;
     border: 1px solid var(--primary-green);
     font-weight: 700;
-    font-size: 12.5px;
-    padding: 6px 14px;
+    font-size: 12px;
+    padding: 5px 12px;
     border-radius: var(--radius-full);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
   }
   .btn-apk-top:hover {
     background: var(--primary-green);
     color: #000 !important;
   }
 
-  /* ADSTERRA SPONSOR BANNER */
+  /* SPONSOR BANNER */
   .adsterra-banner-container {
-    max-width: 1440px;
-    margin: 12px auto 0 auto;
-    padding: 0 20px;
+    max-width: 1560px;
+    margin: 10px auto 0 auto;
+    padding: 0 16px;
   }
   .adsterra-wrapper-box {
     background: var(--bg-surface);
     border: 1px dashed rgba(16, 185, 129, 0.3);
     border-radius: var(--radius-md);
-    padding: 8px 16px;
+    padding: 6px 14px;
     text-align: center;
-    min-height: 48px;
+    min-height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* MAIN WORKSPACE */
-  .main-full-container {
-    max-width: 1440px;
-    margin: 14px auto 40px auto;
-    padding: 0 20px;
+  /* MAIN UNIFIED THEATER WORKSPACE */
+  .main-theater-container {
+    max-width: 1560px;
+    margin: 12px auto 30px auto;
+    padding: 0 16px;
   }
 
-  /* 2-COLUMN THEATER LAYOUT: PLAYER (LEFT) + QUICK LIVE PLAYLIST (RIGHT) */
-  .theater-grid-layout {
+  /* 2-COLUMN GRID: LEFT PLAYER (68%) + RIGHT INTERACTIVE PLAYLIST (32%) */
+  .unified-theater-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 18px;
-    margin-bottom: 24px;
+    grid-template-columns: 1fr 420px;
+    gap: 16px;
+    align-items: stretch;
   }
-  @media (max-width: 1080px) {
-    .theater-grid-layout {
+  @media (max-width: 1100px) {
+    .unified-theater-grid {
       grid-template-columns: 1fr;
     }
   }
 
-  /* LEFT: THEATER PLAYER CARD */
+  /* LEFT: THEATER VIDEO PLAYER BOX */
   .theater-player-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -275,7 +270,7 @@
     border: 1px solid rgba(239, 68, 68, 0.3);
     padding: 2px 10px;
     border-radius: var(--radius-full);
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 800;
     display: inline-flex;
     align-items: center;
@@ -285,15 +280,15 @@
   .player-server-group {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
   }
   .btn-server {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
-    padding: 5px 12px;
+    padding: 5px 11px;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: var(--transition);
@@ -312,7 +307,7 @@
     font-weight: 800;
   }
 
-  /* 16:9 VIDEO FRAME */
+  /* 16:9 VIDEO CONTAINER */
   .video-container-169 {
     position: relative;
     width: 100%;
@@ -373,7 +368,7 @@
     color: #000;
     font-size: 14px;
     font-weight: 800;
-    padding: 11px 26px;
+    padding: 10px 24px;
     border-radius: var(--radius-full);
     border: none;
     cursor: pointer;
@@ -384,14 +379,14 @@
     transition: var(--transition);
   }
   .btn-overlay-play:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
     background: var(--primary-neon);
   }
 
   /* PLAYER BOTTOM INFO BAR */
   .player-match-detail-bar {
     background: #090e18;
-    padding: 12px 18px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -402,7 +397,7 @@
   .detail-match-teams {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     font-weight: 700;
     font-size: 14px;
   }
@@ -416,8 +411,8 @@
     color: var(--accent-gold);
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 14px;
-    padding: 3px 12px;
+    font-size: 13.5px;
+    padding: 2px 10px;
     border-radius: var(--radius-sm);
     border: 1px solid rgba(255, 228, 0, 0.3);
   }
@@ -425,13 +420,13 @@
     background: rgba(16, 185, 129, 0.15);
     border: 1px solid var(--primary-green);
     color: var(--primary-green);
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: var(--radius-sm);
     font-size: 12px;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     cursor: pointer;
   }
   .btn-open-source:hover {
@@ -439,33 +434,38 @@
     color: #000;
   }
 
-  /* RIGHT: QUICK LIVE & POPULAR MATCH PLAYLIST */
-  .quick-playlist-card {
+  /* RIGHT: INTERACTIVE PLAYLIST & SCHEDULE PANEL */
+  .interactive-playlist-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    max-height: 520px;
+    height: 100%;
+    min-height: 520px;
+    max-height: 720px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   }
-  .quick-playlist-header {
+
+  .playlist-header-bar {
     background: #090e18;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-bottom: 1px solid var(--border-subtle);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
   }
-  .quick-playlist-title {
+  .playlist-header-title {
     font-size: 13.5px;
     font-weight: 800;
     color: #fff;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
   }
-  .quick-playlist-count {
+  .playlist-counter-badge {
     background: var(--accent-red);
     color: #fff;
     padding: 2px 8px;
@@ -473,38 +473,99 @@
     font-size: 11px;
     font-weight: 800;
   }
-  .quick-playlist-body {
-    padding: 10px;
+
+  .playlist-search-wrap {
+    padding: 8px 12px;
+    background: #0a0f1c;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+  }
+  .playlist-search-input {
+    width: 100%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: #fff;
+    font-size: 12.5px;
+    padding: 6px 12px 6px 32px;
+    border-radius: var(--radius-full);
+    outline: none;
+  }
+  .playlist-search-input:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 8px var(--primary-glow);
+  }
+  .playlist-search-icon {
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  .playlist-scroll-area {
+    padding: 8px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     flex: 1;
   }
-  .quick-match-row {
+
+  /* CATEGORY DIVIDER INSIDE PLAYLIST */
+  .playlist-category-divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px 4px 10px;
+    margin-top: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .playlist-divider-title {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--primary-green);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .playlist-divider-count {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 1px 6px;
+    border-radius: var(--radius-full);
+  }
+
+  /* MATCH CARD ROW IN PLAYLIST */
+  .match-row-item {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 10px 12px;
+    padding: 9px 12px;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
   }
-  .quick-match-row:hover, .quick-match-row.active {
+  .match-row-item:hover, .match-row-item.active {
     background: var(--bg-card-hover);
     border-color: var(--primary-green);
     transform: translateX(2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
-  .quick-match-row-top {
+
+  .match-row-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 11px;
     color: var(--text-muted);
   }
-  .quick-match-row-league {
+  .match-row-league {
     color: var(--primary-green);
     font-weight: 700;
     max-width: 65%;
@@ -512,282 +573,59 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .quick-match-row-teams {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 13px;
-    color: #fff;
-  }
-  .quick-match-row-score {
-    background: #000;
-    color: var(--accent-gold);
-    font-size: 12px;
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
+  .match-row-time {
+    font-size: 10.5px;
+    color: var(--text-muted);
   }
 
-  /* SECTION DIVIDERS & CONTROLS */
-  .schedule-filter-controls {
+  .match-row-teams-grid {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    background: var(--bg-card);
-    padding: 14px 18px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-subtle);
+    gap: 6px;
   }
-  .sports-chips-nav {
+  .team-entry {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .sport-chip {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-muted);
+    gap: 6px;
+    flex: 1;
     font-size: 12.5px;
     font-weight: 700;
-    padding: 7px 14px;
-    border-radius: var(--radius-full);
-    cursor: pointer;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .sport-chip:hover {
     color: #fff;
-    border-color: rgba(255, 255, 255, 0.25);
-  }
-  .sport-chip.active {
-    color: #000 !important;
-    background: var(--primary-green) !important;
-    border-color: var(--primary-green) !important;
-    font-weight: 800;
-    box-shadow: 0 2px 10px var(--primary-glow);
-  }
-  .sport-chip.chip-live.active {
-    color: #fff !important;
-    background: var(--accent-red) !important;
-    border-color: var(--accent-red) !important;
-    box-shadow: 0 2px 10px var(--accent-red-glow);
-  }
-  .chip-count {
-    background: rgba(0, 0, 0, 0.35);
-    padding: 1px 7px;
-    border-radius: var(--radius-full);
-    font-size: 10px;
-    font-weight: 800;
-  }
-
-  .search-box-wrap {
-    position: relative;
-    min-width: 240px;
-  }
-  .search-input {
-    width: 100%;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    color: #fff;
-    font-size: 13px;
-    padding: 8px 14px 8px 36px;
-    border-radius: var(--radius-full);
-    outline: none;
-    transition: var(--transition);
-  }
-  .search-input:focus {
-    border-color: var(--primary-green);
-    box-shadow: 0 0 10px var(--primary-glow);
-  }
-  .search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-dim);
-    font-size: 13px;
-  }
-
-  /* SPORT CATEGORY SECTION HEADERS / PEMISAH OLAHRAGA */
-  .sport-category-group-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 28px 0 14px 0;
-    padding-bottom: 8px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
-  }
-  .sport-category-title {
-    font-family: var(--font-heading);
-    font-size: 18px;
-    font-weight: 800;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .sport-category-badge {
-    background: rgba(16, 185, 129, 0.15);
-    color: var(--primary-green);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 2px 10px;
-    border-radius: var(--radius-full);
-    font-size: 12px;
-    font-weight: 800;
-  }
-
-  /* FULL-WIDTH MATCH CARDS GRID */
-  .match-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 16px;
-  }
-  @media (max-width: 600px) {
-    .match-cards-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .match-card-item {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    padding: 14px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    cursor: pointer;
-    transition: var(--transition);
-  }
-  .match-card-item:hover, .match-card-item.active {
-    background: var(--bg-card-hover);
-    border-color: var(--primary-green);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  }
-
-  .match-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--text-muted);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 8px;
-  }
-  .match-league-title {
-    font-weight: 700;
-    color: var(--primary-green);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    max-width: 65%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .match-time-tag {
-    font-size: 11.5px;
-    color: var(--text-muted);
-  }
-
-  .match-card-body {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .team-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    font-weight: 700;
-    font-size: 13.5px;
-    color: #fff;
-  }
-  .team-side.away {
+  .team-entry.away {
     justify-content: flex-end;
     text-align: right;
   }
-  .card-team-logo {
-    width: 32px;
-    height: 32px;
+  .team-mini-logo {
+    width: 20px;
+    height: 20px;
     object-fit: contain;
     flex-shrink: 0;
   }
 
-  .match-center-score {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    min-width: 70px;
-  }
-  .score-badge-live {
+  .match-row-score-badge {
     background: #000;
     color: var(--accent-gold);
-    border: 1px solid rgba(255, 228, 0, 0.4);
     font-family: var(--font-heading);
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 800;
-    padding: 2px 10px;
+    padding: 2px 8px;
     border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 228, 0, 0.25);
+    flex-shrink: 0;
   }
-  .score-badge-upcoming {
+  .match-row-vs-badge {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-muted);
-    border: 1px solid var(--border-subtle);
-    font-family: var(--font-heading);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 800;
-    padding: 2px 10px;
+    padding: 2px 6px;
     border-radius: var(--radius-sm);
-  }
-  .live-dot-tag {
-    color: var(--accent-red);
-    font-size: 10.5px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .match-card-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    padding-top: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  .stream-btn-chip {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-muted);
-    font-size: 11.5px;
-    font-weight: 700;
-    padding: 6px 8px;
-    border-radius: var(--radius-sm);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    transition: var(--transition);
-  }
-  .stream-btn-chip:hover {
-    background: var(--primary-green);
-    color: #000;
-    border-color: var(--primary-green);
+    flex-shrink: 0;
   }
 
   /* HIDE UNWANTED BLOGGER STUFF */
@@ -811,7 +649,7 @@
         <img alt='MEIWATV' class='brand-logo-img' src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/meiwatv1.png'/>
       </a>
 
-      <!-- Navigation Links: Mulai langsung dengan LIVE, hilangkan Beranda -->
+      <!-- Navigation Links: Langsung terhubung dengan Playlist sebelah kanan -->
       <ul class='nav-menu-links'>
         <li><button class='nav-item-btn btn-nav-live active' data-cat='live' onclick='filterMatchesBySport("live", this)' type='button'><i class='fa-solid fa-circle-dot' style='color:#ef4444;'/> 🔴 Sedang LIVE</button></li>
         <li><button class='nav-item-btn' data-cat='football' onclick='filterMatchesBySport("football", this)' type='button'><i class='fa-solid fa-futbol'/> Sepak Bola</button></li>
@@ -819,6 +657,7 @@
         <li><button class='nav-item-btn' data-cat='badminton' onclick='filterMatchesBySport("badminton", this)' type='button'><i class='fa-solid fa-feather'/> Bulu Tangkis</button></li>
         <li><button class='nav-item-btn' data-cat='tennis' onclick='filterMatchesBySport("tennis", this)' type='button'><i class='fa-solid fa-baseball'/> Tenis</button></li>
         <li><button class='nav-item-btn' data-cat='volleyball' onclick='filterMatchesBySport("volleyball", this)' type='button'><i class='fa-solid fa-volleyball'/> Voli</button></li>
+        <li><button class='nav-item-btn' data-cat='esports' onclick='filterMatchesBySport("esports", this)' type='button'><i class='fa-solid fa-gamepad'/> Esports</button></li>
         <li><button class='nav-item-btn' data-cat='all' onclick='filterMatchesBySport("all", this)' type='button'><i class='fa-solid fa-calendar-days'/> Semua Jadwal</button></li>
       </ul>
 
@@ -843,18 +682,16 @@
     </div>
   </div>
 
-  <!-- MAIN THEATER WORKSPACE -->
-  <main class='main-full-container'>
+  <!-- MAIN UNIFIED THEATER WORKSPACE (PLAYER LEFT + PLAYLIST RIGHT) -->
+  <main class='main-theater-container'>
+    <div class='unified-theater-grid'>
 
-    <!-- 1. TWO-COLUMN INTERACTIVE THEATER: PLAYER + QUICK LIVE PLAYLIST -->
-    <div class='theater-grid-layout'>
-
-      <!-- LEFT: VIDEO THEATER PLAYER -->
+      <!-- LEFT: VIDEO THEATER PLAYER BOX -->
       <section class='theater-player-card' id='playerSection'>
         <div class='player-top-bar'>
           <div class='player-match-badge'>
             <span class='live-indicator' id='playerLiveBadge'>
-              <i class='fa-solid fa-circle-dot'/> <span>🔴 LIVE BROADCAST</span>
+              <i class='fa-solid fa-circle-dot'/> <span>🔴 LIVE</span>
             </span>
             <span id='playerLeagueText' style='color:var(--text-muted); font-size:13px;'>Turnamen Olahraga</span>
           </div>
@@ -901,7 +738,7 @@
 
           <div style='display:flex; gap:8px;'>
             <button class='btn-open-source' id='btnOpenNewTab' onclick='openCurrentMatchNewTab()' type='button'>
-              <i class='fa-solid fa-arrow-up-right-from-square'/> <span>Buka Layar Penuh</span>
+              <i class='fa-solid fa-arrow-up-right-from-square'/> <span>Layar Penuh</span>
             </button>
             <button class='btn-server' onclick='shareCurrentMatch()' type='button'>
               <i class='fa-solid fa-share-nodes'/> <span>Bagikan</span>
@@ -910,58 +747,28 @@
         </div>
       </section>
 
-      <!-- RIGHT: QUICK LIVE & POPULAR PLAYLIST (NO NEED TO SCROLL DOWN) -->
-      <aside class='quick-playlist-card'>
-        <div class='quick-playlist-header'>
-          <div class='quick-playlist-title'>
-            <i class='fa-solid fa-bolt' style='color:var(--accent-gold);'/> <span>Siaran Live Cepat</span>
+      <!-- RIGHT: INTERACTIVE PLAYLIST & SCHEDULE PANEL -->
+      <aside class='interactive-playlist-card'>
+        <div class='playlist-header-bar'>
+          <div class='playlist-header-title'>
+            <span id='playlistCategoryIcon'>🔴</span> <span id='playlistCategoryLabel'>Pertandingan LIVE</span>
           </div>
-          <span class='quick-playlist-count' id='quickLiveCount'>0 LIVE</span>
+          <span class='playlist-counter-badge' id='playlistTotalCount'>0 MATCH</span>
         </div>
-        <div class='quick-playlist-body' id='quickPlaylistContainer'>
+
+        <!-- Quick Filter Search Input -->
+        <div class='playlist-search-wrap'>
+          <i class='fa-solid fa-magnifying-glass playlist-search-icon'/>
+          <input class='playlist-search-input' id='playlistSearchInput' oninput='handleMatchSearch(this.value)' placeholder='Cari tim atau liga...' type='text'/>
+        </div>
+
+        <!-- Scrollable Match List with Sport Separators -->
+        <div class='playlist-scroll-area' id='playlistContainer'>
           <!-- Injected via JavaScript -->
         </div>
       </aside>
 
     </div>
-
-    <!-- 2. FULL SCHEDULE & SPORTS CATEGORY FILTER CONTROLS -->
-    <div class='schedule-filter-controls'>
-      <div class='sports-chips-nav'>
-        <button class='sport-chip chip-live active' data-cat='live' onclick='filterMatchesBySport("live", this)' type='button'>
-          <span>🔴 Sedang LIVE</span> <span class='chip-count' id='countLive'>0</span>
-        </button>
-        <button class='sport-chip' data-cat='football' onclick='filterMatchesBySport("football", this)' type='button'>
-          <span>⚽ Sepak Bola</span> <span class='chip-count' id='countFootball'>0</span>
-        </button>
-        <button class='sport-chip' data-cat='basketball' onclick='filterMatchesBySport("basketball", this)' type='button'>
-          <span>🏀 Basket</span> <span class='chip-count' id='countBasketball'>0</span>
-        </button>
-        <button class='sport-chip' data-cat='badminton' onclick='filterMatchesBySport("badminton", this)' type='button'>
-          <span>🏸 Bulu Tangkis</span> <span class='chip-count' id='countBadminton'>0</span>
-        </button>
-        <button class='sport-chip' data-cat='tennis' onclick='filterMatchesBySport("tennis", this)' type='button'>
-          <span>🎾 Tenis</span> <span class='chip-count' id='countTennis'>0</span>
-        </button>
-        <button class='sport-chip' data-cat='volleyball' onclick='filterMatchesBySport("volleyball", this)' type='button'>
-          <span>🏐 Voli</span> <span class='chip-count' id='countVolleyball'>0</span>
-        </button>
-        <button class='sport-chip' data-cat='all' onclick='filterMatchesBySport("all", this)' type='button'>
-          <span>🌐 Semua Jadwal</span> <span class='chip-count' id='countAll'>0</span>
-        </button>
-      </div>
-
-      <!-- Quick Search Box -->
-      <div class='search-box-wrap'>
-        <i class='fa-solid fa-magnifying-glass search-icon'/>
-        <input class='search-input' id='matchSearchInput' oninput='handleMatchSearch(this.value)' placeholder='Cari tim, liga, atau olahraga...' type='text'/>
-      </div>
-    </div>
-
-    <!-- 3. GROUPED MATCHES CONTAINER WITH SPORT SEPARATORS -->
-    <section id='groupedMatchesContainer'>
-      <!-- Injected via JavaScript with clear Sport Dividers -->
-    </section>
 
     <!-- HIDDEN BLOGGER POST INJECTION (FOR SEO) -->
     <b:section id='mainBlogSection' showaddelement='false'>
@@ -3501,31 +3308,30 @@
     if (text.includes('voli') || text.includes('volleyball') || text.includes('bóng chuyền')) {
       return { icon: '🏐', name: 'Bola Voli', key: 'volleyball' };
     }
-    if (text.includes('esport') || text.includes('dota') || text.includes('league of legends') || text.includes('crossfire') || text.includes('cs2') || text.includes('pubg')) {
+    if (text.includes('esport') || text.includes('dota') || text.includes('league of legends') || text.includes('crossfire') || text.includes('cs2') || text.includes('pubg') || text.includes('lcs') || text.includes('lec') || text.includes('lit') || text.includes('vcs')) {
       return { icon: '🎮', name: 'Esports & Gaming', key: 'esports' };
     }
     return { icon: '⚽', name: 'Sepak Bola', key: 'football' };
   }
 
-  // 2. RENDER MATCHES WITH CLEAN SPORT CATEGORY SEPARATORS
-  function renderMatchList(matchesToRender) {
+  // 2. RENDER INTERACTIVE PLAYLIST (RIGHT PANEL) WITH SPORT SEPARATORS
+  function renderInteractivePlaylist(matchesToRender) {
     allLoadedMatches = matchesToRender || AUTO_LIVE_DATASET;
-    updateCategoryBadges(allLoadedMatches);
-    renderQuickPlaylist(allLoadedMatches);
 
-    const container = document.getElementById('groupedMatchesContainer');
-    if (!container) return;
+    const playlistContainer = document.getElementById('playlistContainer');
+    const playlistLabel = document.getElementById('playlistCategoryLabel');
+    const playlistIcon = document.getElementById('playlistCategoryIcon');
+    const playlistTotalCount = document.getElementById('playlistTotalCount');
+    if (!playlistContainer) return;
 
+    // Filter Matches based on current category tab and search query
     let filtered = allLoadedMatches.filter(m => {
       const sportMeta = getSportCategoryMeta(m.sportCategory || '', m.title || '', m.league || '');
       const isLive = m.status === 1;
-      const isFinished = m.status === 2;
-      const isUpcoming = m.status === 0;
 
-      if (currentCategoryFilter === 'live' && !isLive) return false;
-      if (currentCategoryFilter === 'upcoming' && !isUpcoming) return false;
-      if (currentCategoryFilter === 'finished' && !isFinished) return false;
-      if (['football', 'basketball', 'badminton', 'tennis', 'volleyball', 'esports'].includes(currentCategoryFilter)) {
+      if (currentCategoryFilter === 'live') {
+        if (!isLive) return false;
+      } else if (currentCategoryFilter !== 'all') {
         if (sportMeta.key !== currentCategoryFilter) return false;
       }
 
@@ -3538,20 +3344,36 @@
       return true;
     });
 
+    // Update Header labels in right playlist
+    const titlesMap = {
+      live: { icon: '🔴', title: 'Pertandingan Sedang LIVE' },
+      football: { icon: '⚽', title: 'Jadwal & Live Sepak Bola' },
+      basketball: { icon: '🏀', title: 'Jadwal & Live Bola Basket' },
+      badminton: { icon: '🏸', title: 'Jadwal & Live Bulu Tangkis' },
+      tennis: { icon: '🎾', title: 'Jadwal & Live Tenis' },
+      volleyball: { icon: '🏐', title: 'Jadwal & Live Bola Voli' },
+      esports: { icon: '🎮', title: 'Jadwal & Live Esports' },
+      all: { icon: '🌐', title: 'Semua Jadwal Olahraga' }
+    };
+
+    const currentMeta = titlesMap[currentCategoryFilter] || { icon: '🏆', title: 'Jadwal Olahraga' };
+    if (playlistIcon) playlistIcon.textContent = currentMeta.icon;
+    if (playlistLabel) playlistLabel.textContent = currentMeta.title;
+    if (playlistTotalCount) playlistTotalCount.textContent = `${filtered.length} MATCH`;
+
     if (filtered.length === 0) {
-      container.innerHTML = `
-        <div style="text-align:center; padding:50px 20px; background:var(--bg-card); border-radius:var(--radius-lg); border:1px solid var(--border-subtle); color:var(--text-muted); margin-top:10px;">
-          <i class="fa-solid fa-calendar-xmark fa-3x" style="color:var(--text-dim); margin-bottom:12px;"></i>
-          <p style="font-weight:700; font-size:16px; color:#fff;">Tidak ada pertandingan ditemukan pada kategori ini</p>
-          <p style="font-size:13px; color:var(--text-dim); margin-top:4px;">Silakan pilih kategori olahraga lain atau klik "Semua Jadwal".</p>
+      playlistContainer.innerHTML = `
+        <div style="text-align:center; padding:40px 10px; color:var(--text-muted);">
+          <i class="fa-solid fa-calendar-xmark fa-2x" style="color:var(--text-dim); margin-bottom:8px;"></i>
+          <p style="font-weight:700; font-size:13px; color:#fff;">Tidak ada pertandingan saat ini</p>
+          <p style="font-size:11.5px; color:var(--text-dim); margin-top:2px;">Silakan pilih cabang olahraga lain di menu atas.</p>
         </div>`;
       return;
     }
 
     // Kelompokkan per Kategori Olahraga
-    const groups = {};
     const groupOrder = ['football', 'basketball', 'badminton', 'tennis', 'volleyball', 'esports'];
-
+    const groups = {};
     groupOrder.forEach(k => { groups[k] = []; });
 
     filtered.forEach(m => {
@@ -3567,169 +3389,79 @@
       if (!list || list.length === 0) return;
 
       const sampleMeta = getSportCategoryMeta(groupKey, '', '');
-      const isLiveGroup = currentCategoryFilter === 'live';
 
-      fullHtml += `
-        <div class="sport-category-block">
-          <div class="sport-category-group-header">
-            <div class="sport-category-title">
-              <span>${sampleMeta.icon}</span> <span>${sampleMeta.name} ${isLiveGroup ? 'SEDANG LIVE' : ''}</span>
+      // Tampilkan pemisah olahraga jika mode LIVE atau mode SEMUA JADWAL
+      if (currentCategoryFilter === 'live' || currentCategoryFilter === 'all') {
+        fullHtml += `
+          <div class="playlist-category-divider">
+            <div class="playlist-divider-title">
+              <span>${sampleMeta.icon}</span> <span>${sampleMeta.name} ${currentCategoryFilter === 'live' ? 'LIVE' : ''}</span>
             </div>
-            <span class="sport-category-badge">${list.length} Pertandingan</span>
+            <span class="playlist-divider-count">${list.length}</span>
           </div>
-
-          <div class="match-cards-grid">
-      `;
+        `;
+      }
 
       list.forEach(match => {
         const globalIdx = allLoadedMatches.indexOf(match);
         const isLive = match.status === 1;
         const isFinished = match.status === 2;
-        const homeName = match.homeTeam || match.title.split(' vs ')[0] || 'Tuan Rumah';
-        const awayName = match.awayTeam || match.title.split(' vs ')[1] || 'Tamu';
+        const homeName = match.homeTeam || match.title.split(' vs ')[0] || 'Tim 1';
+        const awayName = match.awayTeam || match.title.split(' vs ')[1] || 'Tim 2';
         const homeLogo = match.homeLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
         const awayLogo = match.awayLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
 
-        let scoreBadgeHtml = '';
-        let statusTagHtml = '';
-
+        let scoreBadge = '';
         if (isLive) {
-          scoreBadgeHtml = `<div class="score-badge-live">${match.scoreText || '0 - 0'}</div>`;
-          statusTagHtml = `<span class="live-dot-tag"><i class="fa-solid fa-circle fa-2xs"></i> LIVE ${match.matchMinute ? match.matchMinute : ''}</span>`;
+          scoreBadge = `<span class="match-row-score-badge">${match.scoreText || 'LIVE'}</span>`;
         } else if (isFinished) {
-          scoreBadgeHtml = `<div class="score-badge-upcoming">${match.scoreText || 'FT'}</div>`;
-          statusTagHtml = `<span style="color:var(--text-dim); font-size:10.5px;">🏁 Selesai</span>`;
+          scoreBadge = `<span class="match-row-vs-badge" style="color:var(--text-dim);">FT</span>`;
         } else {
-          scoreBadgeHtml = `<div class="score-badge-upcoming">VS</div>`;
-          statusTagHtml = `<span style="color:var(--primary-green); font-size:11px; font-weight:700;">⏰ ${match.kickoffText || 'Siap Tayang'}</span>`;
+          scoreBadge = `<span class="match-row-vs-badge">VS</span>`;
         }
 
         const activeClass = (currentActiveMatch && currentActiveMatch.title === match.title) ? ' active' : '';
 
         fullHtml += `
-          <div class="match-card-item${activeClass}" onclick="selectMatchCard(${globalIdx})" id="match-card-${globalIdx}">
-            <div class="match-card-header">
-              <span class="match-league-title">
-                <span>${sampleMeta.icon}</span> <span>${match.league || 'Turnamen Olahraga'}</span>
+          <div class="match-row-item${activeClass}" onclick="selectMatchCard(${globalIdx})" id="match-row-${globalIdx}">
+            <div class="match-row-header">
+              <span class="match-row-league">${match.league || 'Turnamen Olahraga'}</span>
+              <span class="match-row-time">
+                ${isLive ? '<span class="live-indicator" style="padding:1px 6px; font-size:9.5px;"><i class="fa-solid fa-circle fa-2xs"></i> LIVE</span>' : '<i class="fa-regular fa-clock"></i> ' + (match.kickoffText || '')}
               </span>
-              <span class="match-time-tag"><i class="fa-regular fa-clock"></i> ${match.kickoffText || ''}</span>
             </div>
 
-            <div class="match-card-body">
-              <div class="team-side">
-                <img src="${homeLogo}" alt="${homeName}" class="card-team-logo" onerror="this.src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'"/>
+            <div class="match-row-teams-grid">
+              <div class="team-entry">
+                <img src="${homeLogo}" alt="${homeName}" class="team-mini-logo" onerror="this.src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'"/>
                 <span>${homeName}</span>
               </div>
 
-              <div class="match-center-score">
-                ${scoreBadgeHtml}
-                ${statusTagHtml}
-              </div>
+              ${scoreBadge}
 
-              <div class="team-side away">
+              <div class="team-entry away">
                 <span>${awayName}</span>
-                <img src="${awayLogo}" alt="${awayName}" class="card-team-logo" onerror="this.src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'"/>
+                <img src="${awayLogo}" alt="${awayName}" class="team-mini-logo" onerror="this.src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'"/>
               </div>
-            </div>
-
-            <div class="match-card-actions" onclick="event.stopPropagation();">
-              <button class="stream-btn-chip" onclick="playMatchDirect(${globalIdx}, 1)" type="button">
-                <i class="fa-solid fa-play fa-xs" style="color:var(--primary-green);"></i> <span>Jalur 1 (HD)</span>
-              </button>
-              <button class="stream-btn-chip" onclick="playMatchDirect(${globalIdx}, 2)" type="button">
-                <i class="fa-solid fa-bolt fa-xs" style="color:var(--accent-gold);"></i> <span>Jalur 2 (FHD)</span>
-              </button>
-              <button class="stream-btn-chip" onclick="playMatchDirect(${globalIdx}, 3)" type="button">
-                <i class="fa-solid fa-server fa-xs"></i> <span>Jalur 3</span>
-              </button>
             </div>
           </div>
         `;
       });
-
-      fullHtml += `
-          </div>
-        </div>
-      `;
     });
 
-    container.innerHTML = fullHtml;
+    playlistContainer.innerHTML = fullHtml;
 
-    // Auto-select first live match on first load
-    if (!currentActiveMatch) {
-      const firstLive = allLoadedMatches.find(m => m.status === 1) || allLoadedMatches[0];
-      if (firstLive) {
-        setHeroMatchPreview(firstLive);
-      }
+    // Auto-load first match into player if not set
+    if (!currentActiveMatch && filtered.length > 0) {
+      setHeroMatchPreview(filtered[0]);
     }
   }
 
-  // 3. RENDER QUICK LIVE PLAYLIST IN THE RIGHT COLUMN
-  function renderQuickPlaylist(matches) {
-    const playlistContainer = document.getElementById('quickPlaylistContainer');
-    const quickLiveCountEl = document.getElementById('quickLiveCount');
-    if (!playlistContainer) return;
-
-    // Prioritaskan pertandingan yang berstatus LIVE, kemudian yang akan segera tayang
-    const liveMatches = matches.filter(m => m.status === 1);
-    const candidateMatches = liveMatches.length > 0 ? liveMatches : matches.slice(0, 15);
-
-    if (quickLiveCountEl) {
-      quickLiveCountEl.textContent = `${liveMatches.length} LIVE`;
-    }
-
-    if (candidateMatches.length === 0) {
-      playlistContainer.innerHTML = `<p style="color:var(--text-dim); text-align:center; padding:20px 0; font-size:12px;">Belum ada pertandingan live saat ini.</p>`;
-      return;
-    }
-
-    let html = '';
-    candidateMatches.forEach(m => {
-      const globalIdx = allLoadedMatches.indexOf(m);
-      const isLive = m.status === 1;
-      const meta = getSportCategoryMeta(m.sportCategory || '', m.title || '', m.league || '');
-      const home = m.homeTeam || m.title.split(' vs ')[0] || 'Tim 1';
-      const away = m.awayTeam || m.title.split(' vs ')[1] || 'Tim 2';
-      const score = isLive ? (m.scoreText || 'LIVE') : (m.kickoffText || 'VS');
-      const activeClass = (currentActiveMatch && currentActiveMatch.title === m.title) ? ' active' : '';
-
-      html += `
-        <div class="quick-match-row${activeClass}" onclick="selectMatchCard(${globalIdx})">
-          <div class="quick-match-row-top">
-            <span class="quick-match-row-league">${meta.icon} ${m.league || 'Sport'}</span>
-            ${isLive ? '<span class="live-dot-tag"><i class="fa-solid fa-circle fa-2xs"></i> LIVE</span>' : '<span style="color:var(--text-dim);">' + (m.kickoffText || '') + '</span>'}
-          </div>
-          <div class="quick-match-row-teams">
-            <span>${home} vs ${away}</span>
-            <span class="quick-match-row-score">${score}</span>
-          </div>
-        </div>
-      `;
-    });
-
-    playlistContainer.innerHTML = html;
-  }
-
-  // 4. UPDATE CATEGORY BADGE COUNTERS
-  function updateCategoryBadges(matches) {
-    let counts = { all: matches.length, live: 0, football: 0, basketball: 0, badminton: 0, tennis: 0, volleyball: 0, esports: 0 };
-    matches.forEach(m => {
-      if (m.status === 1) counts.live++;
-      const meta = getSportCategoryMeta(m.sportCategory || '', m.title || '', m.league || '');
-      if (counts[meta.key] !== undefined) counts[meta.key]++;
-    });
-
-    for (const key in counts) {
-      const el = document.getElementById('count' + key.charAt(0).toUpperCase() + key.slice(1));
-      if (el) el.textContent = counts[key];
-    }
-  }
-
-  // 5. FILTER MATCHES BY SPORT
+  // 3. FILTER MATCHES BY SPORT (HEADER TABS CLICK)
   function filterMatchesBySport(category, clickedElement) {
     currentCategoryFilter = category;
 
-    document.querySelectorAll('.nav-item-btn, .sport-chip').forEach(el => {
+    document.querySelectorAll('.nav-item-btn').forEach(el => {
       el.classList.remove('active');
     });
 
@@ -3741,16 +3473,16 @@
       clickedElement.classList.add('active');
     }
 
-    renderMatchList(allLoadedMatches);
+    renderInteractivePlaylist(allLoadedMatches);
   }
 
-  // 6. SEARCH HANDLER
+  // 4. SEARCH HANDLER
   function handleMatchSearch(keyword) {
     currentSearchKeyword = keyword;
-    renderMatchList(allLoadedMatches);
+    renderInteractivePlaylist(allLoadedMatches);
   }
 
-  // 7. SELECT MATCH CARD & SET PREVIEW
+  // 5. SELECT MATCH CARD & SET PREVIEW
   function selectMatchCard(index) {
     const match = allLoadedMatches[index];
     if (!match) return;
@@ -3800,9 +3532,14 @@
 
     const awayLogoEl = document.getElementById('detailAwayLogo');
     if (awayLogoEl) awayLogoEl.src = match.awayLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
+
+    // Highlight active card in playlist
+    document.querySelectorAll('.match-row-item').forEach(el => el.classList.remove('active'));
+    const activeEl = document.getElementById('match-row-' + allLoadedMatches.indexOf(match));
+    if (activeEl) activeEl.classList.add('active');
   }
 
-  // 8. PLAY STREAM DIRECTLY
+  // 6. PLAY STREAM DIRECTLY
   function playMatchDirect(index, serverIndex) {
     const match = allLoadedMatches[index];
     if (match) setHeroMatchPreview(match);
@@ -3810,8 +3547,8 @@
 
     triggerAdsterra();
 
-    // Scroll smoothly to player if on mobile
-    if (window.innerWidth < 1080) {
+    // Scroll smoothly to player if on small screen
+    if (window.innerWidth < 1100) {
       const playerCard = document.getElementById('playerSection');
       if (playerCard) {
         playerCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -3859,7 +3596,7 @@
     executeStreamPlayback(targetStreamUrl, currentActiveMatch);
   }
 
-  // 9. ROBUST STREAM PLAYBACK ENGINE (NO REFUSED TO CONNECT)
+  // 7. ROBUST STREAM PLAYBACK ENGINE (NO REFUSED TO CONNECT)
   function executeStreamPlayback(streamUrl, match) {
     const video = document.getElementById('mainVideoPlayer');
     const iframe = document.getElementById('mainIframePlayer');
@@ -3869,7 +3606,6 @@
 
     const cleanWebUrl = (match && (match.streamJalur3 || match.postUrl)) ? (match.streamJalur3 || match.postUrl) : streamUrl;
 
-    // Jika URL adalah internal AJAX endpoint (domainkqt.cc) yang menolak iframe, gunakan langsung clean web url atau direct stream
     const isAjaxEndpoint = streamUrl && (streamUrl.includes('domainkqt.cc') || streamUrl.includes('/ajax/chanel'));
     const isDirectFlv = streamUrl && (streamUrl.endsWith('.flv') || streamUrl.includes('.flv?'));
     const isDirectM3u8 = streamUrl && (streamUrl.endsWith('.m3u8') || streamUrl.includes('.m3u8?'));
@@ -3937,7 +3673,7 @@
     }
   }
 
-  // 10. REAL-TIME MATCHES SYNC
+  // 8. REAL-TIME MATCHES SYNC
   function fetchLiveMatchesDirect() {
     const syncSources = [
       'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/matches.json',
@@ -3954,7 +3690,7 @@
         .then(data => {
           if (Array.isArray(data) && data.length > 0) {
             allLoadedMatches = data;
-            renderMatchList(allLoadedMatches);
+            renderInteractivePlaylist(allLoadedMatches);
           }
         })
         .catch(() => {
@@ -3965,9 +3701,9 @@
     tryFetchSource(0);
   }
 
-  // 11. INIT ON DOM LOAD
+  // 9. INIT ON DOM LOAD
   function initLivePortal() {
-    renderMatchList(AUTO_LIVE_DATASET);
+    renderInteractivePlaylist(AUTO_LIVE_DATASET);
 
     setTimeout(function() {
       fetchLiveMatchesDirect();
