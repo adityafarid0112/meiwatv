@@ -24,7 +24,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel2.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel24.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.775Z"
+    "updatedAt": "2026-09-19T09:47:36.019Z"
   },
   {
     "id": "match_2_brighton-vs-arsenal",
@@ -51,7 +51,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel5.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.776Z"
+    "updatedAt": "2026-09-19T09:47:36.020Z"
   },
   {
     "id": "match_3_shanghai-second-vs-hubei-",
@@ -78,7 +78,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel11.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.777Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_4_xian-ronghai-fc-vs-guizho",
@@ -105,7 +105,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel12.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel12.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.777Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_5_dalian-yingbo-b-vs-guangz",
@@ -132,7 +132,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.777Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_6_csa-steaua-bucuresti-vs-a",
@@ -141,9 +141,9 @@
     "awayTeam": "A.C.F. Gloria Bistrita",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/zp5rzghzv6kq82w/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/z8yomo4hjnvq0j6/image/small",
-    "homeScore": "1",
-    "awayScore": "2",
-    "scoreText": "1 - 2",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "Liga 2 Rumania",
     "sportCategory": "⚽ Sepak Bola",
@@ -159,7 +159,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel14.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel14.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.777Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_7_jecheon-citizen-fc-vs-geo",
@@ -168,9 +168,9 @@
     "awayTeam": "Geoje Citizen",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/3glrw7hog21qdyj/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryohg5lvq1zp/image/small",
-    "homeScore": "1",
-    "awayScore": "1",
-    "scoreText": "1 - 1",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "K4 League",
     "sportCategory": "⚽ Sepak Bola",
@@ -186,7 +186,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel27.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel27.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.777Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_8_fc-bacau-vs-cetate-suceav",
@@ -213,7 +213,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel10.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel10.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.777Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_9_csm-slatina-vs-selimbar",
@@ -222,9 +222,9 @@
     "awayTeam": "Selimbar",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8gh85ldr6od/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekhykxnrepz/image/small",
-    "homeScore": "1",
-    "awayScore": "2",
-    "scoreText": "1 - 2",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "Liga 2 Rumania",
     "sportCategory": "⚽ Sepak Bola",
@@ -240,7 +240,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel65.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel65.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_10_lindab-stefanesti-vs-meta",
@@ -249,9 +249,9 @@
     "awayTeam": "Metaloglobus",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh110pryk0/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/2y8m4zh3l12ql07/image/small",
-    "homeScore": "2",
-    "awayScore": "1",
-    "scoreText": "2 - 1",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "Liga 2 Rumania",
     "sportCategory": "⚽ Sepak Bola",
@@ -267,7 +267,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel66.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel66.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_11_sk-motorlet-praha-vs-bene",
@@ -276,9 +276,9 @@
     "awayTeam": "Benesov",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/318q66hox4pqo9j/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/y39mp1h5jkpmojx/image/small",
-    "homeScore": "1",
-    "awayScore": "0",
-    "scoreText": "1 - 0",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "Czech 3 liga",
     "sportCategory": "⚽ Sepak Bola",
@@ -294,7 +294,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_12_slavia-prague-c-vs-domazl",
@@ -303,9 +303,9 @@
     "awayTeam": "Domazlice",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkhxp42qg8n/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/6ypq3nh0p4pmd7o/image/small",
-    "homeScore": "4",
-    "awayScore": "3",
-    "scoreText": "4 - 3",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "Czech 3 liga",
     "sportCategory": "⚽ Sepak Bola",
@@ -321,7 +321,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel16.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel16.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.021Z"
   },
   {
     "id": "match_13_psm-makassar-vs-persita",
@@ -330,9 +330,9 @@
     "awayTeam": "Persita",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnh6699m7vx/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnh137nm7vx/image/small",
-    "homeScore": "2",
-    "awayScore": "4",
-    "scoreText": "2 - 4",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "BRI Liga 1 Indonesia",
     "sportCategory": "⚽ Sepak Bola",
@@ -348,7 +348,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.022Z"
   },
   {
     "id": "match_14_persebaya-vs-garudayaksa-",
@@ -375,7 +375,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.022Z"
   },
   {
     "id": "match_15_darwin-olympics-vs-port-d",
@@ -384,9 +384,9 @@
     "awayTeam": "Port Darwin FC",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/x7lm7phopzlm2wd/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh4jwnr1ge/image/small",
-    "homeScore": "1",
-    "awayScore": "0",
-    "scoreText": "1 - 0",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "Ngoại Hạng Darwin",
     "sportCategory": "⚽ Sepak Bola",
@@ -402,7 +402,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel17.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel17.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.022Z"
   },
   {
     "id": "match_16_kawasaki-frontale-vs-kash",
@@ -411,9 +411,9 @@
     "awayTeam": "Kashima Antlers",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/gpxwrxlho65ryk0/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/j1l4rjnhp8nm7vx/image/small",
-    "homeScore": "0",
-    "awayScore": "2",
-    "scoreText": "0 - 2",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "J1 League",
     "sportCategory": "⚽ Sepak Bola",
@@ -429,7 +429,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel16.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel16.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.022Z"
   },
   {
     "id": "match_17_avispa-fukuoka-vs-sanfrec",
@@ -438,9 +438,9 @@
     "awayTeam": "Sanfrecce Hiroshima",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9dn1m1ghdp1moep/image/small",
-    "homeScore": "2",
-    "awayScore": "2",
-    "scoreText": "2 - 2",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "J1 League",
     "sportCategory": "⚽ Sepak Bola",
@@ -456,7 +456,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel17.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel17.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.022Z"
   },
   {
     "id": "match_18_dong-tam-long-an-vs-bac-n",
@@ -465,9 +465,9 @@
     "awayTeam": "Bắc Ninh",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4wyrn4h8wo6q86p/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnhz9yxm7vx/image/small",
-    "homeScore": "0",
-    "awayScore": "1",
-    "scoreText": "0 - 1",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "Piala Nasional Vietnam",
     "sportCategory": "⚽ Sepak Bola",
@@ -483,7 +483,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel4.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel4.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.778Z"
+    "updatedAt": "2026-09-19T09:47:36.022Z"
   },
   {
     "id": "match_19_dalian-kewei-vs-shenzhen-",
@@ -510,7 +510,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.779Z"
+    "updatedAt": "2026-09-19T09:47:36.022Z"
   },
   {
     "id": "match_20_veertien-mie-vs-yokogawa-",
@@ -519,9 +519,9 @@
     "awayTeam": "Yokogawa Musa",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/3glrw7hwn0pqdyj/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkh3l3jqg8n/image/small",
-    "homeScore": "0",
-    "awayScore": "2",
-    "scoreText": "0 - 2",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "JFL",
     "sportCategory": "⚽ Sepak Bola",
@@ -537,7 +537,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel21.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel21.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.779Z"
+    "updatedAt": "2026-09-19T09:47:36.022Z"
   },
   {
     "id": "match_21_melbourne-united-vs-adela",
@@ -564,7 +564,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.779Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_22_ateneo-blue-eagles-vs-fig",
@@ -591,7 +591,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel42.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel42.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.779Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_23_ankaragucu-mamak-vs-mersi",
@@ -618,7 +618,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.779Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_24_perth-wildcats-vs-sem-pho",
@@ -645,7 +645,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.779Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_25_ha-noi-buffalo-vs-sai-gon",
@@ -672,7 +672,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_26_anadolu-efes1976-vs-unics",
@@ -699,7 +699,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_27_derthona-basket-vs-reyer-",
@@ -726,7 +726,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_28_rostock-seawolves-vs-phoe",
@@ -753,7 +753,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_29_olimpia-milano-vs-virtus-",
@@ -780,7 +780,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel42.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel42.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_30_telekom-baskets-bonn-vs-h",
@@ -807,7 +807,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_31_valencia-vs-barcelona",
@@ -834,7 +834,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_32_nu-atlanta-dream-vs-nu-ch",
@@ -861,7 +861,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_33_astros-de-jalisco-vs-dora",
@@ -888,7 +888,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_34_nu-golden-state-vs-nu-sea",
@@ -915,7 +915,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_35_nu-hong-kong-vs-nu-philip",
@@ -942,7 +942,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_36_nu-kazakhstan-vs-nu-nhat-",
@@ -969,7 +969,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_37_new-zealand-breakers-vs-l",
@@ -996,7 +996,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.023Z"
   },
   {
     "id": "match_38_sydney-kings-vs-cairns-ta",
@@ -1023,7 +1023,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_39_melilla-baloncesto-vs-jae",
@@ -1050,7 +1050,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_40_konya-buyuksehir-vs-harem",
@@ -1077,7 +1077,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_41_yao-xinxin-vs-priscilla-h",
@@ -1094,7 +1094,7 @@
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T13:45:00+07:00",
     "kickoffText": "13:45 WIB (19/09)",
-    "status": 1,
+    "status": 2,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel57.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
@@ -1104,7 +1104,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_42_liang-en-shuo-vs-sara-sai",
@@ -1121,7 +1121,7 @@
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T14:50:00+07:00",
     "kickoffText": "14:50 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel50.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
@@ -1131,7 +1131,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel50.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.780Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_43_alexander-shevchenko-vs-k",
@@ -1148,7 +1148,7 @@
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T15:10:00+07:00",
     "kickoffText": "15:10 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel51.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
@@ -1158,7 +1158,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel51.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_44_alevtina-ibragimova-vs-ri",
@@ -1185,7 +1185,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel58.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_45_menelaos-efstathiou-vs-ol",
@@ -1202,7 +1202,7 @@
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T16:10:00+07:00",
     "kickoffText": "16:10 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel52.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
@@ -1212,7 +1212,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel52.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_46_jurij-rodionov-vs-zizou-b",
@@ -1239,7 +1239,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel53.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel53.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_47_norbert-gombos-vs-stefano",
@@ -1266,7 +1266,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel54.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel54.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_48_alexander-zverev-vs-matej",
@@ -1293,7 +1293,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel55.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel55.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_49_adam-pavlasek-patrik-rikl",
@@ -1320,7 +1320,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel32.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel32.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_50_arthur-fery-vs-alvaro-gui",
@@ -1347,7 +1347,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel56.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel56.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_51_jakub-mensik-vs-ben-shelt",
@@ -1374,7 +1374,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel32.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel32.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_52_casper-ruud-vs-cui-jie",
@@ -1401,7 +1401,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_53_cristian-garin-vs-rafael-",
@@ -1428,7 +1428,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel58.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_54_felix-auger-aliassime-vs-",
@@ -1455,7 +1455,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel59.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel59.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_55_liam-draxl-vs-quentin-hal",
@@ -1482,7 +1482,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel50.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_56_joaquin-aguilar-cardozo-v",
@@ -1499,7 +1499,7 @@
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-20T03:20:00+07:00",
     "kickoffText": "03:20 WIB (20/09)",
-    "status": 1,
+    "status": 0,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel51.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
@@ -1509,7 +1509,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel51.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_57_juan-pablo-varillas-vs-he",
@@ -1536,7 +1536,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel52.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.781Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_58_ba-lan-vs-latvia",
@@ -1563,7 +1563,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel33.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel33.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.024Z"
   },
   {
     "id": "match_59_duc-vs-bulgaria",
@@ -1590,7 +1590,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel33.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel33.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_60_invictus-gaming-vs-jd-gam",
@@ -1617,7 +1617,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel30.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel30.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_61_mvk-academy-vs-saigon-din",
@@ -1644,7 +1644,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_62_forsaken-vs-bomba-team",
@@ -1671,7 +1671,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel71.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel71.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_63_9gaming-vs-cybercore-espo",
@@ -1698,7 +1698,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_64_karmine-corp-vs-movistar-",
@@ -1725,7 +1725,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel30.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel30.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_65_hmble-vs-colossal-gaming",
@@ -1752,7 +1752,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_66_lyon-gaming-vs-cloud9",
@@ -1779,7 +1779,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_67_1w-team-vs-team-nemesis",
@@ -1796,7 +1796,7 @@
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T14:00:00+07:00",
     "kickoffText": "14:00 WIB (19/09)",
-    "status": 1,
+    "status": 2,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel72.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
@@ -1806,7 +1806,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_68_natus-vincere-vs-hokori",
@@ -1823,7 +1823,7 @@
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T17:00:00+07:00",
     "kickoffText": "17:00 WIB (19/09)",
-    "status": 1,
+    "status": 0,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel74.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
@@ -1833,7 +1833,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel74.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.782Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_69_team-spirit-academy-vs-in",
@@ -1860,7 +1860,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_70_kalmychata-vs-yellow-subm",
@@ -1877,7 +1877,7 @@
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-18T01:00:00+07:00",
     "kickoffText": "01:00 WIB (18/09)",
-    "status": 0,
+    "status": 2,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel72.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
@@ -1887,7 +1887,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.025Z"
   },
   {
     "id": "match_71_team-yandex-vs-mousesport",
@@ -1914,7 +1914,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel73.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_72_team-lynx-vs-balu-team",
@@ -1941,7 +1941,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel74.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_73_puckchamp-vs-balu-team",
@@ -1958,7 +1958,7 @@
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-17T16:00:00+07:00",
     "kickoffText": "16:00 WIB (17/09)",
-    "status": 0,
+    "status": 2,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel70.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
@@ -1968,7 +1968,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_74_kalmychata-vs-two-move",
@@ -1985,7 +1985,7 @@
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-15T16:00:00+07:00",
     "kickoffText": "16:00 WIB (15/09)",
-    "status": 0,
+    "status": 2,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel73.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
@@ -1995,7 +1995,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel73.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_75_nexus-vs-permitta",
@@ -2022,7 +2022,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_76_mouz-vs-furia",
@@ -2049,7 +2049,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel76.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel76.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_77_aurora-vs-vitality",
@@ -2076,7 +2076,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel77.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel77.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_78_black-phoenix-vs-baks",
@@ -2103,7 +2103,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel78.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel78.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_79_genone-vs-berg-famalicao-",
@@ -2130,7 +2130,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel79.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel79.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.783Z"
+    "updatedAt": "2026-09-19T09:47:36.026Z"
   },
   {
     "id": "match_80_regain-vs-without-a-roof",
@@ -2142,12 +2142,12 @@
     "homeScore": "",
     "awayScore": "",
     "scoreText": "",
-    "matchMinute": "0 - 0",
+    "matchMinute": "",
     "league": "CROSSFIRE Season 6",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-20T07:00:00+07:00",
     "kickoffText": "07:00 WIB (20/09)",
-    "status": 1,
+    "status": 0,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
@@ -2157,7 +2157,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:33.784Z"
+    "updatedAt": "2026-09-19T09:47:36.027Z"
   },
   {
     "id": "match_81_reinmeer-aomori-vs-honda-",
@@ -2166,9 +2166,9 @@
     "awayTeam": "Honda FC",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh13ejryk0/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/gpxwrxlhdw9ryk0/image/small",
-    "homeScore": "2",
-    "awayScore": "2",
-    "scoreText": "2 - 2",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "JFL",
     "sportCategory": "⚽ Sepak Bola",
@@ -2184,7 +2184,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel22.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel22.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.052Z"
+    "updatedAt": "2026-09-19T09:47:37.144Z"
   },
   {
     "id": "match_82_arambagh-ks-vs-bashundhar",
@@ -2193,9 +2193,9 @@
     "awayTeam": "Bashundhara Kings",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh1l8lryk0/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/4jwq2ghv411m0ve/image/small",
-    "homeScore": "2",
-    "awayScore": "1",
-    "scoreText": "2 - 1",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "Bangladesh Premier League",
     "sportCategory": "⚽ Sepak Bola",
@@ -2211,7 +2211,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.052Z"
+    "updatedAt": "2026-09-19T09:47:37.144Z"
   },
   {
     "id": "match_83_vonds-ichihara-vs-maruyas",
@@ -2238,7 +2238,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.052Z"
+    "updatedAt": "2026-09-19T09:47:37.144Z"
   },
   {
     "id": "match_84_shimizu-s-pulse-vs-jef-un",
@@ -2247,9 +2247,9 @@
     "awayTeam": "JEF United",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l965mkyh9j9r1ge/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9k82rekhd0orepz/image/small",
-    "homeScore": "2",
-    "awayScore": "0",
-    "scoreText": "2 - 0",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "J1 League",
     "sportCategory": "⚽ Sepak Bola",
@@ -2265,7 +2265,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.053Z"
+    "updatedAt": "2026-09-19T09:47:37.144Z"
   },
   {
     "id": "match_85_v-varen-nagasaki-vs-cerez",
@@ -2274,9 +2274,9 @@
     "awayTeam": "Cerezo Osaka",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekh9zj1repz/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/d23xmvkhjdzqg8n/image/small",
-    "homeScore": "3",
-    "awayScore": "2",
-    "scoreText": "3 - 2",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "J1 League",
     "sportCategory": "⚽ Sepak Bola",
@@ -2292,7 +2292,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.053Z"
+    "updatedAt": "2026-09-19T09:47:37.144Z"
   },
   {
     "id": "match_86_urawa-red-vs-tokyo-verdy",
@@ -2301,9 +2301,9 @@
     "awayTeam": "Tokyo Verdy",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7hev1qdyj/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7hexlqdyj/image/small",
-    "homeScore": "1",
-    "awayScore": "1",
-    "scoreText": "1 - 1",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "J1 League",
     "sportCategory": "⚽ Sepak Bola",
@@ -2319,7 +2319,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel23.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel23.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.053Z"
+    "updatedAt": "2026-09-19T09:47:37.145Z"
   },
   {
     "id": "match_87_fujieda-myfc-vs-rb-omiya-",
@@ -2328,9 +2328,9 @@
     "awayTeam": "RB Omiya Ardija",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh7967r1ge/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/p4jwq2ghle0m0ve/image/small",
-    "homeScore": "1",
-    "awayScore": "1",
-    "scoreText": "1 - 1",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "J2 League",
     "sportCategory": "⚽ Sepak Bola",
@@ -2346,7 +2346,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel26.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel26.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.053Z"
+    "updatedAt": "2026-09-19T09:47:37.145Z"
   },
   {
     "id": "match_88_ehime-fc-vs-kamatamare-sk",
@@ -2355,9 +2355,9 @@
     "awayTeam": "Kamatamare Sk",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnh66zzm7vx/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh4l65r1ge/image/small",
-    "homeScore": "3",
-    "awayScore": "0",
-    "scoreText": "3 - 0",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "J3 League",
     "sportCategory": "⚽ Sepak Bola",
@@ -2373,7 +2373,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.053Z"
+    "updatedAt": "2026-09-19T09:47:37.145Z"
   },
   {
     "id": "match_89_gloria-popesti-leordeni-v",
@@ -2400,7 +2400,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.053Z"
+    "updatedAt": "2026-09-19T09:47:37.145Z"
   },
   {
     "id": "match_90_fc-anyang-vs-ulsan-hyunda",
@@ -2409,15 +2409,15 @@
     "awayTeam": "Ulsan Hyundai",
     "homeLogo": "https://imgts.sportpulseapiz.com/football/team/dn1m1ghe8y7moep/image/small",
     "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9k82rekh49zrepz/image/small",
-    "homeScore": "3",
-    "awayScore": "1",
-    "scoreText": "3 - 1",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
     "matchMinute": "",
     "league": "K League 1",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T17:00:00+07:00",
     "kickoffText": "17:00 WIB (19/09)",
-    "status": 1,
+    "status": 0,
     "postUrl": "https://atttvnow.com/truc-tiep/fc-anyang-vs-ulsan-hyundai-luc-1700-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel15.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
@@ -2427,6 +2427,6 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8"
     },
-    "updatedAt": "2026-09-19T09:42:35.054Z"
+    "updatedAt": "2026-09-19T09:47:37.147Z"
   }
 ]

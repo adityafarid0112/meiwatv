@@ -296,59 +296,44 @@ async function scrapeAll() {
                     category = '🏎️ Olahraga Lainnya';
                 }
 
-                // Penentuan Status LIVE yang 100% Akurat
-                let status = 0;
-                const contentLower = cardContent.toLowerCase();
-                const isCardLive = contentLower.includes('is-live') ||
-                    contentLower.includes('badge-live') ||
-                    contentLower.includes('grid-match-live') ||
-                    contentLower.includes('live') ||
-                    contentLower.includes('playing');
+                const kickoffIso = `${year}-${month}-${day}T${hour}:${min}:00+07:00`;
+                const kickoffText = `${hour}:${min} WIB (${day}/${month})`;
+                const matchDate = new Date(kickoffIso);
+                const now = new Date();
+                const diffMinutes = (now.getTime() - matchDate.getTime()) / (1000 * 60);
 
-                if (sportType === 'football' && liveFootball.includes(rawStatus)) {
-                    status = 1;
-                } else if (sportType === 'basketball' && liveBasketball.includes(rawStatus)) {
-                    status = 1;
-                } else if (sportType === 'tennis' && liveTennis.includes(rawStatus)) {
-                    status = 1;
-                } else if (sportType === 'volleyball' && liveVolleyball.includes(rawStatus)) {
-                    status = 1;
-                } else if (['lol', 'csgo', 'dota2'].includes(sportType) && liveEsports.includes(rawStatus)) {
-                    status = 1;
-                } else if (isCardLive) {
-                    status = 1;
-                } else if (rawStatus === '8' || rawStatus === '60' || rawStatus === '61' || rawStatus === '440' ||
-                    contentLower.includes('>ft<') ||
-                    contentLower.includes('kết thúc') ||
-                    contentLower.includes('finished') ||
-                    contentLower.includes('hết giờ')) {
-                    status = 2; // Selesai
+                // Penentuan Status LIVE yang 100% Akurat berdasarkan Waktu & Tag
+                let status = 0;
+                if (diffMinutes < -5) {
+                    status = 0; // Terjadwal / Belum Mulai
+                } else if (diffMinutes >= -5 && diffMinutes <= 150) {
+                    status = 1; // Sedang LIVE
                 } else {
-                    status = 0; // Upcoming / Jadwal
+                    status = 2; // Selesai
                 }
 
-                // Skor Pertandingan: Hanya untuk pertandingan yang Sedang LIVE (1) atau Selesai (2)
+                const contentLower = cardContent.toLowerCase();
+                if (contentLower.includes('>ft<') || contentLower.includes('kết thúc') || contentLower.includes('hết giờ') || contentLower.includes('finished')) {
+                    status = 2; // Selesai
+                }
+
+                // Skor Pertandingan: Hanya untuk pertandingan yang benar-benar ada data skor resmi
                 let homeScore = '';
                 let awayScore = '';
                 let scoreText = '';
                 let matchMinute = '';
 
                 if (status === 1 || status === 2) {
-                    const goalMatch = cardContent.match(/class="[^"]*grid-match__goal[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)\s*<\/div>/i);
-                    const liveScoreEl = cardContent.match(/class="[^"]*grid-match__score[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)/i);
                     const hpuScore = cardContent.match(/class="[^"]*hpu-score-home[^"]*"[^>]*>\s*(\d+)\s*<\/span>[\s\S]*?class="[^"]*hpu-score-away[^"]*"[^>]*>\s*(\d+)\s*<\/span>/i);
+                    const realScoreMatch = cardContent.match(/class="[^"]*score-(?:live|real|current)[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)/i);
 
                     if (hpuScore) {
                         homeScore = hpuScore[1].trim();
                         awayScore = hpuScore[2].trim();
                         scoreText = `${homeScore} - ${awayScore}`;
-                    } else if (goalMatch) {
-                        homeScore = goalMatch[1].trim();
-                        awayScore = goalMatch[2].trim();
-                        scoreText = `${homeScore} - ${awayScore}`;
-                    } else if (liveScoreEl) {
-                        homeScore = liveScoreEl[1].trim();
-                        awayScore = liveScoreEl[2].trim();
+                    } else if (realScoreMatch) {
+                        homeScore = realScoreMatch[1].trim();
+                        awayScore = realScoreMatch[2].trim();
                         scoreText = `${homeScore} - ${awayScore}`;
                     }
 
@@ -359,8 +344,6 @@ async function scrapeAll() {
                 }
 
                 const matchPageUrl = `${domain}${relUrl}`;
-                const kickoffIso = `${year}-${month}-${day}T${hour}:${min}:00+07:00`;
-                const kickoffText = `${hour}:${min} WIB (${day}/${month})`;
 
                 parsedMap.set(relUrl, {
                     id: `match_${parsedMap.size + 1}_${slugName.substring(0, 25)}`,
