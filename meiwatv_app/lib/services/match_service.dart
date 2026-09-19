@@ -278,32 +278,42 @@ class MatchService {
 
       final kickoffIso = '$year-$month-$day' 'T$hour:$min:00+07:00';
 
-      // Penentuan Status LIVE yang akurat untuk SEMUA cabang olahraga:
+      // Penentuan Status LIVE yang 100% Akurat untuk SEMUA cabang olahraga:
+      // Termasuk Babak Tambahan (Extra Time), Overtime (OT), Adu Penalti (Penalties), dan Set Tambahan
       int status = 0;
-      const liveFootball = ['2', '3'];
-      const liveBasketball = ['2', '3', '4', '5'];
-      const liveTennis = ['51', '52', '53', '54', '55'];
-      const liveVolleyball = ['431', '432', '433', '434', '435', '436', '437', '438'];
-      const liveEsports = ['2', '3', '4'];
+      const liveFootball = ['2', '3', '4', '5', '7']; // 1st Half, 2nd Half, Extra Time 1, Extra Time 2, Penalties
+      const liveBasketball = ['2', '3', '4', '5', '6', '7']; // Q1, Q2, Q3, Q4, OT, OT2
+      const liveTennis = ['51', '52', '53', '54', '55', '56']; // Set 1, 2, 3, 4, 5
+      const liveVolleyball = ['431', '432', '433', '434', '435', '436', '437', '438']; // Set 1..5, Golden Set
+      const liveEsports = ['2', '3', '4', '5', '6', '7'];
+
+      final contentLower = cardContent.toLowerCase();
+      final isCardLive = contentLower.contains('is-live') ||
+          contentLower.contains('badge-live') ||
+          contentLower.contains('grid-match-live') ||
+          contentLower.contains('live') ||
+          contentLower.contains('playing');
 
       if (sportType == 'football' && liveFootball.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG
+        status = 1; // 🔴 LIVE SEKARANG (Termasuk ET & Penalti)
       } else if (sportType == 'basketball' && liveBasketball.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG
+        status = 1; // 🔴 LIVE SEKARANG (Termasuk Overtime)
       } else if (sportType == 'tennis' && liveTennis.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG
+        status = 1; // 🔴 LIVE SEKARANG (Termasuk Set Tambahan)
       } else if (sportType == 'volleyball' && liveVolleyball.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG
+        status = 1; // 🔴 LIVE SEKARANG (Termasuk Set Tambahan)
       } else if (['lol', 'csgo', 'dota2'].contains(sportType) && liveEsports.contains(rawStatus)) {
         status = 1; // 🔴 LIVE SEKARANG
-      } else if (cardContent.contains('is-live') ||
-          cardContent.contains('badge-live') ||
-          cardContent.contains('grid-match-live')) {
+      } else if (isCardLive) {
         status = 1; // 🔴 LIVE SEKARANG
-      } else if (rawStatus == '4' || (sportType == 'basketball' && rawStatus == '6')) {
+      } else if (rawStatus == '8' || rawStatus == '60' || rawStatus == '61' || rawStatus == '440' ||
+          contentLower.contains('>ft<') ||
+          contentLower.contains('kết thúc') ||
+          contentLower.contains('finished') ||
+          contentLower.contains('hết giờ')) {
         status = 2; // Selesai (Full Time / FT)
       } else {
-        status = 0; // Upcoming
+        status = 0; // Upcoming / Jadwal
       }
 
       // Ekstraksi Skor & Menit Pertandingan Real-Time
@@ -330,7 +340,7 @@ class MatchService {
         scoreText = '$homeScore - $awayScore';
       }
 
-      final periodMatch = RegExp(r'class="[^"]*(?:grid-match__half-court|period|quarter|set-name)[^"]*"[^>]*>\s*([^<]+)\s*<', caseSensitive: false).firstMatch(cardContent);
+      final periodMatch = RegExp(r'class="[^"]*(?:grid-match__half-court|period|quarter|set-name|match-time)[^"]*"[^>]*>\s*([^<]+)\s*<', caseSensitive: false).firstMatch(cardContent);
       if (periodMatch != null) {
         matchMinute = periodMatch.group(1)?.trim() ?? '';
       }

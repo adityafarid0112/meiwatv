@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -109,10 +110,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
   }
 
   String _getRefererForUrl(String url) {
-    if (widget.match.streamJalur2.isNotEmpty &&
-        widget.match.streamJalur2.startsWith('http')) {
+    if (url.startsWith('http')) {
       try {
-        final uri = Uri.parse(widget.match.streamJalur2);
+        final uri = Uri.parse(url);
         return '${uri.scheme}://${uri.host}/';
       } catch (_) {}
     }
@@ -123,17 +123,50 @@ class _PlayerScreenState extends State<PlayerScreen> {
         return '${uri.scheme}://${uri.host}/';
       } catch (_) {}
     }
-    return 'https://scoopnashville.com/';
+    return 'https://xoilaczbi.tv/';
   }
 
-  /// Ekstraksi link direct video (.m3u8 / .flv / .mp4) dari berbagai format web sumber
-  Future<String?> _resolveDirectStreamUrl(String rawUrl) async {
-    if (rawUrl.isEmpty) return null;
-    final lower = rawUrl.toLowerCase();
+  /// Ekstraksi rekursif semua link stream yang valid dari JSON object/list
+  void _extractStreamsFromJson(dynamic jsonVal, List<String> results) {
+    if (jsonVal == null) return;
+    if (jsonVal is String) {
+      final s = jsonVal.replaceAll(r'\/', '/').replaceAll(r'\', '').trim();
+      if (s.startsWith('http') &&
+          (s.contains('.m3u8') ||
+              s.contains('.mp4') ||
+              s.contains('live') ||
+              s.contains('stream') ||
+              s.contains('chanel') ||
+              s.contains('channel'))) {
+        if (!results.contains(s)) results.add(s);
+      }
+    } else if (jsonVal is List) {
+      for (final item in jsonVal) {
+        _extractStreamsFromJson(item, results);
+      }
+    } else if (jsonVal is Map) {
+      for (final key in ['link', 'play_url', 'url', 'stream', 'src', 'm3u8', 'urlStream', 'data']) {
+        if (jsonVal.containsKey(key)) {
+          _extractStreamsFromJson(jsonVal[key], results);
+        }
+      }
+      for (final val in jsonVal.values) {
+        if (val is Map || val is List) {
+          _extractStreamsFromJson(val, results);
+        }
+      }
+    }
+  }
 
-    // 1. Jika URL sudah berformat direct media m3u8 atau mp4
+  /// Ekstraksi semua kandidat direct video (.m3u8 / .mp4 / CDN HLS) dari web sumber
+  Future<List<String>> _resolveCandidateStreams(String rawUrl) async {
+    final candidates = <String>[];
+    if (rawUrl.isEmpty) return candidates;
+
+    final lower = rawUrl.toLowerCase();
     if (lower.contains('.m3u8') || lower.contains('.mp4')) {
-      return rawUrl;
+      candidates.add(rawUrl);
+      return candidates;
     }
 
     try {
@@ -145,6 +178,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
         'Origin': referer.endsWith('/')
             ? referer.substring(0, referer.length - 1)
             : referer,
+        'Accept': '*/*',
       };
 
       final response = await http
@@ -152,29 +186,52 @@ class _PlayerScreenState extends State<PlayerScreen> {
           .timeout(const Duration(seconds: 6));
 
       if (response.statusCode == 200) {
-        final body = response.body;
+        final body = response.body.trim();
+
+        // 1. Cek apakah response berupa JSON
+        if (body.startsWith('{') || body.startsWith('[')) {
+          try {
+            final decoded = json.decode(body);
+            final jsonStreams = <String>[];
+            _extractStreamsFromJson(decoded, jsonStreams);
+            for (final s in jsonStreams) {
+              if (s.contains('.m3u8') || s.contains('.mp4')) {
+                if (!candidates.contains(s)) candidates.add(s);
+              } else {
+                final sub = await _resolveCandidateStreams(s);
+                for (final item in sub) {
+                  if (!candidates.contains(item)) candidates.add(item);
+                }
+              }
+            }
+          } catch (_) {}
+        }
 
         // 2. Ekstraksi var urlStream = "https://...";
-        final urlStreamMatch = RegExp(
-          r'var\s+urlStream\s*=\s*["\x27](https?://[^"\x27\s]+)["\x27]',
+        final urlStreamMatches = RegExp(
+          r'urlStream\s*[:=]\s*["\x27](https?://[^"\x27\s]+)["\x27]',
           caseSensitive: false,
-        ).firstMatch(body);
-        if (urlStreamMatch != null) {
-          final stream = urlStreamMatch.group(1);
-          if (stream != null && stream.isNotEmpty) return stream;
+        ).allMatches(body);
+        for (final m in urlStreamMatches) {
+          final s = m.group(1);
+          if (s != null && s.isNotEmpty && !candidates.contains(s)) {
+            candidates.add(s);
+          }
         }
 
         // 3. Ekstraksi link m3u8 langsung di dalam body response
-        final m3u8Match = RegExp(
+        final m3u8Matches = RegExp(
           r'https?://[^\s"<>]+?\.m3u8[^\s"<>]*',
           caseSensitive: false,
-        ).firstMatch(body);
-        if (m3u8Match != null) {
-          final stream = m3u8Match.group(0);
-          if (stream != null && stream.isNotEmpty) return stream;
+        ).allMatches(body);
+        for (final m in m3u8Matches) {
+          final s = m.group(0);
+          if (s != null && s.isNotEmpty && !candidates.contains(s)) {
+            candidates.add(s);
+          }
         }
 
-        // 4. Ekstraksi list_stream JSON array jika berupa web page
+        // 4. Ekstraksi list_stream JSON array
         final listStreamMatch = RegExp(
           r'var\s+list_stream\s*=\s*(\[[^\]]+\])',
           caseSensitive: false,
@@ -189,65 +246,129 @@ class _PlayerScreenState extends State<PlayerScreen> {
             for (final m in innerMatches) {
               final innerUrl = m.group(0);
               if (innerUrl != null && innerUrl != rawUrl) {
-                final resolved = await _resolveDirectStreamUrl(innerUrl);
-                if (resolved != null) return resolved;
+                final sub = await _resolveCandidateStreams(innerUrl);
+                for (final item in sub) {
+                  if (!candidates.contains(item)) candidates.add(item);
+                }
               }
             }
           }
         }
 
         // 5. Ekstraksi iframe src di halaman pertandingan
-        final iframeMatch = RegExp(
+        final iframeMatches = RegExp(
           r'<iframe[^>]+src=["\x27](https?://[^"\x27\s]+)["\x27]',
           caseSensitive: false,
-        ).firstMatch(body);
-        if (iframeMatch != null) {
-          final iframeUrl = iframeMatch.group(1);
+        ).allMatches(body);
+        for (final m in iframeMatches) {
+          final iframeUrl = m.group(1);
           if (iframeUrl != null && iframeUrl != rawUrl) {
-            final resolved = await _resolveDirectStreamUrl(iframeUrl);
-            if (resolved != null) return resolved;
+            final sub = await _resolveCandidateStreams(iframeUrl);
+            for (final item in sub) {
+              if (!candidates.contains(item)) candidates.add(item);
+            }
           }
         }
 
-        // 6. Ekstraksi channel id (contoh: channel17) untuk direct HLS CDN stream
-        final channelMatch = RegExp(
+        // 6. Ekstraksi channel ID untuk direct HLS CDN stream
+        final chMatches = RegExp(
           r'(channel[\-_]?[0-9a-zA-Z]+)',
           caseSensitive: false,
-        ).firstMatch(rawUrl);
-        if (channelMatch != null) {
-          final ch = channelMatch.group(1);
-          if (ch != null && ch.isNotEmpty) {
-            final candidates = [
-              'https://live.domainkqt.cc/live/$ch.m3u8',
-              'https://lfastcdn.domainkqt.cc/live/$ch/playlist.m3u8',
-              'https://quickscoreboardz.com/live/$ch.m3u8',
+        ).allMatches('$rawUrl $body');
+        for (final cm in chMatches) {
+          final rawCh = cm.group(1);
+          if (rawCh != null && rawCh.isNotEmpty) {
+            final chClean = rawCh.replaceAll('-', '').replaceAll('_', '');
+            final chDashed = rawCh.contains('-')
+                ? rawCh
+                : rawCh.replaceFirst(RegExp(r'channel', caseSensitive: false), 'channel-');
+
+            final cdnList = [
+              'https://live.domainkqt.cc/live/$chClean.m3u8',
+              'https://lfastcdn.domainkqt.cc/live/$chClean/playlist.m3u8',
+              'https://lfastcdn.domainkqt.cc/live/$chClean.m3u8',
+              'https://live.domainkqt.cc/live/$chClean/playlist.m3u8',
+              'https://fast.domainkqt.cc/live/$chClean/playlist.m3u8',
+              'https://quickscoreboardz.com/live/$chClean.m3u8',
+              'https://cdn.domainkqt.cc/live/$chClean/index.m3u8',
+              'https://live.domainkqt.cc/live/$chDashed.m3u8',
+              'https://lfastcdn.domainkqt.cc/live/$chDashed/playlist.m3u8',
             ];
-            for (final cand in candidates) {
-              return cand;
+            for (final cand in cdnList) {
+              if (!candidates.contains(cand)) candidates.add(cand);
             }
           }
         }
       }
     } catch (e) {
-      debugPrint('[Player] Direct stream resolution info: $e');
+      debugPrint('[Player] Resolution error: $e');
     }
 
-    // Coba fallback channel direct regex dari URL mentah
+    // Fallback channel dari rawUrl
     final channelFallback = RegExp(
       r'(channel[\-_]?[0-9a-zA-Z]+)',
       caseSensitive: false,
     ).firstMatch(rawUrl);
     if (channelFallback != null) {
-      final ch = channelFallback.group(1);
-      if (ch != null) {
-        return 'https://lfastcdn.domainkqt.cc/live/$ch/playlist.m3u8';
+      final rawCh = channelFallback.group(1);
+      if (rawCh != null) {
+        final chClean = rawCh.replaceAll('-', '').replaceAll('_', '');
+        final fallbackCdn = 'https://lfastcdn.domainkqt.cc/live/$chClean/playlist.m3u8';
+        if (!candidates.contains(fallbackCdn)) candidates.add(fallbackCdn);
       }
     }
 
-    return null;
+    return candidates;
   }
 
-  Future<void> _initPlayer() async {
+  Future<bool> _tryPlayStream(String streamUrl, String rawUrl) async {
+    final referer = _getRefererForUrl(rawUrl);
+    final headerOptions = [
+      // Opsi 1: Dengan User-Agent dan Referer sumber
+      {
+        'User-Agent':
+            'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
+        'Referer': referer,
+        'Origin': referer.endsWith('/') ? referer.substring(0, referer.length - 1) : referer,
+      },
+      // Opsi 2: Standard ExoPlayer User-Agent tanpa referer (untuk CDN yang memblokir header custom)
+      {
+        'User-Agent': 'ExoPlayerLib/2.18.7',
+      },
+      // Opsi 3: Minimal header
+      <String, String>{},
+    ];
+
+    for (final headers in headerOptions) {
+      try {
+        await _videoController?.dispose();
+        final controller = VideoPlayerController.networkUrl(
+          Uri.parse(streamUrl),
+          httpHeaders: headers,
+          videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+        );
+
+        await controller.initialize().timeout(const Duration(seconds: 7));
+        if (_isMuted) controller.setVolume(0);
+        controller.play();
+
+        if (mounted) {
+          setState(() {
+            _videoController = controller;
+            _isPlaying = true;
+            _isLoading = false;
+            _errorMessage = null;
+          });
+        }
+        return true;
+      } catch (e) {
+        debugPrint('[Player] Attempt with headers failed for $streamUrl: $e');
+      }
+    }
+    return false;
+  }
+
+  Future<void> _initPlayer({bool autoFallbackJalur = true}) async {
     setState(() {
       _isLoading = true;
       _errorMessage = null;
@@ -263,47 +384,46 @@ class _PlayerScreenState extends State<PlayerScreen> {
       return;
     }
 
-    // Resolusi link direct .m3u8 dari sumber
-    final directStream = await _resolveDirectStreamUrl(rawUrl);
+    // Resolusi semua kandidat stream
+    final candidates = await _resolveCandidateStreams(rawUrl);
 
-    if (directStream != null && directStream.isNotEmpty) {
-      try {
-        await _videoController?.dispose();
-        final controller = VideoPlayerController.networkUrl(
-          Uri.parse(directStream),
-          httpHeaders: {
-            'User-Agent':
-                'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
-            'Referer': _getRefererForUrl(rawUrl),
-            'Origin': _getRefererForUrl(rawUrl),
-          },
-          videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
-        );
+    for (final cand in candidates) {
+      final success = await _tryPlayStream(cand, rawUrl);
+      if (success) return;
+    }
 
-        await controller.initialize();
-        if (_isMuted) controller.setVolume(0);
-        controller.play();
+    // Jika jalur aktif gagal, coba auto-fallback ke jalur lain jika diizinkan
+    if (autoFallbackJalur) {
+      final otherJalurs = [1, 2, 3].where((j) => j != _activeJalur).toList();
+      for (final altJalur in otherJalurs) {
+        String altUrl = '';
+        if (altJalur == 1) altUrl = widget.match.streamJalur1;
+        if (altJalur == 2) altUrl = widget.match.streamJalur2;
+        if (altJalur == 3) altUrl = widget.match.streamJalur3;
 
-        if (mounted) {
-          setState(() {
-            _videoController = controller;
-            _isPlaying = true;
-            _isLoading = false;
-            _errorMessage = null;
-          });
+        if (altUrl.isNotEmpty && altUrl != rawUrl) {
+          final altCandidates = await _resolveCandidateStreams(altUrl);
+          for (final cand in altCandidates) {
+            final success = await _tryPlayStream(cand, altUrl);
+            if (success) {
+              if (mounted) {
+                setState(() {
+                  _activeJalur = altJalur;
+                });
+              }
+              return;
+            }
+          }
         }
-        return;
-      } catch (e) {
-        debugPrint('[Player] Native VideoPlayer init error: $e');
       }
     }
 
-    // Jika jalur ini belum aktif / offline
+    // Jika seluruh upaya gagal / stream offline
     if (mounted) {
       setState(() {
         _isLoading = false;
         _errorMessage =
-            'Siaran pada Jalur $_activeJalur sedang offline atau belum dimulai.\nSilakan pilih Jalur Server lain di bawah ini:';
+            'Siaran pada pertandingan ini belum dimulai atau sedang offline.\nSilakan coba pilih Jalur Server lain atau ketuk "Coba Lagi":';
       });
     }
   }
@@ -317,7 +437,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     setState(() {
       _activeJalur = jalurIndex;
     });
-    _initPlayer();
+    _initPlayer(autoFallbackJalur: false);
     _resetControlsTimer();
   }
 
@@ -440,21 +560,20 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   child: _isLoading
                       ? _buildLoadingWidget()
                       : _errorMessage != null
-                          ? _buildErrorWidget()
-                          : _videoController != null &&
-                                  _videoController!.value.isInitialized
-                              ? SizedBox.expand(
-                                  child: FittedBox(
-                                    fit: _videoFit,
-                                    child: SizedBox(
-                                      width: _videoController!.value.size.width,
-                                      height:
-                                          _videoController!.value.size.height,
-                                      child: VideoPlayer(_videoController!),
-                                    ),
-                                  ),
-                                )
-                              : _buildLoadingWidget(),
+                      ? _buildErrorWidget()
+                      : _videoController != null &&
+                            _videoController!.value.isInitialized
+                      ? SizedBox.expand(
+                          child: FittedBox(
+                            fit: _videoFit,
+                            child: SizedBox(
+                              width: _videoController!.value.size.width,
+                              height: _videoController!.value.size.height,
+                              child: VideoPlayer(_videoController!),
+                            ),
+                          ),
+                        )
+                      : _buildLoadingWidget(),
                 ),
               ),
 
@@ -701,7 +820,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
                               onTap: _toggleMute,
                               borderRadius: BorderRadius.circular(12),
                               padding: const EdgeInsets.all(7),
-                              tooltip: _isMuted ? 'Nyalakan Suara' : 'Matikan Suara',
+                              tooltip: _isMuted
+                                  ? 'Nyalakan Suara'
+                                  : 'Matikan Suara',
                               child: Icon(
                                 _isMuted
                                     ? Icons.volume_off_rounded
@@ -828,11 +949,26 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
                         Row(
                           children: [
-                            Expanded(child: _buildJalurButton(1, 'Jalur 1 (HD Server)')),
+                            Expanded(
+                              child: _buildJalurButton(
+                                1,
+                                'Jalur 1 (HD Server)',
+                              ),
+                            ),
                             const SizedBox(width: 10),
-                            Expanded(child: _buildJalurButton(2, 'Jalur 2 (Fast Server)')),
+                            Expanded(
+                              child: _buildJalurButton(
+                                2,
+                                'Jalur 2 (Fast Server)',
+                              ),
+                            ),
                             const SizedBox(width: 10),
-                            Expanded(child: _buildJalurButton(3, 'Jalur 3 (Backup Server)')),
+                            Expanded(
+                              child: _buildJalurButton(
+                                3,
+                                'Jalur 3 (Backup Server)',
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -871,10 +1007,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
         Text(
           'Mengambil siaran langsung ${widget.match.title}',
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: AppColors.textSecondary,
-            fontSize: 12,
-          ),
+          style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
         ),
       ],
     );
@@ -889,10 +1022,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: AppColors.border, width: 1.2),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.6),
-            blurRadius: 20,
-          ),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.6), blurRadius: 20),
         ],
       ),
       child: Column(
@@ -1039,7 +1169,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
       return Icons.sports_tennis_rounded;
     }
     if (sport.contains('tenis')) return Icons.sports_tennis_rounded;
-    if (sport.contains('moto') || sport.contains('f1') || sport.contains('racing')) {
+    if (sport.contains('moto') ||
+        sport.contains('f1') ||
+        sport.contains('racing')) {
       return Icons.sports_motorsports_rounded;
     }
     if (sport.contains('esport')) return Icons.sports_esports_rounded;
