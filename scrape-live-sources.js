@@ -9,6 +9,105 @@ function extractChannelUrl(item) {
     return '';
 }
 
+// Terjemahkan nama liga, turnamen, dan tim dari bahasa Vietnam ke Bahasa Indonesia Resmi
+function translateToId(str) {
+    if (!str) return '';
+    let text = str;
+
+    const leagueMap = [
+        // Spesifik Liga Sepak Bola / Olahraga Populer
+        { pattern: /Ngoại Hạng Anh/gi, replace: 'Premier League (Inggris)' },
+        { pattern: /VĐQG Indonesia/gi, replace: 'BRI Liga 1 Indonesia' },
+        { pattern: /Hạng 2 Indonesia/gi, replace: 'Liga 2 Indonesia' },
+        { pattern: /Hạng 3 Indonesia/gi, replace: 'Liga 3 Indonesia' },
+        { pattern: /Cúp Quốc Gia Việt Nam/gi, replace: 'Piala Nasional Vietnam' },
+        { pattern: /VĐQG Việt Nam|V\.League\s*1/gi, replace: 'V.League 1 (Vietnam)' },
+        { pattern: /VĐQG Tây Ban Nha|La Liga/gi, replace: 'La Liga (Spanyol)' },
+        { pattern: /VĐQG Ý|Serie A/gi, replace: 'Serie A (Italia)' },
+        { pattern: /VĐQG Đức|Bundesliga/gi, replace: 'Bundesliga (Jerman)' },
+        { pattern: /VĐQG Pháp|Ligue 1/gi, replace: 'Ligue 1 (Prancis)' },
+        { pattern: /VĐQG Hà Lan|Eredivisie/gi, replace: 'Eredivisie (Belanda)' },
+        { pattern: /VĐQG Bồ Đào Nha/gi, replace: 'Liga Portugal' },
+        { pattern: /VĐQG Saudi Arabia|VĐQG Ả Rập Xê Út/gi, replace: 'Saudi Pro League' },
+        { pattern: /VĐQG Nhật Bản/gi, replace: 'J1 League (Jepang)' },
+        { pattern: /VĐQG Hàn Quốc/gi, replace: 'K League 1 (Korea)' },
+        { pattern: /Hạng Nhất Ukraina/gi, replace: 'Liga Utama Ukraina' },
+        { pattern: /Hạng Nhất Anh|Championship/gi, replace: 'Championship (Inggris)' },
+        { pattern: /Hạng 2 Trung Quốc/gi, replace: 'Liga 2 China' },
+        { pattern: /Hạng 2 Romania/gi, replace: 'Liga 2 Rumania' },
+        { pattern: /Hạng 2 Tây Ban Nha/gi, replace: 'La Liga 2 (Spanyol)' },
+        { pattern: /Hạng 2 Đức/gi, replace: '2. Bundesliga (Jerman)' },
+        { pattern: /Hạng 2 Ý/gi, replace: 'Serie B (Italia)' },
+        { pattern: /Hạng 2 Pháp/gi, replace: 'Ligue 2 (Prancis)' },
+        
+        // Turnamen & Kompetisi
+        { pattern: /Cúp C1|Champions League/gi, replace: 'Liga Champions' },
+        { pattern: /Cúp C2|Europa League/gi, replace: 'Liga Europa' },
+        { pattern: /Cúp C3|Conference League/gi, replace: 'Liga Konferensi Eropa' },
+        { pattern: /Cúp FA/gi, replace: 'Piala FA (Inggris)' },
+        { pattern: /Cúp Nhà Vua|Copa del Rey/gi, replace: 'Copa del Rey (Spanyol)' },
+        { pattern: /Cúp Quốc Gia/gi, replace: 'Piala Nasional' },
+        { pattern: /Cúp Liên Đoàn/gi, replace: 'Piala Liga' },
+        { pattern: /Siêu Cúp/gi, replace: 'Piala Super' },
+        { pattern: /Giao hữu quốc tế/gi, replace: 'Laga Persahabatan Internasional' },
+        { pattern: /Giao hữu CLB/gi, replace: 'Laga Persahabatan Klub' },
+        { pattern: /Giao hữu/gi, replace: 'Laga Persahabatan' },
+        { pattern: /Giải vô địch/gi, replace: 'Kejuaraan' },
+        { pattern: /Vòng loại World Cup/gi, replace: 'Kualifikasi Piala Dunia' },
+        { pattern: /Vòng loại Asian Cup/gi, replace: 'Kualifikasi Piala Asia' },
+        { pattern: /Vòng loại Euro/gi, replace: 'Kualifikasi Euro' },
+        { pattern: /Vòng loại/gi, replace: 'Kualifikasi' },
+        { pattern: /Bán kết/gi, replace: 'Semifinal' },
+        { pattern: /Chung kết/gi, replace: 'Final' },
+        { pattern: /Tứ kết/gi, replace: 'Perempat Final' },
+        { pattern: /Vòng Bảng/gi, replace: 'Fase Grup' },
+        
+        // Klasifikasi Umum
+        { pattern: /Hạng 2/gi, replace: 'Divisi 2' },
+        { pattern: /Hạng 3/gi, replace: 'Divisi 3' },
+        { pattern: /Hạng 4/gi, replace: 'Divisi 4' },
+        { pattern: /Hạng Nhất/gi, replace: 'Divisi Utama' },
+        { pattern: /VĐQG/gi, replace: 'Liga Utama' },
+        { pattern: /Cúp/gi, replace: 'Piala' }
+    ];
+
+    leagueMap.forEach(item => { text = text.replace(item.pattern, item.replace); });
+
+    const wordMap = [
+        { pattern: /\bNữ\b/gi, replace: 'Wanita' },
+        { pattern: /\bNam\b/gi, replace: 'Pria' },
+        { pattern: /\bTrẻ\b/gi, replace: 'Muda' },
+        { pattern: /\bCLB\s+/gi, replace: 'Klub ' },
+        { pattern: /\bNhật Bản\b/gi, replace: 'Jepang' },
+        { pattern: /\bHàn Quốc\b/gi, replace: 'Korea Selatan' },
+        { pattern: /\bTriều Tiên\b/gi, replace: 'Korea Utara' },
+        { pattern: /\bTrung Quốc\b/gi, replace: 'China' },
+        { pattern: /\bĐài Loan\b/gi, replace: 'Taiwan' },
+        { pattern: /\bHồng Kông\b/gi, replace: 'Hong Kong' },
+        { pattern: /\bTây Ban Nha\b/gi, replace: 'Spanyol' },
+        { pattern: /\bÝ\b/g, replace: 'Italia' },
+        { pattern: /\bĐức\b/gi, replace: 'Jerman' },
+        { pattern: /\bPháp\b/gi, replace: 'Prancis' },
+        { pattern: /\bAnh\b/g, replace: 'Inggris' },
+        { pattern: /\bHà Lan\b/gi, replace: 'Belanda' },
+        { pattern: /\bBồ Đào Nha\b/gi, replace: 'Portugal' },
+        { pattern: /\bThái Lan\b/gi, replace: 'Thailand' },
+        { pattern: /\bMỹ\b|\bHoa Kỳ\b/gi, replace: 'Amerika Serikat' },
+        { pattern: /\bÚc\b/gi, replace: 'Australia' },
+        { pattern: /\bThụy Sĩ\b/gi, replace: 'Swiss' },
+        { pattern: /\bThụy Điển\b/gi, replace: 'Swedia' },
+        { pattern: /\bThổ Nhĩ Kỳ\b/gi, replace: 'Turki' },
+        { pattern: /\bNga\b/g, replace: 'Rusia' },
+        { pattern: /\bHy Lạp\b/gi, replace: 'Yunani' },
+        { pattern: /\bẢ Rập Xê Út\b/gi, replace: 'Arab Saudi' },
+        { pattern: /\bIndonesia\b/gi, replace: 'Indonesia' },
+        { pattern: /\bViệt Nam\b/gi, replace: 'Vietnam' }
+    ];
+
+    wordMap.forEach(item => { text = text.replace(item.pattern, item.replace); });
+    return text.replace(/\s+/g, ' ').trim();
+}
+
 // 1. Baca semua domain live streaming dari "Link nonton Online.txt"
 function getSeeds() {
     return [
@@ -157,6 +256,7 @@ async function scrapeAll() {
             const leagueMatch = cardContent.match(/class="[^"]*text-ellipsis[^"]*"[^>]*>\s*([^<]+)\s*<\/span>/i);
             let league = leagueMatch ? leagueMatch[1].trim() : 'Live Sports';
             league = league.replace(/&#039;/g, "'").replace(/&amp;/g, '&');
+            league = translateToId(league);
 
             // Home & Away IDs & Logos
             const homeTeamIdMatch = cardHeader.match(/data-home-team-id="([^"]+)"/i);
@@ -186,6 +286,9 @@ async function scrapeAll() {
                 home = home || (parts[0] ? parts[0].trim() : 'Tim 1');
                 away = away || (parts.length > 1 ? parts[1].trim() : 'Tim 2');
             }
+
+            home = translateToId(home);
+            away = translateToId(away);
 
             const title = `${home} vs ${away}`;
 
