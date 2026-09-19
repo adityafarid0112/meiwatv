@@ -183,55 +183,27 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
       final response = await http
           .get(Uri.parse(rawUrl), headers: headers)
-          .timeout(const Duration(seconds: 6));
+          .timeout(const Duration(seconds: 5));
 
       if (response.statusCode == 200) {
         final body = response.body.trim();
 
-        // 1. Cek apakah response berupa JSON
-        if (body.startsWith('{') || body.startsWith('[')) {
-          try {
-            final decoded = json.decode(body);
-            final jsonStreams = <String>[];
-            _extractStreamsFromJson(decoded, jsonStreams);
-            for (final s in jsonStreams) {
-              if (s.contains('.m3u8') || s.contains('.mp4')) {
-                if (!candidates.contains(s)) candidates.add(s);
-              } else {
-                final sub = await _resolveCandidateStreams(s);
-                for (final item in sub) {
-                  if (!candidates.contains(item)) candidates.add(item);
-                }
-              }
-            }
-          } catch (_) {}
-        }
-
-        // 2. Ekstraksi var urlStream = "https://...";
+        // 1. Ekstraksi var urlStream = "https://..."; (Sangat Cepat & Akurat!)
         final urlStreamMatches = RegExp(
-          r'urlStream\s*[:=]\s*["\x27](https?://[^"\x27\s]+)["\x27]',
+          r'var\s+urlStream\s*=\s*["\x27](https?://[^"\x27\s]+)["\x27]',
           caseSensitive: false,
         ).allMatches(body);
         for (final m in urlStreamMatches) {
           final s = m.group(1);
-          if (s != null && s.isNotEmpty && !candidates.contains(s)) {
-            candidates.add(s);
+          if (s != null && s.isNotEmpty) {
+            // Konversi .flv ke direct .m3u8 bawaan HLS
+            final m3u8 = s.replaceAll(RegExp(r'\.flv(?=\?|$)', caseSensitive: false), '.m3u8');
+            if (!candidates.contains(m3u8)) candidates.add(m3u8);
+            if (!candidates.contains(s)) candidates.add(s);
           }
         }
 
-        // 3. Ekstraksi link m3u8 langsung di dalam body response
-        final m3u8Matches = RegExp(
-          r'https?://[^\s"<>]+?\.m3u8[^\s"<>]*',
-          caseSensitive: false,
-        ).allMatches(body);
-        for (final m in m3u8Matches) {
-          final s = m.group(0);
-          if (s != null && s.isNotEmpty && !candidates.contains(s)) {
-            candidates.add(s);
-          }
-        }
-
-        // 4. Ekstraksi list_stream JSON array
+        // 2. Ekstraksi list_stream JSON array jika membuka Match Page
         final listStreamMatch = RegExp(
           r'var\s+list_stream\s*=\s*(\[[^\]]+\])',
           caseSensitive: false,
@@ -255,67 +227,34 @@ class _PlayerScreenState extends State<PlayerScreen> {
           }
         }
 
-        // 5. Ekstraksi iframe src di halaman pertandingan
-        final iframeMatches = RegExp(
-          r'<iframe[^>]+src=["\x27](https?://[^"\x27\s]+)["\x27]',
+        // 3. Ekstraksi link m3u8 langsung di dalam body response
+        final m3u8Matches = RegExp(
+          r'https?://[^\s"<>]+?\.m3u8[^\s"<>]*',
           caseSensitive: false,
         ).allMatches(body);
-        for (final m in iframeMatches) {
-          final iframeUrl = m.group(1);
-          if (iframeUrl != null && iframeUrl != rawUrl) {
-            final sub = await _resolveCandidateStreams(iframeUrl);
-            for (final item in sub) {
-              if (!candidates.contains(item)) candidates.add(item);
-            }
+        for (final m in m3u8Matches) {
+          final s = m.group(0);
+          if (s != null && s.isNotEmpty && !candidates.contains(s)) {
+            candidates.add(s);
           }
         }
 
-        // 6. Ekstraksi channel ID untuk direct HLS CDN stream
-        final chMatches = RegExp(
-          r'(channel[\-_]?[0-9a-zA-Z]+)',
-          caseSensitive: false,
-        ).allMatches('$rawUrl $body');
-        for (final cm in chMatches) {
-          final rawCh = cm.group(1);
-          if (rawCh != null && rawCh.isNotEmpty) {
-            final chClean = rawCh.replaceAll('-', '').replaceAll('_', '');
-            final chDashed = rawCh.contains('-')
-                ? rawCh
-                : rawCh.replaceFirst(RegExp(r'channel', caseSensitive: false), 'channel-');
-
-            final cdnList = [
-              'https://live.domainkqt.cc/live/$chClean.m3u8',
-              'https://lfastcdn.domainkqt.cc/live/$chClean/playlist.m3u8',
-              'https://lfastcdn.domainkqt.cc/live/$chClean.m3u8',
-              'https://live.domainkqt.cc/live/$chClean/playlist.m3u8',
-              'https://fast.domainkqt.cc/live/$chClean/playlist.m3u8',
-              'https://quickscoreboardz.com/live/$chClean.m3u8',
-              'https://cdn.domainkqt.cc/live/$chClean/index.m3u8',
-              'https://live.domainkqt.cc/live/$chDashed.m3u8',
-              'https://lfastcdn.domainkqt.cc/live/$chDashed/playlist.m3u8',
-            ];
-            for (final cand in cdnList) {
-              if (!candidates.contains(cand)) candidates.add(cand);
+        // 4. Cek apakah response berupa JSON
+        if (body.startsWith('{') || body.startsWith('[')) {
+          try {
+            final decoded = json.decode(body);
+            final jsonStreams = <String>[];
+            _extractStreamsFromJson(decoded, jsonStreams);
+            for (final s in jsonStreams) {
+              final m3u8 = s.replaceAll(RegExp(r'\.flv(?=\?|$)', caseSensitive: false), '.m3u8');
+              if (!candidates.contains(m3u8)) candidates.add(m3u8);
+              if (!candidates.contains(s)) candidates.add(s);
             }
-          }
+          } catch (_) {}
         }
       }
     } catch (e) {
       debugPrint('[Player] Resolution error: $e');
-    }
-
-    // Fallback channel dari rawUrl
-    final channelFallback = RegExp(
-      r'(channel[\-_]?[0-9a-zA-Z]+)',
-      caseSensitive: false,
-    ).firstMatch(rawUrl);
-    if (channelFallback != null) {
-      final rawCh = channelFallback.group(1);
-      if (rawCh != null) {
-        final chClean = rawCh.replaceAll('-', '').replaceAll('_', '');
-        final fallbackCdn = 'https://lfastcdn.domainkqt.cc/live/$chClean/playlist.m3u8';
-        if (!candidates.contains(fallbackCdn)) candidates.add(fallbackCdn);
-      }
     }
 
     return candidates;
@@ -324,14 +263,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
   Future<bool> _tryPlayStream(String streamUrl, String rawUrl) async {
     final referer = _getRefererForUrl(rawUrl);
     final headerOptions = [
-      // Opsi 1: Dengan User-Agent dan Referer sumber
+      // Opsi 1: Standard Browser Mobile dengan Referer sumber
       {
         'User-Agent':
             'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
         'Referer': referer,
-        'Origin': referer.endsWith('/') ? referer.substring(0, referer.length - 1) : referer,
       },
-      // Opsi 2: Standard ExoPlayer User-Agent tanpa referer (untuk CDN yang memblokir header custom)
+      // Opsi 2: Standard ExoPlayer User-Agent tanpa referer (Paling Kompatibel di Android)
       {
         'User-Agent': 'ExoPlayerLib/2.18.7',
       },
@@ -348,7 +286,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
           videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
         );
 
-        await controller.initialize().timeout(const Duration(seconds: 7));
+        await controller.initialize().timeout(const Duration(seconds: 5));
         if (_isMuted) controller.setVolume(0);
         controller.play();
 
@@ -362,7 +300,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
         }
         return true;
       } catch (e) {
-        debugPrint('[Player] Attempt with headers failed for $streamUrl: $e');
+        debugPrint('[Player] Play attempt failed for $streamUrl: $e');
       }
     }
     return false;

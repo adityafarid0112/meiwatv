@@ -18,13 +18,24 @@ class MatchService {
       StreamController<List<MatchModel>>.broadcast();
   Timer? _autoRefreshTimer;
 
-  // Daftar domain sumber siaran live lengkap (utamakan domain aktif teruji)
+  // Daftar domain sumber siaran live lengkap (semua seeds dari Link nonton Online.txt)
   static const List<String> onlineSeeds = [
-    'https://xoilaczbi.tv/',
-    'https://theceoschool.co/',
+    'https://xoilaczzf.cc/',
     'https://xoilacz.vip/',
-    'https://socolivezc.tv/',
     'https://tft-forests.org/',
+    'https://xoilaczbi.tv/',
+    'https://socolivezc.tv/',
+    'https://theceoschool.co/',
+    'https://atttvnow.com/',
+    'https://xoilackl.tv/',
+    'https://90phutcn.tv/',
+    'https://cakhiazkv.cc/',
+    'https://xoilaccu.tv/',
+    'https://vebotvx.cc/',
+    'https://rakhoiib.cc/',
+    'https://mitomzm.cc/',
+    'https://vaoroig.cc/',
+    'https://malaysiandigest.com/',
   ];
 
   /// Inisialisasi service, muat data lokal segera, lalu ambil data online terbaru

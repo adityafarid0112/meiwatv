@@ -12,11 +12,22 @@ function extractChannelUrl(item) {
 // 1. Baca semua domain live streaming dari "Link nonton Online.txt"
 function getSeeds() {
     return [
-        'https://xoilaczbi.tv/',
-        'https://theceoschool.co/',
+        'https://xoilaczzf.cc/',
         'https://xoilacz.vip/',
+        'https://tft-forests.org/',
+        'https://xoilaczbi.tv/',
         'https://socolivezc.tv/',
-        'https://tft-forests.org/'
+        'https://theceoschool.co/',
+        'https://atttvnow.com/',
+        'https://xoilackl.tv/',
+        'https://90phutcn.tv/',
+        'https://cakhiazkv.cc/',
+        'https://xoilaccu.tv/',
+        'https://vebotvx.cc/',
+        'https://rakhoiib.cc/',
+        'https://mitomzm.cc/',
+        'https://vaoroig.cc/',
+        'https://malaysiandigest.com/'
     ];
 }
 
@@ -54,8 +65,15 @@ function getAdsConfig() {
 
 async function scrapeAll() {
     const primarySeeds = [
-        { name: 'Xoilac', url: 'https://xoilaczbi.tv/' },
-        { name: 'Socolive', url: 'https://theceoschool.co/' }
+        { name: 'Xoilac Main', url: 'https://xoilaczzf.cc/' },
+        { name: 'Xoilac Backup', url: 'https://xoilaczbi.tv/' },
+        { name: 'Socolive Main', url: 'https://atttvnow.com/' },
+        { name: 'Socolive Backup', url: 'https://theceoschool.co/' },
+        { name: 'Cakhia', url: 'https://cakhiazkv.cc/' },
+        { name: 'Mitom', url: 'https://mitomzm.cc/' },
+        { name: '90phut', url: 'https://90phutcn.tv/' },
+        { name: 'Vebotv', url: 'https://vebotvx.cc/' },
+        { name: 'Rakhoi', url: 'https://rakhoiib.cc/' },
     ];
 
     console.log(`📡 Menghubungi sumber live streaming utama (Xoilac & Socolive)...`);
