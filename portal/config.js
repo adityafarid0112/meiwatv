@@ -28,12 +28,12 @@ const MEIWA_CONFIG = {
       supportsTV: true,
       
       // Link Download APK (Google Drive)
-      downloadUrlUniversal: "https://drive.google.com/uc?export=download&id=19gBdRmoCI3Q4qErca5a8f7u0ix5_iVoG",
+      downloadUrlUniversal: "https://drive.google.com/uc?export=download&id=1CDQW3bNBs-3H6M6ADBXWtKllW70wJJ9V",
       downloadUrlSTB: "https://drive.google.com/uc?export=download&id=1s0hHDHYfVo8bqAoSK0rHVRcrUFUpd6QY",
       downloadUrlHP: "https://drive.google.com/uc?export=download&id=1sWP2kF5n2mlUH2bNf4JsQ3jYTxerni7x",
       
       // Mirror / Preview Links
-      driveViewUniversal: "https://drive.google.com/file/d/19gBdRmoCI3Q4qErca5a8f7u0ix5_iVoG/view?usp=sharing",
+      driveViewUniversal: "https://drive.google.com/file/d/1CDQW3bNBs-3H6M6ADBXWtKllW70wJJ9V/view?usp=sharing",
       driveViewSTB: "https://drive.google.com/file/d/1s0hHDHYfVo8bqAoSK0rHVRcrUFUpd6QY/view?usp=sharing",
       driveViewHP: "https://drive.google.com/file/d/1sWP2kF5n2mlUH2bNf4JsQ3jYTxerni7x/view?usp=sharing",
 
