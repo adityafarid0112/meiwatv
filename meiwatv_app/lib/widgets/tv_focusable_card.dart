@@ -123,10 +123,10 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                             Expanded(
                               child: Row(
                                 children: [
-                                  const Icon(
-                                    Icons.sports_soccer_rounded,
+                                  Icon(
+                                    _getSportIcon(match.sportCategory, match.league, match.title),
                                     size: 13,
-                                    color: AppColors.cyanAccent,
+                                    color: _getSportColor(match.sportCategory, match.league, match.title),
                                   ),
                                   const SizedBox(width: 5),
                                   Expanded(
@@ -134,8 +134,8 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                                       match.league.toUpperCase(),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        color: AppColors.cyanAccent,
+                                      style: TextStyle(
+                                        color: _getSportColor(match.sportCategory, match.league, match.title),
                                         fontSize: 10.5,
                                         fontWeight: FontWeight.w800,
                                         letterSpacing: 0.5,
@@ -378,5 +378,57 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
         ),
       ),
     );
+  }
+
+  IconData _getSportIcon(String sportCategory, String league, String title) {
+    final sport = sportCategory.toLowerCase();
+    final l = league.toLowerCase();
+    final t = title.toLowerCase();
+
+    if (sport.contains('basket') || l.contains('basket') || t.contains('basket') || t.contains('nba')) {
+      return Icons.sports_basketball_rounded;
+    }
+    if (sport.contains('voli') || sport.contains('volly') || sport.contains('volley') || l.contains('volly') || l.contains('volley')) {
+      return Icons.sports_volleyball_rounded;
+    }
+    if (sport.contains('tangkis') || sport.contains('badminton') || l.contains('badminton') || t.contains('badminton')) {
+      return Icons.sports_tennis_rounded;
+    }
+    if (sport.contains('tenis') || sport.contains('tennis') || l.contains('tennis') || l.contains('tenis')) {
+      return Icons.sports_tennis_rounded;
+    }
+    if (sport.contains('moto') || sport.contains('f1') || sport.contains('formula') || sport.contains('racing') || l.contains('motogp')) {
+      return Icons.sports_motorsports_rounded;
+    }
+    if (sport.contains('esport') || sport.contains('game') || sport.contains('dota') || sport.contains('csgo') || sport.contains('lol')) {
+      return Icons.sports_esports_rounded;
+    }
+    if (sport.contains('ufc') || sport.contains('mma') || sport.contains('tinju') || sport.contains('boxing')) {
+      return Icons.sports_mma_rounded;
+    }
+    return Icons.sports_soccer_rounded;
+  }
+
+  Color _getSportColor(String sportCategory, String league, String title) {
+    final sport = sportCategory.toLowerCase();
+    final l = league.toLowerCase();
+    final t = title.toLowerCase();
+
+    if (sport.contains('basket') || l.contains('basket') || t.contains('basket') || t.contains('nba')) {
+      return const Color(0xFFFF9800); // Orange
+    }
+    if (sport.contains('voli') || sport.contains('volly') || sport.contains('volley') || l.contains('volly') || l.contains('volley')) {
+      return const Color(0xFFFFD54F); // Yellow
+    }
+    if (sport.contains('tangkis') || sport.contains('badminton') || l.contains('badminton') || t.contains('badminton')) {
+      return const Color(0xFF00E676); // Emerald Green
+    }
+    if (sport.contains('tenis') || sport.contains('tennis') || l.contains('tennis') || l.contains('tenis')) {
+      return const Color(0xFFAEEA00); // Lime
+    }
+    if (sport.contains('moto') || sport.contains('f1') || sport.contains('racing') || sport.contains('esport') || sport.contains('game')) {
+      return const Color(0xFFE040FB); // Magenta
+    }
+    return AppColors.cyanAccent;
   }
 }

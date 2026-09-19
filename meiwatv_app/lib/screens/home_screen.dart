@@ -491,7 +491,60 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         )
-                      else ...[
+                      else if (_selectedCategory == tabLive) ...[
+                        for (final section in _groupLiveMatches(filteredMatches)) ...[
+                          SliverToBoxAdapter(
+                            child: _buildLiveSportSeparator(
+                              section: section,
+                              horizontalPadding: horizontalPadding,
+                              isTv: isTvOrDesktop,
+                            ),
+                          ),
+                          SliverPadding(
+                            padding: EdgeInsets.fromLTRB(
+                              horizontalPadding,
+                              0,
+                              horizontalPadding,
+                              16,
+                            ),
+                            sliver: SliverGrid(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: crossAxisCount,
+                                    mainAxisSpacing: 14,
+                                    crossAxisSpacing: 14,
+                                    mainAxisExtent: isTvOrDesktop ? 225 : 240,
+                                  ),
+                              delegate: SliverChildBuilderDelegate((
+                                context,
+                                index,
+                              ) {
+                                final match = section.matches[index];
+                                return TvFocusableCard(
+                                  match: match,
+                                  onTap: () => _openPlayer(match),
+                                );
+                              }, childCount: section.matches.length),
+                            ),
+                          ),
+                        ],
+                        // Iklan Banner Adsterra
+                        const SliverToBoxAdapter(
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 24, top: 8),
+                            child: Center(
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: AdsterraBanner(
+                                  height: 60,
+                                  width: 468,
+                                  adKey: 'b3ebfb84dfe7f276ec8ca6b0601afc33',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ] else ...[
                         SliverPadding(
                           padding: EdgeInsets.fromLTRB(
                             horizontalPadding,
@@ -612,10 +665,236 @@ class _HomeScreenState extends State<HomeScreen> {
     }).length;
   }
 
+  List<_LiveSportSection> _groupLiveMatches(List<MatchModel> liveMatches) {
+    final Map<String, List<MatchModel>> groups = {
+      'Sepak Bola': [],
+      'Bola Basket': [],
+      'Bulu Tangkis': [],
+      'Tenis': [],
+      'Bola Voli': [],
+      'Olahraga Lainnya': [],
+    };
+
+    for (final match in liveMatches) {
+      final sport = match.sportCategory.toLowerCase();
+      final league = match.league.toLowerCase();
+      final title = match.title.toLowerCase();
+
+      if (sport.contains('sepak bola') ||
+          sport.contains('football') ||
+          sport.contains('soccer')) {
+        groups['Sepak Bola']!.add(match);
+      } else if (sport.contains('basket') ||
+          league.contains('basket') ||
+          title.contains('basket') ||
+          title.contains('nba')) {
+        groups['Bola Basket']!.add(match);
+      } else if (sport.contains('tangkis') ||
+          sport.contains('badminton') ||
+          league.contains('badminton') ||
+          title.contains('badminton')) {
+        groups['Bulu Tangkis']!.add(match);
+      } else if (sport.contains('tenis') ||
+          sport.contains('tennis') ||
+          league.contains('tennis') ||
+          league.contains('tenis')) {
+        groups['Tenis']!.add(match);
+      } else if (sport.contains('voli') ||
+          sport.contains('volly') ||
+          sport.contains('volley') ||
+          league.contains('volly') ||
+          league.contains('volley')) {
+        groups['Bola Voli']!.add(match);
+      } else {
+        groups['Olahraga Lainnya']!.add(match);
+      }
+    }
+
+    final List<_LiveSportSection> sections = [];
+    if (groups['Sepak Bola']!.isNotEmpty) {
+      sections.add(
+        _LiveSportSection(
+          title: '⚽ Sepak Bola Live',
+          icon: Icons.sports_soccer_rounded,
+          accentColor: AppColors.cyanAccent,
+          matches: groups['Sepak Bola']!,
+        ),
+      );
+    }
+    if (groups['Bola Basket']!.isNotEmpty) {
+      sections.add(
+        _LiveSportSection(
+          title: '🏀 Bola Basket Live',
+          icon: Icons.sports_basketball_rounded,
+          accentColor: const Color(0xFFFF9800),
+          matches: groups['Bola Basket']!,
+        ),
+      );
+    }
+    if (groups['Bulu Tangkis']!.isNotEmpty) {
+      sections.add(
+        _LiveSportSection(
+          title: '🏸 Bulu Tangkis Live',
+          icon: Icons.sports_tennis_rounded,
+          accentColor: const Color(0xFF00E676),
+          matches: groups['Bulu Tangkis']!,
+        ),
+      );
+    }
+    if (groups['Tenis']!.isNotEmpty) {
+      sections.add(
+        _LiveSportSection(
+          title: '🎾 Tenis Live',
+          icon: Icons.sports_tennis_rounded,
+          accentColor: const Color(0xFFAEEA00),
+          matches: groups['Tenis']!,
+        ),
+      );
+    }
+    if (groups['Bola Voli']!.isNotEmpty) {
+      sections.add(
+        _LiveSportSection(
+          title: '🏐 Bola Voli Live',
+          icon: Icons.sports_volleyball_rounded,
+          accentColor: const Color(0xFFFFD54F),
+          matches: groups['Bola Voli']!,
+        ),
+      );
+    }
+    if (groups['Olahraga Lainnya']!.isNotEmpty) {
+      sections.add(
+        _LiveSportSection(
+          title: '🏎️ Olahraga Lainnya & E-Sports Live',
+          icon: Icons.sports_motorsports_rounded,
+          accentColor: const Color(0xFFE040FB),
+          matches: groups['Olahraga Lainnya']!,
+        ),
+      );
+    }
+
+    return sections;
+  }
+
+  Widget _buildLiveSportSeparator({
+    required _LiveSportSection section,
+    required double horizontalPadding,
+    required bool isTv,
+  }) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(horizontalPadding, 14, horizontalPadding, 8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              section.accentColor.withValues(alpha: 0.16),
+              AppColors.surfaceElevated,
+            ],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+          ),
+          borderRadius: BorderRadius.circular(12),
+          border: Border(
+            left: BorderSide(color: section.accentColor, width: 4),
+            top: BorderSide(color: AppColors.border.withValues(alpha: 0.4)),
+            right: BorderSide(color: AppColors.border.withValues(alpha: 0.4)),
+            bottom: BorderSide(color: AppColors.border.withValues(alpha: 0.4)),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.25),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: section.accentColor.withValues(alpha: 0.2),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: section.accentColor.withValues(alpha: 0.6),
+                  width: 1,
+                ),
+              ),
+              child: Icon(
+                section.icon,
+                size: 16,
+                color: section.accentColor,
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                section.title.toUpperCase(),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              decoration: BoxDecoration(
+                color: AppColors.liveRed.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: AppColors.liveRed.withValues(alpha: 0.6),
+                  width: 0.8,
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 6,
+                    height: 6,
+                    decoration: const BoxDecoration(
+                      color: AppColors.liveRed,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    '${section.matches.length} LIVE',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void _openPlayer(MatchModel match) {
     AdService().triggerPopunder();
     Navigator.of(
       context,
     ).push(MaterialPageRoute(builder: (context) => PlayerScreen(match: match)));
   }
+}
+
+class _LiveSportSection {
+  final String title;
+  final IconData icon;
+  final Color accentColor;
+  final List<MatchModel> matches;
+
+  _LiveSportSection({
+    required this.title,
+    required this.icon,
+    required this.accentColor,
+    required this.matches,
+  });
 }
