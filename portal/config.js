@@ -23,7 +23,7 @@ const MEIWA_CONFIG = {
       version: "v1.0.0",
       versionCode: 1,
       releaseDate: "September 2026",
-      fileSize: "28.5 MB",
+      fileSize: "45.3 MB (HP) / 44.6 MB (TV)",
       minAndroid: "Android 5.0+ (Lollipop ke atas)",
       supportsTV: true,
       

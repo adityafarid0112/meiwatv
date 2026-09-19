@@ -77,9 +77,9 @@ function initModalLogic() {
     const serverList = document.getElementById("modalServerList");
     let serverHtml = '';
 
-    const stbSize = appKey === 'sports' ? '44.5 MB' : '15.6 MB';
-    const hpSize = appKey === 'sports' ? '45.2 MB' : '18.0 MB';
-    const univSize = appKey === 'sports' ? '132.8 MB' : '50.6 MB';
+    const stbSize = appKey === 'sports' ? '44.6 MB' : '15.6 MB';
+    const hpSize = appKey === 'sports' ? '45.3 MB' : '18.0 MB';
+    const univSize = appKey === 'sports' ? '129.8 MB' : '50.6 MB';
 
     // 1. Versi Ringan STB / Smart TV (Sangat Hemat Memori)
     if (app.downloadUrlSTB) {
