@@ -749,6 +749,29 @@
     flex-shrink: 0;
   }
 
+  .btn-copy-row-link {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .btn-copy-row-link:hover {
+    background: var(--primary-green);
+    color: #000;
+    border-color: var(--primary-green);
+    transform: scale(1.12);
+    box-shadow: 0 0 10px var(--primary-glow);
+  }
+
   /* HIDE UNWANTED BLOGGER STUFF */
   .post-hidden-meta,
   .event-link-preview,
@@ -858,26 +881,16 @@
             </div>
 
             <div class='player-action-buttons'>
-              <button class='btn-copy-stream' id='btnCopyStreamMain' onclick='copyCurrentStreamUrl()' type='button'>
-                <i class='fa-solid fa-copy'/> <span>Salin Link Stream (M3U8)</span>
+              <button class='btn-copy-stream' id='btnCopyBlogMatchLink' onclick='copyCurrentMatchBlogLink()' type='button'>
+                <i class='fa-solid fa-copy'/> <span>Salin Link Pertandingan</span>
               </button>
               <button class='btn-open-source' id='btnOpenNewTab' onclick='openCurrentMatchNewTab()' type='button'>
                 <i class='fa-solid fa-expand'/> <span>Layar Penuh</span>
               </button>
-              <button class='btn-open-source' id='btnOpenDirectStream' onclick='openDirectStreamWindow()' type='button'>
-                <i class='fa-solid fa-arrow-up-right-from-square'/> <span>Buka Stream</span>
-              </button>
-              <button class='btn-open-source' id='btnOpenWebSource' onclick='openWebSourceDirect()' type='button'>
-                <i class='fa-solid fa-globe'/> <span>Web Sumber</span>
+              <button class='btn-open-source' onclick='shareCurrentMatch()' type='button'>
+                <i class='fa-solid fa-share-nodes'/> <span>Bagikan</span>
               </button>
             </div>
-          </div>
-
-          <!-- Direct Stream Link Box -->
-          <div class='stream-link-box'>
-            <span class='stream-link-tag'><i class='fa-solid fa-link'/> Link Stream:</span>
-            <input class='stream-link-input' id='activeStreamUrlInput' readonly='readonly' type='text' value=''/>
-            <button class='btn-quick-copy' onclick='copyCurrentStreamUrl()' type='button'>Salin Link</button>
           </div>
         </div>
       </section>
@@ -3375,13 +3388,21 @@
 
   let hlsInstance = null;
   let flvPlayerInstance = null;
-  let bufferWatchdogTimer = null;
+  let adsterraClickCounter = 0;
 
-  // ADSTERRA TRIGGER
+  // ADSTERRA TRIGGER: SETIAP KLIK PERTANDINGAN / AKSI
   function triggerAdsterra() {
+    adsterraClickCounter++;
+    const adUrls = [
+      "https://www.profitableratecpmnetwork.com/r1x7jbv2ys?key=c06365de807e3e8605b4e7e665953775",
+      "https://www.profitableratecpmnetwork.com/nhgf41xe?key=c1f7258bb9659ab225647c310b68619e"
+    ];
+    const targetAd = adUrls[adsterraClickCounter % adUrls.length];
     try {
-      if (typeof window.openAdsterraPopup === 'function') {
-        window.openAdsterraPopup();
+      const adWin = window.open(targetAd, '_blank');
+      if (adWin) {
+        adWin.blur();
+        window.focus();
       }
     } catch (_) {}
   }
@@ -3529,9 +3550,14 @@
           <div class="match-row-item${activeClass}" onclick="selectMatchCard(${globalIdx})" id="match-row-${globalIdx}">
             <div class="match-row-header">
               <span class="match-row-league">${match.league || 'Turnamen Olahraga'}</span>
-              <span class="match-row-time">
-                ${isLive ? '<span class="live-indicator" style="padding:1px 6px; font-size:9.5px;"><i class="fa-solid fa-circle fa-2xs"></i> LIVE</span>' : '<i class="fa-regular fa-clock"></i> ' + (match.kickoffText || '')}
-              </span>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <span class="match-row-time">
+                  ${isLive ? '<span class="live-indicator" style="padding:1px 6px; font-size:9.5px;"><i class="fa-solid fa-circle fa-2xs"></i> LIVE</span>' : '<i class="fa-regular fa-clock"></i> ' + (match.kickoffText || '')}
+                </span>
+                <button class="btn-copy-row-link" onclick="copySpecificMatchLink(${globalIdx}, event)" title="Salin Link Pertandingan Blog Ini" type="button">
+                  <i class="fa-solid fa-copy"></i>
+                </button>
+              </div>
             </div>
 
             <div class="match-row-teams-grid">
@@ -3554,7 +3580,7 @@
 
     playlistContainer.innerHTML = fullHtml;
 
-    // Auto-load first match into preview if not set
+    // Auto-load match jika belum terpilih
     if (!currentActiveMatch && filtered.length > 0) {
       setHeroMatchPreview(filtered[0]);
     }
@@ -3562,6 +3588,7 @@
 
   // 3. FILTER MATCHES BY SPORT (HEADER TABS CLICK)
   function filterMatchesBySport(category, clickedElement) {
+    triggerAdsterra();
     currentCategoryFilter = category;
 
     document.querySelectorAll('.nav-item-btn').forEach(el => {
@@ -3599,13 +3626,11 @@
     activeStreamUrlServer2 = match.streamJalur2 || (match.streams ? match.streams.jalur2 : '') || '';
     activeStreamUrlServer3 = match.streamJalur3 || (match.streams ? match.streams.jalur3 : '') || '';
 
-    const streamInput = document.getElementById('activeStreamUrlInput');
-    if (streamInput) {
-      let targetUrl = activeStreamUrlServer1;
-      if (activeCurrentServer === 2 && activeStreamUrlServer2) targetUrl = activeStreamUrlServer2;
-      if (activeCurrentServer === 3 && activeStreamUrlServer3) targetUrl = activeStreamUrlServer3;
-      streamInput.value = targetUrl;
-    }
+    // Update URL parameter di browser agar link pertandingan bisa langsung dibagikan
+    try {
+      const matchSlug = match.id || match.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      window.history.replaceState(null, '', '?match=' + matchSlug);
+    } catch (_) {}
 
     const leagueEl = document.getElementById('playerLeagueText');
     if (leagueEl) leagueEl.textContent = match.league || 'Turnamen Olahraga';
@@ -3681,11 +3706,6 @@
     const video = document.getElementById('mainVideoPlayer');
     const stage = document.getElementById('playerStage');
 
-    if (bufferWatchdogTimer) {
-      clearTimeout(bufferWatchdogTimer);
-      bufferWatchdogTimer = null;
-    }
-
     if (hlsInstance) {
       hlsInstance.destroy();
       hlsInstance = null;
@@ -3714,9 +3734,6 @@
         finalStreamUrl = 'https://live2.zundrixmediapipeline.com/live/channel1.m3u8';
       }
     }
-
-    const streamInput = document.getElementById('activeStreamUrlInput');
-    if (streamInput) streamInput.value = finalStreamUrl;
 
     const isDirectFlv = finalStreamUrl.endsWith('.flv') || finalStreamUrl.includes('.flv?');
 
@@ -3765,7 +3782,6 @@
               });
             }
           });
-
           hlsInstance.on(Hls.Events.ERROR, function(event, data) {
             if (data.fatal) {
               switch (data.type) {
@@ -3781,7 +3797,6 @@
               }
             }
           });
-
           return;
         } catch (e) {
           console.warn('HLS.js error:', e);
@@ -3810,6 +3825,7 @@
   }
 
   function triggerStagePlay() {
+    triggerAdsterra();
     if (currentActiveMatch) {
       const idx = allLoadedMatches.indexOf(currentActiveMatch);
       playMatchDirect(idx >= 0 ? idx : 0, 1);
@@ -3836,50 +3852,50 @@
     }
   }
 
-  function copyCurrentStreamUrl() {
-    let urlToCopy = '';
-    const streamInput = document.getElementById('activeStreamUrlInput');
-    if (streamInput && streamInput.value) {
-      urlToCopy = streamInput.value;
-    } else if (currentActiveMatch) {
-      urlToCopy = currentActiveMatch.streamJalur1 || (currentActiveMatch.streams ? currentActiveMatch.streams.jalur1 : '') || currentActiveMatch.postUrl;
-    }
+  // 7. COPY LINK PERTANDINGAN BLOG (E.G. HTTPS://MEIWAOLAHRAGA.BLOGSPOT.COM/?MATCH=...)
+  function getMatchBlogLink(match) {
+    const baseUrl = window.location.origin + window.location.pathname;
+    const matchSlug = match.id || match.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    return baseUrl + '?match=' + matchSlug;
+  }
 
-    if (!urlToCopy) urlToCopy = window.location.href;
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(urlToCopy).then(() => {
-        showToastNotification('✅ Link stream M3U8 berhasil disalin! Siap diputar di VLC/OTT/MX Player.');
-      }).catch(() => {
-        prompt('Salin link stream di bawah ini:', urlToCopy);
-      });
-    } else {
-      prompt('Salin link stream di bawah ini:', urlToCopy);
-    }
-
-    const btn = document.getElementById('btnCopyStreamMain');
+  function copyCurrentMatchBlogLink() {
+    triggerAdsterra();
+    if (!currentActiveMatch) return;
+    const url = getMatchBlogLink(currentActiveMatch);
+    copyTextToClipboard(url, '✅ Link pertandingan ' + currentActiveMatch.title + ' berhasil disalin!');
+    
+    const btn = document.getElementById('btnCopyBlogMatchLink');
     if (btn) {
       const oldHtml = btn.innerHTML;
       btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Tersalin!</span>';
-      setTimeout(() => { btn.innerHTML = oldHtml; }, 2500);
+      setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
     }
   }
 
-  function openDirectStreamWindow() {
-    const streamInput = document.getElementById('activeStreamUrlInput');
-    const url = (streamInput && streamInput.value) ? streamInput.value : (currentActiveMatch ? currentActiveMatch.streamJalur1 : '');
-    if (url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
+  function copySpecificMatchLink(index, event) {
+    if (event) event.stopPropagation();
+    triggerAdsterra();
+    const match = allLoadedMatches[index];
+    if (!match) return;
+    const url = getMatchBlogLink(match);
+    copyTextToClipboard(url, '✅ Link pertandingan ' + match.title + ' berhasil disalin!');
   }
 
-  function openWebSourceDirect() {
-    if (currentActiveMatch && currentActiveMatch.postUrl) {
-      window.open(currentActiveMatch.postUrl, '_blank', 'noopener,noreferrer');
+  function copyTextToClipboard(text, successMsg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToastNotification(successMsg || 'Link berhasil disalin!');
+      }).catch(() => {
+        prompt('Salin link pertandingan berikut:', text);
+      });
+    } else {
+      prompt('Salin link pertandingan berikut:', text);
     }
   }
 
   function openCurrentMatchNewTab() {
+    triggerAdsterra();
     const video = document.getElementById('mainVideoPlayer');
     if (video && video.style.display !== 'none') {
       if (video.requestFullscreen) {
@@ -3893,27 +3909,24 @@
         return;
       }
     }
-
-    triggerAdsterra();
-    if (currentActiveMatch) {
-      const url = currentActiveMatch.postUrl || currentActiveMatch.streamJalur1 || window.location.href;
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
   }
 
   function shareCurrentMatch() {
-    if (navigator.share && currentActiveMatch) {
-      navigator.share({
-        title: currentActiveMatch.title + ' - Live Streaming MeiwaSports',
-        url: window.location.href
-      }).catch(() => {});
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      showToastNotification('Link siaran pertandingan berhasil disalin!');
+    triggerAdsterra();
+    if (currentActiveMatch) {
+      const url = getMatchBlogLink(currentActiveMatch);
+      if (navigator.share) {
+        navigator.share({
+          title: currentActiveMatch.title + ' - Live Streaming MeiwaSports',
+          url: url
+        }).catch(() => {});
+      } else {
+        copyTextToClipboard(url, 'Link siaran pertandingan berhasil disalin!');
+      }
     }
   }
 
-  // 7. REAL-TIME MATCHES SYNC FROM GITHUB
+  // 8. REAL-TIME MATCHES SYNC FROM GITHUB
   function fetchLiveMatchesDirect() {
     const syncSources = [
       'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/matches.json',
@@ -3941,12 +3954,28 @@
     tryFetchSource(0);
   }
 
-  // 8. INIT ON DOM LOAD
+  // 9. INIT ON DOM LOAD
   function initLivePortal() {
     renderInteractivePlaylist(AUTO_LIVE_DATASET);
 
-    // Auto-select match pertama & siapkan player
-    if (allLoadedMatches.length > 0) {
+    // Cek apakah ada parameter ?match= di URL browser
+    let matchTargetFound = false;
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const matchParam = urlParams.get('match');
+      if (matchParam && allLoadedMatches.length > 0) {
+        const foundIdx = allLoadedMatches.findIndex(m => {
+          const slug = m.id || m.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          return slug.toLowerCase() === matchParam.toLowerCase() || m.id === matchParam;
+        });
+        if (foundIdx >= 0) {
+          selectMatchCard(foundIdx);
+          matchTargetFound = true;
+        }
+      }
+    } catch (_) {}
+
+    if (!matchTargetFound && allLoadedMatches.length > 0) {
       setHeroMatchPreview(allLoadedMatches[0]);
     }
 
