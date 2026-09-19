@@ -1,0 +1,3410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset='utf-8'/>
+  <meta content='no-referrer' name='referrer'/>
+  <meta content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+  <title><data:blog.pageTitle/></title>
+  <b:include data='blog' name='all-head-content'/>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link href='https://fonts.googleapis.com' rel='preconnect'/>
+  <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
+  <!-- Font Awesome Icons -->
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
+  <!-- HLS.js & FLV.js Stream Player Engine -->
+  <script src='https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js'/>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.6.4/flv.min.js'/>
+
+  <b:skin><![CDATA[
+  /* ==========================================================================
+     MEIWATV - LIVE SPORT STREAMING PORTAL (PRO SOURCE WEB EDITION)
+     ========================================================================== */
+  :root {
+    --bg-dark: #070a10;
+    --bg-card: #0e1422;
+    --bg-card-hover: #151e33;
+    --bg-surface: #141c2e;
+    --bg-header: #05080e;
+    
+    --primary-green: #10b981;
+    --primary-neon: #00eb1f;
+    --primary-glow: rgba(16, 185, 129, 0.35);
+    
+    --accent-gold: #ffe400;
+    --accent-red: #ef4444;
+    --accent-red-glow: rgba(239, 68, 68, 0.4);
+    --accent-blue: #3b82f6;
+    
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(16, 185, 129, 0.5);
+    --border-gold: rgba(255, 228, 0, 0.4);
+    
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    
+    --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  /* TOP NAVBAR */
+  .site-header {
+    background: var(--bg-header);
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #101726, #1c2840);
+    padding: 6px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+  }
+  .brand-logo:hover {
+    border-color: var(--primary-green);
+    box-shadow: 0 4px 20px var(--primary-glow);
+  }
+  .brand-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .nav-menu-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+  }
+
+  .nav-item-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: var(--transition);
+  }
+  .nav-item-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .nav-item-btn.active {
+    color: #000 !important;
+    background: var(--primary-green) !important;
+    box-shadow: 0 2px 10px var(--primary-glow);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-saweria-top {
+    background: linear-gradient(135deg, #eab308, #ca8a04);
+    color: #000;
+    font-weight: 800;
+    font-size: 12.5px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 12px rgba(234, 179, 8, 0.35);
+    transition: var(--transition);
+  }
+  .btn-saweria-top:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(234, 179, 8, 0.5);
+    color: #000;
+  }
+
+  .btn-apk-top {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #000;
+    font-weight: 800;
+    font-size: 12.5px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 12px var(--primary-glow);
+    transition: var(--transition);
+  }
+  .btn-apk-top:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px var(--primary-glow);
+    color: #000;
+  }
+
+  @media (max-width: 900px) {
+    .nav-menu-links {
+      display: none;
+    }
+  }
+
+  /* TOP ADSTERRA BANNER */
+  .adsterra-banner-container {
+    max-width: 1440px;
+    margin: 14px auto 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .adsterra-wrapper-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 85px;
+  }
+
+  /* MAIN FULL-WIDTH CONTAINER (NO RIGHT SIDEBAR TABS) */
+  .main-full-container {
+    max-width: 1440px;
+    margin: 16px auto 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  /* FULL-WIDTH LIVE PLAYER THEATER CARD */
+  .theater-player-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+  }
+
+  .player-top-bar {
+    background: #090d16;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .player-match-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+  }
+  .live-indicator {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--accent-red);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: livePulse 1.8s infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    50% { box-shadow: 0 0 10px 2px rgba(239, 68, 68, 0.2); }
+  }
+
+  .player-server-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-server {
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    padding: 7px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition);
+  }
+  .btn-server:hover {
+    color: #fff;
+    border-color: var(--primary-green);
+  }
+  .btn-server.active {
+    background: var(--primary-green);
+    color: #000;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 12px var(--primary-glow);
+  }
+
+  .video-container-169 {
+    position: relative;
+    width: 100%;
+    padding-top: 52%; /* Sleek cinematic aspect ratio */
+    background: #000;
+  }
+  @media (max-width: 768px) {
+    .video-container-169 {
+      padding-top: 56.25%;
+    }
+  }
+  .video-container-169 video,
+  .video-container-169 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #000;
+  }
+
+  /* PLAYER OVERVIEW OVERLAY */
+  .player-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(16, 23, 38, 0.96), rgba(8, 12, 20, 0.98));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    gap: 12px;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+  }
+
+  .player-overlay-league {
+    color: var(--primary-green);
+    font-size: 12.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .player-overlay-title {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .player-overlay-time {
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+  .player-overlay-time b {
+    color: var(--accent-gold);
+  }
+  .btn-overlay-play {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #000;
+    font-weight: 800;
+    font-size: 13.5px;
+    padding: 12px 26px;
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--primary-glow);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    transition: var(--transition);
+  }
+  .btn-overlay-play:hover {
+    transform: scale(1.04);
+  }
+
+  /* DETAIL BAR UNDER PLAYER */
+  .player-match-detail-bar {
+    padding: 16px 24px;
+    background: #090d16;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .detail-match-teams {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .detail-team-logo {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+  }
+  .detail-score-pill {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--accent-gold);
+    padding: 4px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  /* PROMO CARDS UNDER PLAYER */
+  .promo-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 680px) {
+    .promo-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .promo-banner-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .promo-banner-card.saweria {
+    border-color: rgba(234, 179, 8, 0.3);
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.08), rgba(202, 138, 4, 0.02));
+  }
+  .promo-banner-card.apk {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(5, 150, 105, 0.02));
+  }
+
+  /* FULL-WIDTH MATCH SCHEDULE SECTION (BELOW PLAYER) */
+  .schedule-section-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .schedule-filter-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 16px;
+  }
+
+  .sports-chips-nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    flex: 1;
+  }
+  .sports-chips-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sport-chip {
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sport-chip:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .sport-chip.active {
+    color: #000 !important;
+    background: var(--primary-green) !important;
+    border-color: var(--primary-green) !important;
+    box-shadow: 0 2px 10px var(--primary-glow);
+  }
+  .sport-chip.chip-live.active {
+    color: #fff !important;
+    background: var(--accent-red) !important;
+    border-color: var(--accent-red) !important;
+    box-shadow: 0 2px 10px var(--accent-red-glow);
+  }
+  .chip-count {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1px 7px;
+    border-radius: var(--radius-full);
+    font-size: 10.5px;
+    font-weight: 800;
+  }
+
+  .search-box-wrap {
+    position: relative;
+    min-width: 240px;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 12px 8px 34px;
+    border-radius: var(--radius-full);
+    outline: none;
+    transition: var(--transition);
+  }
+  .search-input:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 10px var(--primary-glow);
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+
+  /* FULL-WIDTH MATCH CARDS GRID */
+  .match-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .match-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .match-card-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .match-card-item:hover, .match-card-item.active {
+    background: var(--bg-card-hover);
+    border-color: var(--primary-green);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .match-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+  }
+  .match-league-title {
+    font-weight: 700;
+    color: var(--primary-green);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .match-time-tag {
+    font-size: 11.5px;
+    color: var(--text-dim);
+  }
+
+  .match-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .team-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .team-side.away {
+    justify-content: flex-end;
+    text-align: right;
+  }
+  .card-team-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .match-center-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 74px;
+  }
+  .score-badge-live {
+    background: #000;
+    color: var(--accent-gold);
+    border: 1px solid var(--border-gold);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 800;
+    padding: 2px 10px;
+    border-radius: var(--radius-sm);
+    letter-spacing: 1px;
+  }
+  .score-badge-upcoming {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 800;
+    padding: 2px 10px;
+    border-radius: var(--radius-sm);
+  }
+  .live-dot-tag {
+    color: var(--accent-red);
+    font-size: 10.5px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* CARD ACTION CHANNELS */
+  .match-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .stream-btn-chip {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: var(--transition);
+  }
+  .stream-btn-chip:hover {
+    background: var(--primary-green);
+    color: #000;
+    border-color: var(--primary-green);
+  }
+
+  /* FOOTER */
+  .site-footer {
+    background: #05080e;
+    border-top: 1px solid var(--border-subtle);
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .site-footer a {
+    color: var(--primary-green);
+  }
+
+  /* HIDE UNWANTED BLOGGER STUFF */
+  .post-hidden-meta,
+  .event-link-preview,
+  .match-source-link {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  ]]></b:skin>
+  <b:template-skin><![CDATA[ ]]></b:template-skin>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class='site-header'>
+    <div class='nav-container'>
+      <a class='brand-logo' expr:href='data:blog.homepageUrl'>
+        <img alt='MEIWATV' class='brand-logo-img' src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/meiwatv1.png'/>
+      </a>
+
+      <!-- Navigation Links (Sync with single-select filter) -->
+      <ul class='nav-menu-links'>
+        <li><button class='nav-item-btn active' data-cat='all' onclick='filterMatchesBySport("all", this)' type='button'><i class='fa-solid fa-house'/> Beranda</button></li>
+        <li><button class='nav-item-btn' data-cat='football' onclick='filterMatchesBySport("football", this)' type='button'><i class='fa-solid fa-futbol'/> Sepak Bola</button></li>
+        <li><button class='nav-item-btn' data-cat='basketball' onclick='filterMatchesBySport("basketball", this)' type='button'><i class='fa-solid fa-basketball'/> Basket</button></li>
+        <li><button class='nav-item-btn' data-cat='tennis' onclick='filterMatchesBySport("tennis", this)' type='button'><i class='fa-solid fa-baseball'/> Tenis</button></li>
+        <li><button class='nav-item-btn' data-cat='volleyball' onclick='filterMatchesBySport("volleyball", this)' type='button'><i class='fa-solid fa-volleyball'/> Voli</button></li>
+        <li><button class='nav-item-btn' data-cat='live' onclick='filterMatchesBySport("live", this)' type='button'><i class='fa-solid fa-circle-dot' style='color:#ef4444;'/> Sedang LIVE</button></li>
+      </ul>
+
+      <div class='header-actions'>
+        <!-- Saweria Donation -->
+        <a class='btn-saweria-top' href='https://saweria.co/meiwatv' rel='noopener noreferrer' target='_blank'>
+          <span>☕ Donasi Saweria</span>
+        </a>
+        <!-- Download APK -->
+        <a class='btn-apk-top' href='https://drive.google.com/file/d/1CDQW3bNBs-3H6M6ADBXWtKllW70wJJ9V/view?usp=sharing' rel='noopener noreferrer' target='_blank'>
+          <span>🚀 Unduh APK</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- TOP ADSTERRA BANNER -->
+  <div class='adsterra-banner-container'>
+    <div class='adsterra-wrapper-box' id='adsterra-slot-728x90'>
+      <a href='https://www.profitableratecpmnetwork.com/r1x7jbv2ys?key=c06365de807e3e8605b4e7e665953775' rel='noopener noreferrer' target='_blank' style='color:#94a3b8; font-size:12px; display:flex; align-items:center; gap:8px;'>
+        <i class='fa-solid fa-rectangle-ad' style='color:#10b981; font-size:16px;'/>
+        <span>Sponsor &amp; Iklan Resmi MeiwaSports - Klik untuk Kunjungi Partner Kami</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN FULL-WIDTH BROADCAST STAGE -->
+  <main class='main-full-container'>
+
+    <!-- 1. FULL-WIDTH LIVE VIDEO PLAYER THEATER BOX -->
+    <section class='theater-player-card' id='playerSection'>
+      <div class='player-top-bar'>
+        <div class='player-match-badge'>
+          <span class='live-indicator' id='playerLiveBadge'>
+            <i class='fa-solid fa-circle-dot'/> <span>🔴 LIVE BROADCAST</span>
+          </span>
+          <span id='playerLeagueText' style='color:var(--text-muted); font-size:13px;'>Turnamen Olahraga</span>
+        </div>
+
+        <!-- Server / Jalur Switcher -->
+        <div class='player-server-group'>
+          <button class='btn-server active' id='btnServer1' onclick='switchServer(1)' type='button'>
+            <i class='fa-solid fa-play'/> <span>Jalur 1 (HD)</span>
+          </button>
+          <button class='btn-server' id='btnServer2' onclick='switchServer(2)' type='button'>
+            <i class='fa-solid fa-bolt'/> <span>Jalur 2 (FHD)</span>
+          </button>
+          <button class='btn-server' id='btnServer3' onclick='switchServer(3)' type='button'>
+            <i class='fa-solid fa-server'/> <span>Jalur 3 (Cadangan)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 16:9 Video Frame -->
+      <div class='video-container-169'>
+        <video autoplay='autoplay' controls='controls' id='mainVideoPlayer' playsinline='playsinline' poster='' style='display:none;'/>
+        <iframe allow='autoplay; fullscreen; encrypted-media' allowfullscreen='true' frameborder='0' id='mainIframePlayer' src='about:blank' style='display:none;'/>
+
+        <!-- Default Match Preview Overlay -->
+        <div class='player-overlay' id='playerOverlay'>
+          <span class='player-overlay-league' id='overlayLeague'>Premier League</span>
+          <h2 class='player-overlay-title' id='overlayTitle'>Pilih Pertandingan untuk Mulai Menonton</h2>
+          <p class='player-overlay-time' id='overlayKickoff'>Siaran Langsung Kualitas HD Tanpa Buffering</p>
+          <button class='btn-overlay-play' id='btnOverlayPlay' onclick='triggerOverlayPlay()' type='button'>
+            <i class='fa-solid fa-circle-play fa-lg'/> <span>PUTAR SIARAN SEKARANG</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Detail Bar Under Player -->
+      <div class='player-match-detail-bar'>
+        <div class='detail-match-teams'>
+          <img alt='' class='detail-team-logo' id='detailHomeLogo' src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'/>
+          <span id='detailHomeTeam'>Tim Tuan Rumah</span>
+          <span class='detail-score-pill' id='detailScore'>VS</span>
+          <span id='detailAwayTeam'>Tim Tamu</span>
+          <img alt='' class='detail-team-logo' id='detailAwayLogo' src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'/>
+        </div>
+
+        <div style='display:flex; gap:8px;'>
+          <button class='btn-server' onclick='shareCurrentMatch()' style='font-size:11.5px;' type='button'>
+            <i class='fa-solid fa-share-nodes'/> <span>Bagikan Pertandingan</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PROMO CARDS (SAWERIA & APK DOWNLOAD) -->
+    <section class='promo-cards-grid'>
+      <div class='promo-banner-card saweria'>
+        <div>
+          <h4 style='font-weight:800; color:var(--accent-gold); font-size:14.5px; margin-bottom:2px;'><i class='fa-solid fa-mug-hot'/> Dukung Server MeiwaSports</h4>
+          <p style='font-size:12px; color:var(--text-muted);'>Bantu donasi server streaming agar tetap lancar &amp; aktif gratis.</p>
+        </div>
+        <a class='btn-saweria-top' href='https://saweria.co/meiwatv' rel='noopener noreferrer' target='_blank'>
+          <span>Donasi Saweria</span>
+        </a>
+      </div>
+
+      <div class='promo-banner-card apk'>
+        <div>
+          <h4 style='font-weight:800; color:var(--primary-green); font-size:14.5px; margin-bottom:2px;'><i class='fa-solid fa-android'/> Aplikasi Android &amp; TV</h4>
+          <p style='font-size:12px; color:var(--text-muted);'>Nonton siaran langsung lebih cepat via Aplikasi Android Resmi.</p>
+        </div>
+        <a class='btn-apk-top' href='https://drive.google.com/file/d/1CDQW3bNBs-3H6M6ADBXWtKllW70wJJ9V/view?usp=sharing' rel='noopener noreferrer' target='_blank'>
+          <span>Unduh APK</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3. FULL-WIDTH SCHEDULE & MULTI-SPORT TABS (BELOW PLAYER) -->
+    <section class='schedule-section-card'>
+      <!-- Controls: Sports Chips & Search -->
+      <div class='schedule-filter-controls'>
+        <div class='sports-chips-nav'>
+          <button class='sport-chip active' data-cat='all' onclick='filterMatchesBySport("all", this)' type='button'>
+            <span>🌐 Semua</span> <span class='chip-count' id='countAll'>0</span>
+          </button>
+          <button class='sport-chip chip-live' data-cat='live' onclick='filterMatchesBySport("live", this)' type='button'>
+            <span>🔴 LIVE</span> <span class='chip-count' id='countLive'>0</span>
+          </button>
+          <button class='sport-chip' data-cat='football' onclick='filterMatchesBySport("football", this)' type='button'>
+            <span>⚽ Sepak Bola</span> <span class='chip-count' id='countFootball'>0</span>
+          </button>
+          <button class='sport-chip' data-cat='basketball' onclick='filterMatchesBySport("basketball", this)' type='button'>
+            <span>🏀 Basket</span> <span class='chip-count' id='countBasketball'>0</span>
+          </button>
+          <button class='sport-chip' data-cat='tennis' onclick='filterMatchesBySport("tennis", this)' type='button'>
+            <span>🎾 Tenis</span> <span class='chip-count' id='countTennis'>0</span>
+          </button>
+          <button class='sport-chip' data-cat='volleyball' onclick='filterMatchesBySport("volleyball", this)' type='button'>
+            <span>🏐 Voli</span> <span class='chip-count' id='countVolleyball'>0</span>
+          </button>
+          <button class='sport-chip' data-cat='badminton' onclick='filterMatchesBySport("badminton", this)' type='button'>
+            <span>🏸 Badminton</span> <span class='chip-count' id='countBadminton'>0</span>
+          </button>
+          <button class='sport-chip' data-cat='esports' onclick='filterMatchesBySport("esports", this)' type='button'>
+            <span>🎮 Esports</span> <span class='chip-count' id='countEsports'>0</span>
+          </button>
+          <button class='sport-chip' data-cat='upcoming' onclick='filterMatchesBySport("upcoming", this)' type='button'>
+            <span>⏰ Siap Tayang</span> <span class='chip-count' id='countUpcoming'>0</span>
+          </button>
+          <button class='sport-chip' data-cat='finished' onclick='filterMatchesBySport("finished", this)' type='button'>
+            <span>🏁 Selesai</span> <span class='chip-count' id='countFinished'>0</span>
+          </button>
+        </div>
+
+        <div class='search-box-wrap'>
+          <i class='fa-solid fa-magnifying-glass search-icon'/>
+          <input class='search-input' id='matchSearchInput' oninput='handleMatchSearch(this.value)' placeholder='Cari klub, liga, turnamen...' type='text'/>
+        </div>
+      </div>
+
+      <!-- Match Cards Grid -->
+      <div class='match-cards-grid' id='matchScrollList'>
+        <!-- Dynamically rendered match cards -->
+      </div>
+    </section>
+
+    <!-- BLOGGER POST CONTENT (FALLBACK / ARCHIVE SECTION) -->
+    <b:section class='main-content-section' id='main-content-section' showaddelement='false'>
+      <b:widget id='Blog1' locked='true' title='Posting Blog' type='Blog' version='2'>
+        <b:includable id='main'>
+          <div id='bloggerFeedFallback' style='display:none;'>
+            <b:loop values='data:posts' var='post'>
+              <div class='post-hidden-meta' expr:data-kickoff='data:post.date' expr:data-postdate='data:post.date' expr:data-posttitle='data:post.title' expr:data-posturl='data:post.url'>
+                <data:post.body/>
+              </div>
+            </b:loop>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class='site-footer'>
+    <p>&#169; <data:blog.title/> &#8226; Portal Live Streaming Sepak Bola &amp; Olahraga HD Terlengkap.</p>
+    <p style='margin-top:4px;'><a href='https://saweria.co/meiwatv' target='_blank'>Dukung via Saweria</a> | <a href='https://drive.google.com/file/d/1CDQW3bNBs-3H6M6ADBXWtKllW70wJJ9V/view?usp=sharing' target='_blank'>Download APK Resmi</a></p>
+  </footer>
+
+  <!-- ==========================================================================
+       MAIN CLIENT JAVASCRIPT ENGINE
+       ========================================================================== -->
+  <script type='text/javascript'>
+  //<![CDATA[
+  const ADSTERRA_DIRECT_LINKS = [
+    "https://www.profitableratecpmnetwork.com/r1x7jbv2ys?key=c06365de807e3e8605b4e7e665953775",
+    "https://www.profitableratecpmnetwork.com/nhgf41xe?key=c1f7258bb9659ab225647c310b68619e"
+  ];
+  let adsterraLinkIndex = 0;
+  let lastAdsterraOpenTime = 0;
+
+  function triggerAdsterra() {
+    const now = Date.now();
+    if (now - lastAdsterraOpenTime > 45000) {
+      lastAdsterraOpenTime = now;
+      const targetUrl = ADSTERRA_DIRECT_LINKS[adsterraLinkIndex % ADSTERRA_DIRECT_LINKS.length];
+      adsterraLinkIndex++;
+      try {
+        window.open(targetUrl, '_blank');
+      } catch (e) {
+        console.warn('Adsterra popup note:', e);
+      }
+    }
+  }
+
+  // Active Stream State
+  let activeStreamUrlServer1 = "";
+  let activeStreamUrlServer2 = "";
+  let activeStreamUrlServer3 = "";
+  let activeCurrentServer = 1;
+  let currentActiveMatch = null;
+
+  let flvPlayerInstance = null;
+  let hlsInstance = null;
+
+  // CURRENT ACTIVE DATASET (GUARANTEED SCHEDULE & STATUS ACCURACY)
+  const AUTO_LIVE_DATASET = [
+  {
+    "id": "match_1_tottenham-vs-aston-villa",
+    "title": "Tottenham vs Aston Villa",
+    "homeTeam": "Tottenham",
+    "awayTeam": "Aston Villa",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l965mkyh90gr1ge/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/j1l4rjnh06om7vx/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Ngoại Hạng Anh",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T18:30:00+07:00",
+    "kickoffText": "18:30 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel1/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-1/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/tottenham-vs-aston-villa-luc-1830-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_2_brighton-vs-arsenal",
+    "title": "Brighton vs Arsenal",
+    "homeTeam": "Brighton",
+    "awayTeam": "Arsenal",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/9k82rekhd6orepz/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/z318q66hdd1qo9j/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Ngoại Hạng Anh",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T21:00:00+07:00",
+    "kickoffText": "21:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel1/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-1/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/brighton-vs-arsenal-luc-2100-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_3_mylliem-sc-vs-pohkseh-sc",
+    "title": "Mylliem SC vs Pohkseh SC",
+    "homeTeam": "Mylliem SC",
+    "awayTeam": "Pohkseh SC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8ghx816r6od/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/ednm9whg49xryox/image/small",
+    "homeScore": "0",
+    "awayScore": "3",
+    "scoreText": "0 - 3",
+    "matchMinute": "",
+    "league": "Indian Shillong Premier League",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/mylliem-sc-vs-pohkseh-sc-luc-1345-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T13:45:00+07:00",
+    "kickoffText": "13:45 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel30/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/mylliem-sc-vs-pohkseh-sc-luc-1345-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/mylliem-sc-vs-pohkseh-sc-luc-1345-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_4_nu-elfen-saitama-vs-nu-to",
+    "title": "Nữ Elfen Saitama vs Nữ Tokyo Verdy",
+    "homeTeam": "Nữ Elfen Saitama",
+    "awayTeam": "Nữ Tokyo Verdy",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlhgzd3ryk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/6ypq3nh0gk3md7o/image/small",
+    "homeScore": "0",
+    "awayScore": "1",
+    "scoreText": "0 - 1",
+    "matchMinute": "",
+    "league": "Japanese Nadeshiko League Cup",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-elfen-saitama-vs-nu-tokyo-verdy-luc-1400-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:00:00+07:00",
+    "kickoffText": "14:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel5/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/nu-elfen-saitama-vs-nu-tokyo-verdy-luc-1400-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-elfen-saitama-vs-nu-tokyo-verdy-luc-1400-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_5_qianjiang-cretaceous-dino",
+    "title": "Qianjiang Cretaceous Dinosaur vs Banan",
+    "homeTeam": "Qianjiang Cretaceous Dinosaur",
+    "awayTeam": "Banan",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/y39mp1h922dmojx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/318q66hk553qo9j/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "Chongqing City Football Super League",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/qianjiang-cretaceous-dinosaur-vs-banan-luc-1400-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:00:00+07:00",
+    "kickoffText": "14:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel6/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/qianjiang-cretaceous-dinosaur-vs-banan-luc-1400-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/qianjiang-cretaceous-dinosaur-vs-banan-luc-1400-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_6_guangdong-mingtu-u15-vs-s",
+    "title": "Guangdong Mingtu U15 vs Shandong Taishan U15",
+    "homeTeam": "Guangdong Mingtu U15",
+    "awayTeam": "Shandong Taishan U15",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryoh256dq1zp/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/n54qllhd89pqvy9/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "China Youth Football League (Men U15 Group)",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/guangdong-mingtu-u15-vs-shandong-taishan-u15-luc-1400-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:00:00+07:00",
+    "kickoffText": "14:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel32/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/guangdong-mingtu-u15-vs-shandong-taishan-u15-luc-1400-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/guangdong-mingtu-u15-vs-shandong-taishan-u15-luc-1400-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_7_beijing-high-u15-vs-fujia",
+    "title": "Beijing High U15 vs Fujian Chaoti U15",
+    "homeTeam": "Beijing High U15",
+    "awayTeam": "Fujian Chaoti U15",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/8yomo4hz457q0j6/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/jw2r09h1oz3rz84/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "China Youth Football League (Men U15 Group)",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/beijing-high-u15-vs-fujian-chaoti-u15-luc-1400-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:00:00+07:00",
+    "kickoffText": "14:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel33/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/beijing-high-u15-vs-fujian-chaoti-u15-luc-1400-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/beijing-high-u15-vs-fujian-chaoti-u15-luc-1400-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_8_wuhan-three-towns-u15-vs-",
+    "title": "Wuhan Three Towns U15 vs Shanghai Port U15",
+    "homeTeam": "Wuhan Three Towns U15",
+    "awayTeam": "Shanghai Port U15",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/318q66hkj9dqo9j/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/8yomo4hz0n7q0j6/image/small",
+    "homeScore": "2",
+    "awayScore": "0",
+    "scoreText": "2 - 0",
+    "matchMinute": "",
+    "league": "China Youth Football League (Men U15 Group)",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/wuhan-three-towns-u15-vs-shanghai-port-u15-luc-1400-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:00:00+07:00",
+    "kickoffText": "14:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel34/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/wuhan-three-towns-u15-vs-shanghai-port-u15-luc-1400-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/wuhan-three-towns-u15-vs-shanghai-port-u15-luc-1400-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_9_bucheon-1995-vs-gimcheon-",
+    "title": "Bucheon 1995 vs Gimcheon Sangmu",
+    "homeTeam": "Bucheon 1995",
+    "awayTeam": "Gimcheon Sangmu",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/318q66hogyeqo9j/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/56ypq3nho79md7o/image/small",
+    "homeScore": "1",
+    "awayScore": "1",
+    "scoreText": "1 - 1",
+    "matchMinute": "",
+    "league": "K League 1",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/bucheon-1995-vs-gimcheon-sangmu-luc-1430-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:30:00+07:00",
+    "kickoffText": "14:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel6/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-6/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/bucheon-1995-vs-gimcheon-sangmu-luc-1430-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_10_jeonnam-dragons-vs-suwon-",
+    "title": "Jeonnam Dragons vs Suwon FC",
+    "homeTeam": "Jeonnam Dragons",
+    "awayTeam": "Suwon FC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/9dn1m1ghzeemoep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkh3yopqg8n/image/small",
+    "homeScore": "5",
+    "awayScore": "0",
+    "scoreText": "5 - 0",
+    "matchMinute": "",
+    "league": "K League 2",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/jeonnam-dragons-vs-suwon-fc-luc-1430-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:30:00+07:00",
+    "kickoffText": "14:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel11/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-11/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/jeonnam-dragons-vs-suwon-fc-luc-1430-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_11_chungnam-asan-vs-cheonan-",
+    "title": "Chungnam Asan vs Cheonan City",
+    "homeTeam": "Chungnam Asan",
+    "awayTeam": "Cheonan City",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/x7lm7phwgelm2wd/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnh6p61m7vx/image/small",
+    "homeScore": "1",
+    "awayScore": "0",
+    "scoreText": "1 - 0",
+    "matchMinute": "",
+    "league": "K League 2",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/chungnam-asan-vs-cheonan-city-luc-1430-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:30:00+07:00",
+    "kickoffText": "14:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel24/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-24/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/chungnam-asan-vs-cheonan-city-luc-1430-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_12_armadale-sc-vs-uwa-nedlan",
+    "title": "Armadale SC vs UWA-Nedlands FC",
+    "homeTeam": "Armadale SC",
+    "awayTeam": "UWA-Nedlands FC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/zp5rzghj5okq82w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/965mkyh439jr1ge/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "Western Australia NPL",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:30:00+07:00",
+    "kickoffText": "14:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel7/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/armadale-sc-vs-uwa-nedlands-fc-luc-1430-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_13_liangjiang-vs-jiulong-pan",
+    "title": "Liangjiang vs Jiulong Panda",
+    "homeTeam": "Liangjiang",
+    "awayTeam": "Jiulong Panda",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/dn1m1gh1dvwmoep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/l7oqdeh1555r510/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "Chongqing City Football Super League",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:30:00+07:00",
+    "kickoffText": "14:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel8/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/liangjiang-vs-jiulong-panda-luc-1430-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_14_tonglianglong-vs-nanchuan",
+    "title": "Tonglianglong vs Nanchuan Jinfo Mountain",
+    "homeTeam": "Tonglianglong",
+    "awayTeam": "Nanchuan Jinfo Mountain",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/jw2r09h1dl4rz84/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dn1m1gh1wwdmoep/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "Chongqing City Football Super League",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:30:00+07:00",
+    "kickoffText": "14:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel9/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/tonglianglong-vs-nanchuan-jinfo-mountain-luc-1430-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_15_shanghai-second-vs-hubei-",
+    "title": "Shanghai Second vs Hubei Istar",
+    "homeTeam": "Shanghai Second",
+    "awayTeam": "Hubei Istar",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l5ergphnyx9r8k0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkhon6jqg8n/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "Hạng 2 Trung Quốc",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel11/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_16_xian-ronghai-fc-vs-guizho",
+    "title": "Xian Ronghai FC vs Guizhou Guiyang Athletic",
+    "homeTeam": "Xian Ronghai FC",
+    "awayTeam": "Guizhou Guiyang Athletic",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/dn1m1gh8eojmoep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8ghpn5xr6od/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "Hạng 2 Trung Quốc",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel12/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_17_dalian-yingbo-b-vs-guangz",
+    "title": "Dalian Yingbo B vs Guangzhou Dandelion FC",
+    "homeTeam": "Dalian Yingbo B",
+    "awayTeam": "Guangzhou Dandelion FC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8ghx0j4r6od/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlhzk07ryk0/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "Hạng 2 Trung Quốc",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel13/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_18_csa-steaua-bucuresti-vs-a",
+    "title": "CSA Steaua Bucuresti vs A.C.F. Gloria Bistrita",
+    "homeTeam": "CSA Steaua Bucuresti",
+    "awayTeam": "A.C.F. Gloria Bistrita",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/zp5rzghzv6kq82w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/z8yomo4hjnvq0j6/image/small",
+    "homeScore": "1",
+    "awayScore": "2",
+    "scoreText": "1 - 2",
+    "matchMinute": "",
+    "league": "Hạng 2 Romania",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel14/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_19_jecheon-citizen-fc-vs-geo",
+    "title": "Jecheon Citizen FC vs Geoje Citizen",
+    "homeTeam": "Jecheon Citizen FC",
+    "awayTeam": "Geoje Citizen",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/3glrw7hog21qdyj/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryohg5lvq1zp/image/small",
+    "homeScore": "1",
+    "awayScore": "1",
+    "scoreText": "1 - 1",
+    "matchMinute": "",
+    "league": "K4 League",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel27/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_20_fc-bacau-vs-cetate-suceav",
+    "title": "FC Bacau vs Cetate Suceava",
+    "homeTeam": "FC Bacau",
+    "awayTeam": "Cetate Suceava",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnhk4n7m7vx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryohkn1oq1zp/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "Hạng 2 Romania",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel10/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_21_melbourne-united-vs-adela",
+    "title": "Melbourne United vs Adelaide 36ers",
+    "homeTeam": "Melbourne United",
+    "awayTeam": "Adelaide 36ers",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/4zp5rzkt95zr82w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/jednm9kt47eryox/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "National Basketball League",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel29/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/melbourne-united-vs-adelaide-36ers-luc-1630-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_22_ateneo-blue-eagles-vs-fig",
+    "title": "Ateneo Blue Eagles vs Fighting Maroons",
+    "homeTeam": "Ateneo Blue Eagles",
+    "awayTeam": "Fighting Maroons",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/l5ergytovngr8k0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/1l4rjzt622gm7vx/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Philippines University Athletic Association",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel42/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/ateneo-blue-eagles-vs-fighting-maroons-luc-1630-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_23_ankaragucu-mamak-vs-mersi",
+    "title": "Ankaragucu Mamak vs Mersin BSB",
+    "homeTeam": "Ankaragucu Mamak",
+    "awayTeam": "Mersin BSB",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/pxwrx5tge8dqyk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/kjw2r02tdgkqz84/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Turkish Basketball First League",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T18:00:00+07:00",
+    "kickoffText": "18:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel40/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/ankaragucu-mamak-vs-mersin-bsb-luc-1800-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_24_perth-wildcats-vs-sem-pho",
+    "title": "Perth Wildcats vs SEM Phoenix",
+    "homeTeam": "Perth Wildcats",
+    "awayTeam": "SEM Phoenix",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/9dn1m17tz2pmoep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/2y8m4ptj8wgml07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "National Basketball League",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T18:30:00+07:00",
+    "kickoffText": "18:30 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel25/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/perth-wildcats-vs-sem-phoenix-luc-1830-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_25_ha-noi-buffalo-vs-sai-gon",
+    "title": "Hà Nội Buffalo vs Sài Gòn Heat",
+    "homeTeam": "Hà Nội Buffalo",
+    "awayTeam": "Sài Gòn Heat",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/v2y8m4pt256ml07/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/p4jwq25t857q0ve/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Vietnam VBA",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T19:30:00+07:00",
+    "kickoffText": "19:30 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel29/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/ha-noi-buffalo-vs-sai-gon-heat-luc-1930-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_26_anadolu-efes1976-vs-unics",
+    "title": "Anadolu Efes1976 vs Unics Kazan",
+    "homeTeam": "Anadolu Efes1976",
+    "awayTeam": "Unics Kazan",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/p4jwq25tdnxq0ve/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/gpxwrx5tw6zqyk0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "VTB United League Supercup",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T20:00:00+07:00",
+    "kickoffText": "20:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel41/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/anadolu-efes1976-vs-unics-kazan-luc-2000-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_27_derthona-basket-vs-reyer-",
+    "title": "Derthona Basket vs Reyer Venezia",
+    "homeTeam": "Derthona Basket",
+    "awayTeam": "Reyer Venezia",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/p4jwq25t33xq0ve/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/z318q6ntev7mo9j/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Italy Super Cup",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T22:00:00+07:00",
+    "kickoffText": "22:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel40/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/derthona-basket-vs-reyer-venezia-luc-2200-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_28_rostock-seawolves-vs-phoe",
+    "title": "Rostock Seawolves vs Phoenix Hagen",
+    "homeTeam": "Rostock Seawolves",
+    "awayTeam": "Phoenix Hagen",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/n54ql7t2g8zrvy9/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/gx7lm73tyngr2wd/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Basketball Bundesliga",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T23:30:00+07:00",
+    "kickoffText": "23:30 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel25/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/rostock-seawolves-vs-phoenix-hagen-luc-2330-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_29_olimpia-milano-vs-virtus-",
+    "title": "Olimpia Milano vs Virtus Bologna",
+    "homeTeam": "Olimpia Milano",
+    "awayTeam": "Virtus Bologna",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/j1l4rjztp72m7vx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/l965mk8t9v2m1ge/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Italy Super Cup",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T00:45:00+07:00",
+    "kickoffText": "00:45 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel42/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/olimpia-milano-vs-virtus-bologna-luc-0045-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_30_telekom-baskets-bonn-vs-h",
+    "title": "Telekom Baskets Bonn vs Hamburg",
+    "homeTeam": "Telekom Baskets Bonn",
+    "awayTeam": "Hamburg",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/kjw2r02tdyvqz84/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/jednm9kt3ygryox/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Basketball Bundesliga",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T01:00:00+07:00",
+    "kickoffText": "01:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel40/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/telekom-baskets-bonn-vs-hamburg-luc-0100-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_31_valencia-vs-barcelona",
+    "title": "Valencia vs Barcelona",
+    "homeTeam": "Valencia",
+    "awayTeam": "Barcelona",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/gpxwrx5twopqyk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/jednm9ktlwgryox/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Spain Basketball Supercopa",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T02:00:00+07:00",
+    "kickoffText": "02:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel41/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/valencia-vs-barcelona-luc-0200-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_32_nu-atlanta-dream-vs-nu-ch",
+    "title": "Nữ Atlanta Dream vs Nữ Chicago Sky",
+    "homeTeam": "Nữ Atlanta Dream",
+    "awayTeam": "Nữ Chicago Sky",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/9dn1m17tzdgmoep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/4zp5rzkten5r82w/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Women National Basketball Association",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T06:00:00+07:00",
+    "kickoffText": "06:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel40/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-atlanta-dream-vs-nu-chicago-sky-luc-0600-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_33_astros-de-jalisco-vs-dora",
+    "title": "Astros de Jalisco vs Dorados",
+    "homeTeam": "Astros de Jalisco",
+    "awayTeam": "Dorados",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/965mk8t49dkm1ge/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/dn1m17te3kgmoep/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Liga Nacional de Baloncesto Profesional",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T07:15:00+07:00",
+    "kickoffText": "07:15 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel41/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/astros-de-jalisco-vs-dorados-luc-0715-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_34_nu-golden-state-vs-nu-sea",
+    "title": "Nữ Golden State vs Nữ Seattle Storm",
+    "homeTeam": "Nữ Golden State",
+    "awayTeam": "Nữ Seattle Storm",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/dj2ry7tjyxjr1zp/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/yl5ergytjzzr8k0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Women National Basketball Association",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T08:00:00+07:00",
+    "kickoffText": "08:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel25/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-golden-state-vs-nu-seattle-storm-luc-0800-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_35_nu-hong-kong-vs-nu-philip",
+    "title": "Nữ Hong Kong vs Nữ Philippines",
+    "homeTeam": "Nữ Hong Kong",
+    "awayTeam": "Nữ Philippines",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/z8yomovtjn2q0j6/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/gx7lm73ty9yr2wd/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Asian Games - Women's Basketball",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T08:00:00+07:00",
+    "kickoffText": "08:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel29/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-hong-kong-vs-nu-philippines-luc-0800-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_36_nu-kazakhstan-vs-nu-nhat-",
+    "title": "Nữ Kazakhstan vs Nữ Nhật Bản",
+    "homeTeam": "Nữ Kazakhstan",
+    "awayTeam": "Nữ Nhật Bản",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/kn54ql7tgjorvy9/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/4zp5rzkte85r82w/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Asian Games - Women's Basketball",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T11:50:00+07:00",
+    "kickoffText": "11:50 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel29/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nu-kazakhstan-vs-nu-nhat-ban-luc-1150-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_37_new-zealand-breakers-vs-l",
+    "title": "New Zealand Breakers vs lllawarra Hawks",
+    "homeTeam": "New Zealand Breakers",
+    "awayTeam": "lllawarra Hawks",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/j1l4rjzt04xm7vx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/56ypq3ktjjomd7o/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "National Basketball League",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T12:00:00+07:00",
+    "kickoffText": "12:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel25/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-25/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/new-zealand-breakers-vs-lllawarra-hawks-luc-1200-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_38_sydney-kings-vs-cairns-ta",
+    "title": "Sydney Kings vs Cairns Taipans",
+    "homeTeam": "Sydney Kings",
+    "awayTeam": "Cairns Taipans",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/z318q6ntpwgmo9j/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/p4jwq25tje7q0ve/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "National Basketball League",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T14:00:00+07:00",
+    "kickoffText": "14:00 WIB (20/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel29/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-29/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/sydney-kings-vs-cairns-taipans-luc-1400-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_39_melilla-baloncesto-vs-jae",
+    "title": "Melilla Baloncesto vs Jaen CB",
+    "homeTeam": "Melilla Baloncesto",
+    "awayTeam": "Jaen CB",
+    "homeLogo": "https://imgts.sportpulseapiz.com/basketball/team/jednm9ktn8zryox/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/basketball/team/965mk8t49y3m1ge/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Copa del Rey de Baloncesto",
+    "sportCategory": "🏀 Bola Basket",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T17:30:00+07:00",
+    "kickoffText": "17:30 WIB (20/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel40/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/melilla-baloncesto-vs-jaen-cb-luc-1730-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_40_miho-kuramochi-vs-jeong-b",
+    "title": "Miho Kuramochi vs Jeong Bo-young",
+    "homeTeam": "Miho Kuramochi",
+    "awayTeam": "Jeong Bo-young",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/l5erg1fkgywr8k0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/2y8m4vf8993ml07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "WTA Seoul, Korea Republic Women Singles",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/miho-kuramochi-vs-jeong-bo-young-luc-1300-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T13:00:00+07:00",
+    "kickoffText": "13:00 WIB (19/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel54/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/miho-kuramochi-vs-jeong-bo-young-luc-1300-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/miho-kuramochi-vs-jeong-bo-young-luc-1300-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_41_yao-xinxin-vs-priscilla-h",
+    "title": "Yao Xinxin vs Priscilla Hon",
+    "homeTeam": "Yao Xinxin",
+    "awayTeam": "Priscilla Hon",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/4jwq2pfw657m0ve/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/n54ql4f8j5xrvy9/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "WTA Seoul, Korea Republic Women Singles",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T13:45:00+07:00",
+    "kickoffText": "13:45 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel57/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_42_eva-marie-desvignes-vs-ky",
+    "title": "Eva Marie Desvignes vs Kyoka Okamura",
+    "homeTeam": "Eva Marie Desvignes",
+    "awayTeam": "Kyoka Okamura",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/6ypq3pfyp5drd7o/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/l5erg1fn2vjr8k0/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "WTA Singapore, Singapore Women Singles",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/eva-marie-desvignes-vs-kyoka-okamura-luc-1410-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:10:00+07:00",
+    "kickoffText": "14:10 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel59/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/eva-marie-desvignes-vs-kyoka-okamura-luc-1410-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/eva-marie-desvignes-vs-kyoka-okamura-luc-1410-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_43_alevtina-ibragimova-vs-ri",
+    "title": "Alevtina Ibragimova vs Rina Saigo",
+    "homeTeam": "Alevtina Ibragimova",
+    "awayTeam": "Rina Saigo",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/n54ql4fyv8jrvy9/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/4wyrnjf7pleq86p/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "WTA Seoul, Korea Republic Women Singles",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:30:00+07:00",
+    "kickoffText": "14:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel58/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_44_liang-en-shuo-vs-sara-sai",
+    "title": "Liang En-shuo vs Sara Saito",
+    "homeTeam": "Liang En-shuo",
+    "awayTeam": "Sara Saito",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjfv6l4myk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/n54ql4f3054rvy9/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "WTA Seoul, Korea Republic Women Singles",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:50:00+07:00",
+    "kickoffText": "14:50 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel50/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/liang-en-shuo-vs-sara-saito-luc-1450-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_45_alexander-shevchenko-vs-k",
+    "title": "Alexander Shevchenko vs Kasidit Samrej",
+    "homeTeam": "Alexander Shevchenko",
+    "awayTeam": "Kasidit Samrej",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/23xmvvfkj24mg8n/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/318q6jf071xro9j/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:10:00+07:00",
+    "kickoffText": "15:10 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel51/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/alexander-shevchenko-vs-kasidit-samrej-luc-1510-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_46_menelaos-efstathiou-vs-ol",
+    "title": "Menelaos Efstathiou vs Oleksii Krutykh",
+    "homeTeam": "Menelaos Efstathiou",
+    "awayTeam": "Oleksii Krutykh",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjfvx72myk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/y39mpyf5z45mojx/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T16:10:00+07:00",
+    "kickoffText": "16:10 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel52/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/menelaos-efstathiou-vs-oleksii-krutykh-luc-1610-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_47_jurij-rodionov-vs-zizou-b",
+    "title": "Jurij Rodionov vs Zizou Bergs",
+    "homeTeam": "Jurij Rodionov",
+    "awayTeam": "Zizou Bergs",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/zp5rz3f1894m82w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/8yomojfz0ooq0j6/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T17:10:00+07:00",
+    "kickoffText": "17:10 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel53/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/jurij-rodionov-vs-zizou-bergs-luc-1710-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_48_norbert-gombos-vs-stefano",
+    "title": "Norbert Gombos vs Stefanos Tsitsipas",
+    "homeTeam": "Norbert Gombos",
+    "awayTeam": "Stefanos Tsitsipas",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/y0or5ofe47lmwzv/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjfz14omyk0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T18:10:00+07:00",
+    "kickoffText": "18:10 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel54/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/norbert-gombos-vs-stefanos-tsitsipas-luc-1810-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_49_adam-pavlasek-patrik-rikl",
+    "title": "Adam Pavlasek vs Harrison C",
+    "homeTeam": "Adam Pavlasek",
+    "awayTeam": "Harrison C",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/y39mpyf3ye0pmoj/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/dn1m12f432xwqoe/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T19:00:00+07:00",
+    "kickoffText": "19:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel32/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/adam-pavlasek-patrik-rikl-vs-harrison-c-krajicek-a-luc-1900-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_50_alexander-zverev-vs-matej",
+    "title": "Alexander Zverev vs Matej Dodig",
+    "homeTeam": "Alexander Zverev",
+    "awayTeam": "Matej Dodig",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/2y8m4vfgnooml07/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjfo71nmyk0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T19:00:00+07:00",
+    "kickoffText": "19:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel55/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_51_arthur-fery-vs-alvaro-gui",
+    "title": "Arthur Fery vs Alvaro Guillen Meza",
+    "homeTeam": "Arthur Fery",
+    "awayTeam": "Alvaro Guillen Meza",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4f3j64r1ge/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/2y8m4vfzzz5ml07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T20:10:00+07:00",
+    "kickoffText": "20:10 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel56/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_52_jakub-mensik-vs-ben-shelt",
+    "title": "Jakub Mensik vs Ben Shelton",
+    "homeTeam": "Jakub Mensik",
+    "awayTeam": "Ben Shelton",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/zp5rz3f3xk1m82w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/k82re9f2wyzmepz/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T20:10:00+07:00",
+    "kickoffText": "20:10 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel32/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-32/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/jakub-mensik-vs-ben-shelton-luc-2010-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_53_casper-ruud-vs-cui-jie",
+    "title": "Casper Ruud vs Cui Jie",
+    "homeTeam": "Casper Ruud",
+    "awayTeam": "Cui Jie",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/vjxm85fpv09m6od/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4fg73nr1ge/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T21:40:00+07:00",
+    "kickoffText": "21:40 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel57/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/casper-ruud-vs-cui-jie-luc-2140-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_54_cristian-garin-vs-rafael-",
+    "title": "Cristian Garin vs Rafael Jodar",
+    "homeTeam": "Cristian Garin",
+    "awayTeam": "Rafael Jodar",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4f3kxzr1ge/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjf8wg8myk0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T00:10:00+07:00",
+    "kickoffText": "00:10 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel58/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/cristian-garin-vs-rafael-jodar-luc-0010-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_55_felix-auger-aliassime-vs-",
+    "title": "Felix Auger Aliassime vs Arthur Rinderknech",
+    "homeTeam": "Felix Auger Aliassime",
+    "awayTeam": "Arthur Rinderknech",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/y39mpyf98vemojx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/ednm9efzw8vryox/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T02:10:00+07:00",
+    "kickoffText": "02:10 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel59/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/felix-auger-aliassime-vs-arthur-rinderknech-luc-0210-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_56_liam-draxl-vs-quentin-hal",
+    "title": "Liam Draxl vs Quentin Halys",
+    "homeTeam": "Liam Draxl",
+    "awayTeam": "Quentin Halys",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/x7lm7nfopx6q2wd/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/l7oqdwf015wr510/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T03:20:00+07:00",
+    "kickoffText": "03:20 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel50/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/liam-draxl-vs-quentin-halys-luc-0320-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_57_joaquin-aguilar-cardozo-v",
+    "title": "Joaquin Aguilar Cardozo vs Oliver Ojakaar",
+    "homeTeam": "Joaquin Aguilar Cardozo",
+    "awayTeam": "Oliver Ojakaar",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/dn1m12fy15lqoep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/y0or5of5jdxmwzv/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T03:20:00+07:00",
+    "kickoffText": "03:20 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel51/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/joaquin-aguilar-cardozo-vs-oliver-ojakaar-luc-0320-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_58_juan-pablo-varillas-vs-he",
+    "title": "Juan Pablo Varillas vs Hernando Jose Escurra Isnardi",
+    "homeTeam": "Juan Pablo Varillas",
+    "awayTeam": "Hernando Jose Escurra Isnardi",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/dn1m12fnzg1qoep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4fn5e9r1ge/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "Davis Cup",
+    "sportCategory": "🎾 Tenis",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T04:20:00+07:00",
+    "kickoffText": "04:20 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel52/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/juan-pablo-varillas-vs-hernando-jose-escurra-isnardi-luc-0420-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_59_ba-lan-vs-latvia",
+    "title": "Ba Lan vs Latvia",
+    "homeTeam": "Ba Lan",
+    "awayTeam": "Latvia",
+    "homeLogo": "https://imgts.sportpulseapiz.com/volleyball/team/z8yomoxhd3nm0j6/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/volleyball/team/kjw2r0nho6yqz84/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "European Championships",
+    "sportCategory": "🏐 Bola Voli",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T20:00:00+07:00",
+    "kickoffText": "20:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel33/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/ba-lan-vs-latvia-luc-2000-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_60_duc-vs-bulgaria",
+    "title": "Đức vs Bulgaria",
+    "homeTeam": "Đức",
+    "awayTeam": "Bulgaria",
+    "homeLogo": "https://imgts.sportpulseapiz.com/volleyball/team/v2y8m4whk62ql07/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/volleyball/team/kdj2rydhz1zr1zp/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "European Championships",
+    "sportCategory": "🏐 Bola Voli",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T23:00:00+07:00",
+    "kickoffText": "23:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel33/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-33/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/duc-vs-bulgaria-luc-2300-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_61_invictus-gaming-vs-jd-gam",
+    "title": "Invictus Gaming vs JD Gaming",
+    "homeTeam": "Invictus Gaming",
+    "awayTeam": "JD Gaming",
+    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/6ypq3e3u0ynnmd7/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/zp5rz5pfjvw9r82/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "LPL Regional Finals 2026",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel30/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/invictus-gaming-vs-jd-gaming-luc-1600-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_62_mvk-academy-vs-saigon-din",
+    "title": "MVK Academy vs Saigon Dino",
+    "homeTeam": "MVK Academy",
+    "awayTeam": "Saigon Dino",
+    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/pxwrx81ug683qyk/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/2y8m4exu325jql0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "VCS Finals 2026",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel70/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/mvk-academy-vs-saigon-dino-luc-1600-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_63_forsaken-vs-bomba-team",
+    "title": "Forsaken vs BOMBA Team",
+    "homeTeam": "Forsaken",
+    "awayTeam": "BOMBA Team",
+    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/965mk6zt766vq1g/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/vjxm89jb4n6lq6o/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Rift Legends Summer 2026",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel71/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_64_9gaming-vs-cybercore-espo",
+    "title": "9Gaming vs CyberCore Esports",
+    "homeTeam": "9Gaming",
+    "awayTeam": "CyberCore Esports",
+    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/vjxm89jb4ndlq6o/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/dj2ryy6tkwlkr1z/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "VCS Finals 2026",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T19:00:00+07:00",
+    "kickoffText": "19:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel72/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/9gaming-vs-cybercore-esports-luc-1900-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_65_karmine-corp-vs-movistar-",
+    "title": "Karmine Corp vs Movistar KOI",
+    "homeTeam": "Karmine Corp",
+    "awayTeam": "Movistar KOI",
+    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/318q6g8to50vro9/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/1l4rjevu6o0km7v/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "LEC Summer 2026",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T22:00:00+07:00",
+    "kickoffText": "22:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/8/link/channel30/off-tvc?is_off_add=false",
+    "server2Url": "https://xlz.domainkqt.cc/ajax/chanel/type/5/link/channel-30/off-tvc?is_off_add=false",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/karmine-corp-vs-movistar-koi-luc-2200-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_66_hmble-vs-colossal-gaming",
+    "title": "HMBLE vs Colossal Gaming",
+    "homeTeam": "HMBLE",
+    "awayTeam": "Colossal Gaming",
+    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/4wyrnxyt8j1em86/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/k82repjtv5g4qep/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "LIT Summer 2026",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T23:00:00+07:00",
+    "kickoffText": "23:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel70/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/hmble-vs-colossal-gaming-luc-2300-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_67_lyon-gaming-vs-cloud9",
+    "title": "Lyon Gaming vs Cloud9",
+    "homeTeam": "Lyon Gaming",
+    "awayTeam": "Cloud9",
+    "homeLogo": "https://imgts.sportpulseapiz.com/lol/team/l5erg5efoxdym8k/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/lol/team/zp5rz5pfjv49r82/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "LCS Summer 2026",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T03:00:00+07:00",
+    "kickoffText": "03:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel70/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/lyon-gaming-vs-cloud9-luc-0300-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_68_1w-team-vs-team-nemesis",
+    "title": "1w Team vs Team Nemesis",
+    "homeTeam": "1w Team",
+    "awayTeam": "Team Nemesis",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/23xmvxdi3yzvrg8/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/pxwrx8otg034qyk/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "PGL Wallachia Season 9",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:00:00+07:00",
+    "kickoffText": "14:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel72/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/1w-team-vs-team-nemesis-luc-1400-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_69_xtreme-gaming-vs-pibbles-",
+    "title": "Xtreme Gaming vs Pibbles Corp",
+    "homeTeam": "Xtreme Gaming",
+    "awayTeam": "Pibbles Corp",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/k82repwivxv7qep/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/dn1m1ept4d6kqoe/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "PGL Wallachia Season 9",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/xtreme-gaming-vs-pibbles-corp-luc-1400-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T14:00:00+07:00",
+    "kickoffText": "14:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel73/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/xtreme-gaming-vs-pibbles-corp-luc-1400-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/xtreme-gaming-vs-pibbles-corp-luc-1400-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_70_natus-vincere-vs-hokori",
+    "title": "Natus Vincere vs Hokori",
+    "homeTeam": "Natus Vincere",
+    "awayTeam": "Hokori",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/1l4rjektez9m7vx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/4wyrnxki82x2m86/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "PGL Wallachia Season 9",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel74/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_71_team-spirit-academy-vs-in",
+    "title": "Team Spirit Academy vs Inner Circle X Insanity",
+    "homeTeam": "Team Spirit Academy",
+    "awayTeam": "Inner Circle X Insanity",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/zp5rz51cje78r82/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/6ypq3egt0d19md7/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "European Pro League Season 40",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T19:00:00+07:00",
+    "kickoffText": "19:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel75/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/team-spirit-academy-vs-inner-circle-x-insanity-luc-1900-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_72_kalmychata-vs-yellow-subm",
+    "title": "Kalmychata vs Yellow Submarine",
+    "homeTeam": "Kalmychata",
+    "awayTeam": "Yellow Submarine",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/8yomowki7yxzr0j/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/2y8m4egt166ql07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "European Pro League Season 40",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
+    "kickoffIso": "2026-09-18T01:00:00+07:00",
+    "kickoffText": "01:00 WIB (18/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel72/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-yellow-submarine-luc-0100-ngay-18-09-2026/"
+  },
+  {
+    "id": "match_73_team-yandex-vs-mousesport",
+    "title": "Team Yandex vs Mousesports",
+    "homeTeam": "Team Yandex",
+    "awayTeam": "Mousesports",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/n54qle1t2w0pmvy/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/dj2ryy2i22kr1zp/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "PGL Wallachia Season 9",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T23:00:00+07:00",
+    "kickoffText": "23:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel73/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/team-yandex-vs-mousesports-luc-2300-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_74_team-lynx-vs-balu-team",
+    "title": "Team lynx vs Balu Team",
+    "homeTeam": "Team lynx",
+    "awayTeam": "Balu Team",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/l5erg57coljzm8k/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/dj2ryy2ik3xwr1z/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "",
+    "league": "European Pro League Season 40",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T01:00:00+07:00",
+    "kickoffText": "01:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel74/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/team-lynx-vs-balu-team-luc-0100-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_75_puckchamp-vs-balu-team",
+    "title": "Puckchamp vs Balu Team",
+    "homeTeam": "Puckchamp",
+    "awayTeam": "Balu Team",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/23xmvxdi3041rg8/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/dj2ryy2ik3xwr1z/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "European Pro League Season 40",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
+    "kickoffIso": "2026-09-17T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (17/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel70/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/puckchamp-vs-balu-team-luc-1600-ngay-17-09-2026/"
+  },
+  {
+    "id": "match_76_kalmychata-vs-two-move",
+    "title": "Kalmychata vs Two Move",
+    "homeTeam": "Kalmychata",
+    "awayTeam": "Two Move",
+    "homeLogo": "https://imgts.sportpulseapiz.com/dota2/team/8yomowki7yxzr0j/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/dota2/team/y39mp8dt38zdqoj/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "European Pro League Season 40",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
+    "kickoffIso": "2026-09-15T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (15/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel73/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/kalmychata-vs-two-move-luc-1600-ngay-15-09-2026/"
+  },
+  {
+    "id": "match_77_nexus-vs-permitta",
+    "title": "Nexus vs Permitta",
+    "homeTeam": "Nexus",
+    "awayTeam": "Permitta",
+    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/l7oqd9ou1lnm510/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/dj2ryyvfo20r1zp/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "0 - 0",
+    "league": "CCT 2026 Europe Series 9",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel75/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_78_mouz-vs-furia",
+    "title": "MOUZ vs FURIA",
+    "homeTeam": "MOUZ",
+    "awayTeam": "FURIA",
+    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/1l4rje7h675m7vx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/l5erg5xi2oom8k0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "StarLadder StarSeries Season 22",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T19:30:00+07:00",
+    "kickoffText": "19:30 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel76/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/mouz-vs-furia-luc-1930-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_79_aurora-vs-vitality",
+    "title": "Aurora vs Vitality",
+    "homeTeam": "Aurora",
+    "awayTeam": "Vitality",
+    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/k82rep4fpnxqepz/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/4wyrnxzfl8xm86p/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "StarLadder StarSeries Season 22",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T22:00:00+07:00",
+    "kickoffText": "22:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel77/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/aurora-vs-vitality-luc-2200-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_80_black-phoenix-vs-baks",
+    "title": "Black Phoenix vs BAKS",
+    "homeTeam": "Black Phoenix",
+    "awayTeam": "BAKS",
+    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/23xmvx7f3yd0rg8/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/l7oqd9ouw18m510/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "0 - 0",
+    "league": "NODWIN Clutch Series 12",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T00:00:00+07:00",
+    "kickoffText": "00:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel78/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/black-phoenix-vs-baks-luc-0000-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_81_genone-vs-berg-famalicao-",
+    "title": "GenOne vs BERG/Famalicão winner",
+    "homeTeam": "GenOne",
+    "awayTeam": "BERG/Famalicão winner",
+    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/y39mp8zhn86qojx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/zp5rz5vijoxer82/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "0 - 0",
+    "league": "HyperX Retake Season 12",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T01:00:00+07:00",
+    "kickoffText": "01:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel79/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/genone-vs-berg-famalicao-winner-luc-0100-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_82_regain-vs-without-a-roof",
+    "title": "regain vs Without a Roof",
+    "homeTeam": "regain",
+    "awayTeam": "Without a Roof",
+    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/x7lm79xukg56r2w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/k82rep4f3p6qepz/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "FT",
+    "matchMinute": "0 - 0",
+    "league": "CROSSFIRE Season 6",
+    "sportCategory": "🏎️ Olahraga Lainnya",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
+    "kickoffIso": "2026-09-20T07:00:00+07:00",
+    "kickoffText": "07:00 WIB (20/09)",
+    "status": 2,
+    "channel": "",
+    "streamUrl": "https://xlz.domainkqt.cc/ajax/chanel/type/7/link/channel75/off-tvc?is_off_add=false",
+    "server2Url": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/",
+    "streamJalur3": "https://xoilaczzf.cc/truc-tiep/regain-vs-without-a-roof-luc-0700-ngay-20-09-2026/"
+  },
+  {
+    "id": "match_83_csm-slatina-vs-selimbar",
+    "title": "CSM Slatina vs Selimbar",
+    "homeTeam": "CSM Slatina",
+    "awayTeam": "Selimbar",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8gh85ldr6od/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekhykxnrepz/image/small",
+    "homeScore": "1",
+    "awayScore": "2",
+    "scoreText": "1 - 2",
+    "matchMinute": "",
+    "league": "Hạng 2 Romania",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel65/off-tvc?is_off_add=false",
+    "server2Url": "https://atttvnow.com/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_84_lindab-stefanesti-vs-meta",
+    "title": "Lindab Stefanesti vs Metaloglobus",
+    "homeTeam": "Lindab Stefanesti",
+    "awayTeam": "Metaloglobus",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh110pryk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/2y8m4zh3l12ql07/image/small",
+    "homeScore": "2",
+    "awayScore": "1",
+    "scoreText": "2 - 1",
+    "matchMinute": "",
+    "league": "Hạng 2 Romania",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:00:00+07:00",
+    "kickoffText": "15:00 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel66/off-tvc?is_off_add=false",
+    "server2Url": "https://atttvnow.com/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_85_sk-motorlet-praha-vs-bene",
+    "title": "SK Motorlet Praha vs Benesov",
+    "homeTeam": "SK Motorlet Praha",
+    "awayTeam": "Benesov",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/318q66hox4pqo9j/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/y39mp1h5jkpmojx/image/small",
+    "homeScore": "1",
+    "awayScore": "0",
+    "scoreText": "1 - 0",
+    "matchMinute": "",
+    "league": "Czech 3 liga",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:15:00+07:00",
+    "kickoffText": "15:15 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel15/off-tvc?is_off_add=false",
+    "server2Url": "https://atttvnow.com/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/sk-motorlet-praha-vs-benesov-luc-1515-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_86_slavia-prague-c-vs-domazl",
+    "title": "Slavia Prague C vs Domazlice",
+    "homeTeam": "Slavia Prague C",
+    "awayTeam": "Domazlice",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkhxp42qg8n/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/6ypq3nh0p4pmd7o/image/small",
+    "homeScore": "4",
+    "awayScore": "3",
+    "scoreText": "4 - 3",
+    "matchMinute": "",
+    "league": "Czech 3 liga",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:15:00+07:00",
+    "kickoffText": "15:15 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel16/off-tvc?is_off_add=false",
+    "server2Url": "https://atttvnow.com/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/slavia-prague-c-vs-domazlice-luc-1515-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_87_psm-makassar-vs-persita",
+    "title": "PSM Makassar vs Persita",
+    "homeTeam": "PSM Makassar",
+    "awayTeam": "Persita",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnh6699m7vx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnh137nm7vx/image/small",
+    "homeScore": "2",
+    "awayScore": "4",
+    "scoreText": "2 - 4",
+    "matchMinute": "",
+    "league": "VĐQG Indonesia",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:30:00+07:00",
+    "kickoffText": "15:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/8/link/channel18/off-tvc?is_off_add=false",
+    "server2Url": "https://soco.domainkqt.cc/ajax/chanel/type/5/link/channel-18/off-tvc?is_off_add=false",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/psm-makassar-vs-persita-luc-1530-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_88_persebaya-vs-garudayaksa-",
+    "title": "Persebaya vs Garudayaksa FC",
+    "homeTeam": "Persebaya",
+    "awayTeam": "Garudayaksa FC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekh931jrepz/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/3glrw7ho791qdyj/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "VĐQG Indonesia",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:30:00+07:00",
+    "kickoffText": "15:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/8/link/channel13/off-tvc?is_off_add=false",
+    "server2Url": "https://soco.domainkqt.cc/ajax/chanel/type/5/link/channel-13/off-tvc?is_off_add=false",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/persebaya-vs-garudayaksa-fc-luc-1530-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_89_psgc-ciamis-vs-sumsel-uni",
+    "title": "PSGC Ciamis vs Sumsel United",
+    "homeTeam": "PSGC Ciamis",
+    "awayTeam": "Sumsel United",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/6ypq3nh534nmd7o/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlhv5ngryk0/image/small",
+    "homeScore": "0",
+    "awayScore": "0",
+    "scoreText": "0 - 0",
+    "matchMinute": "",
+    "league": "Hạng 2 Indonesia",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/psgc-ciamis-vs-sumsel-united-luc-1530-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T15:30:00+07:00",
+    "kickoffText": "15:30 WIB (19/09)",
+    "status": 1,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/7/link/channel17/off-tvc?is_off_add=false",
+    "server2Url": "https://atttvnow.com/truc-tiep/psgc-ciamis-vs-sumsel-united-luc-1530-ngay-19-09-2026/",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/psgc-ciamis-vs-sumsel-united-luc-1530-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_90_kawasaki-frontale-vs-kash",
+    "title": "Kawasaki Frontale vs Kashima Antlers",
+    "homeTeam": "Kawasaki Frontale",
+    "awayTeam": "Kashima Antlers",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/gpxwrxlho65ryk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/j1l4rjnhp8nm7vx/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "J1 League",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/8/link/channel16/off-tvc?is_off_add=false",
+    "server2Url": "https://soco.domainkqt.cc/ajax/chanel/type/5/link/channel-16/off-tvc?is_off_add=false",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/kawasaki-frontale-vs-kashima-antlers-luc-1600-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_91_avispa-fukuoka-vs-sanfrec",
+    "title": "Avispa Fukuoka vs Sanfrecce Hiroshima",
+    "homeTeam": "Avispa Fukuoka",
+    "awayTeam": "Sanfrecce Hiroshima",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vl7oqdehkv6r510/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9dn1m1ghdp1moep/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "J1 League",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/8/link/channel17/off-tvc?is_off_add=false",
+    "server2Url": "https://soco.domainkqt.cc/ajax/chanel/type/5/link/channel-17/off-tvc?is_off_add=false",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/avispa-fukuoka-vs-sanfrecce-hiroshima-luc-1600-ngay-19-09-2026/"
+  },
+  {
+    "id": "match_92_dong-tam-long-an-vs-bac-n",
+    "title": "Đồng Tâm Long An vs Bắc Ninh",
+    "homeTeam": "Đồng Tâm Long An",
+    "awayTeam": "Bắc Ninh",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4wyrn4h8wo6q86p/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnhz9yxm7vx/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "VS",
+    "matchMinute": "",
+    "league": "Cúp Quốc Gia Việt Nam",
+    "sportCategory": "⚽ Sepak Bola",
+    "postUrl": "https://atttvnow.com/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 0,
+    "channel": "",
+    "streamUrl": "https://soco.domainkqt.cc/ajax/chanel/type/8/link/channel4/off-tvc?is_off_add=false",
+    "server2Url": "https://soco.domainkqt.cc/ajax/chanel/type/5/link/channel-4/off-tvc?is_off_add=false",
+    "streamJalur3": "https://atttvnow.com/truc-tiep/dong-tam-long-an-vs-bac-ninh-luc-1600-ngay-19-09-2026/"
+  }
+];
+
+  let allLoadedMatches = [...AUTO_LIVE_DATASET];
+  let currentCategoryFilter = "all";
+  let currentSearchKeyword = "";
+
+  // 1. SPORT CATEGORY METADATA HELPER
+  function getSportCategoryMeta(catString, title, league) {
+    const text = (catString + ' ' + title + ' ' + league).toLowerCase();
+    if (text.includes('basket') || text.includes('bóng rổ') || text.includes('nba')) {
+      return { icon: '🏀', name: 'Basket', key: 'basketball' };
+    }
+    if (text.includes('tenis') || text.includes('tennis') || text.includes('atp') || text.includes('wta')) {
+      return { icon: '🎾', name: 'Tenis', key: 'tennis' };
+    }
+    if (text.includes('voli') || text.includes('volleyball') || text.includes('bóng chuyền')) {
+      return { icon: '🏐', name: 'Voli', key: 'volleyball' };
+    }
+    if (text.includes('badminton') || text.includes('cầu lông') || text.includes('bwf')) {
+      return { icon: '🏸', name: 'Badminton', key: 'badminton' };
+    }
+    if (text.includes('esport') || text.includes('dota') || text.includes('league of legends') || text.includes('pubg')) {
+      return { icon: '🎮', name: 'Esports', key: 'esports' };
+    }
+    return { icon: '⚽', name: 'Sepak Bola', key: 'football' };
+  }
+
+  // 2. RENDER MATCH LIST (FULL-WIDTH GRID WITH STRICT STATUS-SCORE LOGIC)
+  function renderMatchList(matchesToRender) {
+    allLoadedMatches = matchesToRender || AUTO_LIVE_DATASET;
+    updateCategoryBadges(allLoadedMatches);
+
+    const gridContainer = document.getElementById('matchScrollList');
+    if (!gridContainer) return;
+
+    let filtered = allLoadedMatches.filter(m => {
+      const sportMeta = getSportCategoryMeta(m.sportCategory || '', m.title || '', m.league || '');
+      const isLive = m.status === 1;
+      const isFinished = m.status === 2;
+      const isUpcoming = m.status === 0;
+
+      // Category matching
+      if (currentCategoryFilter === 'live' && !isLive) return false;
+      if (currentCategoryFilter === 'upcoming' && !isUpcoming) return false;
+      if (currentCategoryFilter === 'finished' && !isFinished) return false;
+      if (['football', 'basketball', 'tennis', 'volleyball', 'badminton', 'esports'].includes(currentCategoryFilter)) {
+        if (sportMeta.key !== currentCategoryFilter) return false;
+      }
+
+      // Search keyword matching
+      if (currentSearchKeyword.trim() !== '') {
+        const query = currentSearchKeyword.toLowerCase().trim();
+        const searchTarget = (m.title + ' ' + (m.homeTeam || '') + ' ' + (m.awayTeam || '') + ' ' + (m.league || '')).toLowerCase();
+        if (!searchTarget.includes(query)) return false;
+      }
+
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      gridContainer.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align:center; padding:50px 20px; color:var(--text-muted);">
+          <i class="fa-solid fa-calendar-xmark fa-3x" style="color:var(--text-dim); margin-bottom:12px;"></i>
+          <p style="font-weight:700; font-size:16px;">Tidak ada pertandingan ditemukan</p>
+          <p style="font-size:13px; color:var(--text-dim); margin-top:4px;">Silakan pilih kategori olahraga lain atau gunakan pencarian.</p>
+        </div>`;
+      return;
+    }
+
+    let html = '';
+    filtered.forEach((match, idx) => {
+      const sportMeta = getSportCategoryMeta(match.sportCategory || '', match.title || '', match.league || '');
+      const isLive = match.status === 1;
+      const isFinished = match.status === 2;
+      const homeName = match.homeTeam || match.title.split(' vs ')[0] || 'Tuan Rumah';
+      const awayName = match.awayTeam || match.title.split(' vs ')[1] || 'Tamu';
+      const homeLogo = match.homeLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
+      const awayLogo = match.awayLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
+
+      let scoreBadgeHtml = '';
+      let statusTagHtml = '';
+
+      if (isLive) {
+        scoreBadgeHtml = `<div class="score-badge-live">${match.scoreText || '0 - 0'}</div>`;
+        statusTagHtml = `<span class="live-dot-tag"><i class="fa-solid fa-circle fa-2xs"></i> LIVE ${match.matchMinute ? match.matchMinute : ''}</span>`;
+      } else if (isFinished) {
+        scoreBadgeHtml = `<div class="score-badge-upcoming">${match.scoreText || 'FT'}</div>`;
+        statusTagHtml = `<span style="color:var(--text-dim); font-size:10.5px;">🏁 Selesai</span>`;
+      } else {
+        // Strictly Upcoming (NO SCORE)
+        scoreBadgeHtml = `<div class="score-badge-upcoming">VS</div>`;
+        statusTagHtml = `<span style="color:var(--primary-green); font-size:11px; font-weight:700;">⏰ ${match.kickoffText || 'Siap Tayang'}</span>`;
+      }
+
+      const activeClass = (currentActiveMatch && currentActiveMatch.title === match.title) ? ' active' : '';
+
+      html += `
+        <div class="match-card-item${activeClass}" onclick="selectMatchCard(${idx})" id="match-item-${idx}">
+          <div class="match-card-header">
+            <span class="match-league-title">
+              <span>${sportMeta.icon}</span> <span>${match.league || 'Sport Match'}</span>
+            </span>
+            <span class="match-time-tag"><i class="fa-regular fa-clock"></i> ${match.kickoffText || ''}</span>
+          </div>
+
+          <div class="match-card-body">
+            <div class="team-side">
+              <img src="${homeLogo}" alt="${homeName}" class="card-team-logo" onerror="this.src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'"/>
+              <span>${homeName}</span>
+            </div>
+
+            <div class="match-center-score">
+              ${scoreBadgeHtml}
+              ${statusTagHtml}
+            </div>
+
+            <div class="team-side away">
+              <span>${awayName}</span>
+              <img src="${awayLogo}" alt="${awayName}" class="card-team-logo" onerror="this.src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'"/>
+            </div>
+          </div>
+
+          <div class="match-card-actions" onclick="event.stopPropagation();">
+            <button class="stream-btn-chip" onclick="playMatchDirect(${idx}, 1)" type="button">
+              <i class="fa-solid fa-play fa-xs" style="color:var(--primary-green);"></i> <span>Jalur 1 (HD)</span>
+            </button>
+            <button class="stream-btn-chip" onclick="playMatchDirect(${idx}, 2)" type="button">
+              <i class="fa-solid fa-bolt fa-xs" style="color:var(--accent-gold);"></i> <span>Jalur 2 (FHD)</span>
+            </button>
+            <button class="stream-btn-chip" onclick="playMatchDirect(${idx}, 3)" type="button">
+              <i class="fa-solid fa-server fa-xs"></i> <span>Jalur 3</span>
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    gridContainer.innerHTML = html;
+
+    // Set first match as default preview if not set
+    if (!currentActiveMatch && filtered.length > 0) {
+      setHeroMatchPreview(filtered[0]);
+    }
+  }
+
+  // 3. UPDATE CATEGORY BADGE COUNTERS
+  function updateCategoryBadges(matches) {
+    let counts = { all: matches.length, live: 0, football: 0, basketball: 0, tennis: 0, volleyball: 0, badminton: 0, esports: 0, upcoming: 0, finished: 0 };
+    matches.forEach(m => {
+      if (m.status === 1) counts.live++;
+      else if (m.status === 2) counts.finished++;
+      else counts.upcoming++;
+
+      const meta = getSportCategoryMeta(m.sportCategory || '', m.title || '', m.league || '');
+      if (counts[meta.key] !== undefined) counts[meta.key]++;
+    });
+
+    for (const key in counts) {
+      const el = document.getElementById('count' + key.charAt(0).toUpperCase() + key.slice(1));
+      if (el) el.textContent = counts[key];
+    }
+  }
+
+  // 4. FILTER MATCHES BY SPORT (CLEAN SINGLE-SELECT FOR BOTH HEADER & CHIPS)
+  function filterMatchesBySport(category, clickedElement) {
+    currentCategoryFilter = category;
+
+    // Remove active class from all header buttons and filter chips
+    document.querySelectorAll('.nav-item-btn, .sport-chip').forEach(el => {
+      el.classList.remove('active');
+    });
+
+    // Add active class specifically to all elements matching this category
+    document.querySelectorAll('[data-cat="' + category + '"]').forEach(el => {
+      el.classList.add('active');
+    });
+
+    if (clickedElement) {
+      clickedElement.classList.add('active');
+    }
+
+    renderMatchList(allLoadedMatches);
+  }
+
+  // 5. SEARCH HANDLER
+  function handleMatchSearch(keyword) {
+    currentSearchKeyword = keyword;
+    renderMatchList(allLoadedMatches);
+  }
+
+  // 6. SELECT MATCH CARD & SET PREVIEW
+  function selectMatchCard(index) {
+    const match = allLoadedMatches[index];
+    if (!match) return;
+    setHeroMatchPreview(match);
+    playMatchDirect(index, 1);
+  }
+
+  function setHeroMatchPreview(match) {
+    currentActiveMatch = match;
+    activeStreamUrlServer1 = match.streamUrl || match.streamJalur1 || '';
+    activeStreamUrlServer2 = match.server2Url || match.streamJalur2 || '';
+    activeStreamUrlServer3 = match.streamJalur3 || match.postUrl || '';
+
+    // Update Player Stage details
+    const leagueEl = document.getElementById('playerLeagueText');
+    if (leagueEl) leagueEl.textContent = match.league || 'Turnamen Olahraga';
+
+    const overlayLeague = document.getElementById('overlayLeague');
+    if (overlayLeague) overlayLeague.textContent = match.league || 'Turnamen Olahraga';
+
+    const overlayTitle = document.getElementById('overlayTitle');
+    if (overlayTitle) overlayTitle.textContent = match.title;
+
+    const overlayKickoff = document.getElementById('overlayKickoff');
+    if (overlayKickoff) {
+      if (match.status === 1) {
+        overlayKickoff.innerHTML = '<b style="color:#ef4444;">🔴 PERTANDINGAN SEDANG LIVE</b>';
+      } else {
+        overlayKickoff.innerHTML = 'Jadwal Kick-off: <b>' + (match.kickoffText || 'Siap Tayang') + '</b>';
+      }
+    }
+
+    const homeNameEl = document.getElementById('detailHomeTeam');
+    if (homeNameEl) homeNameEl.textContent = match.homeTeam || match.title.split(' vs ')[0] || 'Tuan Rumah';
+
+    const awayNameEl = document.getElementById('detailAwayTeam');
+    if (awayNameEl) awayNameEl.textContent = match.awayTeam || match.title.split(' vs ')[1] || 'Tamu';
+
+    const scoreEl = document.getElementById('detailScore');
+    if (scoreEl) {
+      if (match.status === 1) scoreEl.textContent = match.scoreText || '0 - 0';
+      else if (match.status === 2) scoreEl.textContent = match.scoreText || 'FT';
+      else scoreEl.textContent = 'VS';
+    }
+
+    const homeLogoEl = document.getElementById('detailHomeLogo');
+    if (homeLogoEl) homeLogoEl.src = match.homeLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
+
+    const awayLogoEl = document.getElementById('detailAwayLogo');
+    if (awayLogoEl) awayLogoEl.src = match.awayLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
+  }
+
+  // 7. PLAY MATCH DIRECTLY (STREAM ENGINE)
+  function playMatchDirect(index, serverIndex) {
+    const match = allLoadedMatches[index];
+    if (match) setHeroMatchPreview(match);
+    activeCurrentServer = serverIndex || 1;
+
+    // Trigger Adsterra popunder monetization
+    triggerAdsterra();
+
+    // Scroll smoothly to player
+    const playerCard = document.getElementById('playerSection');
+    if (playerCard) {
+      playerCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Hide Overlay
+    const overlay = document.getElementById('playerOverlay');
+    if (overlay) overlay.style.display = 'none';
+
+    // Update server buttons active state
+    document.querySelectorAll('.btn-server').forEach((btn, idx) => {
+      if (idx + 1 === activeCurrentServer) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
+    let targetStreamUrl = activeStreamUrlServer1;
+    if (activeCurrentServer === 2 && activeStreamUrlServer2) targetStreamUrl = activeStreamUrlServer2;
+    if (activeCurrentServer === 3 && activeStreamUrlServer3) targetStreamUrl = activeStreamUrlServer3;
+
+    executeStreamPlayback(targetStreamUrl);
+  }
+
+  function triggerOverlayPlay() {
+    if (currentActiveMatch) {
+      playMatchDirect(allLoadedMatches.indexOf(currentActiveMatch), 1);
+    } else if (allLoadedMatches.length > 0) {
+      playMatchDirect(0, 1);
+    }
+  }
+
+  function switchServer(serverIdx) {
+    activeCurrentServer = serverIdx;
+    triggerAdsterra();
+
+    document.querySelectorAll('.btn-server').forEach((btn, idx) => {
+      if (idx + 1 === activeCurrentServer) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
+    let targetStreamUrl = activeStreamUrlServer1;
+    if (activeCurrentServer === 2 && activeStreamUrlServer2) targetStreamUrl = activeStreamUrlServer2;
+    if (activeCurrentServer === 3 && activeStreamUrlServer3) targetStreamUrl = activeStreamUrlServer3;
+
+    executeStreamPlayback(targetStreamUrl);
+  }
+
+  // 8. EXECUTE VIDEO STREAM PLAYBACK (HLS / FLV / IFRAME)
+  function executeStreamPlayback(streamUrl) {
+    const video = document.getElementById('mainVideoPlayer');
+    const iframe = document.getElementById('mainIframePlayer');
+
+    if (!streamUrl || streamUrl === '#' || streamUrl.trim() === '') {
+      console.warn('Empty stream URL, using backup iframe');
+      if (video) video.style.display = 'none';
+      if (iframe) {
+        iframe.style.display = 'block';
+        iframe.src = activeStreamUrlServer3 || 'about:blank';
+      }
+      return;
+    }
+
+    // Clean previous instances
+    if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
+    if (flvPlayerInstance) { flvPlayerInstance.destroy(); flvPlayerInstance = null; }
+
+    const isDirectFlv = streamUrl.includes('.flv') || streamUrl.includes('type=flv') || streamUrl.includes('type/7') || streamUrl.includes('type/8');
+    const isDirectM3u8 = streamUrl.includes('.m3u8') || streamUrl.includes('type=m3u8') || streamUrl.includes('type/5');
+
+    if (isDirectFlv && typeof flvjs !== 'undefined' && flvjs.isSupported()) {
+      if (iframe) iframe.style.display = 'none';
+      if (video) {
+        video.style.display = 'block';
+        try {
+          flvPlayerInstance = flvjs.createPlayer({ type: 'flv', url: streamUrl, isLive: true, cors: true });
+          flvPlayerInstance.attachMediaElement(video);
+          flvPlayerInstance.load();
+          video.play().catch(() => {});
+        } catch (e) {
+          console.warn('FLV fallback to iframe:', e);
+          fallbackToIframe(streamUrl);
+        }
+      }
+    } else if (isDirectM3u8 && typeof Hls !== 'undefined' && Hls.isSupported()) {
+      if (iframe) iframe.style.display = 'none';
+      if (video) {
+        video.style.display = 'block';
+        try {
+          hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
+          hlsInstance.loadSource(streamUrl);
+          hlsInstance.attachMedia(video);
+          hlsInstance.on(Hls.Events.MANIFEST_PARSED, function() {
+            video.play().catch(() => {});
+          });
+        } catch (e) {
+          console.warn('HLS fallback to iframe:', e);
+          fallbackToIframe(streamUrl);
+        }
+      }
+    } else {
+      fallbackToIframe(streamUrl);
+    }
+  }
+
+  function fallbackToIframe(url) {
+    const video = document.getElementById('mainVideoPlayer');
+    const iframe = document.getElementById('mainIframePlayer');
+    if (video) { video.pause(); video.style.display = 'none'; }
+    if (iframe) {
+      iframe.style.display = 'block';
+      iframe.src = url;
+    }
+  }
+
+  function shareCurrentMatch() {
+    if (navigator.share && currentActiveMatch) {
+      navigator.share({
+        title: currentActiveMatch.title + ' - Live Streaming MeiwaSports',
+        url: window.location.href
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link pertandingan berhasil disalin!');
+    }
+  }
+
+  // 9. AUTOMATIC REAL-TIME SYNC VIA GITHUB RAW & CDN
+  function fetchLiveMatchesDirect() {
+    const syncSources = [
+      'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/matches.json',
+      'https://cdn.jsdelivr.net/gh/adityafarid0112/meiwatv@main/matches.json'
+    ];
+
+    function tryFetchSource(idx) {
+      if (idx >= syncSources.length) return;
+      fetch(syncSources[idx] + '?_t=' + Date.now())
+        .then(res => {
+          if (!res.ok) throw new Error('Sync source failed');
+          return res.json();
+        })
+        .then(data => {
+          if (Array.isArray(data) && data.length > 0) {
+            console.log('✅ Real-time matches synced successfully:', data.length);
+            renderMatchList(data);
+          }
+        })
+        .catch(err => {
+          tryFetchSource(idx + 1);
+        });
+    }
+
+    tryFetchSource(0);
+  }
+
+  // 10. INIT ON DOM LOAD
+  function initLivePortal() {
+    renderMatchList(AUTO_LIVE_DATASET);
+
+    setTimeout(function() {
+      fetchLiveMatchesDirect();
+      setInterval(fetchLiveMatchesDirect, 120000);
+    }, 4000);
+  }
+
+  document.addEventListener('DOMContentLoaded', initLivePortal);
+  //]]>
+  </script>
+</body>
+</html>
