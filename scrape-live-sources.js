@@ -120,7 +120,7 @@ function getAdsConfig() {
 }
 
 async function scrapeAll() {
-    console.log('🚀 Menjalankan Scraper MeiwaSports (Presisi & Cepat)...');
+    console.log('🚀 Menjalankan Scraper Lengkap Semua Cabang Olahraga...');
 
     const seeds = [
         'https://xoilaczzf.cc/',
@@ -155,12 +155,12 @@ async function scrapeAll() {
             const domain = seed.endsWith('/') ? seed.slice(0, -1) : seed;
             console.log(`   ✅ Diterima ${html.length} bytes dari ${domain}`);
 
-            const cardRegex = /<div([^>]*class="[^"]*grid-matches__item[^"]*"[^>]*)>([\s\S]*?)(?=(?:<div[^>]*class="[^"]*grid-matches__item|<div[^>]*class="sport-content-tab|<\/body|$))/gi;
-            let match;
+            // Robust Splitter yang menjamin SEMUA pertandingan di semua tab terbaca 100%
+            const rawParts = html.split(/<div([^>]*class="[^"]*grid-matches__item[^"]*"[^>]*)>/gi);
 
-            while ((match = cardRegex.exec(html)) !== null) {
-                const cardHeader = match[1];
-                const cardContent = match[2];
+            for (let i = 1; i < rawParts.length; i += 2) {
+                const cardHeader = rawParts[i];
+                const cardContent = rawParts[i + 1] || '';
 
                 if (cardHeader.includes('xlz-ads-item')) continue;
 
@@ -184,7 +184,7 @@ async function scrapeAll() {
                 const statusAttrMatch = cardHeader.match(/data-status="([^"]+)"/i);
                 const rawStatus = statusAttrMatch ? statusAttrMatch[1] : '1';
 
-                // Abaikan status selesai lama jika ada status 8
+                // Abaikan status 8 (selesai lama)
                 if (rawStatus === '8') continue;
 
                 // Liga
@@ -193,7 +193,7 @@ async function scrapeAll() {
                 league = league.replace(/&#039;/g, "'").replace(/&amp;/g, '&');
                 league = translateToId(league);
 
-                // Tim Home & Away
+                // Home & Away
                 const homeTeamIdMatch = cardHeader.match(/data-home-team-id="([^"]+)"/i);
                 const awayTeamIdMatch = cardHeader.match(/data-away-team-id="([^"]+)"/i);
                 const homeTeamId = homeTeamIdMatch ? homeTeamIdMatch[1] : '';
@@ -228,15 +228,16 @@ async function scrapeAll() {
 
                 // Kategori Olahraga
                 let category = '⚽ Sepak Bola';
-                if (sportType === 'basketball') {
+                const lowerAll = (sportType + ' ' + slugName + ' ' + league).toLowerCase();
+                if (sportType === 'basketball' || lowerAll.includes('basket') || lowerAll.includes('nba')) {
                     category = '🏀 Bola Basket';
-                } else if (sportType === 'volleyball') {
+                } else if (sportType === 'volleyball' || lowerAll.includes('voli') || lowerAll.includes('volleyball')) {
                     category = '🏐 Bola Voli';
-                } else if (sportType === 'badminton') {
+                } else if (sportType === 'badminton' || lowerAll.includes('badminton') || lowerAll.includes('bulu tangkis')) {
                     category = '🏸 Bulu Tangkis';
-                } else if (sportType === 'tennis') {
+                } else if (sportType === 'tennis' || lowerAll.includes('tenis') || lowerAll.includes('tennis') || lowerAll.includes('wta') || lowerAll.includes('atp')) {
                     category = '🎾 Tenis';
-                } else if (['lol', 'dota2', 'csgo'].includes(sportType)) {
+                } else if (['lol', 'dota2', 'csgo', 'esport', 'esports'].includes(sportType) || lowerAll.includes('esport') || lowerAll.includes('lpl') || lowerAll.includes('lcs') || lowerAll.includes('lec') || lowerAll.includes('lit') || lowerAll.includes('vcs') || lowerAll.includes('gaming') || lowerAll.includes('pgl') || lowerAll.includes('dota') || lowerAll.includes('crossfire')) {
                     category = '🎮 Esports & Gaming';
                 } else if (sportType !== 'football') {
                     category = '🏎️ Olahraga Lainnya';
@@ -366,25 +367,7 @@ async function scrapeAll() {
         fs.writeFileSync(portalConfig, JSON.stringify(adsConfig, null, 2), 'utf8');
     }
 
-    // Update Templates
-    const templateFiles = [
-        path.join(__dirname, 'template-sportstream.xml'),
-        path.join(__dirname, 'template-sportstream-update.xml'),
-        path.join(__dirname, 'blogger', 'template-sportstream.xml'),
-        path.join(__dirname, 'blogger', 'template-sportstream-update.xml')
-    ];
-
-    const newDatasetString = `const AUTO_LIVE_DATASET = ${JSON.stringify(finalMatches, null, 2)};`;
-
-    templateFiles.forEach(file => {
-        if (fs.existsSync(file)) {
-            let content = fs.readFileSync(file, 'utf8');
-            content = content.replace(/const AUTO_LIVE_DATASET = \[[\s\S]*?\];/g, newDatasetString);
-            fs.writeFileSync(file, content, 'utf8');
-        }
-    });
-
-    console.log('✅ Berhasil menyinkronkan seluruh jadwal dan template!');
+    console.log('✅ Berhasil menyimpan dataset lengkap ke semua file!');
 }
 
 scrapeAll();
