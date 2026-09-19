@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import '../models/match_model.dart';
@@ -443,16 +442,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-  Future<void> _openExternalBrowser() async {
-    _resetControlsTimer();
-    final url = _getActiveStreamUrl();
-    if (url.isNotEmpty) {
-      final uri = Uri.parse(url);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
-    }
-  }
+
 
   @override
   void dispose() {

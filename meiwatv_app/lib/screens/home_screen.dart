@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const String tabBolaVoli = '🏐 Bola Voli';
   static const String tabBuluTangkis = '🏸 Bulu Tangkis';
   static const String tabTenis = '🎾 Tenis';
+  static const String tabEsports = '🎮 Esports';
   static const String tabLainnya = '🏎️ Olahraga Lainnya';
 
   String _selectedCategory = tabLive;
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     tabBolaVoli,
     tabBuluTangkis,
     tabTenis,
+    tabEsports,
     tabLainnya,
   ];
 
@@ -97,13 +99,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     leagueLower.contains('tennis') ||
                     leagueLower.contains('tenis');
               }
+              if (_selectedCategory == tabEsports) {
+                return sport.contains('esport') ||
+                    sport.contains('gaming') ||
+                    leagueLower.contains('esport') ||
+                    leagueLower.contains('lpl') ||
+                    leagueLower.contains('lcs') ||
+                    leagueLower.contains('lec') ||
+                    leagueLower.contains('dota') ||
+                    leagueLower.contains('cs2') ||
+                    leagueLower.contains('csgo');
+              }
               if (_selectedCategory == tabLainnya) {
                 return sport.contains('lainnya') ||
                     (!sport.contains('sepak bola') &&
                         !sport.contains('basket') &&
                         !sport.contains('voli') &&
                         !sport.contains('tangkis') &&
-                        !sport.contains('tenis'));
+                        !sport.contains('tenis') &&
+                        !sport.contains('esport'));
               }
               return false;
             }).toList();

@@ -45,11 +45,12 @@ class MatchModel {
   bool get isUpcoming => status == 0;
   bool get isFinished => status == 2;
   bool get hasScore =>
-      (homeScore != null &&
-          awayScore != null &&
-          homeScore!.isNotEmpty &&
-          awayScore!.isNotEmpty) ||
-      (scoreText != null && scoreText!.isNotEmpty);
+      (isLive || isFinished) &&
+      (((homeScore != null &&
+              awayScore != null &&
+              homeScore!.isNotEmpty &&
+              awayScore!.isNotEmpty) ||
+          (scoreText != null && scoreText!.isNotEmpty)));
 
   factory MatchModel.fromJson(Map<String, dynamic> json, {String? docId}) {
     final title = json['title'] as String? ?? 'Pertandingan Olahraga';
