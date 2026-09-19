@@ -25,6 +25,8 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
   @override
   Widget build(BuildContext context) {
     final match = widget.match;
+    final sportColor = _getSportColor(match.sportCategory, match.league, match.title);
+    final sportIcon = _getSportIcon(match.sportCategory, match.league, match.title);
 
     return Focus(
       onFocusChange: (focused) {
@@ -47,11 +49,11 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedScale(
-          scale: _isFocused ? 1.04 : 1.0,
-          duration: const Duration(milliseconds: 200),
+          scale: _isFocused ? 1.035 : 1.0,
+          duration: const Duration(milliseconds: 180),
           curve: Curves.easeOutCubic,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 180),
             curve: Curves.easeOutCubic,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -59,18 +61,20 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                 end: Alignment.bottomRight,
                 colors: _isFocused
                     ? [
-                        AppColors.surfaceElevated,
-                        const Color(0xFF14243B),
+                        const Color(0xFF1E2F4D),
+                        const Color(0xFF111E33),
                       ]
                     : [
-                        AppColors.surface,
-                        const Color(0xFF0D1422),
+                        const Color(0xFF131D2E),
+                        const Color(0xFF0A101C),
                       ],
               ),
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: _isFocused ? AppColors.primary : AppColors.border,
-                width: _isFocused ? 2.5 : 1.0,
+                color: _isFocused
+                    ? AppColors.primary
+                    : AppColors.border.withValues(alpha: 0.8),
+                width: _isFocused ? 2.2 : 1.0,
               ),
               boxShadow: _isFocused
                   ? [
@@ -83,62 +87,85 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                     ]
                   : [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.3),
+                        color: Colors.black.withValues(alpha: 0.35),
                         blurRadius: 8,
                         offset: const Offset(0, 3),
                       ),
                     ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(16),
               child: Stack(
                 children: [
-                  // Ambient stadium light banner inside card
+                  // 1. Sport-Themed Vector Arena Graphics & Stadium Spotlight
+                  Positioned.fill(
+                    child: CustomPaint(
+                      painter: _SportCardBackdropPainter(
+                        sportCategory: match.sportCategory,
+                        isLive: match.isLive,
+                      ),
+                    ),
+                  ),
+
+                  // 2. Ambient Top Neon Indicator Bar
                   Positioned(
                     top: 0,
                     left: 0,
                     right: 0,
-                    height: 4,
+                    height: 3.5,
                     child: Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: match.isLive
                               ? [AppColors.liveRed, AppColors.goldAccent]
-                              : [AppColors.primary, AppColors.cyanAccent],
+                              : [sportColor, AppColors.cyanAccent],
                         ),
                       ),
                     ),
                   ),
 
+                  // 3. Main Card Content (Optimized to fill height without awkward gap)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
+                    padding: const EdgeInsets.fromLTRB(11.0, 9.0, 11.0, 9.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        // Header: League & Live Badge
+                        // --- Header: Sport Category & League + Live / Kickoff Badge ---
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Expanded(
                               child: Row(
                                 children: [
-                                  Icon(
-                                    _getSportIcon(match.sportCategory, match.league, match.title),
-                                    size: 13,
-                                    color: _getSportColor(match.sportCategory, match.league, match.title),
+                                  Container(
+                                    padding: const EdgeInsets.all(3.5),
+                                    decoration: BoxDecoration(
+                                      color: sportColor.withValues(alpha: 0.16),
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color: sportColor.withValues(alpha: 0.35),
+                                        width: 0.8,
+                                      ),
+                                    ),
+                                    child: Icon(
+                                      sportIcon,
+                                      size: 12,
+                                      color: sportColor,
+                                    ),
                                   ),
-                                  const SizedBox(width: 5),
+                                  const SizedBox(width: 6),
                                   Expanded(
                                     child: Text(
                                       match.league.toUpperCase(),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                        color: _getSportColor(match.sportCategory, match.league, match.title),
-                                        fontSize: 10.5,
+                                        color: sportColor,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.w800,
-                                        letterSpacing: 0.5,
+                                        letterSpacing: 0.4,
                                       ),
                                     ),
                                   ),
@@ -153,202 +180,223 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
                           ],
                         ),
 
-                        const SizedBox(height: 8),
-
-                        // Match Teams Versus Layout
-                        Row(
-                          children: [
-                            // Home Team
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TeamLogoWidget(
-                                    teamName: match.homeTeam,
-                                    logoUrl: match.homeLogo,
-                                    size: 42,
-                                    accentColor: AppColors.primary,
-                                    sportCategory: match.sportCategory,
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    match.homeTeam,
-                                    maxLines: 2,
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      color: AppColors.textPrimary,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      height: 1.15,
+                        // --- Versus Area: Home vs Away ---
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 2.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              // Home Team
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    TeamLogoWidget(
+                                      teamName: match.homeTeam,
+                                      logoUrl: match.homeLogo,
+                                      size: 40,
+                                      accentColor: AppColors.primary,
+                                      sportCategory: match.sportCategory,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            // Center Score or VS Badge
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                              child: match.hasScore
-                                  ? Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 7,
-                                        vertical: 3,
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      match.homeTeam,
+                                      maxLines: 2,
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        color: AppColors.textPrimary,
+                                        fontSize: 11.5,
+                                        fontWeight: FontWeight.bold,
+                                        height: 1.15,
                                       ),
-                                      decoration: BoxDecoration(
-                                        gradient: const LinearGradient(
-                                          colors: [
-                                            Color(0xFF1B3258),
-                                            Color(0xFF0F1E38),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              // Center Score or VS Pill
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                                child: match.hasScore
+                                    ? Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 3.5,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                            colors: [
+                                              Color(0xFF1B3560),
+                                              Color(0xFF0F203D),
+                                            ],
+                                          ),
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(
+                                            color: AppColors.cyanAccent.withValues(alpha: 0.8),
+                                            width: 1.0,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: AppColors.cyanAccent.withValues(alpha: 0.25),
+                                              blurRadius: 6,
+                                            ),
                                           ],
                                         ),
-                                        borderRadius: BorderRadius.circular(6),
-                                        border: Border.all(
-                                          color: AppColors.cyanAccent.withValues(alpha: 0.8),
-                                          width: 1.0,
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: AppColors.cyanAccent.withValues(alpha: 0.25),
-                                            blurRadius: 5,
-                                          ),
-                                        ],
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            match.scoreText ??
-                                                '${match.homeScore} - ${match.awayScore}',
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12.5,
-                                              fontWeight: FontWeight.w900,
-                                              letterSpacing: 0.8,
-                                            ),
-                                          ),
-                                          if (match.matchMinute != null &&
-                                              match.matchMinute!.isNotEmpty) ...[
-                                            const SizedBox(height: 1),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
                                             Text(
-                                              match.matchMinute!,
+                                              match.scoreText ??
+                                                  '${match.homeScore} - ${match.awayScore}',
                                               style: const TextStyle(
-                                                color: AppColors.cyanAccent,
-                                                fontSize: 8.5,
-                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                                fontSize: 12.5,
+                                                fontWeight: FontWeight.w900,
+                                                letterSpacing: 0.8,
                                               ),
                                             ),
+                                            if (match.matchMinute != null &&
+                                                match.matchMinute!.isNotEmpty) ...[
+                                              const SizedBox(height: 1),
+                                              Text(
+                                                match.matchMinute!,
+                                                style: const TextStyle(
+                                                  color: AppColors.cyanAccent,
+                                                  fontSize: 8.5,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
                                           ],
-                                        ],
-                                      ),
-                                    )
-                                  : Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 6,
-                                        vertical: 3,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.surfaceLight,
-                                        borderRadius: BorderRadius.circular(6),
-                                        border: Border.all(
-                                          color: AppColors.border,
-                                          width: 0.8,
+                                        ),
+                                      )
+                                    : Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 7,
+                                          vertical: 3,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF18263D),
+                                          borderRadius: BorderRadius.circular(6),
+                                          border: Border.all(
+                                            color: AppColors.goldAccent.withValues(alpha: 0.5),
+                                            width: 0.8,
+                                          ),
+                                        ),
+                                        child: const Text(
+                                          'VS',
+                                          style: TextStyle(
+                                            color: AppColors.goldAccent,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w900,
+                                            letterSpacing: 0.5,
+                                          ),
                                         ),
                                       ),
-                                      child: const Text(
-                                        'VS',
-                                        style: TextStyle(
-                                          color: AppColors.goldAccent,
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                    ),
-                            ),
-
-                            // Away Team
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TeamLogoWidget(
-                                    teamName: match.awayTeam,
-                                    logoUrl: match.awayLogo,
-                                    size: 42,
-                                    accentColor: AppColors.cyanAccent,
-                                    sportCategory: match.sportCategory,
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    match.awayTeam,
-                                    maxLines: 2,
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      color: AppColors.textPrimary,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      height: 1.15,
-                                    ),
-                                  ),
-                                ],
                               ),
-                            ),
-                          ],
+
+                              // Away Team
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    TeamLogoWidget(
+                                      teamName: match.awayTeam,
+                                      logoUrl: match.awayLogo,
+                                      size: 40,
+                                      accentColor: AppColors.cyanAccent,
+                                      sportCategory: match.sportCategory,
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      match.awayTeam,
+                                      maxLines: 2,
+                                      textAlign: TextAlign.center,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        color: AppColors.textPrimary,
+                                        fontSize: 11.5,
+                                        fontWeight: FontWeight.bold,
+                                        height: 1.15,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
 
-                        const SizedBox(height: 8),
-                        const Divider(color: AppColors.border, height: 1),
-                        const SizedBox(height: 6),
-
-                        // Footer: Stream Jalur Indicators & Action CTA
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // Jalur tag list
-                            Row(
-                              children: [
-                                _buildJalurTag('Jalur 1', match.streamJalur1.isNotEmpty),
-                                const SizedBox(width: 3),
-                                _buildJalurTag('Jalur 2', match.streamJalur2.isNotEmpty),
-                                const SizedBox(width: 3),
-                                _buildJalurTag('Jalur 3', match.streamJalur3.isNotEmpty),
-                              ],
-                            ),
-
-                            // Play Button Indicator
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                              decoration: BoxDecoration(
-                                color: _isFocused ? AppColors.primary : AppColors.surfaceLight,
-                                borderRadius: BorderRadius.circular(6),
+                        // --- Footer: Jalur 1, 2, 3 Indicators & Nonton CTA ---
+                        Container(
+                          padding: const EdgeInsets.only(top: 6.0),
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(
+                                color: AppColors.border.withValues(alpha: 0.5),
+                                width: 0.8,
                               ),
-                              child: Row(
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              // Jalur Capsules with Live Active Dots
+                              Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
-                                    Icons.play_arrow_rounded,
-                                    size: 15,
-                                    color: _isFocused
-                                        ? Colors.white
-                                        : AppColors.cyanAccent,
-                                  ),
-                                  const SizedBox(width: 2),
-                                  Text(
-                                    'Nonton',
-                                    style: TextStyle(
-                                      color: _isFocused
-                                          ? Colors.white
-                                          : AppColors.textPrimary,
-                                      fontSize: 10.5,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                  _buildJalurTag('Jalur 1', match.streamJalur1.isNotEmpty),
+                                  const SizedBox(width: 3.5),
+                                  _buildJalurTag('Jalur 2', match.streamJalur2.isNotEmpty),
+                                  const SizedBox(width: 3.5),
+                                  _buildJalurTag('Jalur 3', match.streamJalur3.isNotEmpty),
                                 ],
                               ),
-                            ),
-                          ],
+
+                              // Play Button Indicator
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: _isFocused
+                                        ? [AppColors.primary, AppColors.cyanAccent]
+                                        : [
+                                            const Color(0xFF1B3050),
+                                            const Color(0xFF11223B),
+                                          ],
+                                  ),
+                                  borderRadius: BorderRadius.circular(6),
+                                  border: Border.all(
+                                    color: _isFocused
+                                        ? AppColors.cyanAccent
+                                        : AppColors.border.withValues(alpha: 0.7),
+                                    width: 0.8,
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.play_arrow_rounded,
+                                      size: 14,
+                                      color: _isFocused ? Colors.white : AppColors.cyanAccent,
+                                    ),
+                                    const SizedBox(width: 2),
+                                    Text(
+                                      'Nonton',
+                                      style: TextStyle(
+                                        color: _isFocused ? Colors.white : AppColors.textPrimary,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -364,18 +412,46 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
 
   Widget _buildJalurTag(String label, bool isAvailable) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 5.5, vertical: 2.5),
       decoration: BoxDecoration(
-        color: isAvailable ? AppColors.surfaceLight : Colors.transparent,
+        color: isAvailable ? const Color(0xFF142136) : const Color(0xFF0E1624),
         borderRadius: BorderRadius.circular(4),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: isAvailable ? AppColors.textSecondary : AppColors.textMuted.withValues(alpha: 0.5),
-          fontSize: 9,
-          fontWeight: FontWeight.w600,
+        border: Border.all(
+          color: isAvailable
+              ? AppColors.cyanAccent.withValues(alpha: 0.3)
+              : AppColors.border.withValues(alpha: 0.2),
+          width: 0.6,
         ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 4.5,
+            height: 4.5,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isAvailable ? const Color(0xFF00E676) : Colors.grey.withValues(alpha: 0.4),
+              boxShadow: isAvailable
+                  ? [
+                      BoxShadow(
+                        color: const Color(0xFF00E676).withValues(alpha: 0.7),
+                        blurRadius: 3,
+                      )
+                    ]
+                  : null,
+            ),
+          ),
+          const SizedBox(width: 3),
+          Text(
+            label,
+            style: TextStyle(
+              color: isAvailable ? AppColors.textSecondary : AppColors.textMuted.withValues(alpha: 0.5),
+              fontSize: 8.5,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -430,5 +506,86 @@ class _TvFocusableCardState extends State<TvFocusableCard> {
       return const Color(0xFFE040FB); // Magenta
     }
     return AppColors.cyanAccent;
+  }
+}
+
+/// CustomPainter for Sport-Themed Pitch / Court Field Markings & Stadium Lights
+class _SportCardBackdropPainter extends CustomPainter {
+  final String sportCategory;
+  final bool isLive;
+
+  _SportCardBackdropPainter({
+    required this.sportCategory,
+    required this.isLive,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final cat = sportCategory.toLowerCase();
+
+    // 1. Stadium Floodlight Spotlight from top center
+    final glowPaint = Paint()
+      ..shader = RadialGradient(
+        center: const Alignment(0, -0.6),
+        radius: 0.95,
+        colors: [
+          (isLive ? AppColors.liveRed : AppColors.primary).withValues(alpha: 0.12),
+          AppColors.cyanAccent.withValues(alpha: 0.03),
+          Colors.transparent,
+        ],
+        stops: const [0.0, 0.5, 1.0],
+      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));
+    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), glowPaint);
+
+    // 2. Vector Field / Pitch / Court Line Markings
+    final linePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.0
+      ..color = Colors.white.withValues(alpha: 0.045);
+
+    if (cat.contains('basket')) {
+      // Basketball Court: 3-Point arc & Key circle
+      final bottomCenter = Offset(size.width * 0.5, size.height * 1.05);
+      canvas.drawCircle(bottomCenter, size.width * 0.45, linePaint);
+      canvas.drawRect(
+        Rect.fromCenter(
+          center: Offset(size.width * 0.5, size.height * 0.72),
+          width: size.width * 0.32,
+          height: size.height * 0.5,
+        ),
+        linePaint,
+      );
+    } else if (cat.contains('tenis') || cat.contains('voli') || cat.contains('badminton')) {
+      // Court Grid & Net Line
+      canvas.drawLine(Offset(0, size.height * 0.5), Offset(size.width, size.height * 0.5), linePaint);
+      canvas.drawLine(Offset(size.width * 0.22, 0), Offset(size.width * 0.22, size.height), linePaint);
+      canvas.drawLine(Offset(size.width * 0.78, 0), Offset(size.width * 0.78, size.height), linePaint);
+    } else {
+      // Football Pitch: Center Circle & Halfway Line
+      final pitchCenter = Offset(size.width * 0.5, size.height * 0.48);
+      canvas.drawCircle(pitchCenter, size.width * 0.24, linePaint);
+      canvas.drawLine(Offset(0, size.height * 0.48), Offset(size.width, size.height * 0.48), linePaint);
+
+      // Subtle Corner Arcs
+      canvas.drawArc(
+        Rect.fromCircle(center: const Offset(0, 0), radius: 20),
+        0,
+        1.57,
+        false,
+        linePaint,
+      );
+      canvas.drawArc(
+        Rect.fromCircle(center: Offset(size.width, 0), radius: 20),
+        1.57,
+        1.57,
+        false,
+        linePaint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _SportCardBackdropPainter oldDelegate) {
+    return oldDelegate.sportCategory != sportCategory || oldDelegate.isLive != isLive;
   }
 }

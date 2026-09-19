@@ -513,7 +513,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     crossAxisCount: crossAxisCount,
                                     mainAxisSpacing: 14,
                                     crossAxisSpacing: 14,
-                                    mainAxisExtent: isTvOrDesktop ? 225 : 240,
+                                    mainAxisExtent: isTvOrDesktop ? 175 : 182,
                                   ),
                               delegate: SliverChildBuilderDelegate((
                                 context,
@@ -558,7 +558,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   crossAxisCount: crossAxisCount,
                                   mainAxisSpacing: 14,
                                   crossAxisSpacing: 14,
-                                  mainAxisExtent: isTvOrDesktop ? 225 : 240,
+                                  mainAxisExtent: isTvOrDesktop ? 175 : 182,
                                 ),
                             delegate: SliverChildBuilderDelegate((
                               context,
