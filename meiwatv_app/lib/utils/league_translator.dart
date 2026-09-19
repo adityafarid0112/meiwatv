@@ -123,6 +123,7 @@ class LeagueTranslator {
     final directList = <MapEntry<Pattern, String>>[
       // Bangladesh & negara lain yang memakai nama 'Premier League'
       MapEntry(RegExp(r'Bangladesh\s*Premier\s*League', caseSensitive: false), 'Liga Utama Bangladesh'),
+      MapEntry(RegExp(r'European Championship(s)?', caseSensitive: false), 'Kejuaraan Eropa'),
       MapEntry(RegExp(r'Czech\s*3\s*liga', caseSensitive: false), 'Liga 3 Ceko'),
       MapEntry(RegExp(r'Ngoại Hạng Darwin', caseSensitive: false), 'Liga Darwin Australia'),
 
@@ -131,8 +132,7 @@ class LeagueTranslator {
       MapEntry(RegExp(r'NGO[Á|Ã|A].*?H[Á|Ã|A].*?NG\s*INGGRIS', caseSensitive: false), 'Liga Inggris'),
       MapEntry(RegExp(r'NGO[Á|Ã|A].*?H[Á|Ã|A].*?NG\s*ANH', caseSensitive: false), 'Liga Inggris'),
       MapEntry(RegExp(r'Ngoại Hạng Anh|English Premier League', caseSensitive: false), 'Liga Inggris'),
-      MapEntry(RegExp(r'\bPremier League(\s*\(Inggris\))?\b', caseSensitive: false), 'Liga Inggris'),
-      MapEntry(RegExp(r'Hạng Nhất Anh|Championship(\s*\(Inggris\))?|EFL Championship', caseSensitive: false), 'Liga Championship Inggris'),
+      MapEntry(RegExp(r'Hạng Nhất Anh|\bEFL\s+Championship\b|(?<!European\s)\bChampionship(\s*\(Inggris\))?\b', caseSensitive: false), 'Liga Championship Inggris'),
       MapEntry(RegExp(r'Cúp FA|FA Cup(\s*\(Inggris\))?', caseSensitive: false), 'Piala FA Inggris'),
       MapEntry(RegExp(r'Cúp Liên Đoàn Anh|EFL Cup|Carabao Cup', caseSensitive: false), 'Piala Carabao Inggris'),
       MapEntry(RegExp(r'League One', caseSensitive: false), 'Liga 1 Inggris (League One)'),
@@ -202,7 +202,7 @@ class LeagueTranslator {
       MapEntry(RegExp(r"Asian Games\s*-\s*Women'?s Basketball", caseSensitive: false), 'Asian Games - Bola Basket Putri'),
       MapEntry(RegExp(r'WTA Seoul.*', caseSensitive: false), 'WTA Seoul Tenis Putri'),
       MapEntry(RegExp(r'Davis Cup', caseSensitive: false), 'Piala Davis Tenis'),
-      MapEntry(RegExp(r'European Championships', caseSensitive: false), 'Kejuaraan Eropa'),
+      MapEntry(RegExp(r'European Championship(s)?', caseSensitive: false), 'Kejuaraan Eropa'),
 
       // Esports
       MapEntry(RegExp(r'LPL Regional Finals 2026', caseSensitive: false), 'Final Regional LPL 2026 (LoL)'),

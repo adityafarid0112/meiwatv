@@ -143,9 +143,12 @@ function translateToId(str) {
         { pattern: /Czech\s*3\s*liga/gi, replace: 'Liga 3 Ceko' },
         { pattern: /Ngoại Hạng Darwin/gi, replace: 'Liga Darwin Australia' },
 
+        // Turnamen Internasional Utama
+        { pattern: /European Championship(s)?/gi, replace: 'Kejuaraan Eropa' },
+
         // Liga Inggris
         { pattern: /Ngoại Hạng Anh|Premier League(\s*\(Inggris\))?/gi, replace: 'Liga Inggris' },
-        { pattern: /Hạng Nhất Anh|Championship(\s*\(Inggris\))?/gi, replace: 'Liga Championship Inggris' },
+        { pattern: /Hạng Nhất Anh|(?<!European\s)\bChampionship(\s*\(Inggris\))?/gi, replace: 'Liga Championship Inggris' },
         { pattern: /Cúp FA|FA Cup(\s*\(Inggris\))?/gi, replace: 'Piala FA Inggris' },
         { pattern: /Cúp Liên Đoàn Anh|EFL Cup|Carabao Cup/gi, replace: 'Piala Carabao Inggris' },
 
@@ -285,7 +288,7 @@ function translateToId(str) {
         { pattern: /\bTrung Quốc\b/gi, replace: 'China' },
         { pattern: /\bTây Ban Nha\b/gi, replace: 'Spanyol' },
         { pattern: /\bÝ\b/g, replace: 'Italia' },
-        { pattern: /\bĐức\b/gi, replace: 'Jerman' },
+        { pattern: /\bĐức\b|\bDuc\b/gi, replace: 'Jerman' },
         { pattern: /\bPháp\b/gi, replace: 'Prancis' },
         { pattern: /\bAnh\b/g, replace: 'Inggris' },
         { pattern: /\bHà Lan\b/gi, replace: 'Belanda' },
