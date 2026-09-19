@@ -327,33 +327,35 @@ async function scrapeAll() {
                     status = 0; // Upcoming / Jadwal
                 }
 
-                // Skor Pertandingan
+                // Skor Pertandingan: Hanya untuk pertandingan yang Sedang LIVE (1) atau Selesai (2)
                 let homeScore = '';
                 let awayScore = '';
                 let scoreText = '';
                 let matchMinute = '';
 
-                const goalMatch = cardContent.match(/class="[^"]*grid-match__goal[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)\s*<\/div>/i);
-                const liveScoreEl = cardContent.match(/class="[^"]*grid-match__score[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)/i);
-                const hpuScore = cardContent.match(/class="[^"]*hpu-score-home[^"]*"[^>]*>\s*(\d+)\s*<\/span>[\s\S]*?class="[^"]*hpu-score-away[^"]*"[^>]*>\s*(\d+)\s*<\/span>/i);
+                if (status === 1 || status === 2) {
+                    const goalMatch = cardContent.match(/class="[^"]*grid-match__goal[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)\s*<\/div>/i);
+                    const liveScoreEl = cardContent.match(/class="[^"]*grid-match__score[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)/i);
+                    const hpuScore = cardContent.match(/class="[^"]*hpu-score-home[^"]*"[^>]*>\s*(\d+)\s*<\/span>[\s\S]*?class="[^"]*hpu-score-away[^"]*"[^>]*>\s*(\d+)\s*<\/span>/i);
 
-                if (hpuScore) {
-                    homeScore = hpuScore[1].trim();
-                    awayScore = hpuScore[2].trim();
-                    scoreText = `${homeScore} - ${awayScore}`;
-                } else if (goalMatch) {
-                    homeScore = goalMatch[1].trim();
-                    awayScore = goalMatch[2].trim();
-                    scoreText = `${homeScore} - ${awayScore}`;
-                } else if (liveScoreEl) {
-                    homeScore = liveScoreEl[1].trim();
-                    awayScore = liveScoreEl[2].trim();
-                    scoreText = `${homeScore} - ${awayScore}`;
-                }
+                    if (hpuScore) {
+                        homeScore = hpuScore[1].trim();
+                        awayScore = hpuScore[2].trim();
+                        scoreText = `${homeScore} - ${awayScore}`;
+                    } else if (goalMatch) {
+                        homeScore = goalMatch[1].trim();
+                        awayScore = goalMatch[2].trim();
+                        scoreText = `${homeScore} - ${awayScore}`;
+                    } else if (liveScoreEl) {
+                        homeScore = liveScoreEl[1].trim();
+                        awayScore = liveScoreEl[2].trim();
+                        scoreText = `${homeScore} - ${awayScore}`;
+                    }
 
-                const periodMatch = cardContent.match(/class="[^"]*(?:grid-match__half-court|period|quarter|set-name|match-time)[^"]*"[^>]*>\s*([^<]+)\s*</i);
-                if (periodMatch) {
-                    matchMinute = periodMatch[1].trim();
+                    const periodMatch = cardContent.match(/class="[^"]*(?:grid-match__half-court|period|quarter|set-name|match-time)[^"]*"[^>]*>\s*([^<]+)\s*</i);
+                    if (periodMatch) {
+                        matchMinute = periodMatch[1].trim();
+                    }
                 }
 
                 const matchPageUrl = `${domain}${relUrl}`;

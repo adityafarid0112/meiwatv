@@ -398,11 +398,17 @@ function generateBloggerTemplate() {
     box-shadow: 0 6px 25px rgba(16, 185, 129, 0.6);
   }
 
-  /* DETAILS BAR UNDER PLAYER */
+  /* DETAILS BAR & DIRECT STREAM ACTIONS UNDER PLAYER */
   .player-match-detail-bar {
     padding: 14px 18px;
     background: var(--bg-surface);
     border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .player-detail-main-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -435,13 +441,41 @@ function generateBloggerTemplate() {
     border: 1px solid rgba(255, 228, 0, 0.3);
   }
 
+  .player-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .btn-copy-stream {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    border: 1px solid #10b981;
+    font-family: var(--font-heading);
+    font-size: 12.5px;
+    font-weight: 800;
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+    transition: var(--transition);
+  }
+  .btn-copy-stream:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+  }
+
   .btn-open-source {
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    color: var(--primary-green);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
     font-size: 12px;
     font-weight: 700;
-    padding: 6px 14px;
+    padding: 7px 12px;
     border-radius: var(--radius-sm);
     cursor: pointer;
     display: inline-flex;
@@ -451,8 +485,79 @@ function generateBloggerTemplate() {
     transition: var(--transition);
   }
   .btn-open-source:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  /* DIRECT STREAM LINK INPUT BOX */
+  .stream-link-box {
+    display: flex;
+    align-items: center;
+    background: #000;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    border-radius: var(--radius-sm);
+    padding: 3px 6px 3px 12px;
+    gap: 8px;
+  }
+  .stream-link-tag {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--primary-green);
+    white-space: nowrap;
+  }
+  .stream-link-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-family: monospace;
+    font-size: 11.5px;
+    outline: none;
+    width: 100%;
+  }
+  .btn-quick-copy {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  .btn-quick-copy:hover {
     background: var(--primary-green);
     color: #000;
+  }
+
+  /* TOAST NOTIFICATION */
+  .toast-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #0e1422;
+    color: #fff;
+    border: 1px solid var(--primary-green);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px var(--primary-glow);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 99999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  .toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   /* RIGHT COLUMN: INTERACTIVE PLAYLIST */
@@ -752,21 +857,36 @@ function generateBloggerTemplate() {
 
         <!-- Detail Bar Under Player -->
         <div class='player-match-detail-bar'>
-          <div class='detail-match-teams'>
-            <img alt='' class='detail-team-logo' id='detailHomeLogo' src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'/>
-            <span id='detailHomeTeam'>Tim Tuan Rumah</span>
-            <span class='detail-score-pill' id='detailScore'>VS</span>
-            <span id='detailAwayTeam'>Tim Tamu</span>
-            <img alt='' class='detail-team-logo' id='detailAwayLogo' src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'/>
+          <div class='player-detail-main-row'>
+            <div class='detail-match-teams'>
+              <img alt='' class='detail-team-logo' id='detailHomeLogo' src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'/>
+              <span id='detailHomeTeam'>Tim Tuan Rumah</span>
+              <span class='detail-score-pill' id='detailScore'>VS</span>
+              <span id='detailAwayTeam'>Tim Tamu</span>
+              <img alt='' class='detail-team-logo' id='detailAwayLogo' src='https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png'/>
+            </div>
+
+            <div class='player-action-buttons'>
+              <button class='btn-copy-stream' id='btnCopyStreamMain' onclick='copyCurrentStreamUrl()' type='button'>
+                <i class='fa-solid fa-copy'/> <span>Salin Link Stream (M3U8)</span>
+              </button>
+              <button class='btn-open-source' id='btnOpenNewTab' onclick='openCurrentMatchNewTab()' type='button'>
+                <i class='fa-solid fa-expand'/> <span>Layar Penuh</span>
+              </button>
+              <button class='btn-open-source' id='btnOpenDirectStream' onclick='openDirectStreamWindow()' type='button'>
+                <i class='fa-solid fa-arrow-up-right-from-square'/> <span>Buka Stream</span>
+              </button>
+              <button class='btn-open-source' id='btnOpenWebSource' onclick='openWebSourceDirect()' type='button'>
+                <i class='fa-solid fa-globe'/> <span>Web Sumber</span>
+              </button>
+            </div>
           </div>
 
-          <div style='display:flex; gap:8px;'>
-            <button class='btn-open-source' id='btnOpenNewTab' onclick='openCurrentMatchNewTab()' type='button'>
-              <i class='fa-solid fa-expand'/> <span>Layar Penuh</span>
-            </button>
-            <button class='btn-server' onclick='shareCurrentMatch()' type='button'>
-              <i class='fa-solid fa-share-nodes'/> <span>Bagikan</span>
-            </button>
+          <!-- Direct Stream Link Box -->
+          <div class='stream-link-box'>
+            <span class='stream-link-tag'><i class='fa-solid fa-link'/> Link Stream:</span>
+            <input class='stream-link-input' id='activeStreamUrlInput' readonly='readonly' type='text' value=''/>
+            <button class='btn-quick-copy' onclick='copyCurrentStreamUrl()' type='button'>Salin Link</button>
           </div>
         </div>
       </section>
@@ -794,6 +914,12 @@ function generateBloggerTemplate() {
 
     </div>
   </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class='toast-notification' id='playerToast'>
+    <i class='fa-solid fa-circle-check' style='color:#10b981; font-size:18px;'/>
+    <span id='toastMessage'>Link siaran berhasil disalin!</span>
+  </div>
 
   <!-- HIDDEN BLOGGER SECTION (UNTUK SYNC POSTS) -->
   <div style='display:none !important;'>
@@ -827,6 +953,7 @@ function generateBloggerTemplate() {
 
   let hlsInstance = null;
   let flvPlayerInstance = null;
+  let bufferWatchdogTimer = null;
 
   // ADSTERRA TRIGGER
   function triggerAdsterra() {
@@ -835,6 +962,19 @@ function generateBloggerTemplate() {
         window.openAdsterraPopup();
       }
     } catch (_) {}
+  }
+
+  // TOAST NOTIFICATION HELPER
+  function showToastNotification(msg) {
+    const toast = document.getElementById('playerToast');
+    const msgEl = document.getElementById('toastMessage');
+    if (toast && msgEl) {
+      msgEl.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 3500);
+    }
   }
 
   // 1. SPORT CATEGORY METADATA HELPER
@@ -951,8 +1091,10 @@ function generateBloggerTemplate() {
         const awayLogo = match.awayLogo || 'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/Logo%20Meiwa%20icon.png';
 
         let scoreBadge = '';
-        if (isLive) {
-          scoreBadge = \`<span class="match-row-score-badge">\${match.scoreText || 'LIVE'}</span>\`;
+        if (isLive && match.scoreText) {
+          scoreBadge = \`<span class="match-row-score-badge">\${match.scoreText}</span>\`;
+        } else if (isLive) {
+          scoreBadge = \`<span class="match-row-score-badge">LIVE</span>\`;
         } else if (isFinished) {
           scoreBadge = \`<span class="match-row-vs-badge" style="color:var(--text-dim);">FT</span>\`;
         } else {
@@ -1035,6 +1177,14 @@ function generateBloggerTemplate() {
     activeStreamUrlServer2 = match.streamJalur2 || (match.streams ? match.streams.jalur2 : '') || '';
     activeStreamUrlServer3 = match.streamJalur3 || (match.streams ? match.streams.jalur3 : '') || '';
 
+    const streamInput = document.getElementById('activeStreamUrlInput');
+    if (streamInput) {
+      let targetUrl = activeStreamUrlServer1;
+      if (activeCurrentServer === 2 && activeStreamUrlServer2) targetUrl = activeStreamUrlServer2;
+      if (activeCurrentServer === 3 && activeStreamUrlServer3) targetUrl = activeStreamUrlServer3;
+      streamInput.value = targetUrl;
+    }
+
     const leagueEl = document.getElementById('playerLeagueText');
     if (leagueEl) leagueEl.textContent = match.league || 'Turnamen Olahraga';
 
@@ -1061,7 +1211,8 @@ function generateBloggerTemplate() {
 
     const scoreEl = document.getElementById('detailScore');
     if (scoreEl) {
-      if (match.status === 1) scoreEl.textContent = match.scoreText || '0 - 0';
+      if (match.status === 1 && match.scoreText) scoreEl.textContent = match.scoreText;
+      else if (match.status === 1) scoreEl.textContent = 'LIVE';
       else if (match.status === 2) scoreEl.textContent = match.scoreText || 'FT';
       else scoreEl.textContent = 'VS';
     }
@@ -1108,6 +1259,11 @@ function generateBloggerTemplate() {
     const video = document.getElementById('mainVideoPlayer');
     const stage = document.getElementById('playerStage');
 
+    if (bufferWatchdogTimer) {
+      clearTimeout(bufferWatchdogTimer);
+      bufferWatchdogTimer = null;
+    }
+
     if (hlsInstance) {
       hlsInstance.destroy();
       hlsInstance = null;
@@ -1136,6 +1292,9 @@ function generateBloggerTemplate() {
         finalStreamUrl = 'https://live2.zundrixmediapipeline.com/live/channel1.m3u8';
       }
     }
+
+    const streamInput = document.getElementById('activeStreamUrlInput');
+    if (streamInput) streamInput.value = finalStreamUrl;
 
     const isDirectFlv = finalStreamUrl.endsWith('.flv') || finalStreamUrl.includes('.flv?');
 
@@ -1184,6 +1343,7 @@ function generateBloggerTemplate() {
               });
             }
           });
+
           hlsInstance.on(Hls.Events.ERROR, function(event, data) {
             if (data.fatal) {
               switch (data.type) {
@@ -1199,6 +1359,7 @@ function generateBloggerTemplate() {
               }
             }
           });
+
           return;
         } catch (e) {
           console.warn('HLS.js error:', e);
@@ -1253,6 +1414,49 @@ function generateBloggerTemplate() {
     }
   }
 
+  function copyCurrentStreamUrl() {
+    let urlToCopy = '';
+    const streamInput = document.getElementById('activeStreamUrlInput');
+    if (streamInput && streamInput.value) {
+      urlToCopy = streamInput.value;
+    } else if (currentActiveMatch) {
+      urlToCopy = currentActiveMatch.streamJalur1 || (currentActiveMatch.streams ? currentActiveMatch.streams.jalur1 : '') || currentActiveMatch.postUrl;
+    }
+
+    if (!urlToCopy) urlToCopy = window.location.href;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(urlToCopy).then(() => {
+        showToastNotification('✅ Link stream M3U8 berhasil disalin! Siap diputar di VLC/OTT/MX Player.');
+      }).catch(() => {
+        prompt('Salin link stream di bawah ini:', urlToCopy);
+      });
+    } else {
+      prompt('Salin link stream di bawah ini:', urlToCopy);
+    }
+
+    const btn = document.getElementById('btnCopyStreamMain');
+    if (btn) {
+      const oldHtml = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Tersalin!</span>';
+      setTimeout(() => { btn.innerHTML = oldHtml; }, 2500);
+    }
+  }
+
+  function openDirectStreamWindow() {
+    const streamInput = document.getElementById('activeStreamUrlInput');
+    const url = (streamInput && streamInput.value) ? streamInput.value : (currentActiveMatch ? currentActiveMatch.streamJalur1 : '');
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  function openWebSourceDirect() {
+    if (currentActiveMatch && currentActiveMatch.postUrl) {
+      window.open(currentActiveMatch.postUrl, '_blank', 'noopener,noreferrer');
+    }
+  }
+
   function openCurrentMatchNewTab() {
     const video = document.getElementById('mainVideoPlayer');
     if (video && video.style.display !== 'none') {
@@ -1283,7 +1487,7 @@ function generateBloggerTemplate() {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert('Link siaran pertandingan berhasil disalin!');
+      showToastNotification('Link siaran pertandingan berhasil disalin!');
     }
   }
 
