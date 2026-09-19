@@ -482,31 +482,61 @@ async function fetchDaddyLiveEvents() {
         const res = await fetch('https://daddylive.app/api/events', {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Referer': 'https://daddylive.app/'
             },
-            signal: AbortSignal.timeout(8000)
+            signal: AbortSignal.timeout(10000)
         });
         if (!res.ok) {
             console.warn(`   ⚠️ DaddyLive API response code: ${res.status}`);
             return [];
         }
         const data = await res.json();
-        const categories = data.categories || {};
         const events = [];
 
-        for (const [catName, list] of Object.entries(categories)) {
-            if (!Array.isArray(list)) continue;
-            for (const item of list) {
-                if (!item || !item.event) continue;
-                events.push({
-                    rawCategory: catName,
-                    time: item.time || 'Live',
-                    event: item.event,
-                    channels: Array.isArray(item.channels) ? item.channels : [],
-                    source: item.source || 'tv1'
-                });
+        // API structure: {categories: {catName: {timeName: [events]}}, popular_events: {timeName: [events]}}
+        function extractFromTimeMap(timeMap, catName) {
+            if (!timeMap || typeof timeMap !== 'object') return;
+            for (const [timeName, list] of Object.entries(timeMap)) {
+                if (!Array.isArray(list)) continue;
+                for (const item of list) {
+                    if (!item || !item.event) continue;
+                    events.push({
+                        rawCategory: catName,
+                        time: item.time || timeName || 'Live',
+                        event: item.event,
+                        channels: Array.isArray(item.channels) ? item.channels : [],
+                        source: item.source || 'tv1'
+                    });
+                }
             }
         }
+
+        // Parse categories
+        const categories = data.categories || {};
+        for (const [catName, catData] of Object.entries(categories)) {
+            if (Array.isArray(catData)) {
+                // Old format: {catName: [events]}
+                for (const item of catData) {
+                    if (!item || !item.event) continue;
+                    events.push({
+                        rawCategory: catName,
+                        time: item.time || 'Live',
+                        event: item.event,
+                        channels: Array.isArray(item.channels) ? item.channels : [],
+                        source: item.source || 'tv1'
+                    });
+                }
+            } else if (typeof catData === 'object') {
+                // New format: {catName: {timeName: [events]}}
+                extractFromTimeMap(catData, catName);
+            }
+        }
+
+        // Parse popular_events
+        const popularEvents = data.popular_events || {};
+        extractFromTimeMap(popularEvents, 'Popular');
+
         console.log(`   ✅ Diterima ${events.length} event siaran HD dari DaddyLive API!`);
         return events;
     } catch (err) {
@@ -839,81 +869,116 @@ async function scrapeAll() {
                 }
             }
 
+            // Ambil semua channel URL resmi dari DaddyLive
+            const daddyChannelUrls = channels.map(c => c.url).filter(u => u && u.startsWith('http'));
+
             if (matchedKey) {
                 // Merge dengan Xoilac:
-                // Jalur 1: DaddyLive HD Link 1 (UTAMA)
-                // Jalur 2: DaddyLive HD Link 2 (atau Xoilac jika hanya 1 link di Daddy)
-                // Jalur 3: DaddyLive HD Link 3 (atau Xoilac)
-                // Jalur 4: Xoilac HD (Komentator Indonesia / Cadangan di paling akhir)
+                // Jalur 1..N: Semua link DaddyLive HD (HD 1080p, Sky Sports, TNT, dll)
+                // Jalur Akhir: Xoilac HD (Komentator Indonesia / Cadangan)
                 const existing = parsedMap.get(matchedKey);
                 const xoilacBackup = existing.postUrl;
 
-                existing.daddyliveUrl = link1;
-                existing.streamJalur1 = link1; // Utamakan DaddyLive HD sebagai Jalur 1
-
-                if (link3) {
-                    existing.streamJalur2 = link2;
-                    existing.streamJalur3 = link3;
-                    existing.streamJalur4 = xoilacBackup;
-                } else if (link2) {
-                    existing.streamJalur2 = link2;
-                    existing.streamJalur3 = xoilacBackup;
-                    existing.streamJalur4 = '';
-                } else {
-                    existing.streamJalur2 = xoilacBackup;
-                    existing.streamJalur3 = link1;
-                    existing.streamJalur4 = '';
+                // AKUMULASI: Tambah semua channel baru ke streamUrls yang sudah ada
+                if (!existing.streamUrls) existing.streamUrls = [];
+                // Hapus URL Xoilac dari posisi awal agar DaddyLive selalu duluan
+                const filteredExisting = existing.streamUrls.filter(u => u && u.includes('daddylive.app'));
+                
+                // Gabungkan: channel DaddyLive lama + baru (deduplikasi)
+                for (const url of daddyChannelUrls) {
+                    if (!filteredExisting.includes(url)) {
+                        filteredExisting.push(url);
+                    }
                 }
 
-                existing.streams.jalur1 = existing.streamJalur1;
-                existing.streams.jalur2 = existing.streamJalur2;
-                existing.streams.jalur3 = existing.streamJalur3;
-                existing.streams.jalur4 = existing.streamJalur4;
-                existing.streams.daddylive = link1;
-                existing.streams.daddylive2 = link2;
-                existing.streams.daddylive3 = link3;
-                existing.streams.xoilac = xoilacBackup;
+                // Xoilac di paling akhir
+                const allStreamUrls = [...filteredExisting];
+                if (xoilacBackup && !allStreamUrls.includes(xoilacBackup)) {
+                    allStreamUrls.push(xoilacBackup);
+                }
+
+                existing.daddyliveUrl = allStreamUrls[0] || '';
+                existing.streamJalur1 = allStreamUrls[0] || '';
+                existing.streamJalur2 = allStreamUrls[1] || allStreamUrls[0] || '';
+                existing.streamJalur3 = allStreamUrls[2] || allStreamUrls[1] || allStreamUrls[0] || '';
+                existing.streamJalur4 = allStreamUrls[3] || '';
+                existing.streamUrls = allStreamUrls;
+
+                existing.streams = {
+                    daddylive: allStreamUrls[0] || '',
+                    xoilac: xoilacBackup
+                };
+                allStreamUrls.forEach((url, i) => {
+                    existing.streams[`jalur${i + 1}`] = url;
+                });
                 daddyMergedCount++;
             } else {
                 // Event baru dari DaddyLive (MotoGP, Balap, Voli Korea, Badminton, Basket NBA, dll)
-                const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').substring(0, 30);
-                const uniqueKey = `daddy_${idx + 1}_${slug}`;
+                // Cek dulu apakah sudah ada event daddy yang sama
+                let existingDaddyKey = null;
+                for (const [k, v] of parsedMap.entries()) {
+                    if (k.startsWith('daddy_') && v.title === title) {
+                        existingDaddyKey = k;
+                        break;
+                    }
+                }
 
-                parsedMap.set(uniqueKey, {
-                    id: uniqueKey,
-                    title,
-                    homeTeam: home || title,
-                    awayTeam: away || '',
-                    homeLogo: '',
-                    awayLogo: '',
-                    homeScore: '',
-                    awayScore: '',
-                    scoreText: '',
-                    matchMinute: '',
-                    league,
-                    sportCategory: category,
-                    kickoffIso: new Date().toISOString(),
-                    kickoffText: dev.time === 'Live' ? 'LIVE Sekarang' : `${dev.time} WIB`,
-                    status: dev.time.toLowerCase().includes('live') ? 1 : 0,
-                    postUrl: link1,
-                    daddyliveUrl: link1,
-                    daddyliveName: 'DaddyLive HD',
-                    streamJalur1: link1,
-                    streamJalur2: link2 || link1,
-                    streamJalur3: link3 || link2 || link1,
-                    streamJalur4: link4 || '',
-                    streams: {
-                        jalur1: link1,
-                        jalur2: link2 || link1,
-                        jalur3: link3 || link2 || link1,
-                        jalur4: link4 || '',
-                        daddylive: link1,
-                        daddylive2: link2,
-                        daddylive3: link3
-                    },
-                    updatedAt: new Date().toISOString()
-                });
-                daddyAddedCount++;
+                if (existingDaddyKey) {
+                    // Akumulasi channel ke event DaddyLive yang sudah ada
+                    const existing = parsedMap.get(existingDaddyKey);
+                    if (!existing.streamUrls) existing.streamUrls = [];
+                    for (const url of daddyChannelUrls) {
+                        if (!existing.streamUrls.includes(url)) {
+                            existing.streamUrls.push(url);
+                        }
+                    }
+                    existing.streamUrls.forEach((url, i) => {
+                        existing.streams[`jalur${i + 1}`] = url;
+                    });
+                    existing.streamJalur1 = existing.streamUrls[0] || '';
+                    existing.streamJalur2 = existing.streamUrls[1] || existing.streamUrls[0] || '';
+                    existing.streamJalur3 = existing.streamUrls[2] || existing.streamUrls[1] || existing.streamUrls[0] || '';
+                    existing.streamJalur4 = existing.streamUrls[3] || '';
+                } else {
+                    const allStreamUrls = [...daddyChannelUrls];
+                    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').substring(0, 30);
+                    const uniqueKey = `daddy_${idx + 1}_${slug}`;
+
+                    const matchObj = {
+                        id: uniqueKey,
+                        title,
+                        homeTeam: home || title,
+                        awayTeam: away || '',
+                        homeLogo: '',
+                        awayLogo: '',
+                        homeScore: '',
+                        awayScore: '',
+                        scoreText: '',
+                        matchMinute: '',
+                        league,
+                        sportCategory: category,
+                        kickoffIso: new Date().toISOString(),
+                        kickoffText: dev.time === 'Live' ? 'LIVE Sekarang' : `${dev.time} WIB`,
+                        status: dev.time.toLowerCase().includes('live') ? 1 : 0,
+                        postUrl: allStreamUrls[0] || '',
+                        daddyliveUrl: allStreamUrls[0] || '',
+                        daddyliveName: 'DaddyLive HD',
+                        streamJalur1: allStreamUrls[0] || '',
+                        streamJalur2: allStreamUrls[1] || allStreamUrls[0] || '',
+                        streamJalur3: allStreamUrls[2] || allStreamUrls[1] || allStreamUrls[0] || '',
+                        streamJalur4: allStreamUrls[3] || '',
+                        streamUrls: allStreamUrls,
+                        streams: {
+                            daddylive: allStreamUrls[0] || '',
+                        },
+                        updatedAt: new Date().toISOString()
+                    };
+                    allStreamUrls.forEach((url, i) => {
+                        matchObj.streams[`jalur${i + 1}`] = url;
+                    });
+                    parsedMap.set(uniqueKey, matchObj);
+                    daddyAddedCount++;
+                }
             }
         }
         console.log(`   ✅ Selesai Menggabungkan: ${daddyMergedCount} pertandingan sinkron Xoilac + DaddyLive, ${daddyAddedCount} event baru dari DaddyLive!`);
@@ -922,54 +987,51 @@ async function scrapeAll() {
     const matchesList = Array.from(parsedMap.values());
     console.log(`\n🎯 Mengekstrak direct stream HLS (.m3u8) & multi-link untuk ${matchesList.length} pertandingan...`);
 
-    // Ekstraksi concurrent direct stream m3u8 untuk pertandingan live & upcoming
+    // DaddyLive embed URLs sudah siap pakai langsung (format iframe embed.php)
+    // Tidak perlu resolve m3u8 untuk URL DaddyLive - simpan langsung sebagai streamUrls
+    // Untuk Xoilac (truc-tiep), coba resolve ke direct m3u8
     const BATCH_SIZE = 12;
     for (let i = 0; i < matchesList.length; i += BATCH_SIZE) {
         const batch = matchesList.slice(i, i + BATCH_SIZE);
         await Promise.all(batch.map(async (m) => {
-            // 1. Ekstraksi Direct M3U8 DaddyLive untuk Jalur 1 (UTAMA HD 1080p)
-            const daddySource1 = m.daddyliveUrl || (m.streamJalur1 && m.streamJalur1.includes('daddylive.app') ? m.streamJalur1 : null);
-            if (daddySource1) {
-                const dlDirect1 = await extractDaddyDirectStream(daddySource1);
-                if (dlDirect1) {
-                    m.streamJalur1 = dlDirect1;
-                    m.streams.jalur1 = dlDirect1;
-                    m.streams.daddylive_direct = dlDirect1;
-                }
-            }
-
-            // 2. Ekstraksi Direct M3U8 DaddyLive untuk Jalur 2 (jika Jalur 2 adalah embed DaddyLive)
-            if (m.streamJalur2 && m.streamJalur2.includes('daddylive.app')) {
-                const dlDirect2 = await extractDaddyDirectStream(m.streamJalur2);
-                if (dlDirect2) {
-                    m.streamJalur2 = dlDirect2;
-                    m.streams.jalur2 = dlDirect2;
-                }
-            }
-
-            // 3. Ekstraksi Direct M3U8 Xoilac untuk Jalur Cadangan / Paling Akhir (Komentator Indonesia)
+            // Pastikan semua URL DaddyLive sudah ada di streamUrls (sudah dilakukan di atas)
+            // Hanya perlu resolve Xoilac ke direct m3u8
             if (m.postUrl && m.postUrl.includes('/truc-tiep/')) {
                 const streams = await extractDirectStreamForMatch(m.postUrl);
-                if (streams) {
+                if (streams && streams.jalur1) {
                     m.streams.xoilac = streams.jalur1;
-                    // Pastikan Xoilac berada di jalur terakhir pertandingan
-                    if (m.streamJalur4) {
-                        m.streamJalur4 = streams.jalur1;
-                        m.streams.jalur4 = streams.jalur1;
-                    } else if (m.streamJalur3 && m.streamJalur3.includes('/truc-tiep/')) {
-                        m.streamJalur3 = streams.jalur1;
-                        m.streams.jalur3 = streams.jalur1;
-                    } else if (m.streamJalur2 && m.streamJalur2.includes('/truc-tiep/')) {
-                        m.streamJalur2 = streams.jalur1;
-                        m.streams.jalur2 = streams.jalur1;
+                    if (!m.streamUrls) m.streamUrls = [];
+                    
+                    // Ganti Xoilac URL di streamUrls dengan direct m3u8
+                    const xoilacIdx = m.streamUrls.findIndex(u => u && (u.includes('/truc-tiep/') || u.includes('xoilac') || u.includes('atttvnow') || u.includes('socolive') || u.includes('theceoschool')));
+                    if (xoilacIdx !== -1) {
+                        m.streamUrls[xoilacIdx] = streams.jalur1;
+                        m.streams[`jalur${xoilacIdx + 1}`] = streams.jalur1;
+                    } else if (!m.streamUrls.includes(streams.jalur1)) {
+                        // Tambahkan Xoilac di akhir sebagai jalur cadangan
+                        m.streamUrls.push(streams.jalur1);
+                        m.streams[`jalur${m.streamUrls.length}`] = streams.jalur1;
                     }
 
-                    // Hanya jika pertandingan ini TIDAK memiliki sumber DaddyLive, gunakan Xoilac untuk Jalur 1
-                    if (!daddySource1 && (!m.streamJalur1 || m.streamJalur1.includes('/truc-tiep/'))) {
+                    // Jika tidak ada DaddyLive, gunakan Xoilac untuk Jalur 1
+                    const hasDaddyUrl = m.streamUrls.some(u => u && u.includes('daddylive.app'));
+                    if (!hasDaddyUrl && (!m.streamJalur1 || m.streamJalur1.includes('/truc-tiep/'))) {
                         m.streamJalur1 = streams.jalur1;
                         m.streams.jalur1 = streams.jalur1;
                     }
                 }
+            }
+
+            // Update streamJalur1/2/3/4 dari streamUrls (untuk kompatibilitas lama)
+            if (Array.isArray(m.streamUrls) && m.streamUrls.length > 0) {
+                m.streamJalur1 = m.streamUrls[0] || m.streamJalur1 || '';
+                m.streamJalur2 = m.streamUrls[1] || m.streamJalur2 || m.streamUrls[0] || '';
+                m.streamJalur3 = m.streamUrls[2] || m.streamJalur3 || m.streamUrls[1] || m.streamUrls[0] || '';
+                m.streamJalur4 = m.streamUrls[3] || m.streamJalur4 || '';
+                // Update streams object dengan semua jalur
+                m.streamUrls.forEach((url, idx) => {
+                    m.streams[`jalur${idx + 1}`] = url;
+                });
             }
         }));
     }

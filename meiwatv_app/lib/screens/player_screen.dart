@@ -111,26 +111,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
   }
 
   String _getActiveStreamUrl() {
-    switch (_activeJalur) {
-      case 1:
-        return widget.match.streamJalur1.isNotEmpty
-            ? widget.match.streamJalur1
-            : widget.match.streamJalur2;
-      case 2:
-        return widget.match.streamJalur2.isNotEmpty
-            ? widget.match.streamJalur2
-            : widget.match.streamJalur1;
-      case 3:
-        return widget.match.streamJalur3.isNotEmpty
-            ? widget.match.streamJalur3
-            : widget.match.streamJalur1;
-      case 4:
-        return widget.match.streamJalur4.isNotEmpty
-            ? widget.match.streamJalur4
-            : widget.match.streamJalur1;
-      default:
-        return widget.match.streamJalur1;
+    final list = widget.match.availableStreams;
+    if (_activeJalur >= 1 && _activeJalur <= list.length) {
+      return list[_activeJalur - 1];
     }
+    return list.isNotEmpty ? list.first : widget.match.streamJalur1;
   }
 
   String _getRefererForUrl(String url) {
@@ -574,12 +559,19 @@ class _PlayerScreenState extends State<PlayerScreen> {
       return;
     }
 
-    // 1. Coba resolve direct stream HLS (.m3u8) terlebih dahulu untuk SEMUA jenis URL (termasuk DaddyLive)
+    // 1. Jika URL adalah DaddyLive embed (embed.php) atau web embed lain, langsung ke WebView
+    //    DaddyLive menggunakan iframe embed — tidak perlu resolve m3u8
+    if (_isWebEmbed(rawUrl)) {
+      await _playInWebView(rawUrl);
+      return;
+    }
+
     setState(() {
       _isWebView = false;
       _webController = null;
     });
 
+    // 2. Coba resolve direct stream HLS (.m3u8) untuk URL non-embed (Xoilac, dll)
     final candidates = await _resolveCandidateStreams(rawUrl);
 
     for (final cand in candidates) {
@@ -587,21 +579,20 @@ class _PlayerScreenState extends State<PlayerScreen> {
       if (success) return;
     }
 
-    // 2. Jika gagal direct stream dan URL adalah Web Embed / HTML, fallback ke WebView
-    if (_isWebEmbed(rawUrl) || rawUrl.startsWith('http')) {
+    // 3. Fallback ke WebView jika resolve gagal
+    if (rawUrl.startsWith('http')) {
       await _playInWebView(rawUrl);
       return;
     }
 
     // 3. Jika jalur aktif gagal, coba auto-fallback ke jalur lain jika diizinkan
     if (autoFallbackJalur) {
-      final otherJalurs = [1, 2, 3].where((j) => j != _activeJalur).toList();
+      final list = widget.match.availableStreams;
+      final otherJalurs = List.generate(list.length, (i) => i + 1)
+          .where((j) => j != _activeJalur)
+          .toList();
       for (final altJalur in otherJalurs) {
-        String altUrl = '';
-        if (altJalur == 1) altUrl = widget.match.streamJalur1;
-        if (altJalur == 2) altUrl = widget.match.streamJalur2;
-        if (altJalur == 3) altUrl = widget.match.streamJalur3;
-
+        final altUrl = list[altJalur - 1];
         if (altUrl.isNotEmpty && altUrl != rawUrl) {
           if (_isWebEmbed(altUrl)) {
             setState(() => _activeJalur = altJalur);
@@ -1124,7 +1115,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             ),
                             const SizedBox(width: 6),
                             const Text(
-                              'PILIH JALUR SERVER STREAMING (NATIVE HLS):',
+                              'PILIH JALUR SIARAN:',
                               style: TextStyle(
                                 color: AppColors.cyanAccent,
                                 fontSize: 11.5,
@@ -1149,33 +1140,46 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
                         Builder(
                           builder: (context) {
-                            final jalurs = <int>[1];
-                            if (widget.match.streamJalur2.isNotEmpty && widget.match.streamJalur2 != widget.match.streamJalur1) {
-                              jalurs.add(2);
-                            }
-                            if (widget.match.streamJalur3.isNotEmpty && widget.match.streamJalur3 != widget.match.streamJalur1 && widget.match.streamJalur3 != widget.match.streamJalur2) {
-                              jalurs.add(3);
-                            }
-                            if (widget.match.streamJalur4.isNotEmpty && widget.match.streamJalur4 != widget.match.streamJalur1 && widget.match.streamJalur4 != widget.match.streamJalur2 && widget.match.streamJalur4 != widget.match.streamJalur3) {
-                              jalurs.add(4);
-                            }
-                            if (jalurs.length == 1) {
-                              if (widget.match.streamJalur2.isNotEmpty) jalurs.add(2);
-                              if (widget.match.streamJalur3.isNotEmpty) jalurs.add(3);
+                            final list = widget.match.availableStreams;
+                            final count = list.isNotEmpty ? list.length : 1;
+                            final jalurs = List.generate(count, (i) => i + 1);
+
+                            if (jalurs.length <= 4) {
+                              return Row(
+                                children: jalurs.map((j) {
+                                  return Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                                      child: _buildJalurButton(
+                                        j,
+                                        _getJalurTitle(j),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              );
                             }
 
-                            return Row(
-                              children: jalurs.map((j) {
-                                return Expanded(
-                                  child: Padding(
+                            return SizedBox(
+                              height: 42,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: jalurs.length,
+                                itemBuilder: (context, idx) {
+                                  final j = jalurs[idx];
+                                  return Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 4),
-                                    child: _buildJalurButton(
-                                      j,
-                                      _getJalurTitle(j),
+                                    child: SizedBox(
+                                      width: 96,
+                                      child: _buildJalurButton(
+                                        j,
+                                        _getJalurTitle(j),
+                                      ),
                                     ),
-                                  ),
-                                );
-                              }).toList(),
+                                  );
+                                },
+                              ),
                             );
                           },
                         ),
