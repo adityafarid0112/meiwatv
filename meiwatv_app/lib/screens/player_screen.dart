@@ -1191,32 +1191,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   }
 
   String _getJalurTitle(int index) {
-    String url = '';
-    if (index == 1) url = widget.match.streamJalur1;
-    if (index == 2) url = widget.match.streamJalur2;
-    if (index == 3) url = widget.match.streamJalur3;
-    if (index == 4) url = widget.match.streamJalur4;
-
-    final lower = url.toLowerCase();
-    if (lower.contains('daddylive') ||
-        lower.contains('domhsd') ||
-        lower.contains('streamtp') ||
-        lower.contains('dlhd') ||
-        lower.contains('bolaloca') ||
-        lower.contains('assetrage')) {
-      return 'Jalur $index (DaddyLive HD 1080p)';
-    } else if (lower.contains('zundrix') ||
-        lower.contains('xoilac') ||
-        lower.contains('soi-keo') ||
-        lower.contains('/truc-tiep/')) {
-      return 'Jalur $index (Xoilac Backup)';
-    } else if (lower.contains('.m3u8')) {
-      return 'Jalur $index (HD Stream)';
-    } else if (url.isNotEmpty) {
-      return 'Jalur $index (Server HD)';
-    } else {
-      return 'Jalur $index (Cadangan)';
-    }
+    return 'Jalur $index';
   }
 
   Widget _buildLoadingWidget() {

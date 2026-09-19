@@ -631,7 +631,7 @@ async function scrapeAll() {
                 let category = '⚽ Sepak Bola';
                 const lowerAll = (sportType + ' ' + slugName + ' ' + league).toLowerCase();
                 if (lowerAll.includes('motogp') || lowerAll.includes('moto2') || lowerAll.includes('moto3') || lowerAll.includes('f1') || lowerAll.includes('formula 1') || lowerAll.includes('wsbk') || lowerAll.includes('superbike') || sportType === 'motorsport' || lowerAll.includes('motorsport') || lowerAll.includes('balap') || lowerAll.includes('dua xe')) {
-                    category = '🏎️ Balap & Motorsport';
+                    category = '🏎️ Balap & MotoGP';
                 } else if (sportType === 'volleyball' || lowerAll.includes('voli') || lowerAll.includes('volleyball') || lowerAll.includes('bong chuyen') || lowerAll.includes('bóng chuyền') || lowerAll.includes('v-league') || lowerAll.includes('kovo') || lowerAll.includes('proliga') || lowerAll.includes('vnl')) {
                     category = '🏐 Bola Voli';
                 } else if (sportType === 'badminton' || lowerAll.includes('badminton') || lowerAll.includes('bulu tangkis') || lowerAll.includes('cau long') || lowerAll.includes('cầu lông') || lowerAll.includes('bwf') || lowerAll.includes('all england') || lowerAll.includes('indonesia open')) {
@@ -643,7 +643,7 @@ async function scrapeAll() {
                 } else if (['lol', 'dota2', 'csgo', 'esport', 'esports'].includes(sportType) || lowerAll.includes('esport') || lowerAll.includes('lpl') || lowerAll.includes('lcs') || lowerAll.includes('lec') || lowerAll.includes('lit') || lowerAll.includes('vcs') || lowerAll.includes('gaming') || lowerAll.includes('pgl') || lowerAll.includes('dota') || lowerAll.includes('crossfire')) {
                     category = '🎮 Esports & Gaming';
                 } else if (sportType !== 'football') {
-                    category = '🏎️ Olahraga Lainnya';
+                    category = '🏆 Olahraga Lainnya';
                 }
 
                 const kickoffIso = `${year}-${month}-${day}T${hour}:${min}:00+07:00`;
@@ -785,7 +785,7 @@ async function scrapeAll() {
             let category = '⚽ Sepak Bola';
             const lowerAll = (dev.rawCategory + ' ' + league + ' ' + title).toLowerCase();
             if (lowerAll.includes('motogp') || lowerAll.includes('moto2') || lowerAll.includes('moto3') || lowerAll.includes('formula 1') || lowerAll.includes('f1') || lowerAll.includes('motorsport') || lowerAll.includes('sprint race') || lowerAll.includes('gt world')) {
-                category = '🏎️ Balap & Motorsport';
+                category = '🏎️ Balap & MotoGP';
             } else if (lowerAll.includes('volleyball') || lowerAll.includes('voli') || lowerAll.includes('v-league') || lowerAll.includes('kovo') || lowerAll.includes('proliga') || lowerAll.includes('iberian cup')) {
                 category = '🏐 Bola Voli';
             } else if (lowerAll.includes('badminton') || lowerAll.includes('bulu tangkis') || lowerAll.includes('bwf')) {
