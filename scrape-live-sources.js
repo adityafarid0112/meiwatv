@@ -196,8 +196,9 @@ function translateToId(str) {
         { pattern: /\bQuarterfinals\b/gi, replace: 'Perempat Final' },
         { pattern: /\bSingles\b/gi, replace: 'Tunggal' },
         { pattern: /\bDoubles\b/gi, replace: 'Ganda' },
+        { pattern: /\bViệt Nam\b|\bViet Nam\b/gi, replace: 'Vietnam' },
         { pattern: /\bWomen\b|\bNữ\b/gi, replace: 'Wanita' },
-        { pattern: /\bMen\b|\bNam\b/gi, replace: 'Pria' },
+        { pattern: /\bMen\b|(?<!Việt\s|Viet\s)\bNam\b/gi, replace: 'Pria' },
         { pattern: /\bTrẻ\b/gi, replace: 'Muda' },
         { pattern: /\bCLB\s+/gi, replace: 'Klub ' },
         { pattern: /\bNhật Bản\b/gi, replace: 'Jepang' },
@@ -213,8 +214,7 @@ function translateToId(str) {
         { pattern: /\bThái Lan\b/gi, replace: 'Thailand' },
         { pattern: /\bMỹ\b|\bHoa Kỳ\b/gi, replace: 'Amerika Serikat' },
         { pattern: /\bÚc\b/gi, replace: 'Australia' },
-        { pattern: /\bẢ Rập Xê Út\b|\bẢ Rập Saudi\b/gi, replace: 'Arab Saudi' },
-        { pattern: /\bViệt Nam\b/gi, replace: 'Vietnam' }
+        { pattern: /\bẢ Rập Xê Út\b|\bẢ Rập Saudi\b/gi, replace: 'Arab Saudi' }
     ];
 
     wordMap.forEach(item => { text = text.replace(item.pattern, item.replace); });

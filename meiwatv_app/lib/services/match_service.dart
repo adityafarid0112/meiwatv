@@ -105,8 +105,9 @@ class MatchService {
               'Pragma': 'no-cache',
             }).timeout(const Duration(seconds: 6));
 
-            if (res.statusCode == 200 && res.body.isNotEmpty) {
-              final List<dynamic> decoded = json.decode(res.body);
+            if (res.statusCode == 200 && res.bodyBytes.isNotEmpty) {
+              final bodyString = utf8.decode(res.bodyBytes, allowMalformed: true);
+              final List<dynamic> decoded = json.decode(bodyString);
               if (decoded.isNotEmpty) {
                 // Cek apakah dataset masih segar (< 15 menit)
                 final firstItem = decoded.first as Map<String, dynamic>;
@@ -157,10 +158,13 @@ class MatchService {
             },
           ).timeout(const Duration(seconds: 6));
 
-          if (res.statusCode == 200 && res.body.contains('grid-matches__item')) {
-            final activeDomain = seed.endsWith('/') ? seed.substring(0, seed.length - 1) : seed;
-            final matches = _parseMatchesFromHtml(res.body, activeDomain, seenRelUrls);
-            directParsed.addAll(matches);
+          if (res.statusCode == 200 && res.bodyBytes.isNotEmpty) {
+            final html = utf8.decode(res.bodyBytes, allowMalformed: true);
+            if (html.contains('grid-matches__item')) {
+              final activeDomain = seed.endsWith('/') ? seed.substring(0, seed.length - 1) : seed;
+              final matches = _parseMatchesFromHtml(html, activeDomain, seenRelUrls);
+              directParsed.addAll(matches);
+            }
           }
         } catch (_) {
           continue;
@@ -273,8 +277,8 @@ class MatchService {
         away = away.isNotEmpty ? away : (parts.length > 1 ? parts[1].trim() : 'Tim 2');
       }
 
-      home = _translateToId(home);
-      away = _translateToId(away);
+      home = LeagueTranslator.cleanTeamName(home);
+      away = LeagueTranslator.cleanTeamName(away);
       final title = '$home vs $away';
 
       // Kategori Olahraga

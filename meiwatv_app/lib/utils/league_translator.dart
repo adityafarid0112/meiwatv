@@ -1,21 +1,37 @@
+import 'dart:convert';
+
 class LeagueTranslator {
+  /// Memperbaiki teks jika mengalami kerusakan encoding UTF-8 vs Latin-1 (Mojibake)
+  static String fixMojibake(String input) {
+    if (input.contains('Ã') ||
+        input.contains('Ä') ||
+        input.contains('Áº') ||
+        input.contains('á»') ||
+        input.contains('áº') ||
+        input.contains('Â') ||
+        input.contains('»') ||
+        input.contains('¡') ||
+        input.contains('Âº')) {
+      try {
+        final latin1Bytes = latin1.encode(input);
+        final recovered = utf8.decode(latin1Bytes, allowMalformed: true);
+        if (recovered.isNotEmpty && !recovered.contains('\uFFFD')) {
+          return recovered;
+        }
+      } catch (_) {}
+    }
+    return input;
+  }
+
   /// Bersihkan karakter diakritik khusus bahasa Vietnam agar menjadi nama klub / tim yang bersih & mudah dibaca
   static String cleanTeamName(String? raw) {
     if (raw == null || raw.trim().isEmpty) return '';
-    String text = raw.trim();
+    String text = fixMojibake(raw.trim());
 
-    // Terjemahkan nama negara / kategori tim jika bertanding antar-negara / putri
+    // Terjemahkan nama negara & kategori tim
     final teamWordMap = <Pattern, String>{
-      RegExp(r'\bU23\s+', caseSensitive: false): 'U-23 ',
-      RegExp(r'\bU21\s+', caseSensitive: false): 'U-21 ',
-      RegExp(r'\bU20\s+', caseSensitive: false): 'U-20 ',
-      RegExp(r'\bU19\s+', caseSensitive: false): 'U-19 ',
-      RegExp(r'\bU17\s+', caseSensitive: false): 'U-17 ',
-      RegExp(r'\bU16\s+', caseSensitive: false): 'U-16 ',
-      RegExp(r'\bNữ\b', caseSensitive: false): '(Putri)',
-      RegExp(r'\bNam\b', caseSensitive: false): '(Putra)',
-      RegExp(r'\bTrẻ\b', caseSensitive: false): 'Muda',
-      RegExp(r'\bCLB\s+', caseSensitive: false): 'Klub ',
+      // Negara harus diproses sebelum kata jenis kelamin
+      RegExp(r'\bViệt Nam\b|\bViet Nam\b', caseSensitive: false): 'Vietnam',
       RegExp(r'\bBa Lan\b', caseSensitive: false): 'Polandia',
       RegExp(r'\bĐức\b', caseSensitive: false): 'Jerman',
       RegExp(r'\bTây Ban Nha\b', caseSensitive: false): 'Spanyol',
@@ -36,7 +52,18 @@ class LeagueTranslator {
       RegExp(r'\bThổ Nhĩ Kỳ\b', caseSensitive: false): 'Turki',
       RegExp(r'\bNga\b'): 'Rusia',
       RegExp(r'\bẢ Rập Xê Út\b|\bẢ Rập Saudi\b', caseSensitive: false): 'Arab Saudi',
-      RegExp(r'\bViệt Nam\b', caseSensitive: false): 'Vietnam',
+
+      // Kategori usia / gender (Nam hanya diubah jika BUKAN bagian dari Viet Nam)
+      RegExp(r'\bU23\s+', caseSensitive: false): 'U-23 ',
+      RegExp(r'\bU21\s+', caseSensitive: false): 'U-21 ',
+      RegExp(r'\bU20\s+', caseSensitive: false): 'U-20 ',
+      RegExp(r'\bU19\s+', caseSensitive: false): 'U-19 ',
+      RegExp(r'\bU17\s+', caseSensitive: false): 'U-17 ',
+      RegExp(r'\bU16\s+', caseSensitive: false): 'U-16 ',
+      RegExp(r'\bNữ\b', caseSensitive: false): '(Putri)',
+      RegExp(r'(?<!Việt\s|Viet\s)\bNam\b', caseSensitive: false): '(Putra)',
+      RegExp(r'\bTrẻ\b', caseSensitive: false): 'Muda',
+      RegExp(r'\bCLB\s+', caseSensitive: false): 'Klub ',
     };
 
     teamWordMap.forEach((k, v) {
@@ -75,7 +102,13 @@ class LeagueTranslator {
       text = text.replaceAll(k, v);
     });
 
-    return text.replaceAll(RegExp(r'\s+'), ' ').trim();
+    // Bersihkan sisa karakter aneh jika masih ada
+    text = text
+        .replaceAll(RegExp(r'[^\w\s\-\.\(\)\&]'), '')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+
+    return text;
   }
 
   /// Terjemahkan nama liga / kompetisi ke Bahasa Indonesia yang akurat dan bersih tanpa duplikasi negara
@@ -84,7 +117,7 @@ class LeagueTranslator {
       return 'Turnamen Olahraga';
     }
 
-    String text = raw.trim();
+    String text = fixMojibake(raw.trim());
 
     // 1. Kamus Liga Spesifik (Diperiksa pertama untuk mencegah salah ganti)
     final directList = <MapEntry<Pattern, String>>[
@@ -93,8 +126,10 @@ class LeagueTranslator {
       MapEntry(RegExp(r'Czech\s*3\s*liga', caseSensitive: false), 'Liga 3 Ceko'),
       MapEntry(RegExp(r'Ngoại Hạng Darwin', caseSensitive: false), 'Liga Darwin Australia'),
 
-      // Liga Inggris
+      // Liga Inggris (termasuk jika ada sisa mojibake)
       MapEntry(RegExp(r'^(Giải\s*)?(Ngoại Hạng Anh|Premier League|English Premier League)(\s*\(Inggris\))?$', caseSensitive: false), 'Liga Inggris'),
+      MapEntry(RegExp(r'NGO[Á|Ã|A].*?H[Á|Ã|A].*?NG\s*INGGRIS', caseSensitive: false), 'Liga Inggris'),
+      MapEntry(RegExp(r'NGO[Á|Ã|A].*?H[Á|Ã|A].*?NG\s*ANH', caseSensitive: false), 'Liga Inggris'),
       MapEntry(RegExp(r'Ngoại Hạng Anh|English Premier League', caseSensitive: false), 'Liga Inggris'),
       MapEntry(RegExp(r'\bPremier League(\s*\(Inggris\))?\b', caseSensitive: false), 'Liga Inggris'),
       MapEntry(RegExp(r'Hạng Nhất Anh|Championship(\s*\(Inggris\))?|EFL Championship', caseSensitive: false), 'Liga Championship Inggris'),
@@ -108,8 +143,8 @@ class LeagueTranslator {
       MapEntry(RegExp(r'Hạng 2 Indonesia|Liga\s*2\s*Indonesia', caseSensitive: false), 'Liga 2 Indonesia'),
       MapEntry(RegExp(r'Hạng 3 Indonesia|Liga\s*3\s*Indonesia', caseSensitive: false), 'Liga 3 Indonesia'),
 
-      // Vietnam
-      MapEntry(RegExp(r'Cúp Quốc Gia Việt Nam|Cúp Quốc Gia', caseSensitive: false), 'Piala Nasional Vietnam'),
+      // Vietnam (termasuk jika ada sisa mojibake)
+      MapEntry(RegExp(r'C[Ã|Á|A].*?P\s+QU[Á|Ã|A].*?C\s+GIA(\s+VI[Á|Ã|E|A].*?T(\s+NAM)?)?|Cúp Quốc Gia(\s+Việt\s+Nam)?', caseSensitive: false), 'Piala Nasional Vietnam'),
       MapEntry(RegExp(r'VĐQG Việt Nam|V\.League\s*1(\s*\(Vietnam\))?', caseSensitive: false), 'Liga Vietnam (V.League 1)'),
       MapEntry(RegExp(r'Hạng Nhất Việt Nam|V\.League\s*2(\s*\(Vietnam\))?', caseSensitive: false), 'Liga Vietnam 2 (V.League 2)'),
 
@@ -231,9 +266,8 @@ class LeagueTranslator {
       MapEntry(RegExp(r'\bQuarterfinals\b', caseSensitive: false), 'Perempat Final'),
       MapEntry(RegExp(r'\bSingles\b', caseSensitive: false), 'Tunggal'),
       MapEntry(RegExp(r'\bDoubles\b', caseSensitive: false), 'Ganda'),
-      MapEntry(RegExp(r'\bWomen\b|\bNữ\b', caseSensitive: false), 'Wanita'),
-      MapEntry(RegExp(r'\bMen\b|\bNam\b', caseSensitive: false), 'Pria'),
       MapEntry(RegExp(r'\bCLB\s+', caseSensitive: false), 'Klub '),
+      MapEntry(RegExp(r'\bViệt Nam\b|\bViet Nam\b', caseSensitive: false), 'Vietnam'),
       MapEntry(RegExp(r'\bNhật Bản\b', caseSensitive: false), 'Jepang'),
       MapEntry(RegExp(r'\bHàn Quốc\b', caseSensitive: false), 'Korea Selatan'),
       MapEntry(RegExp(r'\bTrung Quốc\b', caseSensitive: false), 'China'),
@@ -248,7 +282,8 @@ class LeagueTranslator {
       MapEntry(RegExp(r'\bMỹ\b|\bHoa Kỳ\b', caseSensitive: false), 'Amerika Serikat'),
       MapEntry(RegExp(r'\bÚc\b', caseSensitive: false), 'Australia'),
       MapEntry(RegExp(r'\bẢ Rập Xê Út\b|\bẢ Rập Saudi\b', caseSensitive: false), 'Arab Saudi'),
-      MapEntry(RegExp(r'\bViệt Nam\b', caseSensitive: false), 'Vietnam'),
+      MapEntry(RegExp(r'\bWomen\b|\bNữ\b', caseSensitive: false), 'Wanita'),
+      MapEntry(RegExp(r'\bMen\b|(?<!Việt\s|Viet\s)\bNam\b', caseSensitive: false), 'Pria'),
     ];
 
     for (final item in wordsList) {
