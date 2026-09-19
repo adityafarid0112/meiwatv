@@ -91,7 +91,7 @@ class MatchService {
   static const String jsdelivrCdnUrl =
       'https://cdn.jsdelivr.net/gh/adityafarid0112/meiwatv@main/matches.json';
 
-  /// Mengambil siaran langsung terbaru (utamakan Portal / CDN / GitHub jika masih fresh, atau langsung scrape sumber web)
+  /// Mengambil siaran langsung terbaru (utamakan Portal / CDN / GitHub jika tersedia, atau scrape langsung dari DaddyLive API & Xoilac)
   Future<void> refreshOnlineMatches({bool forceDirectScrape = false}) async {
     try {
       // 1. Jika tidak dipaksa scrape langsung, coba cek Portal / GitHub / CDN terlebih dahulu
@@ -108,33 +108,14 @@ class MatchService {
             if (res.statusCode == 200 && res.bodyBytes.isNotEmpty) {
               final bodyString = utf8.decode(res.bodyBytes, allowMalformed: true);
               final List<dynamic> decoded = json.decode(bodyString);
-              if (decoded.isNotEmpty) {
-                // Cek apakah dataset masih segar (< 15 menit)
-                final firstItem = decoded.first as Map<String, dynamic>;
-                final updatedStr = firstItem['updatedAt'] as String?;
-                bool isStale = false;
-                if (updatedStr != null) {
-                  final updateTime = DateTime.tryParse(updatedStr);
-                  if (updateTime != null) {
-                    final ageMins = DateTime.now().toUtc().difference(updateTime).inMinutes;
-                    if (ageMins > 15) {
-                      isStale = true;
-                    }
-                  }
-                }
-
+              // Hanya terima remote update jika jumlah pertandingan lengkap dan tidak mengalami downgrade
+              if (decoded.length >= 200 && decoded.length >= _cachedMatches.length) {
                 _cachedMatches = decoded
                     .map((item) => MatchModel.fromJson(item as Map<String, dynamic>))
                     .toList();
                 _matchesController.add(_cachedMatches);
-
-                if (!isStale) {
-                  debugPrint('✅ Berhasil memuat data segar (${_cachedMatches.length} siaran) dari $endpoint');
-                  return;
-                } else {
-                  debugPrint('⚠️ Data di $endpoint berusia > 15 menit, melanjutkan live scraping...');
-                  break;
-                }
+                debugPrint('✅ Berhasil memuat data (${_cachedMatches.length} siaran) dari $endpoint');
+                return;
               }
             }
           } catch (ghErr) {
@@ -143,7 +124,8 @@ class MatchService {
         }
       }
 
-      // 2. Scrape langsung dari sumber live online utama (Xoilac & Socolive)
+      // 2. Ambil langsung dari DaddyLive API resmi & Xoilac
+      final daddyEvents = await _fetchDaddyLiveEventsOnline();
       final List<MatchModel> directParsed = [];
       final Set<String> seenRelUrls = {};
 
@@ -171,15 +153,163 @@ class MatchService {
         }
       }
 
-      if (directParsed.isNotEmpty) {
+      // Merge event resmi DaddyLive API ke dalam daftar pertandingan
+      if (daddyEvents.isNotEmpty) {
+        for (final dev in daddyEvents) {
+          final rawEvent = (dev['event'] as String? ?? '').replaceAll(RegExp(r'^[⚽🏎️🏐🏀🎾🥊🎮🏆🏸]\s*'), '').trim();
+          final channels = dev['channels'] as List<dynamic>? ?? [];
+          if (rawEvent.isEmpty || channels.isEmpty) continue;
+
+          String league = 'Turnamen Internasional';
+          String title = rawEvent;
+          String home = '';
+          String away = '';
+
+          if (rawEvent.contains(':')) {
+            final parts = rawEvent.split(':');
+            league = parts[0].trim();
+            title = parts.sublist(1).join(':').trim();
+          }
+
+          if (title.contains(' vs ') || title.contains(' - ')) {
+            final teamParts = title.split(RegExp(r'\s+vs\.?\s+|\s+-\s+', caseSensitive: false));
+            home = teamParts[0].trim();
+            away = teamParts.length > 1 ? teamParts[1].trim() : '';
+          } else {
+            home = title;
+          }
+
+          // Klasifikasi Kategori Olahraga
+          String category = '⚽ Sepak Bola';
+          final lowerAll = '${dev['category']} $league $title'.toLowerCase();
+          if (lowerAll.contains('motogp') || lowerAll.contains('f1') || lowerAll.contains('motor') || lowerAll.contains('bol d’or') || lowerAll.contains('racing') || lowerAll.contains('balap')) {
+            category = '🏎️ Balap & Motorsport';
+          } else if (lowerAll.contains('voli') || lowerAll.contains('volleyball') || lowerAll.contains('v-league') || lowerAll.contains('kovo') || lowerAll.contains('proliga')) {
+            category = '🏐 Bola Voli';
+          } else if (lowerAll.contains('badminton') || lowerAll.contains('bulu tangkis') || lowerAll.contains('bwf')) {
+            category = '🏸 Bulu Tangkis';
+          } else if (lowerAll.contains('basket') || lowerAll.contains('nba')) {
+            category = '🏀 Bola Basket';
+          } else if (lowerAll.contains('tenis') || lowerAll.contains('tennis') || lowerAll.contains('wta') || lowerAll.contains('atp')) {
+            category = '🎾 Tenis';
+          } else if (lowerAll.contains('ufc') || lowerAll.contains('boxing') || lowerAll.contains('tinju') || lowerAll.contains('mma')) {
+            category = '🥊 Combat Sports';
+          } else if (!lowerAll.contains('football') && !lowerAll.contains('soccer')) {
+            category = '🏆 Olahraga Lainnya';
+          }
+
+          final link1 = channels[0]['url'] as String? ?? '';
+          final link2 = channels.length > 1 ? (channels[1]['url'] as String? ?? '') : '';
+          final link3 = channels.length > 2 ? (channels[2]['url'] as String? ?? '') : '';
+
+          // Cek apakah pertandingan sudah ada di list Xoilac
+          final normTitle = title.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
+          final existingIdx = directParsed.indexWhere((m) {
+            final normM = m.title.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
+            return normTitle.isNotEmpty && normM.isNotEmpty && (normTitle.contains(normM) || normM.contains(normTitle));
+          });
+
+          if (existingIdx != -1) {
+            final existing = directParsed[existingIdx];
+            final xoilacBackup = existing.streamJalur1.isNotEmpty ? existing.streamJalur1 : existing.streamJalur2;
+            directParsed[existingIdx] = MatchModel(
+              id: existing.id,
+              title: existing.title,
+              homeTeam: existing.homeTeam,
+              awayTeam: existing.awayTeam,
+              homeLogo: existing.homeLogo,
+              awayLogo: existing.awayLogo,
+              homeScore: existing.homeScore,
+              awayScore: existing.awayScore,
+              scoreText: existing.scoreText,
+              matchMinute: existing.matchMinute,
+              league: existing.league,
+              kickoffIso: existing.kickoffIso,
+              kickoffText: existing.kickoffText,
+              status: existing.status,
+              sportCategory: existing.sportCategory,
+              streamJalur1: link1, // DaddyLive HD sebagai Jalur 1
+              streamJalur2: link2.isNotEmpty ? link2 : xoilacBackup,
+              streamJalur3: link3.isNotEmpty ? link3 : (link2.isNotEmpty ? xoilacBackup : link1),
+              streamJalur4: xoilacBackup,
+            );
+          } else {
+            final uniqueId = 'daddy_${directParsed.length + 1}_${title.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '-')}';
+            final isLive = dev['time'].toString().toLowerCase().contains('live') || dev['time'] == 'Live';
+            directParsed.add(MatchModel(
+              id: uniqueId,
+              title: away.isNotEmpty ? '$home vs $away' : home,
+              homeTeam: home,
+              awayTeam: away,
+              homeLogo: '',
+              awayLogo: '',
+              homeScore: '',
+              awayScore: '',
+              scoreText: '',
+              matchMinute: '',
+              league: league,
+              kickoffIso: DateTime.now().toIso8601String(),
+              kickoffText: isLive ? 'LIVE Sekarang' : '${dev['time']} WIB',
+              status: isLive ? 1 : 0,
+              sportCategory: category,
+              streamJalur1: link1,
+              streamJalur2: link2.isNotEmpty ? link2 : link1,
+              streamJalur3: link3.isNotEmpty ? link3 : link1,
+              streamJalur4: '',
+            ));
+          }
+        }
+      }
+
+      if (directParsed.isNotEmpty && directParsed.length >= _cachedMatches.length) {
         _sortMatches(directParsed);
         _cachedMatches = directParsed;
         _matchesController.add(_cachedMatches);
-        debugPrint('✅ Berhasil live scraping ${directParsed.length} siaran langsung dari sumber web!');
+        debugPrint('✅ Berhasil sinkronisasi ${directParsed.length} siaran langsung (DaddyLive + Xoilac)!');
       }
     } catch (e) {
       debugPrint('Error fetching online matches: $e');
     }
+  }
+
+  /// Ambil seluruh jadwal siaran resmi DaddyLive API secara real-time
+  Future<List<Map<String, dynamic>>> _fetchDaddyLiveEventsOnline() async {
+    try {
+      final res = await http.get(
+        Uri.parse('https://daddylive.app/api/events'),
+        headers: {
+          'User-Agent':
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+          'Accept': 'application/json',
+        },
+      ).timeout(const Duration(seconds: 6));
+
+      if (res.statusCode == 200 && res.bodyBytes.isNotEmpty) {
+        final decoded = json.decode(utf8.decode(res.bodyBytes, allowMalformed: true)) as Map<String, dynamic>;
+        final categories = decoded['categories'] as Map<String, dynamic>? ?? {};
+        final list = <Map<String, dynamic>>[];
+
+        for (final entry in categories.entries) {
+          if (entry.value is List) {
+            for (final item in entry.value as List) {
+              if (item is Map<String, dynamic> && item['event'] != null) {
+                list.add({
+                  'category': entry.key,
+                  'time': item['time'] ?? 'Live',
+                  'event': item['event'],
+                  'channels': item['channels'] ?? [],
+                  'source': item['source'] ?? 'tv1',
+                });
+              }
+            }
+          }
+        }
+        return list;
+      }
+    } catch (e) {
+      debugPrint('Info DaddyLive API: $e');
+    }
+    return [];
   }
 
   /// Parser HTML untuk semua cabang olahraga dari sumber live (Xoilac & Socolive)
@@ -361,26 +491,14 @@ class MatchService {
       matchIndex++;
       final matchPageUrl = '$activeDomain$relUrl';
 
-      // Jalur channel siaran: Pertahankan channel asli dari cache jika tersedia
-      final existingIndex = _cachedMatches.indexWhere((m) =>
-          m.streamJalur3.contains(slugName) ||
-          m.id.contains(slugName.substring(0, slugName.length > 20 ? 20 : slugName.length)));
+      final daddyUrl = _getDaddyLiveUrl(category, league, title);
 
-      String ch1 = '';
-      String ch2 = '';
-      if (existingIndex != -1) {
-        final existing = _cachedMatches[existingIndex];
-        if (existing.streamJalur1.isNotEmpty && !existing.streamJalur1.contains('/channel1/')) {
-          ch1 = existing.streamJalur1;
-        }
-        if (existing.streamJalur2.isNotEmpty) {
-          ch2 = existing.streamJalur2;
-        }
-      }
-
-      if (ch1.isEmpty) ch1 = matchPageUrl;
-      if (ch2.isEmpty) ch2 = matchPageUrl;
-      final ch3 = matchPageUrl;
+      // Jalur 1: DaddyLive HD (Utama, Kualitas Jernih 1080p)
+      // Jalur 2: Xoilac HD (Komentator Indonesia)
+      // Jalur 3: Cadangan / Alternatif
+      final ch1 = daddyUrl.isNotEmpty ? daddyUrl : matchPageUrl;
+      final ch2 = matchPageUrl;
+      final ch3 = daddyUrl.isNotEmpty ? matchPageUrl : '';
 
       list.add(MatchModel(
         id: 'match_${matchIndex}_${slugName.substring(0, slugName.length > 25 ? 25 : slugName.length)}',
@@ -405,6 +523,42 @@ class MatchService {
     }
 
     return list;
+  }
+
+  /// Pemetaan URL Siaran DaddyLive HD Resmi
+  String _getDaddyLiveUrl(String sportCategory, String league, String title) {
+    final text = '$sportCategory $league $title'.toLowerCase();
+    if (text.contains('motogp') || text.contains('moto2') || text.contains('moto3') || text.contains('balap') || text.contains('motor') || text.contains('wsbk')) {
+      return 'https://daddylive.app/player/embed.php?id=32';
+    }
+    if (text.contains('formula 1') || text.contains('f1')) {
+      return 'https://daddylive.app/player/embed.php?id=38';
+    }
+    if (text.contains('badminton') || text.contains('bulu tangkis') || text.contains('bwf') || text.contains('all england') || text.contains('indonesia open')) {
+      return 'https://daddylive.app/player/embed.php?id=123';
+    }
+    if (text.contains('voli') || text.contains('volleyball') || text.contains('v-league') || text.contains('kovo') || text.contains('proliga')) {
+      return 'https://daddylive.app/player/embed.php?id=125';
+    }
+    if (text.contains('inggris') || text.contains('premier league') || text.contains('championship')) {
+      return 'https://daddylive.app/player/embed.php?id=39';
+    }
+    if (text.contains('champions') || text.contains('ucl') || text.contains('europa')) {
+      return 'https://daddylive.app/player/embed.php?id=31';
+    }
+    if (text.contains('bundesliga') || text.contains('jerman') || text.contains('dfb')) {
+      return 'https://daddylive.app/player/embed.php?id=240';
+    }
+    if (text.contains('spanyol') || text.contains('la liga') || text.contains('italia') || text.contains('serie a')) {
+      return 'https://daddylive.app/player/embed.php?id=91';
+    }
+    if (text.contains('basket') || text.contains('nba')) {
+      return 'https://daddylive.app/player/embed.php?id=404';
+    }
+    if (text.contains('tenis') || text.contains('tennis')) {
+      return 'https://daddylive.app/player/embed.php?id=576';
+    }
+    return '';
   }
 
   /// Pertahankan 100% urutan persis seperti tampilan di web sumber aslinya tanpa diacak

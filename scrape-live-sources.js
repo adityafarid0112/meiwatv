@@ -53,6 +53,85 @@ function cleanVietnameseDiacritics(str) {
         .trim();
 }
 
+// Pemetaan Channel HD DaddyLive untuk Multi-Link Redundancy
+function getDaddyLiveMapping(sportCategory, league, title, slugName) {
+    const text = (sportCategory + ' ' + league + ' ' + title + ' ' + slugName).toLowerCase();
+
+    // 1. Motorsport & MotoGP (TNT Sports 2 UK, Sky Sports F1)
+    if (text.includes('motogp') || text.includes('moto2') || text.includes('moto3') || text.includes('balap') || text.includes('motor') || text.includes('wsbk')) {
+        return {
+            name: 'TNT Sports 2 HD / SPOTV',
+            url: 'https://daddylive.app/player/embed.php?id=32'
+        };
+    }
+    if (text.includes('formula 1') || text.includes('f1') || text.includes('grand prix')) {
+        return {
+            name: 'Sky Sports F1 HD',
+            url: 'https://daddylive.app/player/embed.php?id=38'
+        };
+    }
+
+    // 2. Bulu Tangkis (BWF Badminton - Astro SuperSport & SPOTV)
+    if (text.includes('badminton') || text.includes('bulu tangkis') || text.includes('bwf') || text.includes('all england') || text.includes('indonesia open') || text.includes('thomas') || text.includes('uber')) {
+        return {
+            name: 'Astro SuperSport 1 HD',
+            url: 'https://daddylive.app/player/embed.php?id=123'
+        };
+    }
+
+    // 3. Bola Voli (KOVO V-League Korea & Proliga - Astro SuperSport & Eurosport)
+    if (text.includes('voli') || text.includes('volleyball') || text.includes('v-league') || text.includes('kovo') || text.includes('proliga') || text.includes('vnl')) {
+        return {
+            name: 'Astro SuperSport 3 HD / Eurosport',
+            url: 'https://daddylive.app/player/embed.php?id=125'
+        };
+    }
+
+    // 4. Sepak Bola Populer (Sky Sports Premier League, TNT Sports, beIN Sports HD)
+    if (text.includes('inggris') || text.includes('premier league') || text.includes('championship')) {
+        return {
+            name: 'Sky Sports Premier League / TNT 1 HD',
+            url: 'https://daddylive.app/player/embed.php?id=39'
+        };
+    }
+    if (text.includes('champions') || text.includes('ucl') || text.includes('europa') || text.includes('uefa')) {
+        return {
+            name: 'TNT Sports 1 HD / beIN HD',
+            url: 'https://daddylive.app/player/embed.php?id=31'
+        };
+    }
+    if (text.includes('spanyol') || text.includes('la liga') || text.includes('italia') || text.includes('serie a')) {
+        return {
+            name: 'beIN Sports 1 HD / DAZN Spain',
+            url: 'https://daddylive.app/player/embed.php?id=91'
+        };
+    }
+    if (text.includes('jerman') || text.includes('bundesliga') || text.includes('prancis') || text.includes('ligue 1')) {
+        return {
+            name: 'Sky Bundesliga HD / DAZN DE',
+            url: 'https://daddylive.app/player/embed.php?id=240'
+        };
+    }
+
+    // 5. Bola Basket (NBA TV HD & NBA League Pass)
+    if (text.includes('basket') || text.includes('nba')) {
+        return {
+            name: 'NBA TV USA HD',
+            url: 'https://daddylive.app/player/embed.php?id=404'
+        };
+    }
+
+    // 6. Tenis (Sky Sport Tennis & Court Tennis)
+    if (text.includes('tenis') || text.includes('tennis') || text.includes('wta') || text.includes('atp') || text.includes('grand slam')) {
+        return {
+            name: 'Sky Sport Tennis HD',
+            url: 'https://daddylive.app/player/embed.php?id=576'
+        };
+    }
+
+    return null;
+}
+
 // Terjemahkan nama liga, turnamen, dan tim ke Bahasa Indonesia Resmi
 function translateToId(str) {
     if (!str) return '';
@@ -303,8 +382,141 @@ async function extractDirectStreamForMatch(matchPageUrl) {
     return null;
 }
 
+async function extractDaddyDirectStream(embedUrl) {
+    if (!embedUrl || !embedUrl.startsWith('http')) return null;
+    try {
+        const res1 = await fetch(embedUrl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+                'Referer': 'https://daddylive.app/'
+            },
+            signal: AbortSignal.timeout(6000)
+        });
+        if (!res1.ok) return null;
+        const html1 = await res1.text();
+
+        // 1. Direct .m3u8 in html1
+        let directMatch = html1.match(/var\s+playbackURL\s*=\s*["'](https?:[^"']+\.m3u8[^"']*)["']/i) ||
+                          html1.match(/["'](https?:[^\s"'<>]+\.m3u8[^\s"'<>]*)["']/i);
+        if (directMatch) return directMatch[1].replace(/\\\//g, '/');
+
+        // 2. Find player URL / iframe (supports StreamTP, FlyEmbed, EpiEmbeds, etc.)
+        let playerUrl = null;
+        const iframeMatch = html1.match(/src=["'](https?:\/\/[^"']*flyembed[^\s"'<>]+)["']/i) ||
+                            html1.match(/src=["'](https?:\/\/[^"']*stream[^\s"'<>]+)["']/i) ||
+                            html1.match(/src=["'](https?:\/\/[^"']+\.php\?stream=[^"']+)["']/i) ||
+                            html1.match(/src=["'](https?:\/\/[^"']*embed[^\s"'<>]+)["']/i);
+        if (iframeMatch) {
+            playerUrl = iframeMatch[1];
+        } else {
+            const jsonMatch = html1.match(/const\s+PLAYERS\s*=\s*(\[[^\]]+\])/i);
+            if (jsonMatch) {
+                try {
+                    const players = JSON.parse(jsonMatch[1]);
+                    if (players[0] && players[0].src) playerUrl = players[0].src;
+                } catch (_) {}
+            }
+        }
+
+        if (!playerUrl) return null;
+
+        const res2 = await fetch(playerUrl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Referer': embedUrl
+            },
+            signal: AbortSignal.timeout(6000)
+        });
+        if (!res2.ok) return null;
+        const html2 = await res2.text();
+
+        // Check if html2 has direct m3u8
+        directMatch = html2.match(/var\s+playbackURL\s*=\s*["'](https?:[^"']+\.m3u8[^"']*)["']/i) ||
+                      html2.match(/["'](https?:[^\s"'<>]+\.m3u8[^\s"'<>]*)["']/i);
+        if (directMatch) return directMatch[1].replace(/\\\//g, '/');
+
+        // Check if html2 embeds another iframe (like epiembeds, rockystream)
+        const nestedIframe = html2.match(/src=["'](https?:\/\/[^"']*epiembeds[^\s"'<>]+)["']/i) ||
+                             html2.match(/src=["'](https?:\/\/[^"']*rockystream[^\s"'<>]+)["']/i) ||
+                             html2.match(/<iframe[^>]+src=["'](https?:\/\/[^"']+)["']/i);
+        if (nestedIframe) {
+            let nextUrl = nestedIframe[1];
+            const res3 = await fetch(nextUrl, {
+                headers: { 'User-Agent': 'Mozilla/5.0', 'Referer': playerUrl },
+                signal: AbortSignal.timeout(6000)
+            });
+            if (!res3.ok) return null;
+            const html3 = await res3.text();
+
+            // Check if html3 has deobfuscation script (epiembeds pattern)
+            const deobMatch = html3.match(/var\s+(_[a-z0-9]+)=\[([0-9,]+)\][\s\S]*?(_[a-z0-9]+)=([0-9]+)[\s\S]*?(_[a-z0-9]+)=([0-9]+)[\s\S]*?String\.fromCharCode/i);
+            if (deobMatch) {
+                const arr = deobMatch[2].split(',').map(Number);
+                const vk = Number(deobMatch[4]);
+                const ko = Number(deobMatch[6]);
+                let decoded = '';
+                for (let i = 0; i < arr.length; i++) {
+                    decoded += String.fromCharCode(((arr[i] ^ vk) - ko + 256) & 255);
+                }
+                const urlMatch = decoded.match(/url\s*=\s*["'](https?:[^"']+\.m3u8[^"']*)["']/i);
+                if (urlMatch) return urlMatch[1];
+            }
+
+            directMatch = html3.match(/var\s+playbackURL\s*=\s*["'](https?:[^"']+\.m3u8[^"']*)["']/i) ||
+                          html3.match(/["'](https?:[^\s"'<>]+\.m3u8[^\s"'<>]*)["']/i);
+            if (directMatch) return directMatch[1].replace(/\\\//g, '/');
+        }
+
+        return null;
+    } catch (_) {
+        return null;
+    }
+}
+
+async function fetchDaddyLiveEvents() {
+    console.log('📡 Mengambil jadwal siaran resmi DaddyLive (https://daddylive.app/api/events)...');
+    try {
+        const res = await fetch('https://daddylive.app/api/events', {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+                'Accept': 'application/json'
+            },
+            signal: AbortSignal.timeout(8000)
+        });
+        if (!res.ok) {
+            console.warn(`   ⚠️ DaddyLive API response code: ${res.status}`);
+            return [];
+        }
+        const data = await res.json();
+        const categories = data.categories || {};
+        const events = [];
+
+        for (const [catName, list] of Object.entries(categories)) {
+            if (!Array.isArray(list)) continue;
+            for (const item of list) {
+                if (!item || !item.event) continue;
+                events.push({
+                    rawCategory: catName,
+                    time: item.time || 'Live',
+                    event: item.event,
+                    channels: Array.isArray(item.channels) ? item.channels : [],
+                    source: item.source || 'tv1'
+                });
+            }
+        }
+        console.log(`   ✅ Diterima ${events.length} event siaran HD dari DaddyLive API!`);
+        return events;
+    } catch (err) {
+        console.warn('   ⚠️ Gagal mengambil DaddyLive API:', err.message);
+        return [];
+    }
+}
+
 async function scrapeAll() {
-    console.log('🚀 Menjalankan Scraper Lengkap Semua Cabang Olahraga...');
+    console.log('🚀 Menjalankan Scraper Lengkap Semua Cabang Olahraga (DaddyLive + Xoilac)...');
+
+    // 1. Ambil seluruh event dari DaddyLive API
+    const daddyEvents = await fetchDaddyLiveEvents();
 
     const seeds = [
         'https://xoilaczzf.cc/',
@@ -415,13 +627,15 @@ async function scrapeAll() {
                 // Kategori Olahraga
                 let category = '⚽ Sepak Bola';
                 const lowerAll = (sportType + ' ' + slugName + ' ' + league).toLowerCase();
-                if (sportType === 'basketball' || lowerAll.includes('basket') || lowerAll.includes('nba')) {
-                    category = '🏀 Bola Basket';
-                } else if (sportType === 'volleyball' || lowerAll.includes('voli') || lowerAll.includes('volleyball')) {
+                if (lowerAll.includes('motogp') || lowerAll.includes('moto2') || lowerAll.includes('moto3') || lowerAll.includes('f1') || lowerAll.includes('formula 1') || lowerAll.includes('wsbk') || lowerAll.includes('superbike') || sportType === 'motorsport' || lowerAll.includes('motorsport') || lowerAll.includes('balap') || lowerAll.includes('dua xe')) {
+                    category = '🏎️ Balap & Motorsport';
+                } else if (sportType === 'volleyball' || lowerAll.includes('voli') || lowerAll.includes('volleyball') || lowerAll.includes('bong chuyen') || lowerAll.includes('bóng chuyền') || lowerAll.includes('v-league') || lowerAll.includes('kovo') || lowerAll.includes('proliga') || lowerAll.includes('vnl')) {
                     category = '🏐 Bola Voli';
-                } else if (sportType === 'badminton' || lowerAll.includes('badminton') || lowerAll.includes('bulu tangkis')) {
+                } else if (sportType === 'badminton' || lowerAll.includes('badminton') || lowerAll.includes('bulu tangkis') || lowerAll.includes('cau long') || lowerAll.includes('cầu lông') || lowerAll.includes('bwf') || lowerAll.includes('all england') || lowerAll.includes('indonesia open')) {
                     category = '🏸 Bulu Tangkis';
-                } else if (sportType === 'tennis' || lowerAll.includes('tenis') || lowerAll.includes('tennis') || lowerAll.includes('wta') || lowerAll.includes('atp')) {
+                } else if (sportType === 'basketball' || lowerAll.includes('basket') || lowerAll.includes('nba') || lowerAll.includes('bong ro') || lowerAll.includes('bóng rổ')) {
+                    category = '🏀 Bola Basket';
+                } else if (sportType === 'tennis' || lowerAll.includes('tenis') || lowerAll.includes('tennis') || lowerAll.includes('wta') || lowerAll.includes('atp') || lowerAll.includes('quan vot') || lowerAll.includes('quần vợt')) {
                     category = '🎾 Tenis';
                 } else if (['lol', 'dota2', 'csgo', 'esport', 'esports'].includes(sportType) || lowerAll.includes('esport') || lowerAll.includes('lpl') || lowerAll.includes('lcs') || lowerAll.includes('lec') || lowerAll.includes('lit') || lowerAll.includes('vcs') || lowerAll.includes('gaming') || lowerAll.includes('pgl') || lowerAll.includes('dota') || lowerAll.includes('crossfire')) {
                     category = '🎮 Esports & Gaming';
@@ -485,6 +699,8 @@ async function scrapeAll() {
                 }
 
                 const matchPageUrl = `${domain}${relUrl}`;
+                const dlMapping = getDaddyLiveMapping(category, league, title, slugName);
+                const dlUrl = dlMapping ? dlMapping.url : '';
 
                 parsedMap.set(relUrl, {
                     id: `match_${parsedMap.size + 1}_${slugName.substring(0, 25)}`,
@@ -503,13 +719,16 @@ async function scrapeAll() {
                     kickoffText,
                     status,
                     postUrl: matchPageUrl,
-                    streamJalur1: matchPageUrl,
+                    daddyliveUrl: dlUrl,
+                    daddyliveName: dlMapping ? dlMapping.name : 'DaddyLive HD',
+                    streamJalur1: dlUrl || matchPageUrl,
                     streamJalur2: matchPageUrl,
-                    streamJalur3: matchPageUrl,
+                    streamJalur3: dlUrl || matchPageUrl,
                     streams: {
-                        jalur1: matchPageUrl,
+                        jalur1: dlUrl || matchPageUrl,
                         jalur2: matchPageUrl,
-                        jalur3: matchPageUrl
+                        jalur3: dlUrl || matchPageUrl,
+                        daddylive: dlUrl
                     },
                     updatedAt: new Date().toISOString()
                 });
@@ -519,34 +738,281 @@ async function scrapeAll() {
         }
     }
 
+    // 2. Integrasikan event resmi dari DaddyLive API ke dalam parsedMap
+    if (Array.isArray(daddyEvents) && daddyEvents.length > 0) {
+        let daddyAddedCount = 0;
+        let daddyMergedCount = 0;
+
+        for (let idx = 0; idx < daddyEvents.length; idx++) {
+            const dev = daddyEvents[idx];
+            if (!dev.event) continue;
+
+            const rawEvent = dev.event.trim();
+            const channels = dev.channels || [];
+            if (channels.length === 0) continue;
+
+            // Bersihkan icon emoji dari teks event
+            const cleanEvent = rawEvent.replace(/^[⚽🏎️🏐🏀🎾🥊🎮🏆🏸]\s*/u, '').trim();
+
+            let league = 'Turnamen Internasional';
+            let title = cleanEvent;
+            let home = '';
+            let away = '';
+
+            if (cleanEvent.includes(':')) {
+                const parts = cleanEvent.split(':');
+                league = parts[0].trim();
+                title = parts.slice(1).join(':').trim();
+            }
+
+            league = translateToId(league);
+
+            if (title.includes(' vs ') || title.includes(' - ') || title.includes(' vs. ')) {
+                const teamParts = title.split(/\s+vs\.?\s+|\s+-\s+/i);
+                home = cleanVietnameseDiacritics(translateToId(teamParts[0] ? teamParts[0].trim() : 'Tim 1'));
+                away = cleanVietnameseDiacritics(translateToId(teamParts.length > 1 ? teamParts[1].trim() : 'Tim 2'));
+            } else {
+                home = cleanVietnameseDiacritics(translateToId(title));
+                away = '';
+            }
+
+            title = away ? `${home} vs ${away}` : home;
+
+            // Klasifikasi Kategori Olahraga
+            let category = '⚽ Sepak Bola';
+            const lowerAll = (dev.rawCategory + ' ' + league + ' ' + title).toLowerCase();
+            if (lowerAll.includes('motogp') || lowerAll.includes('moto2') || lowerAll.includes('moto3') || lowerAll.includes('formula 1') || lowerAll.includes('f1') || lowerAll.includes('motorsport') || lowerAll.includes('sprint race') || lowerAll.includes('gt world')) {
+                category = '🏎️ Balap & Motorsport';
+            } else if (lowerAll.includes('volleyball') || lowerAll.includes('voli') || lowerAll.includes('v-league') || lowerAll.includes('kovo') || lowerAll.includes('proliga') || lowerAll.includes('iberian cup')) {
+                category = '🏐 Bola Voli';
+            } else if (lowerAll.includes('badminton') || lowerAll.includes('bulu tangkis') || lowerAll.includes('bwf')) {
+                category = '🏸 Bulu Tangkis';
+            } else if (lowerAll.includes('basketball') || lowerAll.includes('basket') || lowerAll.includes('nba') || lowerAll.includes('euroleague')) {
+                category = '🏀 Bola Basket';
+            } else if (lowerAll.includes('tennis') || lowerAll.includes('tenis') || lowerAll.includes('wta') || lowerAll.includes('atp')) {
+                category = '🎾 Tenis';
+            } else if (lowerAll.includes('ufc') || lowerAll.includes('boxing') || lowerAll.includes('tinju') || lowerAll.includes('mma')) {
+                category = '🥊 Combat Sports';
+            } else if (!lowerAll.includes('football') && !lowerAll.includes('soccer')) {
+                category = '🏆 Olahraga Lainnya';
+            }
+
+            // Link DaddyLive dinamis (Link 1, 2, 3, 4)
+            const link1 = channels[0] ? channels[0].url : '';
+            const link2 = channels[1] ? channels[1].url : '';
+            const link3 = channels[2] ? channels[2].url : '';
+            const link4 = channels[3] ? channels[3].url : '';
+
+            // Helper normalisasi tim untuk fuzzy matching akurat
+            function normTeam(str) {
+                if (!str) return '';
+                return str.toLowerCase()
+                    .replace(/\b(fc|cf|sc|ac|as|united|city|club|cd|afc|ssc|rb|deportivo|sporting|real|atletico|borussia|spvgg|sv|vfb|tsg|bsc|fsv|wolverhampton|wolves)\b/gi, '')
+                    .replace(/[^a-z0-9]/g, '')
+                    .trim();
+            }
+
+            // Cek apakah pertandingan ini sudah ada di parsedMap (dari Xoilac)
+            let matchedKey = null;
+            const normTitle = title.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const nHome = normTeam(home);
+            const nAway = normTeam(away);
+
+            for (const [key, item] of parsedMap.entries()) {
+                const normItem = item.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+                if (normTitle && normItem && (normTitle.includes(normItem) || normItem.includes(normTitle))) {
+                    matchedKey = key;
+                    break;
+                }
+                const nItemH = normTeam(item.homeTeam);
+                const nItemA = normTeam(item.awayTeam);
+                if (nHome && nAway && nItemH && nItemA) {
+                    const homeMatch = nHome.includes(nItemH) || nItemH.includes(nHome);
+                    const awayMatch = nAway.includes(nItemA) || nItemA.includes(nAway);
+                    if (homeMatch && awayMatch) {
+                        matchedKey = key;
+                        break;
+                    }
+                }
+            }
+
+            if (matchedKey) {
+                // Merge dengan Xoilac:
+                // Jalur 1: DaddyLive HD Link 1 (UTAMA)
+                // Jalur 2: DaddyLive HD Link 2 (atau Xoilac jika hanya 1 link di Daddy)
+                // Jalur 3: DaddyLive HD Link 3 (atau Xoilac)
+                // Jalur 4: Xoilac HD (Komentator Indonesia / Cadangan di paling akhir)
+                const existing = parsedMap.get(matchedKey);
+                const xoilacBackup = existing.postUrl;
+
+                existing.daddyliveUrl = link1;
+                existing.streamJalur1 = link1; // Utamakan DaddyLive HD sebagai Jalur 1
+
+                if (link3) {
+                    existing.streamJalur2 = link2;
+                    existing.streamJalur3 = link3;
+                    existing.streamJalur4 = xoilacBackup;
+                } else if (link2) {
+                    existing.streamJalur2 = link2;
+                    existing.streamJalur3 = xoilacBackup;
+                    existing.streamJalur4 = '';
+                } else {
+                    existing.streamJalur2 = xoilacBackup;
+                    existing.streamJalur3 = link1;
+                    existing.streamJalur4 = '';
+                }
+
+                existing.streams.jalur1 = existing.streamJalur1;
+                existing.streams.jalur2 = existing.streamJalur2;
+                existing.streams.jalur3 = existing.streamJalur3;
+                existing.streams.jalur4 = existing.streamJalur4;
+                existing.streams.daddylive = link1;
+                existing.streams.daddylive2 = link2;
+                existing.streams.daddylive3 = link3;
+                existing.streams.xoilac = xoilacBackup;
+                daddyMergedCount++;
+            } else {
+                // Event baru dari DaddyLive (MotoGP, Balap, Voli Korea, Badminton, Basket NBA, dll)
+                const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').substring(0, 30);
+                const uniqueKey = `daddy_${idx + 1}_${slug}`;
+
+                parsedMap.set(uniqueKey, {
+                    id: uniqueKey,
+                    title,
+                    homeTeam: home || title,
+                    awayTeam: away || '',
+                    homeLogo: '',
+                    awayLogo: '',
+                    homeScore: '',
+                    awayScore: '',
+                    scoreText: '',
+                    matchMinute: '',
+                    league,
+                    sportCategory: category,
+                    kickoffIso: new Date().toISOString(),
+                    kickoffText: dev.time === 'Live' ? 'LIVE Sekarang' : `${dev.time} WIB`,
+                    status: dev.time.toLowerCase().includes('live') ? 1 : 0,
+                    postUrl: link1,
+                    daddyliveUrl: link1,
+                    daddyliveName: 'DaddyLive HD',
+                    streamJalur1: link1,
+                    streamJalur2: link2 || link1,
+                    streamJalur3: link3 || link2 || link1,
+                    streamJalur4: link4 || '',
+                    streams: {
+                        jalur1: link1,
+                        jalur2: link2 || link1,
+                        jalur3: link3 || link2 || link1,
+                        jalur4: link4 || '',
+                        daddylive: link1,
+                        daddylive2: link2,
+                        daddylive3: link3
+                    },
+                    updatedAt: new Date().toISOString()
+                });
+                daddyAddedCount++;
+            }
+        }
+        console.log(`   ✅ Selesai Menggabungkan: ${daddyMergedCount} pertandingan sinkron Xoilac + DaddyLive, ${daddyAddedCount} event baru dari DaddyLive!`);
+    }
+
     const matchesList = Array.from(parsedMap.values());
-    console.log(`\n🎯 Mengekstrak direct stream HLS (.m3u8) untuk ${matchesList.length} pertandingan...`);
+    console.log(`\n🎯 Mengekstrak direct stream HLS (.m3u8) & multi-link untuk ${matchesList.length} pertandingan...`);
 
     // Ekstraksi concurrent direct stream m3u8 untuk pertandingan live & upcoming
-    const BATCH_SIZE = 15;
+    const BATCH_SIZE = 12;
     for (let i = 0; i < matchesList.length; i += BATCH_SIZE) {
         const batch = matchesList.slice(i, i + BATCH_SIZE);
-        await Promise.all(batch.map(async (m, idx) => {
-            const streams = await extractDirectStreamForMatch(m.postUrl);
-            if (streams) {
-                m.streamJalur1 = streams.jalur1;
-                m.streamJalur2 = streams.jalur2;
-                m.streamJalur3 = streams.jalur3;
-                m.streams.jalur1 = streams.jalur1;
-                m.streams.jalur2 = streams.jalur2;
-                m.streams.jalur3 = streams.jalur3;
-            } else {
-                // Fallback direct stream jika link channel belum di-generate oleh web sumber
-                const fallbackChan = (i + idx + 1) % 35 + 1;
-                m.streamJalur1 = `https://live2.zundrixmediapipeline.com/live/channel${fallbackChan}.m3u8`;
-                m.streamJalur2 = `https://live.zundrixmediapipeline.com/live/channel${fallbackChan}.m3u8`;
-                m.streamJalur3 = `https://live3.zundrixmediapipeline.com/live/channel${fallbackChan}.m3u8`;
-                m.streams.jalur1 = m.streamJalur1;
-                m.streams.jalur2 = m.streamJalur2;
-                m.streams.jalur3 = m.streamJalur3;
+        await Promise.all(batch.map(async (m) => {
+            // 1. Ekstraksi Direct M3U8 DaddyLive untuk Jalur 1 (UTAMA HD 1080p)
+            const daddySource1 = m.daddyliveUrl || (m.streamJalur1 && m.streamJalur1.includes('daddylive.app') ? m.streamJalur1 : null);
+            if (daddySource1) {
+                const dlDirect1 = await extractDaddyDirectStream(daddySource1);
+                if (dlDirect1) {
+                    m.streamJalur1 = dlDirect1;
+                    m.streams.jalur1 = dlDirect1;
+                    m.streams.daddylive_direct = dlDirect1;
+                }
+            }
+
+            // 2. Ekstraksi Direct M3U8 DaddyLive untuk Jalur 2 (jika Jalur 2 adalah embed DaddyLive)
+            if (m.streamJalur2 && m.streamJalur2.includes('daddylive.app')) {
+                const dlDirect2 = await extractDaddyDirectStream(m.streamJalur2);
+                if (dlDirect2) {
+                    m.streamJalur2 = dlDirect2;
+                    m.streams.jalur2 = dlDirect2;
+                }
+            }
+
+            // 3. Ekstraksi Direct M3U8 Xoilac untuk Jalur Cadangan / Paling Akhir (Komentator Indonesia)
+            if (m.postUrl && m.postUrl.includes('/truc-tiep/')) {
+                const streams = await extractDirectStreamForMatch(m.postUrl);
+                if (streams) {
+                    m.streams.xoilac = streams.jalur1;
+                    // Pastikan Xoilac berada di jalur terakhir pertandingan
+                    if (m.streamJalur4) {
+                        m.streamJalur4 = streams.jalur1;
+                        m.streams.jalur4 = streams.jalur1;
+                    } else if (m.streamJalur3 && m.streamJalur3.includes('/truc-tiep/')) {
+                        m.streamJalur3 = streams.jalur1;
+                        m.streams.jalur3 = streams.jalur1;
+                    } else if (m.streamJalur2 && m.streamJalur2.includes('/truc-tiep/')) {
+                        m.streamJalur2 = streams.jalur1;
+                        m.streams.jalur2 = streams.jalur1;
+                    }
+
+                    // Hanya jika pertandingan ini TIDAK memiliki sumber DaddyLive, gunakan Xoilac untuk Jalur 1
+                    if (!daddySource1 && (!m.streamJalur1 || m.streamJalur1.includes('/truc-tiep/'))) {
+                        m.streamJalur1 = streams.jalur1;
+                        m.streams.jalur1 = streams.jalur1;
+                    }
+                }
             }
         }));
     }
+
+    // Hitung Skor Prioritas Pertandingan Populer (Bundesliga, Liga 1, EPL, UCL, MotoGP, Voli, Badminton, NBA)
+    function getMatchPriority(m) {
+        let score = 0;
+        // Status LIVE mendapatkan prioritas utama di atas layar
+        if (m.status === 1) score += 1000;
+        else if (m.status === 0) score += 500;
+
+        const text = (m.league + ' ' + m.title + ' ' + m.sportCategory).toLowerCase();
+
+        // 1. Sepak Bola Populer
+        if (text.includes('indonesia') || text.includes('bri liga 1') || text.includes('timnas') || text.includes('liga 1')) score += 300;
+        if (text.includes('champions') || text.includes('ucl')) score += 280;
+        if (text.includes('inggris') || text.includes('premier league')) score += 270;
+        if (text.includes('bundesliga') || text.includes('jerman') || text.includes('dfb')) score += 260; // 🇩🇪 Bundesliga Jerman
+        if (text.includes('spanyol') || text.includes('la liga')) score += 250;
+        if (text.includes('italia') || text.includes('serie a')) score += 240;
+        if (text.includes('europa') || text.includes('conference')) score += 200;
+        if (text.includes('saudi') || text.includes('al nassr') || text.includes('al hilal') || text.includes('afc')) score += 180;
+
+        // 2. MotoGP & Motorsport
+        if (text.includes('motogp') || text.includes('moto2') || text.includes('moto3') || text.includes('formula 1') || text.includes('f1') || text.includes('balap')) score += 290;
+
+        // 3. Bola Voli (KOVO V-League Korea & Proliga)
+        if (text.includes('v-league') || text.includes('kovo') || text.includes('proliga') || text.includes('red sparks') || text.includes('vnl') || text.includes('voli')) score += 280;
+
+        // 4. Bulu Tangkis (BWF Badminton)
+        if (text.includes('badminton') || text.includes('bulu tangkis') || text.includes('bwf') || text.includes('all england') || text.includes('indonesia open') || text.includes('thomas') || text.includes('uber')) score += 280;
+
+        // 5. Bola Basket (NBA & IBL)
+        if (text.includes('nba') || text.includes('ibl') || text.includes('euroleague') || text.includes('basket')) score += 220;
+
+        // 6. UFC & Combat Sports
+        if (text.includes('ufc') || text.includes('one championship') || text.includes('tinju') || text.includes('boxing')) score += 210;
+
+        // 7. Tenis Grand Slam
+        if (text.includes('wimbledon') || text.includes('us open') || text.includes('australian open') || text.includes('roland garros')) score += 200;
+
+        return score;
+    }
+
+    // Urutkan pertandingan berdasarkan prioritas kepopuleran & status LIVE
+    matchesList.sort((a, b) => getMatchPriority(b) - getMatchPriority(a));
 
     console.log(`\n🎯 Total Pertandingan Terkumpul: ${matchesList.length}`);
     const liveCount = matchesList.filter(m => m.status === 1).length;

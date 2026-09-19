@@ -857,6 +857,7 @@
         <!-- 16:9 Video Frame -->
         <div class='video-container-169'>
           <video autoplay='autoplay' controls='controls' id='mainVideoPlayer' playsinline='playsinline' poster='' style='display:none;'/>
+          <iframe allow='encrypted-media; autoplay; fullscreen' allowfullscreen='true' id='mainEmbedPlayer' style='display:none; width:100%; height:100%; border:none; position:absolute; top:0; left:0; right:0; bottom:0;'/>
 
           <!-- Live Stage Screen (Tampil saat video siap atau sebelum klik) -->
           <div class='player-stage-screen' id='playerStage'>
@@ -3575,6 +3576,19 @@
     activeStreamUrlServer2 = match.streamJalur2 || (match.streams ? match.streams.jalur2 : '') || '';
     activeStreamUrlServer3 = match.streamJalur3 || (match.streams ? match.streams.jalur3 : '') || '';
 
+    const btnS1 = document.getElementById('btnServer1');
+    const btnS2 = document.getElementById('btnServer2');
+    const btnS3 = document.getElementById('btnServer3');
+    if (btnS1) {
+      btnS1.innerHTML = '<i class="fa-solid fa-play"></i> <span>' + (activeStreamUrlServer1.includes('daddylive') ? 'Jalur 1 (DaddyLive HD)' : 'Jalur 1 (HD)') + '</span>';
+    }
+    if (btnS2) {
+      btnS2.innerHTML = '<i class="fa-solid fa-bolt"></i> <span>' + (activeStreamUrlServer2.includes('.m3u8') ? 'Jalur 2 (Xoilac HD)' : 'Jalur 2 (Fast)') + '</span>';
+    }
+    if (btnS3) {
+      btnS3.innerHTML = '<i class="fa-solid fa-server"></i> <span>' + (activeStreamUrlServer3.includes('daddylive') ? 'Jalur 3 (DaddyLive 2)' : 'Jalur 3 (Backup)') + '</span>';
+    }
+
     // Update URL parameter di browser agar link pertandingan sinkron
     try {
       const slug = (match.title || match.id || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -3654,6 +3668,7 @@
 
   function executeStreamPlayback(streamUrl, match) {
     const video = document.getElementById('mainVideoPlayer');
+    const embed = document.getElementById('mainEmbedPlayer');
     const stage = document.getElementById('playerStage');
 
     if (hlsInstance) {
@@ -3668,18 +3683,38 @@
     if (!streamUrl || streamUrl.trim() === '') {
       if (stage) stage.style.display = 'flex';
       if (video) { video.pause(); video.style.display = 'none'; }
+      if (embed) { embed.src = 'about:blank'; embed.style.display = 'none'; }
       return;
     }
 
-    // Pastikan URL m3u8 direct channel jika masih berbentuk web link
+    // 1. Cek apakah ini Web Embed / DaddyLive iframe
+    const lower = streamUrl.toLowerCase();
+    const isWebEmbed = (lower.includes('daddylive') || lower.includes('dlhd.sx') || lower.includes('embed.php') || lower.includes('/player/') || lower.includes('/embed/')) && !lower.endsWith('.m3u8') && !lower.endsWith('.flv');
+
+    if (isWebEmbed) {
+      if (stage) stage.style.display = 'none';
+      if (video) { video.pause(); video.style.display = 'none'; }
+      if (embed) {
+        embed.src = streamUrl;
+        embed.style.display = 'block';
+      }
+      return;
+    }
+
+    // 2. Direct Video Stream (.m3u8 / .flv)
+    if (embed) {
+      embed.src = 'about:blank';
+      embed.style.display = 'none';
+    }
+
     let finalStreamUrl = streamUrl;
     if (!finalStreamUrl.endsWith('.m3u8') && !finalStreamUrl.endsWith('.flv')) {
       const chanMatch = finalStreamUrl.match(/channel(-?\d+)/i);
       if (chanMatch) {
         const cId = chanMatch[1].replace('-', '');
         finalStreamUrl = 'https://live2.zundrixmediapipeline.com/live/channel' + cId + '.m3u8';
-      } else if (match && match.streamJalur1 && match.streamJalur1.endsWith('.m3u8')) {
-        finalStreamUrl = match.streamJalur1;
+      } else if (match && match.streamJalur2 && match.streamJalur2.endsWith('.m3u8')) {
+        finalStreamUrl = match.streamJalur2;
       } else {
         finalStreamUrl = 'https://live2.zundrixmediapipeline.com/live/channel1.m3u8';
       }
@@ -3687,7 +3722,7 @@
 
     const isDirectFlv = finalStreamUrl.endsWith('.flv') || finalStreamUrl.includes('.flv?');
 
-    // 1. FLV Playback
+    // FLV Playback
     if (isDirectFlv && typeof flvjs !== 'undefined' && flvjs.isSupported()) {
       if (stage) stage.style.display = 'none';
       if (video) {
@@ -3710,7 +3745,7 @@
       }
     }
 
-    // 2. HLS.js Playback (Desktop Chrome, Edge, Firefox, Android)
+    // HLS.js Playback (Desktop Chrome, Edge, Firefox, Android)
     if (typeof Hls !== 'undefined' && Hls.isSupported()) {
       if (stage) stage.style.display = 'none';
       if (video) {
@@ -3754,7 +3789,7 @@
       }
     }
 
-    // 3. Native HLS (Safari iOS, iPad, Mac, Native WebViews)
+    // Native HLS (Safari iOS, iPad, Mac, Native WebViews)
     if (video && video.canPlayType('application/vnd.apple.mpegurl')) {
       if (stage) stage.style.display = 'none';
       video.style.display = 'block';

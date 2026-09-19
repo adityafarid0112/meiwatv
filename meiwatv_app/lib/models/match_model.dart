@@ -20,6 +20,7 @@ class MatchModel {
   final String streamJalur1; // HLS / HD
   final String streamJalur2; // FLV / Fast
   final String streamJalur3; // Web / Backup
+  final String streamJalur4; // Fallback / Additional
 
   const MatchModel({
     required this.id,
@@ -40,6 +41,7 @@ class MatchModel {
     required this.streamJalur1,
     required this.streamJalur2,
     required this.streamJalur3,
+    this.streamJalur4 = '',
   })  : _title = title,
         _homeTeam = homeTeam,
         _awayTeam = awayTeam,
@@ -67,6 +69,15 @@ class MatchModel {
               homeScore!.isNotEmpty &&
               awayScore!.isNotEmpty) ||
           (scoreText != null && scoreText!.isNotEmpty)));
+
+  List<String> get availableStreams {
+    final list = <String>[];
+    if (streamJalur1.isNotEmpty) list.add(streamJalur1);
+    if (streamJalur2.isNotEmpty && !list.contains(streamJalur2)) list.add(streamJalur2);
+    if (streamJalur3.isNotEmpty && !list.contains(streamJalur3)) list.add(streamJalur3);
+    if (streamJalur4.isNotEmpty && !list.contains(streamJalur4)) list.add(streamJalur4);
+    return list;
+  }
 
   factory MatchModel.fromJson(Map<String, dynamic> json, {String? docId}) {
     final rawLeague = json['league'] as String? ?? 'Live Sports';
@@ -106,17 +117,21 @@ class MatchModel {
           ? json['status'] as int
           : (json['status'] == 'LIVE' || json['status'] == 1 ? 1 : 0),
       sportCategory: json['sportCategory'] as String? ?? '⚽ Sepak Bola',
-      streamJalur1: json['streamUrl'] as String? ??
-          json['streamJalur1'] as String? ??
+      streamJalur1: json['streamJalur1'] as String? ??
           streams['jalur1'] as String? ??
+          json['streamUrl'] as String? ??
+          json['daddyliveUrl'] as String? ??
           '',
-      streamJalur2: json['server2Url'] as String? ??
-          json['streamJalur2'] as String? ??
+      streamJalur2: json['streamJalur2'] as String? ??
           streams['jalur2'] as String? ??
+          json['server2Url'] as String? ??
           '',
-      streamJalur3: json['postUrl'] as String? ??
-          json['streamJalur3'] as String? ??
+      streamJalur3: json['streamJalur3'] as String? ??
           streams['jalur3'] as String? ??
+          json['postUrl'] as String? ??
+          '',
+      streamJalur4: json['streamJalur4'] as String? ??
+          streams['jalur4'] as String? ??
           '',
     );
   }
@@ -141,10 +156,12 @@ class MatchModel {
       'streamJalur1': streamJalur1,
       'streamJalur2': streamJalur2,
       'streamJalur3': streamJalur3,
+      'streamJalur4': streamJalur4,
       'streams': {
         'jalur1': streamJalur1,
         'jalur2': streamJalur2,
         'jalur3': streamJalur3,
+        'jalur4': streamJalur4,
       },
     };
   }

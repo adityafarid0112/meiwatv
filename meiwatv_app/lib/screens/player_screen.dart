@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../models/match_model.dart';
 import '../services/ad_service.dart';
 import '../theme/app_theme.dart';
@@ -24,6 +25,8 @@ class PlayerScreen extends StatefulWidget {
 
 class _PlayerScreenState extends State<PlayerScreen> {
   VideoPlayerController? _videoController;
+  WebViewController? _webController;
+  bool _isWebView = false;
   int _activeJalur = 1; // 1 = Jalur 1, 2 = Jalur 2, 3 = Jalur 3
   bool _isLoading = true;
   bool _isPlaying = true;
@@ -57,6 +60,24 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
     _initPlayer();
     _resetControlsTimer();
+  }
+
+  bool _isWebEmbed(String url) {
+    if (url.isEmpty) return false;
+    final lower = url.toLowerCase();
+    if (lower.endsWith('.m3u8') || lower.endsWith('.flv') || lower.endsWith('.mp4')) {
+      return false;
+    }
+    if (lower.contains('daddylive') ||
+        lower.contains('dlhd.sx') ||
+        lower.contains('embed.php') ||
+        lower.contains('/player/') ||
+        lower.contains('/embed/') ||
+        lower.contains('/stream/') ||
+        lower.contains('.php')) {
+      return true;
+    }
+    return false;
   }
 
   void _resetControlsTimer() {
@@ -102,6 +123,10 @@ class _PlayerScreenState extends State<PlayerScreen> {
       case 3:
         return widget.match.streamJalur3.isNotEmpty
             ? widget.match.streamJalur3
+            : widget.match.streamJalur1;
+      case 4:
+        return widget.match.streamJalur4.isNotEmpty
+            ? widget.match.streamJalur4
             : widget.match.streamJalur1;
       default:
         return widget.match.streamJalur1;
@@ -158,6 +183,135 @@ class _PlayerScreenState extends State<PlayerScreen> {
     }
   }
 
+  /// Ekstraksi langsung video stream .m3u8 resolusi 1080p dari DaddyLive
+  Future<String?> _resolveDaddyDirectM3u8(String embedUrl) async {
+    if (embedUrl.isEmpty || !embedUrl.startsWith('http')) return null;
+    try {
+      final res1 = await http.get(Uri.parse(embedUrl), headers: {
+        'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+        'Referer': 'https://daddylive.app/'
+      }).timeout(const Duration(seconds: 4));
+
+      if (res1.statusCode != 200) return null;
+      final html1 = res1.body;
+
+      String? playerUrl;
+      final iframeMatch = RegExp(
+            r'src=["\x27](https?://[^"\x27]*stream[^\s"\x27<>]+)["\x27]',
+            caseSensitive: false,
+          ).firstMatch(html1) ??
+          RegExp(
+            r'src=["\x27](https?://[^"\x27]+\.php\?stream=[^"\x27]+)["\x27]',
+            caseSensitive: false,
+          ).firstMatch(html1) ??
+          RegExp(
+            r'src=["\x27](https?://[^"\x27]*embed\.st[^\s"\x27<>]+)["\x27]',
+            caseSensitive: false,
+          ).firstMatch(html1) ??
+          RegExp(
+            r'src=["\x27](https?://[^"\x27]+)["\x27]',
+            caseSensitive: false,
+          ).firstMatch(html1);
+
+      if (iframeMatch != null) {
+        playerUrl = iframeMatch.group(1);
+      } else {
+        final jsonMatch = RegExp(r'const\s+PLAYERS\s*=\s*(\[[^\]]+\])', caseSensitive: false).firstMatch(html1);
+        if (jsonMatch != null) {
+          try {
+            final players = json.decode(jsonMatch.group(1)!);
+            if (players is List && players.isNotEmpty && players[0]['src'] != null) {
+              playerUrl = players[0]['src'] as String;
+            }
+          } catch (_) {}
+        }
+      }
+
+      if (playerUrl == null || !playerUrl.startsWith('http')) return null;
+
+      final res2 = await http.get(Uri.parse(playerUrl), headers: {
+        'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+        'Referer': embedUrl
+      }).timeout(const Duration(seconds: 4));
+
+      if (res2.statusCode != 200) return null;
+      final html2 = res2.body;
+
+      final m3u8Match = RegExp(
+            r'var\s+playbackURL\s*=\s*["\x27](https?:[^"\x27]+\.m3u8[^"\x27]*)["\x27]',
+            caseSensitive: false,
+          ).firstMatch(html2) ??
+          RegExp(
+            r'["\x27](https?:[^\s"\x27<>]+\.m3u8[^\s"\x27<>]*)["\x27]',
+            caseSensitive: false,
+          ).firstMatch(html2);
+
+      if (m3u8Match != null) {
+        return m3u8Match.group(1)?.replaceAll(r'\/', '/').replaceAll(r'\', '');
+      }
+
+      final nestedMatch = RegExp(
+            r'src=["\x27](https?://[^"\x27]*(?:epiembeds|flyembed|rockystream)[^\s"\x27<>]+)["\x27]',
+            caseSensitive: false,
+          ).firstMatch(html2) ??
+          RegExp(
+            r'<iframe[^>]+src=["\x27](https?://[^\s"\x27<>]+)["\x27]',
+            caseSensitive: false,
+          ).firstMatch(html2);
+
+      if (nestedMatch != null) {
+        final nestedUrl = nestedMatch.group(1);
+        if (nestedUrl != null && nestedUrl.startsWith('http')) {
+          final res3 = await http.get(Uri.parse(nestedUrl), headers: {
+            'User-Agent': 'Mozilla/5.0',
+            'Referer': playerUrl
+          }).timeout(const Duration(seconds: 4));
+          if (res3.statusCode == 200) {
+            final html3 = res3.body;
+
+            // Deobfuscate epiembeds format
+            final deobMatch = RegExp(
+              r'var\s+(_[a-z0-9]+)=\[([0-9,]+)\][\s\S]*?(_[a-z0-9]+)=([0-9]+)[\s\S]*?(_[a-z0-9]+)=([0-9]+)[\s\S]*?String\.fromCharCode',
+              caseSensitive: false,
+            ).firstMatch(html3);
+            if (deobMatch != null) {
+              final rawArr = deobMatch.group(2)!.split(',').map((e) => int.tryParse(e.trim()) ?? 0).toList();
+              final vk = int.tryParse(deobMatch.group(4)!) ?? 0;
+              final ko = int.tryParse(deobMatch.group(6)!) ?? 0;
+              final buffer = StringBuffer();
+              for (final val in rawArr) {
+                buffer.writeCharCode(((val ^ vk) - ko + 256) & 255);
+              }
+              final decodedStr = buffer.toString();
+              final urlMatch = RegExp(
+                r'url\s*=\s*["\x27](https?:[^"\x27]+\.m3u8[^"\x27]*)["\x27]',
+                caseSensitive: false,
+              ).firstMatch(decodedStr);
+              if (urlMatch != null) {
+                return urlMatch.group(1);
+              }
+            }
+
+            final m3u8Nested = RegExp(
+                  r'var\s+playbackURL\s*=\s*["\x27](https?:[^"\x27]+\.m3u8[^"\x27]*)["\x27]',
+                  caseSensitive: false,
+                ).firstMatch(html3) ??
+                RegExp(
+                  r'["\x27](https?:[^\s"\x27<>]+\.m3u8[^\s"\x27<>]*)["\x27]',
+                  caseSensitive: false,
+                ).firstMatch(html3);
+            if (m3u8Nested != null) {
+              return m3u8Nested.group(1)?.replaceAll(r'\/', '/').replaceAll(r'\', '');
+            }
+          }
+        }
+      }
+    } catch (_) {}
+    return null;
+  }
+
   /// Ekstraksi semua kandidat direct video (.m3u8 / .mp4 / CDN HLS) dari web sumber
   Future<List<String>> _resolveCandidateStreams(String rawUrl) async {
     final candidates = <String>[];
@@ -167,6 +321,19 @@ class _PlayerScreenState extends State<PlayerScreen> {
     if (lower.contains('.m3u8') || lower.contains('.mp4')) {
       candidates.add(rawUrl);
       return candidates;
+    }
+
+    // 1. Jika URL berasal dari DaddyLive, resolve langsung ke direct stream .m3u8 HD 1080p
+    if (lower.contains('daddylive') ||
+        lower.contains('streamtp') ||
+        lower.contains('domhsd') ||
+        lower.contains('dlhd') ||
+        lower.contains('embed.php')) {
+      final daddyDirect = await _resolveDaddyDirectM3u8(rawUrl);
+      if (daddyDirect != null && daddyDirect.isNotEmpty) {
+        candidates.add(daddyDirect);
+        return candidates;
+      }
     }
 
     final referersToTry = [
@@ -313,6 +480,84 @@ class _PlayerScreenState extends State<PlayerScreen> {
     return false;
   }
 
+  Future<void> _playInWebView(String url) async {
+    await _videoController?.dispose();
+    _videoController = null;
+
+    final controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(Colors.black)
+      ..setUserAgent(
+        'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
+      )
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageStarted: (String pageUrl) {
+            if (mounted) {
+              setState(() {
+                _isLoading = true;
+                _errorMessage = null;
+              });
+            }
+          },
+          onPageFinished: (String pageUrl) {
+            if (mounted) {
+              setState(() {
+                _isLoading = false;
+                _isPlaying = true;
+              });
+            }
+          },
+          onWebResourceError: (WebResourceError error) {
+            debugPrint('[WebView Player Error] ${error.description}');
+          },
+        ),
+      );
+
+    final htmlContent = '''
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      background-color: #000000;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <iframe src="$url" allowfullscreen="true" allow="encrypted-media; autoplay; fullscreen" scrolling="no"></iframe>
+</body>
+</html>
+''';
+
+    await controller.loadHtmlString(htmlContent, baseUrl: 'https://daddylive.app/');
+
+    if (mounted) {
+      setState(() {
+        _webController = controller;
+        _isWebView = true;
+        _isLoading = false;
+        _isPlaying = true;
+        _errorMessage = null;
+      });
+    }
+  }
+
   Future<void> _initPlayer({bool autoFallbackJalur = true}) async {
     setState(() {
       _isLoading = true;
@@ -329,7 +574,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
       return;
     }
 
-    // Resolusi semua kandidat stream
+    // 1. Coba resolve direct stream HLS (.m3u8) terlebih dahulu untuk SEMUA jenis URL (termasuk DaddyLive)
+    setState(() {
+      _isWebView = false;
+      _webController = null;
+    });
+
     final candidates = await _resolveCandidateStreams(rawUrl);
 
     for (final cand in candidates) {
@@ -337,7 +587,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
       if (success) return;
     }
 
-    // Jika jalur aktif gagal, coba auto-fallback ke jalur lain jika diizinkan
+    // 2. Jika gagal direct stream dan URL adalah Web Embed / HTML, fallback ke WebView
+    if (_isWebEmbed(rawUrl) || rawUrl.startsWith('http')) {
+      await _playInWebView(rawUrl);
+      return;
+    }
+
+    // 3. Jika jalur aktif gagal, coba auto-fallback ke jalur lain jika diizinkan
     if (autoFallbackJalur) {
       final otherJalurs = [1, 2, 3].where((j) => j != _activeJalur).toList();
       for (final altJalur in otherJalurs) {
@@ -347,6 +603,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
         if (altJalur == 3) altUrl = widget.match.streamJalur3;
 
         if (altUrl.isNotEmpty && altUrl != rawUrl) {
+          if (_isWebEmbed(altUrl)) {
+            setState(() => _activeJalur = altJalur);
+            await _playInWebView(altUrl);
+            return;
+          }
           final altCandidates = await _resolveCandidateStreams(altUrl);
           for (final cand in altCandidates) {
             final success = await _tryPlayStream(cand, altUrl);
@@ -442,12 +703,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-
-
   @override
   void dispose() {
     _controlsTimer?.cancel();
     _videoController?.dispose();
+    _webController = null;
     WakelockPlus.disable();
 
     // Kembalikan orientasi layar dan system UI saat keluar dari pemutar
@@ -488,7 +748,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              // 1. AREA VIDEO PLAYER NATIVE MURNI (ExoPlayer)
+              // 1. AREA VIDEO PLAYER (WebView Iframe untuk DaddyLive / ExoPlayer untuk Direct HLS)
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: _toggleControls,
@@ -497,6 +757,10 @@ class _PlayerScreenState extends State<PlayerScreen> {
                       ? _buildLoadingWidget()
                       : _errorMessage != null
                       ? _buildErrorWidget()
+                      : _isWebView && _webController != null
+                      ? SizedBox.expand(
+                          child: WebViewWidget(controller: _webController!),
+                        )
                       : _videoController != null &&
                             _videoController!.value.isInitialized
                       ? SizedBox.expand(
@@ -883,29 +1147,37 @@ class _PlayerScreenState extends State<PlayerScreen> {
                         ),
                         const SizedBox(height: 8),
 
-                        Row(
-                          children: [
-                            Expanded(
-                              child: _buildJalurButton(
-                                1,
-                                'Jalur 1 (HD Server)',
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: _buildJalurButton(
-                                2,
-                                'Jalur 2 (Fast Server)',
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: _buildJalurButton(
-                                3,
-                                'Jalur 3 (Backup Server)',
-                              ),
-                            ),
-                          ],
+                        Builder(
+                          builder: (context) {
+                            final jalurs = <int>[1];
+                            if (widget.match.streamJalur2.isNotEmpty && widget.match.streamJalur2 != widget.match.streamJalur1) {
+                              jalurs.add(2);
+                            }
+                            if (widget.match.streamJalur3.isNotEmpty && widget.match.streamJalur3 != widget.match.streamJalur1 && widget.match.streamJalur3 != widget.match.streamJalur2) {
+                              jalurs.add(3);
+                            }
+                            if (widget.match.streamJalur4.isNotEmpty && widget.match.streamJalur4 != widget.match.streamJalur1 && widget.match.streamJalur4 != widget.match.streamJalur2 && widget.match.streamJalur4 != widget.match.streamJalur3) {
+                              jalurs.add(4);
+                            }
+                            if (jalurs.length == 1) {
+                              if (widget.match.streamJalur2.isNotEmpty) jalurs.add(2);
+                              if (widget.match.streamJalur3.isNotEmpty) jalurs.add(3);
+                            }
+
+                            return Row(
+                              children: jalurs.map((j) {
+                                return Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                                    child: _buildJalurButton(
+                                      j,
+                                      _getJalurTitle(j),
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -916,6 +1188,35 @@ class _PlayerScreenState extends State<PlayerScreen> {
         ),
       ),
     );
+  }
+
+  String _getJalurTitle(int index) {
+    String url = '';
+    if (index == 1) url = widget.match.streamJalur1;
+    if (index == 2) url = widget.match.streamJalur2;
+    if (index == 3) url = widget.match.streamJalur3;
+    if (index == 4) url = widget.match.streamJalur4;
+
+    final lower = url.toLowerCase();
+    if (lower.contains('daddylive') ||
+        lower.contains('domhsd') ||
+        lower.contains('streamtp') ||
+        lower.contains('dlhd') ||
+        lower.contains('bolaloca') ||
+        lower.contains('assetrage')) {
+      return 'Jalur $index (DaddyLive HD 1080p)';
+    } else if (lower.contains('zundrix') ||
+        lower.contains('xoilac') ||
+        lower.contains('soi-keo') ||
+        lower.contains('/truc-tiep/')) {
+      return 'Jalur $index (Xoilac Backup)';
+    } else if (lower.contains('.m3u8')) {
+      return 'Jalur $index (HD Stream)';
+    } else if (url.isNotEmpty) {
+      return 'Jalur $index (Server HD)';
+    } else {
+      return 'Jalur $index (Cadangan)';
+    }
   }
 
   Widget _buildLoadingWidget() {
@@ -1008,9 +1309,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
             runSpacing: 8,
             alignment: WrapAlignment.center,
             children: [
-              _buildSmallJalurButton(1, 'Jalur 1'),
-              _buildSmallJalurButton(2, 'Jalur 2'),
-              _buildSmallJalurButton(3, 'Jalur 3'),
+              _buildSmallJalurButton(1, _getJalurTitle(1)),
+              _buildSmallJalurButton(2, _getJalurTitle(2)),
+              _buildSmallJalurButton(3, _getJalurTitle(3)),
               FilledButton.icon(
                 style: FilledButton.styleFrom(
                   backgroundColor: AppColors.cyanAccent,
