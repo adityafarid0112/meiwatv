@@ -110,20 +110,21 @@ class _PlayerScreenState extends State<PlayerScreen> {
   }
 
   String _getRefererForUrl(String url) {
-    if (url.startsWith('http')) {
-      try {
-        final uri = Uri.parse(url);
-        return '${uri.scheme}://${uri.host}/';
-      } catch (_) {}
-    }
     if (widget.match.streamJalur3.isNotEmpty &&
-        widget.match.streamJalur3.startsWith('http')) {
+        widget.match.streamJalur3.startsWith('http') &&
+        !widget.match.streamJalur3.contains('domainkqt.cc')) {
       try {
         final uri = Uri.parse(widget.match.streamJalur3);
         return '${uri.scheme}://${uri.host}/';
       } catch (_) {}
     }
-    return 'https://xoilaczbi.tv/';
+    if (url.startsWith('http') && !url.contains('domainkqt.cc')) {
+      try {
+        final uri = Uri.parse(url);
+        return '${uri.scheme}://${uri.host}/';
+      } catch (_) {}
+    }
+    return 'https://xoilaczzf.cc/';
   }
 
   /// Ekstraksi rekursif semua link stream yang valid dari JSON object/list
@@ -169,112 +170,119 @@ class _PlayerScreenState extends State<PlayerScreen> {
       return candidates;
     }
 
-    try {
-      final referer = _getRefererForUrl(rawUrl);
-      final headers = {
-        'User-Agent':
-            'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
-        'Referer': referer,
-        'Origin': referer.endsWith('/')
-            ? referer.substring(0, referer.length - 1)
-            : referer,
-        'Accept': '*/*',
-      };
+    final referersToTry = [
+      _getRefererForUrl(rawUrl),
+      'https://xoilaczzf.cc/',
+      'https://atttvnow.com/',
+      'https://theceoschool.co/',
+    ];
 
-      final response = await http
-          .get(Uri.parse(rawUrl), headers: headers)
-          .timeout(const Duration(seconds: 5));
+    for (final referer in referersToTry) {
+      try {
+        final headers = {
+          'User-Agent':
+              'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
+          'Referer': referer,
+          'Origin': referer.endsWith('/')
+              ? referer.substring(0, referer.length - 1)
+              : referer,
+          'Accept': '*/*',
+        };
 
-      if (response.statusCode == 200) {
-        final body = response.body.trim();
+        final response = await http
+            .get(Uri.parse(rawUrl), headers: headers)
+            .timeout(const Duration(seconds: 4));
 
-        // 1. Ekstraksi var urlStream = "https://..."; (Sangat Cepat & Akurat!)
-        final urlStreamMatches = RegExp(
-          r'var\s+urlStream\s*=\s*["\x27](https?://[^"\x27\s]+)["\x27]',
-          caseSensitive: false,
-        ).allMatches(body);
-        for (final m in urlStreamMatches) {
-          final s = m.group(1);
-          if (s != null && s.isNotEmpty) {
-            // Konversi .flv ke direct .m3u8 bawaan HLS
-            final m3u8 = s.replaceAll(RegExp(r'\.flv(?=\?|$)', caseSensitive: false), '.m3u8');
-            if (!candidates.contains(m3u8)) candidates.add(m3u8);
-            if (!candidates.contains(s)) candidates.add(s);
-          }
-        }
+        if (response.statusCode == 200) {
+          final body = response.body.trim();
 
-        // 2. Ekstraksi list_stream JSON array jika membuka Match Page
-        final listStreamMatch = RegExp(
-          r'var\s+list_stream\s*=\s*(\[[^\]]+\])',
-          caseSensitive: false,
-        ).firstMatch(body);
-        if (listStreamMatch != null) {
-          final raw = listStreamMatch
-              .group(1)
-              ?.replaceAll(r'\/', '/')
-              .replaceAll(r'\', '');
-          if (raw != null) {
-            final innerMatches = RegExp(r'https?://[^\s"<>]+').allMatches(raw);
-            for (final m in innerMatches) {
-              final innerUrl = m.group(0);
-              if (innerUrl != null && innerUrl != rawUrl) {
-                final sub = await _resolveCandidateStreams(innerUrl);
-                for (final item in sub) {
-                  if (!candidates.contains(item)) candidates.add(item);
-                }
-              }
-            }
-          }
-        }
-
-        // 3. Ekstraksi link m3u8 langsung di dalam body response
-        final m3u8Matches = RegExp(
-          r'https?://[^\s"<>]+?\.m3u8[^\s"<>]*',
-          caseSensitive: false,
-        ).allMatches(body);
-        for (final m in m3u8Matches) {
-          final s = m.group(0);
-          if (s != null && s.isNotEmpty && !candidates.contains(s)) {
-            candidates.add(s);
-          }
-        }
-
-        // 4. Cek apakah response berupa JSON
-        if (body.startsWith('{') || body.startsWith('[')) {
-          try {
-            final decoded = json.decode(body);
-            final jsonStreams = <String>[];
-            _extractStreamsFromJson(decoded, jsonStreams);
-            for (final s in jsonStreams) {
+          // 1. Ekstraksi var urlStream = "https://...";
+          final urlStreamMatches = RegExp(
+            r'var\s+urlStream\s*=\s*["\x27](https?://[^"\x27\s]+)["\x27]',
+            caseSensitive: false,
+          ).allMatches(body);
+          for (final m in urlStreamMatches) {
+            final s = m.group(1);
+            if (s != null && s.isNotEmpty) {
               final m3u8 = s.replaceAll(RegExp(r'\.flv(?=\?|$)', caseSensitive: false), '.m3u8');
               if (!candidates.contains(m3u8)) candidates.add(m3u8);
               if (!candidates.contains(s)) candidates.add(s);
             }
-          } catch (_) {}
+          }
+
+          // 2. Ekstraksi list_stream JSON array jika membuka Match Page
+          final listStreamMatch = RegExp(
+            r'var\s+list_stream\s*=\s*(\[[^\]]+\])',
+            caseSensitive: false,
+          ).firstMatch(body);
+          if (listStreamMatch != null) {
+            final raw = listStreamMatch
+                .group(1)
+                ?.replaceAll(r'\/', '/')
+                .replaceAll(r'\', '');
+            if (raw != null) {
+              final innerMatches = RegExp(r'https?://[^\s"<>]+').allMatches(raw);
+              for (final m in innerMatches) {
+                final innerUrl = m.group(0);
+                if (innerUrl != null && innerUrl != rawUrl) {
+                  final sub = await _resolveCandidateStreams(innerUrl);
+                  for (final item in sub) {
+                    if (!candidates.contains(item)) candidates.add(item);
+                  }
+                }
+              }
+            }
+          }
+
+          // 3. Ekstraksi link m3u8 langsung di dalam body response
+          final m3u8Matches = RegExp(
+            r'https?://[^\s"<>]+?\.m3u8[^\s"<>]*',
+            caseSensitive: false,
+          ).allMatches(body);
+          for (final m in m3u8Matches) {
+            final s = m.group(0);
+            if (s != null && s.isNotEmpty && !candidates.contains(s)) {
+              candidates.add(s);
+            }
+          }
+
+          // 4. Cek apakah response berupa JSON
+          if (body.startsWith('{') || body.startsWith('[')) {
+            try {
+              final decoded = json.decode(body);
+              final jsonStreams = <String>[];
+              _extractStreamsFromJson(decoded, jsonStreams);
+              for (final s in jsonStreams) {
+                final m3u8 = s.replaceAll(RegExp(r'\.flv(?=\?|$)', caseSensitive: false), '.m3u8');
+                if (!candidates.contains(m3u8)) candidates.add(m3u8);
+                if (!candidates.contains(s)) candidates.add(s);
+              }
+            } catch (_) {}
+          }
+
+          if (candidates.isNotEmpty) break;
         }
+      } catch (e) {
+        debugPrint('[Player] Resolution error with referer $referer: $e');
       }
-    } catch (e) {
-      debugPrint('[Player] Resolution error: $e');
     }
 
     return candidates;
   }
 
   Future<bool> _tryPlayStream(String streamUrl, String rawUrl) async {
-    final referer = _getRefererForUrl(rawUrl);
     final headerOptions = [
-      // Opsi 1: Standard Browser Mobile dengan Referer sumber
-      {
-        'User-Agent':
-            'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
-        'Referer': referer,
-      },
-      // Opsi 2: Standard ExoPlayer User-Agent tanpa referer (Paling Kompatibel di Android)
+      // Opsi 1: Standard ExoPlayer User-Agent (Paling Kompatibel & Diterima CDN)
       {
         'User-Agent': 'ExoPlayerLib/2.18.7',
       },
-      // Opsi 3: Minimal header
+      // Opsi 2: Minimal header tanpa referer (Menghindari 403 CDN hotlink protection)
       <String, String>{},
+      // Opsi 3: Mobile Chrome Browser User-Agent
+      {
+        'User-Agent':
+            'Mozilla/5.0 (Linux; Android 14; Mobile; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
+      },
     ];
 
     for (final headers in headerOptions) {
