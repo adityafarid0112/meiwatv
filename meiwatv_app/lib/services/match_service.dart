@@ -232,8 +232,9 @@ class MatchService {
         r'class="[^"]*text-ellipsis[^"]*"[^>]*>\s*([^<]+)\s*<\/span>',
         caseSensitive: false,
       ).firstMatch(cardContent);
-      String league = leagueMatch != null ? leagueMatch.group(1)!.trim() : 'Live Sports';
+      String league = leagueMatch != null ? leagueMatch.group(1)!.trim() : 'Turnamen Olahraga';
       league = league.replaceAll('&#039;', "'").replaceAll('&amp;', '&');
+      league = _translateToId(league);
 
       // Home & Away IDs & Logos
       final homeTeamIdMatch = RegExp(r'data-home-team-id="([^"]+)"', caseSensitive: false).firstMatch(cardHeader);
@@ -271,18 +272,23 @@ class MatchService {
         away = away.isNotEmpty ? away : (parts.length > 1 ? parts[1].trim() : 'Tim 2');
       }
 
+      home = _translateToId(home);
+      away = _translateToId(away);
       final title = '$home vs $away';
 
       // Kategori Olahraga
       String category = '⚽ Sepak Bola';
-      if (sportType == 'basketball') {
+      final lowerAll = '$sportType $slugName $league'.toLowerCase();
+      if (sportType == 'basketball' || lowerAll.contains('basket') || lowerAll.contains('nba')) {
         category = '🏀 Bola Basket';
-      } else if (sportType == 'volleyball') {
+      } else if (sportType == 'volleyball' || lowerAll.contains('voli') || lowerAll.contains('volleyball')) {
         category = '🏐 Bola Voli';
-      } else if (sportType == 'badminton') {
+      } else if (sportType == 'badminton' || lowerAll.contains('badminton') || lowerAll.contains('bulu tangkis')) {
         category = '🏸 Bulu Tangkis';
-      } else if (sportType == 'tennis') {
+      } else if (sportType == 'tennis' || lowerAll.contains('tenis') || lowerAll.contains('tennis') || lowerAll.contains('wta') || lowerAll.contains('atp')) {
         category = '🎾 Tenis';
+      } else if (['lol', 'csgo', 'dota2', 'esport', 'esports'].contains(sportType) || lowerAll.contains('esport') || lowerAll.contains('lpl') || lowerAll.contains('lcs') || lowerAll.contains('lec') || lowerAll.contains('lit') || lowerAll.contains('vcs') || lowerAll.contains('gaming') || lowerAll.contains('pgl') || lowerAll.contains('dota') || lowerAll.contains('crossfire')) {
+        category = '🎮 Esports & Gaming';
       } else if (sportType != 'football') {
         category = '🏎️ Olahraga Lainnya';
       }
@@ -290,70 +296,61 @@ class MatchService {
       final kickoffIso = '$year-$month-$day' 'T$hour:$min:00+07:00';
 
       // Penentuan Status LIVE yang 100% Akurat untuk SEMUA cabang olahraga:
-      // Termasuk Babak Tambahan (Extra Time), Overtime (OT), Adu Penalti (Penalties), dan Set Tambahan
       int status = 0;
-      const liveFootball = ['2', '3', '4', '5', '7']; // 1st Half, 2nd Half, Extra Time 1, Extra Time 2, Penalties
-      const liveBasketball = ['2', '3', '4', '5', '6', '7']; // Q1, Q2, Q3, Q4, OT, OT2
-      const liveTennis = ['51', '52', '53', '54', '55', '56']; // Set 1, 2, 3, 4, 5
-      const liveVolleyball = ['431', '432', '433', '434', '435', '436', '437', '438']; // Set 1..5, Golden Set
-      const liveEsports = ['2', '3', '4', '5', '6', '7'];
+      final DateTime? matchDate = DateTime.tryParse(kickoffIso);
+      final DateTime now = DateTime.now();
+      final double diffMinutes = matchDate != null
+          ? (now.difference(matchDate).inSeconds / 60.0)
+          : -999.0;
+
+      if (diffMinutes < -5) {
+        status = 0; // Terjadwal / Belum Mulai
+      } else if (diffMinutes >= -5 && diffMinutes <= 150) {
+        status = 1; // Sedang LIVE
+      } else {
+        status = 2; // Selesai
+      }
 
       final contentLower = cardContent.toLowerCase();
-      final isCardLive = contentLower.contains('is-live') ||
-          contentLower.contains('badge-live') ||
-          contentLower.contains('grid-match-live') ||
-          contentLower.contains('live') ||
-          contentLower.contains('playing');
-
-      if (sportType == 'football' && liveFootball.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG (Termasuk ET & Penalti)
-      } else if (sportType == 'basketball' && liveBasketball.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG (Termasuk Overtime)
-      } else if (sportType == 'tennis' && liveTennis.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG (Termasuk Set Tambahan)
-      } else if (sportType == 'volleyball' && liveVolleyball.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG (Termasuk Set Tambahan)
-      } else if (['lol', 'csgo', 'dota2'].contains(sportType) && liveEsports.contains(rawStatus)) {
-        status = 1; // 🔴 LIVE SEKARANG
-      } else if (isCardLive) {
-        status = 1; // 🔴 LIVE SEKARANG
-      } else if (rawStatus == '8' || rawStatus == '60' || rawStatus == '61' || rawStatus == '440' ||
-          contentLower.contains('>ft<') ||
+      if (contentLower.contains('>ft<') ||
           contentLower.contains('kết thúc') ||
           contentLower.contains('finished') ||
           contentLower.contains('hết giờ')) {
-        status = 2; // Selesai (Full Time / FT)
-      } else {
-        status = 0; // Upcoming / Jadwal
+        status = 2; // Selesai
       }
 
-      // Ekstraksi Skor & Menit Pertandingan Real-Time
+      // Ekstraksi Skor & Menit Pertandingan Real-Time (Hanya saat LIVE / FT)
       String homeScore = '';
       String awayScore = '';
       String scoreText = '';
       String matchMinute = '';
 
-      final goalMatch = RegExp(r'class="[^"]*grid-match__goal[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)\s*<\/div>', caseSensitive: false).firstMatch(cardContent);
-      final liveScoreEl = RegExp(r'class="[^"]*grid-match__score[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)', caseSensitive: false).firstMatch(cardContent);
-      final hpuScore = RegExp(r'class="[^"]*hpu-score-home[^"]*"[^>]*>\s*(\d+)\s*<\/span>[\s\S]*?class="[^"]*hpu-score-away[^"]*"[^>]*>\s*(\d+)\s*<\/span>', caseSensitive: false).firstMatch(cardContent);
+      if (status == 1 || status == 2) {
+        final hpuScore = RegExp(r'class="[^"]*hpu-score-home[^"]*"[^>]*>\s*(\d+)\s*<\/span>[\s\S]*?class="[^"]*hpu-score-away[^"]*"[^>]*>\s*(\d+)\s*<\/span>', caseSensitive: false).firstMatch(cardContent);
+        final realScoreMatch = RegExp(r'class="[^"]*score-(?:live|real|current)[^"]*"[^>]*>\s*(\d+)\s*[-:]\s*(\d+)', caseSensitive: false).firstMatch(cardContent);
 
-      if (hpuScore != null) {
-        homeScore = hpuScore.group(1)?.trim() ?? '';
-        awayScore = hpuScore.group(2)?.trim() ?? '';
-        scoreText = '$homeScore - $awayScore';
-      } else if (goalMatch != null) {
-        homeScore = goalMatch.group(1)?.trim() ?? '';
-        awayScore = goalMatch.group(2)?.trim() ?? '';
-        scoreText = '$homeScore - $awayScore';
-      } else if (liveScoreEl != null) {
-        homeScore = liveScoreEl.group(1)?.trim() ?? '';
-        awayScore = liveScoreEl.group(2)?.trim() ?? '';
-        scoreText = '$homeScore - $awayScore';
-      }
+        if (hpuScore != null) {
+          homeScore = hpuScore.group(1)?.trim() ?? '';
+          awayScore = hpuScore.group(2)?.trim() ?? '';
+          scoreText = '$homeScore - $awayScore';
+        } else if (realScoreMatch != null) {
+          homeScore = realScoreMatch.group(1)?.trim() ?? '';
+          awayScore = realScoreMatch.group(2)?.trim() ?? '';
+          scoreText = '$homeScore - $awayScore';
+        }
 
-      final periodMatch = RegExp(r'class="[^"]*(?:grid-match__half-court|period|quarter|set-name|match-time)[^"]*"[^>]*>\s*([^<]+)\s*<', caseSensitive: false).firstMatch(cardContent);
-      if (periodMatch != null) {
-        matchMinute = periodMatch.group(1)?.trim() ?? '';
+        final periodMatch = RegExp(r'class="[^"]*(?:period|quarter|set-name|match-time)[^"]*"[^>]*>\s*([^<]+)\s*<', caseSensitive: false).firstMatch(cardContent);
+        if (periodMatch != null) {
+          String pm = periodMatch.group(1)?.trim() ?? '';
+          if (!RegExp(r'^\d+\s*[-:]\s*\d+$').hasMatch(pm)) {
+            pm = pm
+                .replaceAll(RegExp('Hiệp 1', caseSensitive: false), 'Babak 1')
+                .replaceAll(RegExp('Hiệp 2', caseSensitive: false), 'Babak 2')
+                .replaceAll(RegExp('Nghỉ giữa hiệp', caseSensitive: false), 'Turun Minum')
+                .replaceAll(RegExp('Hết giờ', caseSensitive: false), 'Selesai');
+            matchMinute = pm;
+          }
+        }
       }
 
       matchIndex++;
@@ -455,6 +452,146 @@ class MatchService {
         streamJalur3: 'https://cdn.livepush.io/live/bigbuckbunnyclip/index.m3u8',
       ),
     ];
+  }
+
+  String _translateToId(String text) {
+    if (text.isEmpty) return '';
+    String result = text;
+
+    final Map<String, String> replacements = {
+      'Ngoại Hạng Anh': 'Premier League (Inggris)',
+      'VĐQG Indonesia': 'BRI Liga 1 Indonesia',
+      'Hạng 2 Indonesia': 'Liga 2 Indonesia',
+      'Hạng 3 Indonesia': 'Liga 3 Indonesia',
+      'Cúp Quốc Gia Việt Nam': 'Piala Nasional Vietnam',
+      'VĐQG Việt Nam': 'V.League 1 (Vietnam)',
+      'VĐQG Tây Ban Nha': 'La Liga (Spanyol)',
+      'VĐQG Ý': 'Serie A (Italia)',
+      'VĐQG Đức': 'Bundesliga (Jerman)',
+      'VĐQG Pháp': 'Ligue 1 (Prancis)',
+      'VĐQG Hà Lan': 'Eredivisie (Belanda)',
+      'VĐQG Bồ Đào Nha': 'Liga Portugal',
+      'VĐQG Saudi Arabia': 'Saudi Pro League',
+      'VĐQG Ả Rập Xê Út': 'Saudi Pro League',
+      'VĐQG Nhật Bản': 'J1 League (Jepang)',
+      'VĐQG Hàn Quốc': 'K League 1 (Korea Selatan)',
+      'Hạng Nhất Ukraina': 'Liga Utama Ukraina',
+      'Hạng Nhất Anh': 'Championship (Inggris)',
+      'Hạng 2 Trung Quốc': 'Liga 2 China',
+      'Hạng 2 Romania': 'Liga 2 Rumania',
+      'Hạng 2 Tây Ban Nha': 'La Liga 2 (Spanyol)',
+      'Hạng 2 Đức': '2. Bundesliga (Jerman)',
+      'Hạng 2 Ý': 'Serie B (Italia)',
+      'Hạng 2 Pháp': 'Ligue 2 (Prancis)',
+      'Ngoại Hạng Darwin': 'Liga Utama Darwin (Australia)',
+      'Czech 3 liga': 'Liga 3 Republik Ceko',
+      'Bangladesh Premier League': 'Liga Utama Bangladesh',
+      'National Basketball League': 'Liga Basket Nasional (NBL)',
+      'Philippines University Athletic Association': 'Liga Universitas Filipina (UAAP)',
+      'Turkish Basketball First League': 'Liga Basket Divisi 1 Turki',
+      'Vietnam VBA': 'Liga Basket Vietnam (VBA)',
+      'VTB United League Supercup': 'Piala Super VTB United League',
+      'Italy Super Cup': 'Piala Super Italia',
+      'Basketball Bundesliga': 'Bundesliga Basket (Jerman)',
+      'Spain Basketball Supercopa': 'Piala Super Basket Spanyol',
+      'Women National Basketball Association': 'Liga Basket Wanita Amerika (WNBA)',
+      'Liga Nacional de Baloncesto Profesional': 'Liga Basket Profesional Meksiko (LNBP)',
+      'Asian Games - Women\'s Basketball': 'Asian Games - Bola Basket Putri',
+      'Copa del Rey de Baloncesto': 'Piala Raja Basket Spanyol',
+      'WTA Seoul, Korea Republic Women Singles': 'WTA Seoul (Tunggal Putri Korea Selatan)',
+      'Davis Cup': 'Piala Davis (Tenis)',
+      'European Championships': 'Kejuaraan Eropa',
+      'LPL Regional Finals 2026': 'Final Regional LPL 2026 (LoL)',
+      'VCS Finals 2026': 'Final VCS 2026 (LoL)',
+      'Rift Legends Summer 2026': 'Rift Legends Musim Panas 2026',
+      'LEC Summer 2026': 'LEC Musim Panas 2026 (LoL)',
+      'LIT Summer 2026': 'LIT Musim Panas 2026',
+      'LCS Summer 2026': 'LCS Musim Panas 2026 (LoL)',
+      'PGL Wallachia Season 9': 'PGL Wallachia Musim 9 (Dota 2)',
+      'European Pro League Season 40': 'Liga Pro Eropa Musim 40',
+      'CCT 2026 Europe Series 9': 'CCT 2026 Seri Eropa 9 (CS2)',
+      'StarLadder StarSeries Season 22': 'StarLadder StarSeries Musim 22 (CS2)',
+      'NODWIN Clutch Series 12': 'NODWIN Clutch Seri 12',
+      'HyperX Retake Season 12': 'HyperX Retake Musim 12',
+      'CROSSFIRE Season 6': 'CROSSFIRE Musim 6',
+      'Cúp C1': 'Liga Champions',
+      'Champions League': 'Liga Champions',
+      'Cúp C2': 'Liga Europa',
+      'Europa League': 'Liga Europa',
+      'Cúp C3': 'Liga Konferensi Eropa',
+      'Conference League': 'Liga Konferensi Eropa',
+      'Cúp FA': 'Piala FA (Inggris)',
+      'Cúp Nhà Vua': 'Copa del Rey (Spanyol)',
+      'Cúp Quốc Gia': 'Piala Nasional',
+      'Cúp Liên Đoàn': 'Piala Liga',
+      'Siêu Cúp': 'Piala Super',
+      'Giao hữu quốc tế': 'Laga Persahabatan Internasional',
+      'Giao hữu CLB': 'Laga Persahabatan Klub',
+      'Giao hữu': 'Laga Persahabatan',
+      'Giải vô địch': 'Kejuaraan',
+      'Vòng loại World Cup': 'Kualifikasi Piala Dunia',
+      'Vòng loại Asian Cup': 'Kualifikasi Piala Asia',
+      'Vòng loại Euro': 'Kualifikasi Euro',
+      'Vòng loại': 'Kualifikasi',
+      'Bán kết': 'Semifinal',
+      'Chung kết': 'Final',
+      'Tứ kết': 'Perempat Final',
+      'Vòng Bảng': 'Fase Grup',
+      'Hạng 2': 'Divisi 2',
+      'Hạng 3': 'Divisi 3',
+      'Hạng 4': 'Divisi 4',
+      'Hạng Nhất': 'Divisi Utama',
+      'VĐQG': 'Liga Utama',
+      'Cúp': 'Piala',
+      'Season': 'Musim',
+      'Series': 'Seri',
+      'Summer': 'Musim Panas',
+      'Spring': 'Musim Semi',
+      'Autumn': 'Musim Gugur',
+      'Winter': 'Musim Dingin',
+      'Finals': 'Final',
+      'Semifinals': 'Semifinal',
+      'Quarterfinals': 'Perempat Final',
+      'Singles': 'Tunggal',
+      'Doubles': 'Ganda',
+      'Women': 'Wanita',
+      'Nữ': 'Wanita',
+      'Men': 'Pria',
+      'Nam': 'Pria',
+      'Trẻ': 'Muda',
+      'CLB ': 'Klub ',
+      'Nhật Bản': 'Jepang',
+      'Hàn Quốc': 'Korea Selatan',
+      'Triều Tiên': 'Korea Utara',
+      'Trung Quốc': 'China',
+      'Đài Loan': 'Taiwan',
+      'Hồng Kông': 'Hong Kong',
+      'Tây Ban Nha': 'Spanyol',
+      'Ý': 'Italia',
+      'Đức': 'Jerman',
+      'Pháp': 'Prancis',
+      'Anh': 'Inggris',
+      'Hà Lan': 'Belanda',
+      'Bồ Đào Nha': 'Portugal',
+      'Thái Lan': 'Thailand',
+      'Mỹ': 'Amerika Serikat',
+      'Hoa Kỳ': 'Amerika Serikat',
+      'Úc': 'Australia',
+      'Thụy Sĩ': 'Swiss',
+      'Thụy Điển': 'Swedia',
+      'Thổ Nhĩ Kỳ': 'Turki',
+      'Nga': 'Rusia',
+      'Hy Lạp': 'Yunani',
+      'Ả Rập Xê Út': 'Arab Saudi',
+      'Indonesia': 'Indonesia',
+      'Việt Nam': 'Vietnam',
+    };
+
+    replacements.forEach((key, val) {
+      result = result.replaceAll(RegExp(key, caseSensitive: false), val);
+    });
+
+    return result.replaceAll(RegExp(r'\s+'), ' ').trim();
   }
 
   void dispose() {

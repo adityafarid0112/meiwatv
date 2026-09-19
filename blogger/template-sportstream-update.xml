@@ -970,10 +970,64 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel2.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel24.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.019Z"
+    "updatedAt": "2026-09-19T10:02:54.970Z"
   },
   {
-    "id": "match_2_brighton-vs-arsenal",
+    "id": "match_2_everton-vs-ipswich-town",
+    "title": "Everton vs Ipswich Town",
+    "homeTeam": "Everton",
+    "awayTeam": "Ipswich Town",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7he21qdyj/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/j1l4rjnhpo5m7vx/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Premier League (Inggris)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T21:00:00+07:00",
+    "kickoffText": "21:00 WIB (19/09)",
+    "status": 0,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/everton-vs-ipswich-town-luc-2100-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel15.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel15.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.971Z"
+  },
+  {
+    "id": "match_3_newcastle-united-vs-hull-",
+    "title": "Newcastle United vs Hull City",
+    "homeTeam": "Newcastle United",
+    "awayTeam": "Hull City",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/8y39mp1h8dpmojx/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/jednm9wh4d9ryox/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Premier League (Inggris)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T21:00:00+07:00",
+    "kickoffText": "21:00 WIB (19/09)",
+    "status": 0,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/newcastle-united-vs-hull-city-luc-2100-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel6.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel6.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel6.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel6.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel6.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel6.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.973Z"
+  },
+  {
+    "id": "match_4_brighton-vs-arsenal",
     "title": "Brighton vs Arsenal",
     "homeTeam": "Brighton",
     "awayTeam": "Arsenal",
@@ -997,226 +1051,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel5.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.020Z"
+    "updatedAt": "2026-09-19T10:02:54.973Z"
   },
   {
-    "id": "match_3_shanghai-second-vs-hubei-",
-    "title": "Shanghai Second vs Hubei Istar",
-    "homeTeam": "Shanghai Second",
-    "awayTeam": "Hubei Istar",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l5ergphnyx9r8k0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/23xmvkhon6jqg8n/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Liga 2 China",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/shanghai-second-vs-hubei-istar-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel11.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel11.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel11.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel11.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel11.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
-  },
-  {
-    "id": "match_4_xian-ronghai-fc-vs-guizho",
-    "title": "Xian Ronghai FC vs Guizhou Guiyang Athletic",
-    "homeTeam": "Xian Ronghai FC",
-    "awayTeam": "Guizhou Guiyang Athletic",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/dn1m1gh8eojmoep/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8ghpn5xr6od/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Liga 2 China",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/xian-ronghai-fc-vs-guizhou-guiyang-athletic-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel12.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel12.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel12.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel12.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel12.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel12.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
-  },
-  {
-    "id": "match_5_dalian-yingbo-b-vs-guangz",
-    "title": "Dalian Yingbo B vs Guangzhou Dandelion FC",
-    "homeTeam": "Dalian Yingbo B",
-    "awayTeam": "Guangzhou Dandelion FC",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8ghx0j4r6od/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlhzk07ryk0/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Liga 2 China",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/dalian-yingbo-b-vs-guangzhou-dandelion-fc-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel13.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel13.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
-  },
-  {
-    "id": "match_6_csa-steaua-bucuresti-vs-a",
-    "title": "CSA Steaua Bucuresti vs A.C.F. Gloria Bistrita",
-    "homeTeam": "CSA Steaua Bucuresti",
-    "awayTeam": "A.C.F. Gloria Bistrita",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/zp5rzghzv6kq82w/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/z8yomo4hjnvq0j6/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Liga 2 Rumania",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/csa-steaua-bucuresti-vs-a-c-f-gloria-bistrita-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel14.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel14.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel14.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel14.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel14.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel14.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
-  },
-  {
-    "id": "match_7_jecheon-citizen-fc-vs-geo",
-    "title": "Jecheon Citizen FC vs Geoje Citizen",
-    "homeTeam": "Jecheon Citizen FC",
-    "awayTeam": "Geoje Citizen",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/3glrw7hog21qdyj/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryohg5lvq1zp/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "K4 League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/jecheon-citizen-fc-vs-geoje-citizen-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel27.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel27.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel27.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel27.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel27.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel27.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
-  },
-  {
-    "id": "match_8_fc-bacau-vs-cetate-suceav",
-    "title": "FC Bacau vs Cetate Suceava",
-    "homeTeam": "FC Bacau",
-    "awayTeam": "Cetate Suceava",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/1l4rjnhk4n7m7vx/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryohkn1oq1zp/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "Liga 2 Rumania",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/fc-bacau-vs-cetate-suceava-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel10.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel10.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel10.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel10.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel10.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel10.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
-  },
-  {
-    "id": "match_9_csm-slatina-vs-selimbar",
-    "title": "CSM Slatina vs Selimbar",
-    "homeTeam": "CSM Slatina",
-    "awayTeam": "Selimbar",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8gh85ldr6od/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekhykxnrepz/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Liga 2 Rumania",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/csm-slatina-vs-selimbar-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel65.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel65.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel65.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel65.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel65.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel65.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
-  },
-  {
-    "id": "match_10_lindab-stefanesti-vs-meta",
-    "title": "Lindab Stefanesti vs Metaloglobus",
-    "homeTeam": "Lindab Stefanesti",
-    "awayTeam": "Metaloglobus",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh110pryk0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/2y8m4zh3l12ql07/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Liga 2 Rumania",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/lindab-stefanesti-vs-metaloglobus-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel66.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel66.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel66.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel66.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel66.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel66.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
-  },
-  {
-    "id": "match_11_sk-motorlet-praha-vs-bene",
+    "id": "match_5_sk-motorlet-praha-vs-bene",
     "title": "SK Motorlet Praha vs Benesov",
     "homeTeam": "SK Motorlet Praha",
     "awayTeam": "Benesov",
@@ -1226,7 +1064,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Czech 3 liga",
+    "league": "Liga 3 Republik Ceko",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T15:15:00+07:00",
     "kickoffText": "15:15 WIB (19/09)",
@@ -1240,10 +1078,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
+    "updatedAt": "2026-09-19T10:02:54.973Z"
   },
   {
-    "id": "match_12_slavia-prague-c-vs-domazl",
+    "id": "match_6_slavia-prague-c-vs-domazl",
     "title": "Slavia Prague C vs Domazlice",
     "homeTeam": "Slavia Prague C",
     "awayTeam": "Domazlice",
@@ -1253,7 +1091,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Czech 3 liga",
+    "league": "Liga 3 Republik Ceko",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T15:15:00+07:00",
     "kickoffText": "15:15 WIB (19/09)",
@@ -1267,10 +1105,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel16.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel16.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.021Z"
+    "updatedAt": "2026-09-19T10:02:54.973Z"
   },
   {
-    "id": "match_13_psm-makassar-vs-persita",
+    "id": "match_7_psm-makassar-vs-persita",
     "title": "PSM Makassar vs Persita",
     "homeTeam": "PSM Makassar",
     "awayTeam": "Persita",
@@ -1294,10 +1132,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.022Z"
+    "updatedAt": "2026-09-19T10:02:54.973Z"
   },
   {
-    "id": "match_14_persebaya-vs-garudayaksa-",
+    "id": "match_8_persebaya-vs-garudayaksa-",
     "title": "Persebaya vs Garudayaksa FC",
     "homeTeam": "Persebaya",
     "awayTeam": "Garudayaksa FC",
@@ -1306,7 +1144,7 @@
     "homeScore": "",
     "awayScore": "",
     "scoreText": "",
-    "matchMinute": "0 - 0",
+    "matchMinute": "",
     "league": "BRI Liga 1 Indonesia",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T15:30:00+07:00",
@@ -1321,10 +1159,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel13.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel13.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.022Z"
+    "updatedAt": "2026-09-19T10:02:54.974Z"
   },
   {
-    "id": "match_15_darwin-olympics-vs-port-d",
+    "id": "match_9_darwin-olympics-vs-port-d",
     "title": "Darwin Olympics vs Port Darwin FC",
     "homeTeam": "Darwin Olympics",
     "awayTeam": "Port Darwin FC",
@@ -1334,7 +1172,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Ngoại Hạng Darwin",
+    "league": "Liga Utama Darwin (Australia)",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T15:30:00+07:00",
     "kickoffText": "15:30 WIB (19/09)",
@@ -1348,10 +1186,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel17.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel17.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.022Z"
+    "updatedAt": "2026-09-19T10:02:54.974Z"
   },
   {
-    "id": "match_16_kawasaki-frontale-vs-kash",
+    "id": "match_10_kawasaki-frontale-vs-kash",
     "title": "Kawasaki Frontale vs Kashima Antlers",
     "homeTeam": "Kawasaki Frontale",
     "awayTeam": "Kashima Antlers",
@@ -1361,7 +1199,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "J1 League",
+    "league": "J1 League (Jepang)",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
@@ -1375,10 +1213,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel16.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel16.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.022Z"
+    "updatedAt": "2026-09-19T10:02:54.974Z"
   },
   {
-    "id": "match_17_avispa-fukuoka-vs-sanfrec",
+    "id": "match_11_avispa-fukuoka-vs-sanfrec",
     "title": "Avispa Fukuoka vs Sanfrecce Hiroshima",
     "homeTeam": "Avispa Fukuoka",
     "awayTeam": "Sanfrecce Hiroshima",
@@ -1388,7 +1226,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "J1 League",
+    "league": "J1 League (Jepang)",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
@@ -1402,10 +1240,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel17.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel17.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.022Z"
+    "updatedAt": "2026-09-19T10:02:54.974Z"
   },
   {
-    "id": "match_18_dong-tam-long-an-vs-bac-n",
+    "id": "match_12_dong-tam-long-an-vs-bac-n",
     "title": "Đồng Tâm Long An vs Bắc Ninh",
     "homeTeam": "Đồng Tâm Long An",
     "awayTeam": "Bắc Ninh",
@@ -1429,10 +1267,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel4.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel4.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.022Z"
+    "updatedAt": "2026-09-19T10:02:54.975Z"
   },
   {
-    "id": "match_19_dalian-kewei-vs-shenzhen-",
+    "id": "match_13_dalian-kewei-vs-shenzhen-",
     "title": "Dalian Kewei vs Shenzhen 2028",
     "homeTeam": "Dalian Kewei",
     "awayTeam": "Shenzhen 2028",
@@ -1441,7 +1279,7 @@
     "homeScore": "",
     "awayScore": "",
     "scoreText": "",
-    "matchMinute": "0 - 0",
+    "matchMinute": "",
     "league": "Liga 2 China",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T16:00:00+07:00",
@@ -1456,10 +1294,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.022Z"
+    "updatedAt": "2026-09-19T10:02:54.975Z"
   },
   {
-    "id": "match_20_veertien-mie-vs-yokogawa-",
+    "id": "match_14_veertien-mie-vs-yokogawa-",
     "title": "Veertien Mie vs Yokogawa Musa",
     "homeTeam": "Veertien Mie",
     "awayTeam": "Yokogawa Musa",
@@ -1469,7 +1307,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "JFL",
+    "league": "Liga Sepak Bola Jepang (JFL)",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
@@ -1483,7 +1321,169 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel21.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel21.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.022Z"
+    "updatedAt": "2026-09-19T10:02:54.975Z"
+  },
+  {
+    "id": "match_15_reinmeer-aomori-vs-honda-",
+    "title": "Reinmeer Aomori vs Honda FC",
+    "homeTeam": "Reinmeer Aomori",
+    "awayTeam": "Honda FC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh13ejryk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/gpxwrxlhdw9ryk0/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Liga Sepak Bola Jepang (JFL)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel22.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel22.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel22.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel22.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel22.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel22.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.975Z"
+  },
+  {
+    "id": "match_16_arambagh-ks-vs-bashundhar",
+    "title": "Arambagh KS vs Bashundhara Kings",
+    "homeTeam": "Arambagh KS",
+    "awayTeam": "Bashundhara Kings",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh1l8lryk0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/4jwq2ghv411m0ve/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Liga Utama Bangladesh",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel18.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel18.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.975Z"
+  },
+  {
+    "id": "match_17_vonds-ichihara-vs-maruyas",
+    "title": "VONDS Ichihara vs Maruyasu",
+    "homeTeam": "VONDS Ichihara",
+    "awayTeam": "Maruyasu",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8gh4jj8r6od/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/2y8m4zhjjk4ql07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Liga Sepak Bola Jepang (JFL)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:00:00+07:00",
+    "kickoffText": "16:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/vonds-ichihara-vs-maruyasu-luc-1600-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel19.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.975Z"
+  },
+  {
+    "id": "match_18_shimizu-s-pulse-vs-jef-un",
+    "title": "Shimizu S-Pulse vs JEF United",
+    "homeTeam": "Shimizu S-Pulse",
+    "awayTeam": "JEF United",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l965mkyh9j9r1ge/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9k82rekhd0orepz/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "J1 League (Jepang)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel20.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel20.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.975Z"
+  },
+  {
+    "id": "match_19_v-varen-nagasaki-vs-cerez",
+    "title": "V-Varen Nagasaki vs Cerezo Osaka",
+    "homeTeam": "V-Varen Nagasaki",
+    "awayTeam": "Cerezo Osaka",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekh9zj1repz/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/d23xmvkhjdzqg8n/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "J1 League (Jepang)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel28.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel28.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.975Z"
+  },
+  {
+    "id": "match_20_urawa-red-vs-tokyo-verdy",
+    "title": "Urawa Red vs Tokyo Verdy",
+    "homeTeam": "Urawa Red",
+    "awayTeam": "Tokyo Verdy",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7hev1qdyj/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7hexlqdyj/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "J1 League (Jepang)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T16:30:00+07:00",
+    "kickoffText": "16:30 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/urawa-red-vs-tokyo-verdy-luc-1630-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel23.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel23.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel23.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel23.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel23.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel23.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.975Z"
   },
   {
     "id": "match_21_melbourne-united-vs-adela",
@@ -1496,7 +1496,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "National Basketball League",
+    "league": "Liga Basket Nasional (NBL)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T16:30:00+07:00",
     "kickoffText": "16:30 WIB (19/09)",
@@ -1510,7 +1510,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_22_ateneo-blue-eagles-vs-fig",
@@ -1523,7 +1523,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Philippines University Athletic Association",
+    "league": "Liga Universitas Filipina (UAAP)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T16:30:00+07:00",
     "kickoffText": "16:30 WIB (19/09)",
@@ -1537,7 +1537,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel42.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel42.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_23_ankaragucu-mamak-vs-mersi",
@@ -1550,7 +1550,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Turkish Basketball First League",
+    "league": "Liga Basket Divisi 1 Turki",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T18:00:00+07:00",
     "kickoffText": "18:00 WIB (19/09)",
@@ -1564,7 +1564,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_24_perth-wildcats-vs-sem-pho",
@@ -1577,7 +1577,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "National Basketball League",
+    "league": "Liga Basket Nasional (NBL)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T18:30:00+07:00",
     "kickoffText": "18:30 WIB (19/09)",
@@ -1591,7 +1591,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_25_ha-noi-buffalo-vs-sai-gon",
@@ -1604,7 +1604,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Vietnam VBA",
+    "league": "Liga Basket Vietnam (VBA)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T19:30:00+07:00",
     "kickoffText": "19:30 WIB (19/09)",
@@ -1618,7 +1618,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_26_anadolu-efes1976-vs-unics",
@@ -1631,7 +1631,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "VTB United League Supercup",
+    "league": "Piala Super VTB United League",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T20:00:00+07:00",
     "kickoffText": "20:00 WIB (19/09)",
@@ -1645,7 +1645,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_27_derthona-basket-vs-reyer-",
@@ -1658,7 +1658,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Italy Super Cup",
+    "league": "Piala Super Italia",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T22:00:00+07:00",
     "kickoffText": "22:00 WIB (19/09)",
@@ -1672,7 +1672,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_28_rostock-seawolves-vs-phoe",
@@ -1685,7 +1685,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Basketball Bundesliga",
+    "league": "Bundesliga Basket (Jerman)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-19T23:30:00+07:00",
     "kickoffText": "23:30 WIB (19/09)",
@@ -1699,7 +1699,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_29_olimpia-milano-vs-virtus-",
@@ -1712,7 +1712,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Italy Super Cup",
+    "league": "Piala Super Italia",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T00:45:00+07:00",
     "kickoffText": "00:45 WIB (20/09)",
@@ -1726,7 +1726,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel42.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel42.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_30_telekom-baskets-bonn-vs-h",
@@ -1739,7 +1739,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Basketball Bundesliga",
+    "league": "Bundesliga Basket (Jerman)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T01:00:00+07:00",
     "kickoffText": "01:00 WIB (20/09)",
@@ -1753,7 +1753,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_31_valencia-vs-barcelona",
@@ -1766,7 +1766,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Spain Basketball Supercopa",
+    "league": "Piala Super Basket Spanyol",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T02:00:00+07:00",
     "kickoffText": "02:00 WIB (20/09)",
@@ -1780,7 +1780,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_32_nu-atlanta-dream-vs-nu-ch",
@@ -1793,7 +1793,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Women National Basketball Association",
+    "league": "Liga Basket Wanita Amerika (WNBA)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T06:00:00+07:00",
     "kickoffText": "06:00 WIB (20/09)",
@@ -1807,7 +1807,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_33_astros-de-jalisco-vs-dora",
@@ -1820,7 +1820,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Liga Nacional de Baloncesto Profesional",
+    "league": "Liga Basket Profesional Meksiko (LNBP)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T07:15:00+07:00",
     "kickoffText": "07:15 WIB (20/09)",
@@ -1834,7 +1834,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.976Z"
   },
   {
     "id": "match_34_nu-golden-state-vs-nu-sea",
@@ -1847,7 +1847,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Women National Basketball Association",
+    "league": "Liga Basket Wanita Amerika (WNBA)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T08:00:00+07:00",
     "kickoffText": "08:00 WIB (20/09)",
@@ -1861,7 +1861,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
     "id": "match_35_nu-hong-kong-vs-nu-philip",
@@ -1874,7 +1874,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Asian Games - Women's Basketball",
+    "league": "Asian Games - Bola Basket Putri",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T08:00:00+07:00",
     "kickoffText": "08:00 WIB (20/09)",
@@ -1888,7 +1888,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
     "id": "match_36_nu-kazakhstan-vs-nu-nhat-",
@@ -1901,7 +1901,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Asian Games - Women's Basketball",
+    "league": "Asian Games - Bola Basket Putri",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T11:50:00+07:00",
     "kickoffText": "11:50 WIB (20/09)",
@@ -1915,7 +1915,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
     "id": "match_37_new-zealand-breakers-vs-l",
@@ -1928,7 +1928,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "National Basketball League",
+    "league": "Liga Basket Nasional (NBL)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T12:00:00+07:00",
     "kickoffText": "12:00 WIB (20/09)",
@@ -1942,7 +1942,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.023Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
     "id": "match_38_sydney-kings-vs-cairns-ta",
@@ -1955,7 +1955,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "National Basketball League",
+    "league": "Liga Basket Nasional (NBL)",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T14:00:00+07:00",
     "kickoffText": "14:00 WIB (20/09)",
@@ -1969,7 +1969,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel29.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel29.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
     "id": "match_39_melilla-baloncesto-vs-jae",
@@ -1982,7 +1982,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Copa del Rey de Baloncesto",
+    "league": "Piala Raja Basket Spanyol",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T17:30:00+07:00",
     "kickoffText": "17:30 WIB (20/09)",
@@ -1996,7 +1996,7 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel40.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel40.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
     "id": "match_40_konya-buyuksehir-vs-harem",
@@ -2009,7 +2009,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Turkish Basketball First League",
+    "league": "Liga Basket Divisi 1 Turki",
     "sportCategory": "🏀 Bola Basket",
     "kickoffIso": "2026-09-20T19:00:00+07:00",
     "kickoffText": "19:00 WIB (20/09)",
@@ -2023,37 +2023,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel41.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel41.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
-    "id": "match_41_yao-xinxin-vs-priscilla-h",
-    "title": "Yao Xinxin vs Priscilla Hon",
-    "homeTeam": "Yao Xinxin",
-    "awayTeam": "Priscilla Hon",
-    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/4jwq2pfw657m0ve/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/n54ql4f8j5xrvy9/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "WTA Seoul, Korea Republic Women Singles",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-19T13:45:00+07:00",
-    "kickoffText": "13:45 WIB (19/09)",
-    "status": 2,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/yao-xinxin-vs-priscilla-hon-luc-1345-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel57.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel57.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
-  },
-  {
-    "id": "match_42_liang-en-shuo-vs-sara-sai",
+    "id": "match_41_liang-en-shuo-vs-sara-sai",
     "title": "Liang En-shuo vs Sara Saito",
     "homeTeam": "Liang En-shuo",
     "awayTeam": "Sara Saito",
@@ -2063,7 +2036,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "WTA Seoul, Korea Republic Women Singles",
+    "league": "WTA Seoul (Tunggal Putri Korea Selatan)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T14:50:00+07:00",
     "kickoffText": "14:50 WIB (19/09)",
@@ -2077,10 +2050,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel50.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
-    "id": "match_43_alexander-shevchenko-vs-k",
+    "id": "match_42_alexander-shevchenko-vs-k",
     "title": "Alexander Shevchenko vs Kasidit Samrej",
     "homeTeam": "Alexander Shevchenko",
     "awayTeam": "Kasidit Samrej",
@@ -2090,7 +2063,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T15:10:00+07:00",
     "kickoffText": "15:10 WIB (19/09)",
@@ -2104,10 +2077,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel51.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.977Z"
   },
   {
-    "id": "match_44_alevtina-ibragimova-vs-ri",
+    "id": "match_43_alevtina-ibragimova-vs-ri",
     "title": "Alevtina Ibragimova vs Rina Saigo",
     "homeTeam": "Alevtina Ibragimova",
     "awayTeam": "Rina Saigo",
@@ -2117,11 +2090,11 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "WTA Seoul, Korea Republic Women Singles",
+    "league": "WTA Seoul (Tunggal Putri Korea Selatan)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T14:30:00+07:00",
     "kickoffText": "14:30 WIB (19/09)",
-    "status": 1,
+    "status": 2,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/alevtina-ibragimova-vs-rina-saigo-luc-1430-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel58.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
@@ -2131,10 +2104,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel58.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_45_menelaos-efstathiou-vs-ol",
+    "id": "match_44_menelaos-efstathiou-vs-ol",
     "title": "Menelaos Efstathiou vs Oleksii Krutykh",
     "homeTeam": "Menelaos Efstathiou",
     "awayTeam": "Oleksii Krutykh",
@@ -2144,7 +2117,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T16:10:00+07:00",
     "kickoffText": "16:10 WIB (19/09)",
@@ -2158,10 +2131,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel52.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_46_jurij-rodionov-vs-zizou-b",
+    "id": "match_45_jurij-rodionov-vs-zizou-b",
     "title": "Jurij Rodionov vs Zizou Bergs",
     "homeTeam": "Jurij Rodionov",
     "awayTeam": "Zizou Bergs",
@@ -2171,7 +2144,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T17:10:00+07:00",
     "kickoffText": "17:10 WIB (19/09)",
@@ -2185,10 +2158,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel53.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel53.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_47_norbert-gombos-vs-stefano",
+    "id": "match_46_norbert-gombos-vs-stefano",
     "title": "Norbert Gombos vs Stefanos Tsitsipas",
     "homeTeam": "Norbert Gombos",
     "awayTeam": "Stefanos Tsitsipas",
@@ -2198,7 +2171,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T18:10:00+07:00",
     "kickoffText": "18:10 WIB (19/09)",
@@ -2212,37 +2185,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel54.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel54.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_48_alexander-zverev-vs-matej",
-    "title": "Alexander Zverev vs Matej Dodig",
-    "homeTeam": "Alexander Zverev",
-    "awayTeam": "Matej Dodig",
-    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/2y8m4vfgnooml07/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjfo71nmyk0/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Davis Cup",
-    "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-19T19:00:00+07:00",
-    "kickoffText": "19:00 WIB (19/09)",
-    "status": 0,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel55.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel55.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel55.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel55.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel55.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel55.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
-  },
-  {
-    "id": "match_49_adam-pavlasek-patrik-rikl",
+    "id": "match_47_adam-pavlasek-patrik-rikl",
     "title": "Adam Pavlasek vs Harrison C",
     "homeTeam": "Adam Pavlasek",
     "awayTeam": "Harrison C",
@@ -2252,7 +2198,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T19:00:00+07:00",
     "kickoffText": "19:00 WIB (19/09)",
@@ -2266,37 +2212,37 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel32.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel32.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_50_arthur-fery-vs-alvaro-gui",
-    "title": "Arthur Fery vs Alvaro Guillen Meza",
-    "homeTeam": "Arthur Fery",
-    "awayTeam": "Alvaro Guillen Meza",
-    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4f3j64r1ge/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/2y8m4vfzzz5ml07/image/small",
+    "id": "match_48_alexander-zverev-vs-matej",
+    "title": "Alexander Zverev vs Matej Dodig",
+    "homeTeam": "Alexander Zverev",
+    "awayTeam": "Matej Dodig",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/2y8m4vfgnooml07/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/pxwrxjfo71nmyk0/image/small",
     "homeScore": "",
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
-    "kickoffIso": "2026-09-19T20:10:00+07:00",
-    "kickoffText": "20:10 WIB (19/09)",
+    "kickoffIso": "2026-09-19T19:00:00+07:00",
+    "kickoffText": "19:00 WIB (19/09)",
     "status": 0,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel56.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel56.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel56.m3u8",
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/alexander-zverev-vs-matej-dodig-luc-1900-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel55.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel55.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel55.m3u8",
     "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel56.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel56.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel56.m3u8"
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel55.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel55.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel55.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_51_jakub-mensik-vs-ben-shelt",
+    "id": "match_49_jakub-mensik-vs-ben-shelt",
     "title": "Jakub Mensik vs Ben Shelton",
     "homeTeam": "Jakub Mensik",
     "awayTeam": "Ben Shelton",
@@ -2306,7 +2252,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T20:10:00+07:00",
     "kickoffText": "20:10 WIB (19/09)",
@@ -2320,10 +2266,37 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel32.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel32.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_52_casper-ruud-vs-cui-jie",
+    "id": "match_50_arthur-fery-vs-alvaro-gui",
+    "title": "Arthur Fery vs Alvaro Guillen Meza",
+    "homeTeam": "Arthur Fery",
+    "awayTeam": "Alvaro Guillen Meza",
+    "homeLogo": "https://imgts.sportpulseapiz.com/tennis/team/965mk4f3j64r1ge/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/tennis/team/2y8m4vfzzz5ml07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Piala Davis (Tenis)",
+    "sportCategory": "🎾 Tenis",
+    "kickoffIso": "2026-09-19T20:10:00+07:00",
+    "kickoffText": "20:10 WIB (19/09)",
+    "status": 0,
+    "postUrl": "https://xoilaczzf.cc/truc-tiep/arthur-fery-vs-alvaro-guillen-meza-luc-2010-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel56.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel56.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel56.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel56.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel56.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel56.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:54.978Z"
+  },
+  {
+    "id": "match_51_casper-ruud-vs-cui-jie",
     "title": "Casper Ruud vs Cui Jie",
     "homeTeam": "Casper Ruud",
     "awayTeam": "Cui Jie",
@@ -2333,7 +2306,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-19T21:40:00+07:00",
     "kickoffText": "21:40 WIB (19/09)",
@@ -2347,10 +2320,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel57.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel57.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_53_cristian-garin-vs-rafael-",
+    "id": "match_52_cristian-garin-vs-rafael-",
     "title": "Cristian Garin vs Rafael Jodar",
     "homeTeam": "Cristian Garin",
     "awayTeam": "Rafael Jodar",
@@ -2360,7 +2333,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-20T00:10:00+07:00",
     "kickoffText": "00:10 WIB (20/09)",
@@ -2374,10 +2347,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel58.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel58.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_54_felix-auger-aliassime-vs-",
+    "id": "match_53_felix-auger-aliassime-vs-",
     "title": "Felix Auger Aliassime vs Arthur Rinderknech",
     "homeTeam": "Felix Auger Aliassime",
     "awayTeam": "Arthur Rinderknech",
@@ -2387,7 +2360,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-20T02:10:00+07:00",
     "kickoffText": "02:10 WIB (20/09)",
@@ -2401,10 +2374,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel59.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel59.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_55_liam-draxl-vs-quentin-hal",
+    "id": "match_54_liam-draxl-vs-quentin-hal",
     "title": "Liam Draxl vs Quentin Halys",
     "homeTeam": "Liam Draxl",
     "awayTeam": "Quentin Halys",
@@ -2414,7 +2387,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-20T03:20:00+07:00",
     "kickoffText": "03:20 WIB (20/09)",
@@ -2428,10 +2401,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel50.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel50.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_56_joaquin-aguilar-cardozo-v",
+    "id": "match_55_joaquin-aguilar-cardozo-v",
     "title": "Joaquin Aguilar Cardozo vs Oliver Ojakaar",
     "homeTeam": "Joaquin Aguilar Cardozo",
     "awayTeam": "Oliver Ojakaar",
@@ -2441,7 +2414,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-20T03:20:00+07:00",
     "kickoffText": "03:20 WIB (20/09)",
@@ -2455,10 +2428,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel51.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel51.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_57_juan-pablo-varillas-vs-he",
+    "id": "match_56_juan-pablo-varillas-vs-he",
     "title": "Juan Pablo Varillas vs Hernando Jose Escurra Isnardi",
     "homeTeam": "Juan Pablo Varillas",
     "awayTeam": "Hernando Jose Escurra Isnardi",
@@ -2468,7 +2441,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Davis Cup",
+    "league": "Piala Davis (Tenis)",
     "sportCategory": "🎾 Tenis",
     "kickoffIso": "2026-09-20T04:20:00+07:00",
     "kickoffText": "04:20 WIB (20/09)",
@@ -2482,10 +2455,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel52.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel52.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.978Z"
   },
   {
-    "id": "match_58_ba-lan-vs-latvia",
+    "id": "match_57_ba-lan-vs-latvia",
     "title": "Ba Lan vs Latvia",
     "homeTeam": "Ba Lan",
     "awayTeam": "Latvia",
@@ -2495,7 +2468,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "European Championships",
+    "league": "Kejuaraan Eropa",
     "sportCategory": "🏐 Bola Voli",
     "kickoffIso": "2026-09-19T20:00:00+07:00",
     "kickoffText": "20:00 WIB (19/09)",
@@ -2509,10 +2482,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel33.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel33.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.024Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_59_duc-vs-bulgaria",
+    "id": "match_58_duc-vs-bulgaria",
     "title": "Đức vs Bulgaria",
     "homeTeam": "Đức",
     "awayTeam": "Bulgaria",
@@ -2522,7 +2495,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "European Championships",
+    "league": "Kejuaraan Eropa",
     "sportCategory": "🏐 Bola Voli",
     "kickoffIso": "2026-09-19T23:00:00+07:00",
     "kickoffText": "23:00 WIB (19/09)",
@@ -2536,10 +2509,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel33.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel33.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_60_invictus-gaming-vs-jd-gam",
+    "id": "match_59_invictus-gaming-vs-jd-gam",
     "title": "Invictus Gaming vs JD Gaming",
     "homeTeam": "Invictus Gaming",
     "awayTeam": "JD Gaming",
@@ -2549,7 +2522,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "LPL Regional Finals 2026",
+    "league": "Final Regional LPL 2026 (LoL)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
@@ -2563,10 +2536,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel30.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel30.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_61_mvk-academy-vs-saigon-din",
+    "id": "match_60_mvk-academy-vs-saigon-din",
     "title": "MVK Academy vs Saigon Dino",
     "homeTeam": "MVK Academy",
     "awayTeam": "Saigon Dino",
@@ -2576,7 +2549,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "VCS Finals 2026",
+    "league": "Final VCS 2026 (LoL)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T16:00:00+07:00",
     "kickoffText": "16:00 WIB (19/09)",
@@ -2590,10 +2563,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_62_forsaken-vs-bomba-team",
+    "id": "match_61_forsaken-vs-bomba-team",
     "title": "Forsaken vs BOMBA Team",
     "homeTeam": "Forsaken",
     "awayTeam": "BOMBA Team",
@@ -2603,11 +2576,11 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "Rift Legends Summer 2026",
+    "league": "Rift Legends Musim Panas 2026",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T17:00:00+07:00",
     "kickoffText": "17:00 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/forsaken-vs-bomba-team-luc-1700-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel71.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel71.m3u8",
@@ -2617,10 +2590,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel71.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel71.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_63_9gaming-vs-cybercore-espo",
+    "id": "match_62_9gaming-vs-cybercore-espo",
     "title": "9Gaming vs CyberCore Esports",
     "homeTeam": "9Gaming",
     "awayTeam": "CyberCore Esports",
@@ -2630,7 +2603,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "VCS Finals 2026",
+    "league": "Final VCS 2026 (LoL)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T19:00:00+07:00",
     "kickoffText": "19:00 WIB (19/09)",
@@ -2644,10 +2617,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_64_karmine-corp-vs-movistar-",
+    "id": "match_63_karmine-corp-vs-movistar-",
     "title": "Karmine Corp vs Movistar KOI",
     "homeTeam": "Karmine Corp",
     "awayTeam": "Movistar KOI",
@@ -2657,7 +2630,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "LEC Summer 2026",
+    "league": "LEC Musim Panas 2026 (LoL)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T22:00:00+07:00",
     "kickoffText": "22:00 WIB (19/09)",
@@ -2671,10 +2644,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel30.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel30.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_65_hmble-vs-colossal-gaming",
+    "id": "match_64_hmble-vs-colossal-gaming",
     "title": "HMBLE vs Colossal Gaming",
     "homeTeam": "HMBLE",
     "awayTeam": "Colossal Gaming",
@@ -2684,7 +2657,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "LIT Summer 2026",
+    "league": "LIT Musim Panas 2026",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T23:00:00+07:00",
     "kickoffText": "23:00 WIB (19/09)",
@@ -2698,10 +2671,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_66_lyon-gaming-vs-cloud9",
+    "id": "match_65_lyon-gaming-vs-cloud9",
     "title": "Lyon Gaming vs Cloud9",
     "homeTeam": "Lyon Gaming",
     "awayTeam": "Cloud9",
@@ -2711,7 +2684,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "LCS Summer 2026",
+    "league": "LCS Musim Panas 2026 (LoL)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-20T03:00:00+07:00",
     "kickoffText": "03:00 WIB (20/09)",
@@ -2725,10 +2698,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_67_1w-team-vs-team-nemesis",
+    "id": "match_66_1w-team-vs-team-nemesis",
     "title": "1w Team vs Team Nemesis",
     "homeTeam": "1w Team",
     "awayTeam": "Team Nemesis",
@@ -2738,7 +2711,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "PGL Wallachia Season 9",
+    "league": "PGL Wallachia Musim 9 (Dota 2)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T14:00:00+07:00",
     "kickoffText": "14:00 WIB (19/09)",
@@ -2752,10 +2725,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_68_natus-vincere-vs-hokori",
+    "id": "match_67_natus-vincere-vs-hokori",
     "title": "Natus Vincere vs Hokori",
     "homeTeam": "Natus Vincere",
     "awayTeam": "Hokori",
@@ -2765,11 +2738,11 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "PGL Wallachia Season 9",
+    "league": "PGL Wallachia Musim 9 (Dota 2)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T17:00:00+07:00",
     "kickoffText": "17:00 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "postUrl": "https://xoilaczzf.cc/truc-tiep/natus-vincere-vs-hokori-luc-1700-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel74.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
@@ -2779,10 +2752,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel74.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_69_team-spirit-academy-vs-in",
+    "id": "match_68_team-spirit-academy-vs-in",
     "title": "Team Spirit Academy vs Inner Circle X Insanity",
     "homeTeam": "Team Spirit Academy",
     "awayTeam": "Inner Circle X Insanity",
@@ -2792,7 +2765,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "European Pro League Season 40",
+    "league": "Liga Pro Eropa Musim 40",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T19:00:00+07:00",
     "kickoffText": "19:00 WIB (19/09)",
@@ -2806,10 +2779,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_70_kalmychata-vs-yellow-subm",
+    "id": "match_69_kalmychata-vs-yellow-subm",
     "title": "Kalmychata vs Yellow Submarine",
     "homeTeam": "Kalmychata",
     "awayTeam": "Yellow Submarine",
@@ -2819,7 +2792,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "European Pro League Season 40",
+    "league": "Liga Pro Eropa Musim 40",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-18T01:00:00+07:00",
     "kickoffText": "01:00 WIB (18/09)",
@@ -2833,10 +2806,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel72.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel72.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.025Z"
+    "updatedAt": "2026-09-19T10:02:54.979Z"
   },
   {
-    "id": "match_71_team-yandex-vs-mousesport",
+    "id": "match_70_team-yandex-vs-mousesport",
     "title": "Team Yandex vs Mousesports",
     "homeTeam": "Team Yandex",
     "awayTeam": "Mousesports",
@@ -2846,7 +2819,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "PGL Wallachia Season 9",
+    "league": "PGL Wallachia Musim 9 (Dota 2)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T23:00:00+07:00",
     "kickoffText": "23:00 WIB (19/09)",
@@ -2860,10 +2833,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel73.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
+    "updatedAt": "2026-09-19T10:02:54.980Z"
   },
   {
-    "id": "match_72_team-lynx-vs-balu-team",
+    "id": "match_71_team-lynx-vs-balu-team",
     "title": "Team lynx vs Balu Team",
     "homeTeam": "Team lynx",
     "awayTeam": "Balu Team",
@@ -2873,7 +2846,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "European Pro League Season 40",
+    "league": "Liga Pro Eropa Musim 40",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-20T01:00:00+07:00",
     "kickoffText": "01:00 WIB (20/09)",
@@ -2887,10 +2860,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel74.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel74.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
+    "updatedAt": "2026-09-19T10:02:54.980Z"
   },
   {
-    "id": "match_73_puckchamp-vs-balu-team",
+    "id": "match_72_puckchamp-vs-balu-team",
     "title": "Puckchamp vs Balu Team",
     "homeTeam": "Puckchamp",
     "awayTeam": "Balu Team",
@@ -2900,7 +2873,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "European Pro League Season 40",
+    "league": "Liga Pro Eropa Musim 40",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-17T16:00:00+07:00",
     "kickoffText": "16:00 WIB (17/09)",
@@ -2914,10 +2887,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel70.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel70.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
+    "updatedAt": "2026-09-19T10:02:54.980Z"
   },
   {
-    "id": "match_74_kalmychata-vs-two-move",
+    "id": "match_73_kalmychata-vs-two-move",
     "title": "Kalmychata vs Two Move",
     "homeTeam": "Kalmychata",
     "awayTeam": "Two Move",
@@ -2927,7 +2900,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "European Pro League Season 40",
+    "league": "Liga Pro Eropa Musim 40",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-15T16:00:00+07:00",
     "kickoffText": "16:00 WIB (15/09)",
@@ -2941,37 +2914,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel73.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel73.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
+    "updatedAt": "2026-09-19T10:02:54.980Z"
   },
   {
-    "id": "match_75_nexus-vs-permitta",
-    "title": "Nexus vs Permitta",
-    "homeTeam": "Nexus",
-    "awayTeam": "Permitta",
-    "homeLogo": "https://imgts.sportpulseapiz.com/csgo/team/l7oqd9ou1lnm510/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/csgo/team/dj2ryyvfo20r1zp/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "0 - 0",
-    "league": "CCT 2026 Europe Series 9",
-    "sportCategory": "🎮 Esports & Gaming",
-    "kickoffIso": "2026-09-19T15:00:00+07:00",
-    "kickoffText": "15:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://xoilaczzf.cc/truc-tiep/nexus-vs-permitta-luc-1500-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel75.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
-  },
-  {
-    "id": "match_76_mouz-vs-furia",
+    "id": "match_74_mouz-vs-furia",
     "title": "MOUZ vs FURIA",
     "homeTeam": "MOUZ",
     "awayTeam": "FURIA",
@@ -2981,7 +2927,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "StarLadder StarSeries Season 22",
+    "league": "StarLadder StarSeries Musim 22 (CS2)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T19:30:00+07:00",
     "kickoffText": "19:30 WIB (19/09)",
@@ -2995,10 +2941,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel76.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel76.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
+    "updatedAt": "2026-09-19T10:02:54.980Z"
   },
   {
-    "id": "match_77_aurora-vs-vitality",
+    "id": "match_75_aurora-vs-vitality",
     "title": "Aurora vs Vitality",
     "homeTeam": "Aurora",
     "awayTeam": "Vitality",
@@ -3008,7 +2954,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "StarLadder StarSeries Season 22",
+    "league": "StarLadder StarSeries Musim 22 (CS2)",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-19T22:00:00+07:00",
     "kickoffText": "22:00 WIB (19/09)",
@@ -3022,10 +2968,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel77.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel77.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
+    "updatedAt": "2026-09-19T10:02:54.980Z"
   },
   {
-    "id": "match_78_black-phoenix-vs-baks",
+    "id": "match_76_black-phoenix-vs-baks",
     "title": "Black Phoenix vs BAKS",
     "homeTeam": "Black Phoenix",
     "awayTeam": "BAKS",
@@ -3035,7 +2981,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "NODWIN Clutch Series 12",
+    "league": "NODWIN Clutch Seri 12",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-20T00:00:00+07:00",
     "kickoffText": "00:00 WIB (20/09)",
@@ -3049,10 +2995,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel78.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel78.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
+    "updatedAt": "2026-09-19T10:02:54.980Z"
   },
   {
-    "id": "match_79_genone-vs-berg-famalicao-",
+    "id": "match_77_genone-vs-berg-famalicao-",
     "title": "GenOne vs BERG/Famalicão winner",
     "homeTeam": "GenOne",
     "awayTeam": "BERG/Famalicão winner",
@@ -3062,7 +3008,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "HyperX Retake Season 12",
+    "league": "HyperX Retake Musim 12",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-20T01:00:00+07:00",
     "kickoffText": "01:00 WIB (20/09)",
@@ -3076,10 +3022,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel79.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel79.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.026Z"
+    "updatedAt": "2026-09-19T10:02:54.980Z"
   },
   {
-    "id": "match_80_regain-vs-without-a-roof",
+    "id": "match_78_regain-vs-without-a-roof",
     "title": "regain vs Without a Roof",
     "homeTeam": "regain",
     "awayTeam": "Without a Roof",
@@ -3089,7 +3035,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "CROSSFIRE Season 6",
+    "league": "CROSSFIRE Musim 6",
     "sportCategory": "🎮 Esports & Gaming",
     "kickoffIso": "2026-09-20T07:00:00+07:00",
     "kickoffText": "07:00 WIB (20/09)",
@@ -3103,172 +3049,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel75.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel75.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:36.027Z"
+    "updatedAt": "2026-09-19T10:02:54.981Z"
   },
   {
-    "id": "match_81_reinmeer-aomori-vs-honda-",
-    "title": "Reinmeer Aomori vs Honda FC",
-    "homeTeam": "Reinmeer Aomori",
-    "awayTeam": "Honda FC",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh13ejryk0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/gpxwrxlhdw9ryk0/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "JFL",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://atttvnow.com/truc-tiep/reinmeer-aomori-vs-honda-fc-luc-1600-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel22.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel22.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel22.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel22.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel22.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel22.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:37.144Z"
-  },
-  {
-    "id": "match_82_arambagh-ks-vs-bashundhar",
-    "title": "Arambagh KS vs Bashundhara Kings",
-    "homeTeam": "Arambagh KS",
-    "awayTeam": "Bashundhara Kings",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/pxwrxlh1l8lryk0/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/4jwq2ghv411m0ve/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "Bangladesh Premier League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://atttvnow.com/truc-tiep/arambagh-ks-vs-bashundhara-kings-luc-1600-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel18.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel18.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel18.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel18.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:37.144Z"
-  },
-  {
-    "id": "match_83_vonds-ichihara-vs-maruyas",
-    "title": "VONDS Ichihara vs Maruyasu",
-    "homeTeam": "VONDS Ichihara",
-    "awayTeam": "Maruyasu",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/vjxm8gh4jj8r6od/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/2y8m4zhjjk4ql07/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "JFL",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:00:00+07:00",
-    "kickoffText": "16:00 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://atttvnow.com/truc-tiep/vonds-ichihara-vs-maruyasu-luc-1600-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel19.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel19.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:37.144Z"
-  },
-  {
-    "id": "match_84_shimizu-s-pulse-vs-jef-un",
-    "title": "Shimizu S-Pulse vs JEF United",
-    "homeTeam": "Shimizu S-Pulse",
-    "awayTeam": "JEF United",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l965mkyh9j9r1ge/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/9k82rekhd0orepz/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "J1 League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:30:00+07:00",
-    "kickoffText": "16:30 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://atttvnow.com/truc-tiep/shimizu-s-pulse-vs-jef-united-luc-1630-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel20.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel20.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel20.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel20.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:37.144Z"
-  },
-  {
-    "id": "match_85_v-varen-nagasaki-vs-cerez",
-    "title": "V-Varen Nagasaki vs Cerezo Osaka",
-    "homeTeam": "V-Varen Nagasaki",
-    "awayTeam": "Cerezo Osaka",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekh9zj1repz/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/d23xmvkhjdzqg8n/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "J1 League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:30:00+07:00",
-    "kickoffText": "16:30 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://atttvnow.com/truc-tiep/v-varen-nagasaki-vs-cerezo-osaka-luc-1630-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel28.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel28.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:37.144Z"
-  },
-  {
-    "id": "match_86_urawa-red-vs-tokyo-verdy",
-    "title": "Urawa Red vs Tokyo Verdy",
-    "homeTeam": "Urawa Red",
-    "awayTeam": "Tokyo Verdy",
-    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7hev1qdyj/image/small",
-    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/p3glrw7hexlqdyj/image/small",
-    "homeScore": "",
-    "awayScore": "",
-    "scoreText": "",
-    "matchMinute": "",
-    "league": "J1 League",
-    "sportCategory": "⚽ Sepak Bola",
-    "kickoffIso": "2026-09-19T16:30:00+07:00",
-    "kickoffText": "16:30 WIB (19/09)",
-    "status": 1,
-    "postUrl": "https://atttvnow.com/truc-tiep/urawa-red-vs-tokyo-verdy-luc-1630-ngay-19-09-2026/",
-    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel23.m3u8",
-    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel23.m3u8",
-    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel23.m3u8",
-    "streams": {
-      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel23.m3u8",
-      "jalur2": "https://live.zundrixmediapipeline.com/live/channel23.m3u8",
-      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel23.m3u8"
-    },
-    "updatedAt": "2026-09-19T09:47:37.145Z"
-  },
-  {
-    "id": "match_87_fujieda-myfc-vs-rb-omiya-",
+    "id": "match_79_fujieda-myfc-vs-rb-omiya-",
     "title": "Fujieda MYFC vs RB Omiya Ardija",
     "homeTeam": "Fujieda MYFC",
     "awayTeam": "RB Omiya Ardija",
@@ -3278,7 +3062,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "J2 League",
+    "league": "J2 League (Jepang)",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T16:30:00+07:00",
     "kickoffText": "16:30 WIB (19/09)",
@@ -3292,10 +3076,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel26.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel26.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:37.145Z"
+    "updatedAt": "2026-09-19T10:02:57.441Z"
   },
   {
-    "id": "match_88_ehime-fc-vs-kamatamare-sk",
+    "id": "match_80_ehime-fc-vs-kamatamare-sk",
     "title": "Ehime FC vs Kamatamare Sk",
     "homeTeam": "Ehime FC",
     "awayTeam": "Kamatamare Sk",
@@ -3305,7 +3089,7 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "J3 League",
+    "league": "J3 League (Jepang)",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T16:30:00+07:00",
     "kickoffText": "16:30 WIB (19/09)",
@@ -3319,10 +3103,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel28.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel28.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:37.145Z"
+    "updatedAt": "2026-09-19T10:02:57.443Z"
   },
   {
-    "id": "match_89_gloria-popesti-leordeni-v",
+    "id": "match_81_gloria-popesti-leordeni-v",
     "title": "Gloria Popesti-Leordeni vs ASU Politehnica Timișoara",
     "homeTeam": "Gloria Popesti-Leordeni",
     "awayTeam": "ASU Politehnica Timișoara",
@@ -3346,10 +3130,10 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel25.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel25.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:37.145Z"
+    "updatedAt": "2026-09-19T10:02:57.443Z"
   },
   {
-    "id": "match_90_fc-anyang-vs-ulsan-hyunda",
+    "id": "match_82_fc-anyang-vs-ulsan-hyunda",
     "title": "FC Anyang vs Ulsan Hyundai",
     "homeTeam": "FC Anyang",
     "awayTeam": "Ulsan Hyundai",
@@ -3359,11 +3143,11 @@
     "awayScore": "",
     "scoreText": "",
     "matchMinute": "",
-    "league": "K League 1",
+    "league": "K League 1 (Korea Selatan)",
     "sportCategory": "⚽ Sepak Bola",
     "kickoffIso": "2026-09-19T17:00:00+07:00",
     "kickoffText": "17:00 WIB (19/09)",
-    "status": 0,
+    "status": 1,
     "postUrl": "https://atttvnow.com/truc-tiep/fc-anyang-vs-ulsan-hyundai-luc-1700-ngay-19-09-2026/",
     "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel15.m3u8",
     "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
@@ -3373,7 +3157,169 @@
       "jalur2": "https://live.zundrixmediapipeline.com/live/channel15.m3u8",
       "jalur3": "https://live3.zundrixmediapipeline.com/live/channel15.m3u8"
     },
-    "updatedAt": "2026-09-19T09:47:37.147Z"
+    "updatedAt": "2026-09-19T10:02:57.444Z"
+  },
+  {
+    "id": "match_83_dong-a-thanh-hoa-vs-becam",
+    "title": "Đông Á Thanh Hóa vs Becamex Hồ Chí Minh",
+    "homeTeam": "Đông Á Thanh Hóa",
+    "awayTeam": "Becamex Hồ Chí Minh",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/4wyrn4h8kw3q86p/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/4wyrn4h8d9gq86p/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Piala Nasional Vietnam",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/dong-a-thanh-hoa-vs-becamex-ho-chi-minh-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel5.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel5.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel5.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel5.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel5.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel5.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:57.444Z"
+  },
+  {
+    "id": "match_84_khanh-hoa-vs-van-hien",
+    "title": "Khánh Hòa vs Văn Hiến",
+    "homeTeam": "Khánh Hòa",
+    "awayTeam": "Văn Hiến",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/l5ergpho9d9r8k0/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/dj2ryohj834q1zp/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "Piala Nasional Vietnam",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/khanh-hoa-vs-van-hien-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel8.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel8.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel8.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel8.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel8.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel8.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:57.444Z"
+  },
+  {
+    "id": "match_85_fc-tokyo-vs-nagoya-grampu",
+    "title": "FC Tokyo vs Nagoya Grampus",
+    "homeTeam": "FC Tokyo",
+    "awayTeam": "Nagoya Grampus",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/z318q66hd6jqo9j/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/v2y8m4zh915ql07/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "J1 League (Jepang)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/fc-tokyo-vs-nagoya-grampus-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel19.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel19.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel19.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:57.445Z"
+  },
+  {
+    "id": "match_86_gimpo-fc-vs-busan-i-park",
+    "title": "Gimpo FC vs Busan I Park",
+    "homeTeam": "Gimpo FC",
+    "awayTeam": "Busan I Park",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/6ypq3nh50o2md7o/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/z8yomo4hjlnq0j6/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "K League 2",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/gimpo-fc-vs-busan-i-park-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel60.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel60.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel60.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel60.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel60.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel60.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:57.445Z"
+  },
+  {
+    "id": "match_87_seoul-e-land-fc-vs-daegu-",
+    "title": "Seoul E-Land FC vs Daegu FC",
+    "homeTeam": "Seoul E-Land FC",
+    "awayTeam": "Daegu FC",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/zp5rzgh700pq82w/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/kjw2r09hdg5rz84/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "K League 2",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/seoul-e-land-fc-vs-daegu-fc-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel7.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel7.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel7.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel7.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel7.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel7.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:57.446Z"
+  },
+  {
+    "id": "match_88_fagiano-okayama-vs-kyoto-",
+    "title": "Fagiano Okayama vs Kyoto Sanga",
+    "homeTeam": "Fagiano Okayama",
+    "awayTeam": "Kyoto Sanga",
+    "homeLogo": "https://imgts.sportpulseapiz.com/football/team/k82rekhv2y4repz/image/small",
+    "awayLogo": "https://imgts.sportpulseapiz.com/football/team/3glrw7hw3yeqdyj/image/small",
+    "homeScore": "",
+    "awayScore": "",
+    "scoreText": "",
+    "matchMinute": "",
+    "league": "J1 League (Jepang)",
+    "sportCategory": "⚽ Sepak Bola",
+    "kickoffIso": "2026-09-19T17:00:00+07:00",
+    "kickoffText": "17:00 WIB (19/09)",
+    "status": 1,
+    "postUrl": "https://atttvnow.com/truc-tiep/fagiano-okayama-vs-kyoto-sanga-luc-1700-ngay-19-09-2026/",
+    "streamJalur1": "https://live2.zundrixmediapipeline.com/live/channel12.m3u8",
+    "streamJalur2": "https://live.zundrixmediapipeline.com/live/channel12.m3u8",
+    "streamJalur3": "https://live3.zundrixmediapipeline.com/live/channel12.m3u8",
+    "streams": {
+      "jalur1": "https://live2.zundrixmediapipeline.com/live/channel12.m3u8",
+      "jalur2": "https://live.zundrixmediapipeline.com/live/channel12.m3u8",
+      "jalur3": "https://live3.zundrixmediapipeline.com/live/channel12.m3u8"
+    },
+    "updatedAt": "2026-09-19T10:02:57.450Z"
   }
 ];
 

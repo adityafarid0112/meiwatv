@@ -1,13 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-// Terjemahkan nama liga, turnamen, dan tim dari bahasa Vietnam ke Bahasa Indonesia Resmi
+// Terjemahkan nama liga, turnamen, dan tim ke Bahasa Indonesia Resmi
 function translateToId(str) {
     if (!str) return '';
     let text = str;
 
     const leagueMap = [
-        // Spesifik Liga Sepak Bola / Olahraga Populer
+        // Sepak Bola - Liga Populer & Dunia
         { pattern: /Ngoại Hạng Anh/gi, replace: 'Premier League (Inggris)' },
         { pattern: /VĐQG Indonesia/gi, replace: 'BRI Liga 1 Indonesia' },
         { pattern: /Hạng 2 Indonesia/gi, replace: 'Liga 2 Indonesia' },
@@ -22,7 +22,7 @@ function translateToId(str) {
         { pattern: /VĐQG Bồ Đào Nha/gi, replace: 'Liga Portugal' },
         { pattern: /VĐQG Saudi Arabia|VĐQG Ả Rập Xê Út/gi, replace: 'Saudi Pro League' },
         { pattern: /VĐQG Nhật Bản/gi, replace: 'J1 League (Jepang)' },
-        { pattern: /VĐQG Hàn Quốc/gi, replace: 'K League 1 (Korea)' },
+        { pattern: /VĐQG Hàn Quốc/gi, replace: 'K League 1 (Korea Selatan)' },
         { pattern: /Hạng Nhất Ukraina/gi, replace: 'Liga Utama Ukraina' },
         { pattern: /Hạng Nhất Anh/gi, replace: 'Championship (Inggris)' },
         { pattern: /Hạng 2 Trung Quốc/gi, replace: 'Liga 2 China' },
@@ -31,8 +31,51 @@ function translateToId(str) {
         { pattern: /Hạng 2 Đức/gi, replace: '2. Bundesliga (Jerman)' },
         { pattern: /Hạng 2 Ý/gi, replace: 'Serie B (Italia)' },
         { pattern: /Hạng 2 Pháp/gi, replace: 'Ligue 2 (Prancis)' },
-        
-        // Turnamen & Kompetisi
+        { pattern: /Ngoại Hạng Darwin/gi, replace: 'Liga Utama Darwin (Australia)' },
+        { pattern: /Czech 3 liga/gi, replace: 'Liga 3 Republik Ceko' },
+        { pattern: /Bangladesh Premier League/gi, replace: 'Liga Utama Bangladesh' },
+        { pattern: /\bJFL\b/g, replace: 'Liga Sepak Bola Jepang (JFL)' },
+        { pattern: /\bJ1 League\b/g, replace: 'J1 League (Jepang)' },
+        { pattern: /\bJ2 League\b/g, replace: 'J2 League (Jepang)' },
+        { pattern: /\bJ3 League\b/g, replace: 'J3 League (Jepang)' },
+        { pattern: /\bK League 1\b/g, replace: 'K League 1 (Korea Selatan)' },
+        { pattern: /\bK4 League\b/g, replace: 'K4 League (Korea Selatan)' },
+
+        // Bola Basket
+        { pattern: /National Basketball League/gi, replace: 'Liga Basket Nasional (NBL)' },
+        { pattern: /Philippines University Athletic Association/gi, replace: 'Liga Universitas Filipina (UAAP)' },
+        { pattern: /Turkish Basketball First League/gi, replace: 'Liga Basket Divisi 1 Turki' },
+        { pattern: /Vietnam VBA/gi, replace: 'Liga Basket Vietnam (VBA)' },
+        { pattern: /VTB United League Supercup/gi, replace: 'Piala Super VTB United League' },
+        { pattern: /Italy Super Cup/gi, replace: 'Piala Super Italia' },
+        { pattern: /Basketball Bundesliga/gi, replace: 'Bundesliga Basket (Jerman)' },
+        { pattern: /Spain Basketball Supercopa/gi, replace: 'Piala Super Basket Spanyol' },
+        { pattern: /Women National Basketball Association/gi, replace: 'Liga Basket Wanita Amerika (WNBA)' },
+        { pattern: /Liga Nacional de Baloncesto Profesional/gi, replace: 'Liga Basket Profesional Meksiko (LNBP)' },
+        { pattern: /Asian Games - Women's Basketball/gi, replace: 'Asian Games - Bola Basket Putri' },
+        { pattern: /Copa del Rey de Baloncesto/gi, replace: 'Piala Raja Basket Spanyol' },
+
+        // Tenis, Bulu Tangkis, Voli
+        { pattern: /WTA Seoul, Korea Republic Women Singles/gi, replace: 'WTA Seoul (Tunggal Putri Korea Selatan)' },
+        { pattern: /Davis Cup/gi, replace: 'Piala Davis (Tenis)' },
+        { pattern: /European Championships/gi, replace: 'Kejuaraan Eropa' },
+
+        // Esports
+        { pattern: /LPL Regional Finals 2026/gi, replace: 'Final Regional LPL 2026 (LoL)' },
+        { pattern: /VCS Finals 2026/gi, replace: 'Final VCS 2026 (LoL)' },
+        { pattern: /Rift Legends Summer 2026/gi, replace: 'Rift Legends Musim Panas 2026' },
+        { pattern: /LEC Summer 2026/gi, replace: 'LEC Musim Panas 2026 (LoL)' },
+        { pattern: /LIT Summer 2026/gi, replace: 'LIT Musim Panas 2026' },
+        { pattern: /LCS Summer 2026/gi, replace: 'LCS Musim Panas 2026 (LoL)' },
+        { pattern: /PGL Wallachia Season 9/gi, replace: 'PGL Wallachia Musim 9 (Dota 2)' },
+        { pattern: /European Pro League Season 40/gi, replace: 'Liga Pro Eropa Musim 40' },
+        { pattern: /CCT 2026 Europe Series 9/gi, replace: 'CCT 2026 Seri Eropa 9 (CS2)' },
+        { pattern: /StarLadder StarSeries Season 22/gi, replace: 'StarLadder StarSeries Musim 22 (CS2)' },
+        { pattern: /NODWIN Clutch Series 12/gi, replace: 'NODWIN Clutch Seri 12' },
+        { pattern: /HyperX Retake Season 12/gi, replace: 'HyperX Retake Musim 12' },
+        { pattern: /CROSSFIRE Season 6/gi, replace: 'CROSSFIRE Musim 6' },
+
+        // Turnamen & Kompetisi Umum
         { pattern: /Cúp C1|Champions League/gi, replace: 'Liga Champions' },
         { pattern: /Cúp C2|Europa League/gi, replace: 'Liga Europa' },
         { pattern: /Cúp C3|Conference League/gi, replace: 'Liga Konferensi Eropa' },
@@ -53,8 +96,6 @@ function translateToId(str) {
         { pattern: /Chung kết/gi, replace: 'Final' },
         { pattern: /Tứ kết/gi, replace: 'Perempat Final' },
         { pattern: /Vòng Bảng/gi, replace: 'Fase Grup' },
-        
-        // Klasifikasi Umum
         { pattern: /Hạng 2/gi, replace: 'Divisi 2' },
         { pattern: /Hạng 3/gi, replace: 'Divisi 3' },
         { pattern: /Hạng 4/gi, replace: 'Divisi 4' },
@@ -66,8 +107,19 @@ function translateToId(str) {
     leagueMap.forEach(item => { text = text.replace(item.pattern, item.replace); });
 
     const wordMap = [
-        { pattern: /\bNữ\b/gi, replace: 'Wanita' },
-        { pattern: /\bNam\b/gi, replace: 'Pria' },
+        { pattern: /\bSeason\b/gi, replace: 'Musim' },
+        { pattern: /\bSeries\b/gi, replace: 'Seri' },
+        { pattern: /\bSummer\b/gi, replace: 'Musim Panas' },
+        { pattern: /\bSpring\b/gi, replace: 'Musim Semi' },
+        { pattern: /\bAutumn\b|\bFall\b/gi, replace: 'Musim Gugur' },
+        { pattern: /\bWinter\b/gi, replace: 'Musim Dingin' },
+        { pattern: /\bFinals\b/gi, replace: 'Final' },
+        { pattern: /\bSemifinals\b/gi, replace: 'Semifinal' },
+        { pattern: /\bQuarterfinals\b/gi, replace: 'Perempat Final' },
+        { pattern: /\bSingles\b/gi, replace: 'Tunggal' },
+        { pattern: /\bDoubles\b/gi, replace: 'Ganda' },
+        { pattern: /\bWomen\b|\bNữ\b/gi, replace: 'Wanita' },
+        { pattern: /\bMen\b|\bNam\b/gi, replace: 'Pria' },
         { pattern: /\bTrẻ\b/gi, replace: 'Muda' },
         { pattern: /\bCLB\s+/gi, replace: 'Klub ' },
         { pattern: /\bNhật Bản\b/gi, replace: 'Jepang' },
@@ -337,9 +389,17 @@ async function scrapeAll() {
                         scoreText = `${homeScore} - ${awayScore}`;
                     }
 
-                    const periodMatch = cardContent.match(/class="[^"]*(?:grid-match__half-court|period|quarter|set-name|match-time)[^"]*"[^>]*>\s*([^<]+)\s*</i);
+                    const periodMatch = cardContent.match(/class="[^"]*(?:period|quarter|set-name|match-time)[^"]*"[^>]*>\s*([^<]+)\s*</i);
                     if (periodMatch) {
-                        matchMinute = periodMatch[1].trim();
+                        let pm = periodMatch[1].trim();
+                        // Jangan masukkan jika hanya angka odds (seperti 0 - 0)
+                        if (!/^\d+\s*[-:]\s*\d+$/.test(pm)) {
+                            pm = pm.replace(/Hiệp 1/gi, 'Babak 1')
+                                   .replace(/Hiệp 2/gi, 'Babak 2')
+                                   .replace(/Nghỉ giữa hiệp/gi, 'Turun Minum')
+                                   .replace(/Hết giờ/gi, 'Selesai');
+                            matchMinute = pm;
+                        }
                     }
                 }
 
