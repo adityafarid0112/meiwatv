@@ -84,19 +84,20 @@ class MatchService {
   }
 
   // URL CDN dan Portal untuk auto-update pertandingan tanpa compile ulang
-  static const String portalUrl =
-      'http://meiwa.my.id/matches.json';
+  // Urutan: GitHub Raw (paling fresh) → jsDelivr CDN → Portal (fallback)
   static const String githubRawUrl =
       'https://raw.githubusercontent.com/adityafarid0112/meiwatv/main/matches.json';
   static const String jsdelivrCdnUrl =
       'https://cdn.jsdelivr.net/gh/adityafarid0112/meiwatv@main/matches.json';
+  static const String portalUrl =
+      'http://meiwa.my.id/matches.json';
 
   /// Mengambil siaran langsung terbaru (utamakan Portal / CDN / GitHub jika tersedia, atau scrape langsung dari DaddyLive API & Xoilac)
   Future<void> refreshOnlineMatches({bool forceDirectScrape = false}) async {
     try {
       // 1. Jika tidak dipaksa scrape langsung, coba cek Portal / GitHub / CDN terlebih dahulu
       if (!forceDirectScrape) {
-        final endpoints = [portalUrl, githubRawUrl, jsdelivrCdnUrl];
+        final endpoints = [githubRawUrl, jsdelivrCdnUrl, portalUrl];
         for (final endpoint in endpoints) {
           try {
             final uri = Uri.parse('$endpoint?t=${DateTime.now().millisecondsSinceEpoch}');
@@ -108,8 +109,8 @@ class MatchService {
             if (res.statusCode == 200 && res.bodyBytes.isNotEmpty) {
               final bodyString = utf8.decode(res.bodyBytes, allowMalformed: true);
               final List<dynamic> decoded = json.decode(bodyString);
-              // Hanya terima remote update jika jumlah pertandingan lengkap dan tidak mengalami downgrade
-              if (decoded.length >= 200 && decoded.length >= _cachedMatches.length) {
+              // Terima data jika cukup lengkap (minimal 50 pertandingan)
+              if (decoded.length >= 50) {
                 _cachedMatches = decoded
                     .map((item) => MatchModel.fromJson(item as Map<String, dynamic>))
                     .toList();
@@ -198,9 +199,17 @@ class MatchService {
             category = '🏆 Olahraga Lainnya';
           }
 
-          final link1 = channels[0]['url'] as String? ?? '';
-          final link2 = channels.length > 1 ? (channels[1]['url'] as String? ?? '') : '';
-          final link3 = channels.length > 2 ? (channels[2]['url'] as String? ?? '') : '';
+          // Konversi setiap channel URL → embed URL langsung
+          // Input : https://daddylive.app/live/stream=f5272&source=tv6
+          // Output: https://daddylive.app/player/embed.php?id=f5272
+          final embedUrls = channels
+              .map((c) => _daddyUrlToEmbed(c['url'] as String? ?? ''))
+              .where((u) => u.isNotEmpty)
+              .toList();
+          final link1 = embedUrls.isNotEmpty ? embedUrls[0] : '';
+          final link2 = embedUrls.length > 1 ? embedUrls[1] : '';
+          final link3 = embedUrls.length > 2 ? embedUrls[2] : '';
+          final link4 = embedUrls.length > 3 ? embedUrls[3] : '';
 
           // Cek apakah pertandingan sudah ada di list Xoilac
           final normTitle = title.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
@@ -228,10 +237,10 @@ class MatchService {
               kickoffText: existing.kickoffText,
               status: existing.status,
               sportCategory: existing.sportCategory,
-              streamJalur1: link1, // DaddyLive HD sebagai Jalur 1
-              streamJalur2: link2.isNotEmpty ? link2 : xoilacBackup,
-              streamJalur3: link3.isNotEmpty ? link3 : (link2.isNotEmpty ? xoilacBackup : link1),
-              streamJalur4: xoilacBackup,
+              streamJalur1: link1.isNotEmpty ? link1 : xoilacBackup,
+              streamJalur2: link2.isNotEmpty ? link2 : (link1.isNotEmpty ? xoilacBackup : ''),
+              streamJalur3: link3.isNotEmpty ? link3 : (link2.isNotEmpty ? xoilacBackup : ''),
+              streamJalur4: link4.isNotEmpty ? link4 : xoilacBackup,
             );
           } else {
             final uniqueId = 'daddy_${directParsed.length + 1}_${title.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '-')}';
@@ -255,7 +264,7 @@ class MatchService {
               streamJalur1: link1,
               streamJalur2: link2.isNotEmpty ? link2 : link1,
               streamJalur3: link3.isNotEmpty ? link3 : link1,
-              streamJalur4: '',
+              streamJalur4: link4.isNotEmpty ? link4 : '',
             ));
           }
         }
@@ -523,6 +532,24 @@ class MatchService {
     }
 
     return list;
+  }
+
+  /// Konversi URL halaman channel DaddyLive → embed URL langsung
+  /// Input : https://daddylive.app/live/stream=f5272&source=tv6
+  /// Output: https://daddylive.app/player/embed.php?id=f5272
+  String _daddyUrlToEmbed(String url) {
+    if (url.isEmpty) return '';
+    // Jika sudah berupa embed URL, bersihkan &source= lalu kembalikan
+    if (url.contains('embed.php')) {
+      final clean = url.split('&source=')[0].split('&amp;source=')[0];
+      return Uri.decodeFull(clean);
+    }
+    // Ekstrak stream ID: stream=<ID>&source=...
+    final regex = RegExp(r'[?&]?stream=([^&]+)', caseSensitive: false);
+    final match = regex.firstMatch(url);
+    if (match == null) return '';
+    final streamId = Uri.decodeComponent(match.group(1)!).split('&source=')[0];
+    return 'https://daddylive.app/player/embed.php?id=$streamId';
   }
 
   /// Pemetaan URL Siaran DaddyLive HD Resmi
