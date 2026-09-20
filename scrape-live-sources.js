@@ -735,6 +735,9 @@ async function scrapeAll() {
                 const dlMapping = getDaddyLiveMapping(category, league, title, slugName);
                 const dlUrl = dlMapping ? dlMapping.url : '';
 
+                // streamUrls: dimulai dengan embed DaddyLive statis (jika ada)
+                // Xoilac matchPageUrl disimpan di postUrl saja, bukan sebagai embed jalur
+                const initStreamUrls = dlUrl ? [dlUrl] : [];
                 parsedMap.set(relUrl, {
                     id: `match_${parsedMap.size + 1}_${slugName.substring(0, 25)}`,
                     title,
@@ -755,13 +758,13 @@ async function scrapeAll() {
                     daddyliveUrl: dlUrl,
                     daddyliveName: dlMapping ? dlMapping.name : 'DaddyLive HD',
                     streamJalur1: dlUrl || matchPageUrl,
-                    streamJalur2: matchPageUrl,
-                    streamJalur3: dlUrl || matchPageUrl,
+                    streamJalur2: dlUrl ? '' : matchPageUrl,
+                    streamJalur3: '',
+                    streamJalur4: '',
+                    streamUrls: initStreamUrls,
                     streams: {
-                        jalur1: dlUrl || matchPageUrl,
-                        jalur2: matchPageUrl,
-                        jalur3: dlUrl || matchPageUrl,
-                        daddylive: dlUrl
+                        daddylive: dlUrl,
+                        xoilac: matchPageUrl
                     },
                     updatedAt: new Date().toISOString()
                 });
@@ -869,11 +872,26 @@ async function scrapeAll() {
                 }
             }
 
-            // Ambil semua channel URL resmi dari DaddyLive
-            // Decode %2F → / agar embed berfungsi sempurna di WebView iframe
-            function decodeDaddyUrl(url) {
+            // Konversi URL halaman channel DaddyLive → embed URL langsung
+            // Input : https://daddylive.app/live/stream=f5272&source=tv6
+            //         https://daddylive.app/live/stream=401876970%2Fatletico%2Fhd%2F1&source=tv3
+            // Output: https://daddylive.app/player/embed.php?id=f5272
+            //         https://daddylive.app/player/embed.php?id=401876970/atletico/hd/1
+            function daddyUrlToEmbed(url) {
                 if (!url) return '';
-                return url.replace(/%2F/gi, '/').replace(/%26/gi, '&').replace(/%3D/gi, '=');
+                // Jika sudah berupa embed URL, bersihkan dan kembalikan
+                if (url.includes('embed.php')) {
+                    // Hapus &source=... jika ada, dan decode %2F → /
+                    const clean = url.split('&source=')[0].split('&amp;source=')[0];
+                    try { return decodeURIComponent(clean); } catch (_) { return clean; }
+                }
+                // Ekstrak stream ID dari URL channel: stream=<ID>&source=...
+                const m = url.match(/[?&]?stream=([^&]+)/i) || url.match(/\/stream=([^&]+)/i);
+                if (!m) return '';
+                // Decode %2F → / dan strip &source=...
+                let streamId = m[1].split('&source=')[0];
+                try { streamId = decodeURIComponent(streamId); } catch (_) {}
+                return `https://daddylive.app/player/embed.php?id=${streamId}`;
             }
             function getQualityOrder(url) {
                 if (!url) return 99;
@@ -884,9 +902,11 @@ async function scrapeAll() {
                 if (lower.includes('/sd/')) return 4;
                 return 3;
             }
+            // Setiap channel menghasilkan 1 embed URL unik → Jalur 1, Jalur 2, dst.
             const daddyChannelUrls = channels
-                .map(c => decodeDaddyUrl(c.url))
+                .map(c => daddyUrlToEmbed(c.url))
                 .filter(u => u && u.startsWith('http'))
+                .filter((u, i, arr) => arr.indexOf(u) === i) // deduplikasi
                 .sort((a, b) => getQualityOrder(a) - getQualityOrder(b));
 
             if (matchedKey) {
@@ -896,19 +916,15 @@ async function scrapeAll() {
                 const existing = parsedMap.get(matchedKey);
                 const xoilacBackup = existing.postUrl;
 
-                // AKUMULASI: Tambah semua channel baru ke streamUrls yang sudah ada
+                // AKUMULASI: Tambah semua embed URL baru ke streamUrls yang sudah ada
                 if (!existing.streamUrls) existing.streamUrls = [];
-                // Decode existing URLs juga untuk perbandingan akurat
-                const normalizeUrl = u => u ? u.replace(/%2F/gi, '/').replace(/%26/gi, '&').split('&source=')[0] : '';
+                // Ambil hanya embed URL DaddyLive yang sudah ada
                 const filteredExisting = existing.streamUrls
-                    .filter(u => u && u.includes('daddylive.app'))
-                    .map(u => u.replace(/%2F/gi, '/').replace(/%26/gi, '&'));
+                    .filter(u => u && u.includes('daddylive.app') && u.includes('embed.php'));
                 
-                // Gabungkan: channel DaddyLive lama + baru (deduplikasi berdasarkan path tanpa source param)
+                // Gabungkan embed URLs lama + baru (deduplikasi exact match)
                 for (const url of daddyChannelUrls) {
-                    const normUrl = normalizeUrl(url);
-                    const alreadyExists = filteredExisting.some(u => normalizeUrl(u) === normUrl);
-                    if (!alreadyExists) {
+                    if (!filteredExisting.includes(url)) {
                         filteredExisting.push(url);
                     }
                 }
